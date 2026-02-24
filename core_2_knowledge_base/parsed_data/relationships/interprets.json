@@ -1,0 +1,1820 @@
+[
+  {
+    "source_id": "GDPR_REC_1",
+    "target_id": "GDPR_ART_8",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_1",
+    "target_id": "GDPR_ART_16",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_12",
+    "target_id": "GDPR_ART_16",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_13",
+    "target_id": "GDPR_ART_2",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_21",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_21",
+    "target_id": "GDPR_ART_13",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_21",
+    "target_id": "GDPR_ART_14",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_21",
+    "target_id": "GDPR_ART_15",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_106",
+    "target_id": "GDPR_ART_25",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_106",
+    "target_id": "GDPR_ART_26",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_141",
+    "target_id": "GDPR_ART_47",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_153",
+    "target_id": "GDPR_ART_11",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_165",
+    "target_id": "GDPR_ART_17",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_170",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_REC_172",
+    "target_id": "GDPR_ART_28",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_3",
+    "target_id": "AIACT_ART_16",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_6",
+    "target_id": "AIACT_ART_2",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_6",
+    "target_id": "AIACT_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_14",
+    "target_id": "AIACT_ART_3",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_14",
+    "target_id": "AIACT_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_24",
+    "target_id": "AIACT_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_33",
+    "target_id": "AIACT_ART_2",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_38",
+    "target_id": "AIACT_ART_8",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_38",
+    "target_id": "AIACT_ART_10",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_38",
+    "target_id": "AIACT_ART_16",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_39",
+    "target_id": "AIACT_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_39",
+    "target_id": "AIACT_ART_10",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_40",
+    "target_id": "AIACT_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_40",
+    "target_id": "AIACT_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_40",
+    "target_id": "AIACT_ART_16",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_40",
+    "target_id": "AIACT_ART_26",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_41",
+    "target_id": "AIACT_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_41",
+    "target_id": "AIACT_ART_16",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_41",
+    "target_id": "AIACT_ART_26",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_48",
+    "target_id": "AIACT_ART_24",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_53",
+    "target_id": "AIACT_ART_3",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_53",
+    "target_id": "AIACT_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_54",
+    "target_id": "AIACT_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_62",
+    "target_id": "AIACT_ART_39",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_70",
+    "target_id": "AIACT_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_70",
+    "target_id": "AIACT_ART_10",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_84",
+    "target_id": "AIACT_ART_16",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_93",
+    "target_id": "AIACT_ART_13",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_94",
+    "target_id": "AIACT_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_94",
+    "target_id": "AIACT_ART_10",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_104",
+    "target_id": "AIACT_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_106",
+    "target_id": "AIACT_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_121",
+    "target_id": "AIACT_ART_2",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_122",
+    "target_id": "AIACT_ART_54",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_136",
+    "target_id": "AIACT_ART_16",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_140",
+    "target_id": "AIACT_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_140",
+    "target_id": "AIACT_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_140",
+    "target_id": "AIACT_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_140",
+    "target_id": "AIACT_ART_10",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_140",
+    "target_id": "AIACT_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_140",
+    "target_id": "AIACT_ART_24",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_149",
+    "target_id": "AIACT_ART_30",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_149",
+    "target_id": "AIACT_ART_33",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_160",
+    "target_id": "AIACT_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_164",
+    "target_id": "AIACT_ART_18",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_176",
+    "target_id": "AIACT_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_REC_180",
+    "target_id": "AIACT_ART_42",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2020",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2020",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2020",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2020",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2021",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2021",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2021",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2021",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2021",
+    "target_id": "GDPR_ART_33",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2021",
+    "target_id": "GDPR_ART_34",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2021",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2022",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2022",
+    "target_id": "GDPR_ART_15",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2022",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2022",
+    "target_id": "GDPR_ART_23",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2022",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2024",
+    "target_id": "GDPR_ART_1",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2024",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2024",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2024",
+    "target_id": "GDPR_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2024",
+    "target_id": "GDPR_ART_7",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2024",
+    "target_id": "GDPR_ART_8",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2024",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2024",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2024",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_01_2024",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2019",
+    "target_id": "GDPR_ART_1",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2019",
+    "target_id": "GDPR_ART_3",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2019",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2019",
+    "target_id": "GDPR_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2019",
+    "target_id": "GDPR_ART_7",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2019",
+    "target_id": "GDPR_ART_8",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2019",
+    "target_id": "GDPR_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2019",
+    "target_id": "GDPR_ART_16",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2019",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2019",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2021",
+    "target_id": "GDPR_ART_1",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2021",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2021",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2021",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2021",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2023",
+    "target_id": "GDPR_ART_1",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2023",
+    "target_id": "GDPR_ART_2",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2023",
+    "target_id": "GDPR_ART_3",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2023",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2023",
+    "target_id": "GDPR_ART_7",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2023",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2023",
+    "target_id": "GDPR_ART_15",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2023",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2023",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_02_2023",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2018",
+    "target_id": "GDPR_ART_3",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2018",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2018",
+    "target_id": "GDPR_ART_27",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2018",
+    "target_id": "GDPR_ART_34",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2018",
+    "target_id": "GDPR_ART_56",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2018",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2019",
+    "target_id": "GDPR_ART_2",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2019",
+    "target_id": "GDPR_ART_3",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2019",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2019",
+    "target_id": "GDPR_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2019",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2019",
+    "target_id": "GDPR_ART_13",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2019",
+    "target_id": "GDPR_ART_21",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2019",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2019",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2019",
+    "target_id": "GDPR_ART_35",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2019",
+    "target_id": "GDPR_ART_37",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2019",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2022",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2022",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2022",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2022",
+    "target_id": "GDPR_ART_25",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2022",
+    "target_id": "GDPR_ART_26",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_03_2022",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2019",
+    "target_id": "GDPR_ART_1",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2019",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2019",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2019",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2019",
+    "target_id": "GDPR_ART_20",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2019",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2019",
+    "target_id": "GDPR_ART_25",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2019",
+    "target_id": "GDPR_ART_27",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2019",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2019",
+    "target_id": "GDPR_ART_32",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2019",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2020",
+    "target_id": "GDPR_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2020",
+    "target_id": "GDPR_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2020",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2020",
+    "target_id": "GDPR_ART_15",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2020",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_04_2020",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2019",
+    "target_id": "GDPR_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2019",
+    "target_id": "GDPR_ART_8",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2019",
+    "target_id": "GDPR_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2019",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2019",
+    "target_id": "GDPR_ART_14",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2019",
+    "target_id": "GDPR_ART_17",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2019",
+    "target_id": "GDPR_ART_21",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2019",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2019",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2019",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2019",
+    "target_id": "GDPR_ART_89",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2020",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2020",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2020",
+    "target_id": "GDPR_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2020",
+    "target_id": "GDPR_ART_7",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2020",
+    "target_id": "GDPR_ART_8",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2020",
+    "target_id": "GDPR_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2020",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2020",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2020",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2020",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2020",
+    "target_id": "GDPR_ART_94",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2020",
+    "target_id": "GDPR_ART_95",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2022",
+    "target_id": "GDPR_ART_1",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2022",
+    "target_id": "GDPR_ART_3",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2022",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2022",
+    "target_id": "GDPR_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2022",
+    "target_id": "GDPR_ART_7",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2022",
+    "target_id": "GDPR_ART_8",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2022",
+    "target_id": "GDPR_ART_10",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2022",
+    "target_id": "GDPR_ART_11",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2022",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2022",
+    "target_id": "GDPR_ART_13",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2022",
+    "target_id": "GDPR_ART_27",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_05_2022",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_24",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_26",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_28",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_32",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_33",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_34",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_35",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_36",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_58",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_07_2020",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_08_2020",
+    "target_id": "GDPR_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_08_2020",
+    "target_id": "GDPR_ART_15",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_08_2020",
+    "target_id": "GDPR_ART_24",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_08_2020",
+    "target_id": "GDPR_ART_26",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_08_2020",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_08_2020",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_09_2022",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_09_2022",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_09_2022",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_09_2022",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_09_2022",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_09_2022",
+    "target_id": "GDPR_ART_32",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_09_2022",
+    "target_id": "GDPR_ART_33",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_09_2022",
+    "target_id": "GDPR_ART_34",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_09_2022",
+    "target_id": "GDPR_ART_35",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_09_2022",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_09_2022",
+    "target_id": "GDPR_ART_83",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_8",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_10",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_11",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_13",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_14",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_15",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_16",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_17",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_18",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_19",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_20",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_21",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_23",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_34",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_52",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_GL_10_2020",
+    "target_id": "GDPR_ART_77",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP248",
+    "target_id": "GDPR_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP248",
+    "target_id": "GDPR_ART_15",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP248",
+    "target_id": "GDPR_ART_24",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP248",
+    "target_id": "GDPR_ART_27",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP248",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP248",
+    "target_id": "GDPR_ART_30",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP248",
+    "target_id": "GDPR_ART_35",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP248",
+    "target_id": "GDPR_ART_36",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP248",
+    "target_id": "GDPR_ART_70",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP251",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP251",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP251",
+    "target_id": "GDPR_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP251",
+    "target_id": "GDPR_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP251",
+    "target_id": "GDPR_ART_15",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP251",
+    "target_id": "GDPR_ART_16",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP251",
+    "target_id": "GDPR_ART_17",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP251",
+    "target_id": "GDPR_ART_18",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP251",
+    "target_id": "GDPR_ART_21",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP251",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP251",
+    "target_id": "GDPR_ART_29",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "EDPB_WP251",
+    "target_id": "GDPR_ART_30",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_131_12",
+    "target_id": "GDPR_ART_2",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_131_12",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_131_12",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_131_12",
+    "target_id": "GDPR_ART_14",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_136_17",
+    "target_id": "GDPR_ART_8",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_136_17",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_136_17",
+    "target_id": "GDPR_ART_14",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_154_21",
+    "target_id": "GDPR_ART_12",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_154_21",
+    "target_id": "GDPR_ART_15",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_175_20",
+    "target_id": "GDPR_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_184_20",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_210_16",
+    "target_id": "GDPR_ART_2",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_210_16",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_210_16",
+    "target_id": "GDPR_ART_17",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_210_16",
+    "target_id": "GDPR_ART_28",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_252_21",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_300_21",
+    "target_id": "GDPR_ART_82",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_311_18",
+    "target_id": "GDPR_ART_44",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_311_18",
+    "target_id": "GDPR_ART_45",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_311_18",
+    "target_id": "GDPR_ART_46",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_311_18",
+    "target_id": "GDPR_ART_49",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_340_21",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_40_17",
+    "target_id": "GDPR_ART_2",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_40_17",
+    "target_id": "GDPR_ART_7",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_40_17",
+    "target_id": "GDPR_ART_10",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_40_17",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_446_21",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_460_20",
+    "target_id": "GDPR_ART_5",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_61_19",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_634_21",
+    "target_id": "GDPR_ART_6",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_634_21",
+    "target_id": "GDPR_ART_22",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_645_19",
+    "target_id": "GDPR_ART_55",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_645_19",
+    "target_id": "GDPR_ART_56",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_645_19",
+    "target_id": "GDPR_ART_58",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_645_19",
+    "target_id": "GDPR_ART_60",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_667_21",
+    "target_id": "GDPR_ART_9",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_673_17",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_673_17",
+    "target_id": "GDPR_ART_2",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_683_21",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_807_21",
+    "target_id": "GDPR_ART_4",
+    "type": "INTERPRETS",
+    "properties": {}
+  }
+]

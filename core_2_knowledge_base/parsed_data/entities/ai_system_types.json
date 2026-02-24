@@ -1,0 +1,173 @@
+[
+  {
+    "id": "AIST_SUBLIMINAL_MANIPULATION",
+    "name": "Subliminal Manipulation",
+    "risk_category": "RISK_PROHIBITED",
+    "source_article": "AIACT_ART_5",
+    "use_case_area": "Prohibited",
+    "description": "AI deploying subliminal techniques to distort behaviour",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_VULNERABILITY_EXPLOITATION",
+    "name": "Vulnerability Exploitation",
+    "risk_category": "RISK_PROHIBITED",
+    "source_article": "AIACT_ART_5",
+    "use_case_area": "Prohibited",
+    "description": "AI exploiting vulnerabilities of age, disability, social/economic situation",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_SOCIAL_SCORING_PUBLIC",
+    "name": "Social Scoring (Public Authority)",
+    "risk_category": "RISK_PROHIBITED",
+    "source_article": "AIACT_ART_5",
+    "use_case_area": "Prohibited",
+    "description": "Social scoring by public authorities leading to detrimental treatment",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_REALTIME_BIOMETRIC_PUBLIC",
+    "name": "Real-time Biometric in Public Spaces",
+    "risk_category": "RISK_PROHIBITED",
+    "source_article": "AIACT_ART_5",
+    "use_case_area": "Prohibited",
+    "description": "Real-time remote biometric identification in publicly accessible spaces for law enforcement",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_EMOTION_RECOGNITION_WORK",
+    "name": "Emotion Recognition (Workplace)",
+    "risk_category": "RISK_PROHIBITED",
+    "source_article": "AIACT_ART_5",
+    "use_case_area": "Prohibited",
+    "description": "Emotion recognition in workplace except for medical/safety reasons",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_EMOTION_RECOGNITION_EDU",
+    "name": "Emotion Recognition (Education)",
+    "risk_category": "RISK_PROHIBITED",
+    "source_article": "AIACT_ART_5",
+    "use_case_area": "Prohibited",
+    "description": "Emotion recognition in educational institutions except for medical/safety reasons",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_UNTARGETED_FACIAL_SCRAPING",
+    "name": "Untargeted Facial Image Scraping",
+    "risk_category": "RISK_PROHIBITED",
+    "source_article": "AIACT_ART_5",
+    "use_case_area": "Prohibited",
+    "description": "Untargeted scraping of facial images from internet/CCTV for facial recognition databases",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_BIOMETRIC_CATEGORISATION",
+    "name": "Biometric Categorisation (Sensitive)",
+    "risk_category": "RISK_PROHIBITED",
+    "source_article": "AIACT_ART_5",
+    "use_case_area": "Prohibited",
+    "description": "Biometric categorisation inferring race, political opinions, religious beliefs, sexual orientation",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_BIOMETRIC_ID",
+    "name": "Biometric Identification",
+    "risk_category": "RISK_HIGH",
+    "annex_reference": "AIACT_ANNEX_III",
+    "use_case_area": "Annex III Area 1",
+    "description": "Remote biometric identification systems",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_CRITICAL_INFRASTRUCTURE",
+    "name": "Critical Infrastructure Management",
+    "risk_category": "RISK_HIGH",
+    "annex_reference": "AIACT_ANNEX_III",
+    "use_case_area": "Annex III Area 2",
+    "description": "AI as safety component of critical infrastructure",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_EDUCATION_ASSESSMENT",
+    "name": "Education/Vocational Assessment",
+    "risk_category": "RISK_HIGH",
+    "annex_reference": "AIACT_ANNEX_III",
+    "use_case_area": "Annex III Area 3",
+    "description": "AI determining access to education or evaluating students",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_EMPLOYMENT",
+    "name": "Employment/Workers Management",
+    "risk_category": "RISK_HIGH",
+    "annex_reference": "AIACT_ANNEX_III",
+    "use_case_area": "Annex III Area 4",
+    "description": "AI for recruitment, promotion, termination, task allocation, performance monitoring",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_ESSENTIAL_SERVICES",
+    "name": "Essential Services Access",
+    "risk_category": "RISK_HIGH",
+    "annex_reference": "AIACT_ANNEX_III",
+    "use_case_area": "Annex III Area 5",
+    "description": "AI for credit scoring, insurance, emergency services, benefits eligibility",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_LAW_ENFORCEMENT",
+    "name": "Law Enforcement",
+    "risk_category": "RISK_HIGH",
+    "annex_reference": "AIACT_ANNEX_III",
+    "use_case_area": "Annex III Area 6",
+    "description": "AI for risk assessment, polygraphs, evidence evaluation, crime prediction, profiling",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_MIGRATION_BORDER",
+    "name": "Migration/Border Control",
+    "risk_category": "RISK_HIGH",
+    "annex_reference": "AIACT_ANNEX_III",
+    "use_case_area": "Annex III Area 7",
+    "description": "AI for risk assessment in migration, visa, asylum, border control",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_JUSTICE_DEMOCRACY",
+    "name": "Justice/Democratic Processes",
+    "risk_category": "RISK_HIGH",
+    "annex_reference": "AIACT_ANNEX_III",
+    "use_case_area": "Annex III Area 8",
+    "description": "AI assisting judicial authorities in fact-finding, law application, dispute resolution",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_CHATBOT",
+    "name": "Chatbot/Conversational AI",
+    "risk_category": "RISK_LIMITED",
+    "source_article": "AIACT_ART_50",
+    "use_case_area": "Transparency",
+    "description": "AI system interacting with natural persons (must disclose AI nature)",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_DEEPFAKE",
+    "name": "Deepfake Generation",
+    "risk_category": "RISK_LIMITED",
+    "source_article": "AIACT_ART_50",
+    "use_case_area": "Transparency",
+    "description": "AI generating synthetic audio, image, video content",
+    "type": "AISystemType"
+  },
+  {
+    "id": "AIST_AI_GENERATED_CONTENT",
+    "name": "AI-Generated Content",
+    "risk_category": "RISK_LIMITED",
+    "source_article": "AIACT_ART_50",
+    "use_case_area": "Transparency",
+    "description": "AI-generated text on matters of public interest",
+    "type": "AISystemType"
+  }
+]

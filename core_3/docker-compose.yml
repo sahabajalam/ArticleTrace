@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  compliance-agent:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/compliance
+      - REDIS_URL=redis://redis:6379/0
+      - GRAPHRAG_API_URL=${GRAPHRAG_API_URL:-http://graphrag:8001}
+      - MONITORING_API_URL=${MONITORING_API_URL:-http://monitoring:8002}
+      - LOG_LEVEL=INFO
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=compliance
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # Project 3 GraphRAG API (placeholder - replace with actual service)
+  # graphrag:
+  #   image: your-graphrag-image
+  #   ports:
+  #     - "8001:8001"
+
+  # Project 2 Monitoring API (placeholder - replace with actual service)
+  # monitoring:
+  #   image: your-monitoring-image
+  #   ports:
+  #     - "8002:8002"
+
+volumes:
+  postgres_data:
+  redis_data:

@@ -1,0 +1,1011 @@
+[
+  {
+    "id": "CONCEPT_LAWFULNESS",
+    "type": "Concept",
+    "name": "Lawfulness",
+    "category": "gdpr_principle",
+    "description": "Personal data must be processed lawfully, with a valid legal basis (Art 6)",
+    "keywords": [
+      "lawful",
+      "lawfulness",
+      "legal basis",
+      "legitimacy"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_5",
+      "GDPR_ART_6",
+      "GDPR_ART_13",
+      "GDPR_ART_14",
+      "GDPR_ART_7",
+      "AIACT_ART_59",
+      "GDPR_ART_4"
+    ]
+  },
+  {
+    "id": "CONCEPT_FAIRNESS",
+    "type": "Concept",
+    "name": "Fairness",
+    "category": "gdpr_principle",
+    "description": "Personal data must be processed fairly, without adverse effects on data subjects",
+    "keywords": [
+      "fair",
+      "fairness",
+      "fairly"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_5",
+      "GDPR_ART_6",
+      "GDPR_ART_13",
+      "GDPR_ART_14",
+      "GDPR_ART_40",
+      "AIACT_ART_58"
+    ]
+  },
+  {
+    "id": "CONCEPT_TRANSPARENCY",
+    "type": "Concept",
+    "name": "Transparency",
+    "category": "gdpr_principle",
+    "description": "Data processing must be transparent to data subjects (Art 12-14)",
+    "keywords": [
+      "transparent",
+      "transparency",
+      "inform",
+      "information"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_5",
+      "GDPR_ART_12",
+      "GDPR_ART_13",
+      "GDPR_ART_14",
+      "AIACT_ART_13",
+      "GDPR_ART_26",
+      "GDPR_ART_40",
+      "GDPR_ART_42",
+      "AIACT_ART_50"
+    ]
+  },
+  {
+    "id": "CONCEPT_PURPOSE_LIMITATION",
+    "type": "Concept",
+    "name": "Purpose Limitation",
+    "category": "gdpr_principle",
+    "description": "Data collected for specified, explicit, legitimate purposes only",
+    "keywords": [
+      "purpose limitation",
+      "specified purpose",
+      "legitimate purpose"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_5",
+      "GDPR_ART_6",
+      "GDPR_ART_9",
+      "GDPR_ART_47"
+    ]
+  },
+  {
+    "id": "CONCEPT_DATA_MINIMISATION",
+    "type": "Concept",
+    "name": "Data Minimisation",
+    "category": "gdpr_principle",
+    "description": "Data must be adequate, relevant, and limited to what is necessary",
+    "keywords": [
+      "data minimisation",
+      "minimisation",
+      "adequate",
+      "relevant and limited"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_5",
+      "GDPR_ART_25",
+      "GDPR_ART_47",
+      "GDPR_ART_89",
+      "GDPR_ART_45",
+      "GDPR_ART_70"
+    ]
+  },
+  {
+    "id": "CONCEPT_ACCURACY",
+    "type": "Concept",
+    "name": "Accuracy",
+    "category": "gdpr_principle",
+    "description": "Personal data must be accurate and kept up to date",
+    "keywords": [
+      "accuracy",
+      "accurate",
+      "inaccurate",
+      "rectif"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_5",
+      "GDPR_ART_16",
+      "GDPR_ART_13",
+      "GDPR_ART_14",
+      "GDPR_ART_15",
+      "GDPR_ART_18",
+      "GDPR_ART_19"
+    ]
+  },
+  {
+    "id": "CONCEPT_STORAGE_LIMITATION",
+    "type": "Concept",
+    "name": "Storage Limitation",
+    "category": "gdpr_principle",
+    "description": "Data kept in identifiable form no longer than necessary",
+    "keywords": [
+      "storage limitation",
+      "retention",
+      "no longer than necessary"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_5",
+      "AIACT_ART_10",
+      "AIACT_ART_17",
+      "AIACT_ART_59"
+    ]
+  },
+  {
+    "id": "CONCEPT_INTEGRITY_CONFIDENTIALITY",
+    "type": "Concept",
+    "name": "Integrity and Confidentiality",
+    "category": "gdpr_principle",
+    "description": "Appropriate security measures to protect personal data",
+    "keywords": [
+      "integrity",
+      "confidentiality",
+      "security of processing",
+      "appropriate security"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_5",
+      "GDPR_ART_32",
+      "AIACT_ART_31",
+      "GDPR_ART_28",
+      "GDPR_ART_35",
+      "GDPR_ART_38",
+      "GDPR_ART_40"
+    ]
+  },
+  {
+    "id": "CONCEPT_ACCOUNTABILITY",
+    "type": "Concept",
+    "name": "Accountability",
+    "category": "gdpr_principle",
+    "description": "Controller must demonstrate compliance with data protection principles",
+    "keywords": [
+      "accountability",
+      "demonstrate compliance",
+      "responsible for"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_5",
+      "GDPR_ART_24",
+      "AIACT_ART_66",
+      "GDPR_ART_25",
+      "GDPR_ART_28",
+      "GDPR_ART_32",
+      "GDPR_ART_35"
+    ]
+  },
+  {
+    "id": "CONCEPT_PROFILING",
+    "type": "Concept",
+    "name": "Profiling",
+    "category": "processing_operation",
+    "description": "Automated processing to evaluate personal aspects of a natural person",
+    "keywords": [
+      "profiling",
+      "evaluating personal aspects",
+      "automated processing"
+    ],
+    "regulation_id": "BOTH",
+    "related_articles": [
+      "GDPR_ART_4",
+      "GDPR_ART_22",
+      "AIACT_ART_6",
+      "GDPR_ART_35",
+      "GDPR_ART_47",
+      "GDPR_ART_13",
+      "GDPR_ART_14",
+      "GDPR_ART_15"
+    ]
+  },
+  {
+    "id": "CONCEPT_AUTOMATED_DECISION",
+    "type": "Concept",
+    "name": "Automated Decision-Making",
+    "category": "processing_operation",
+    "description": "Decisions based solely on automated processing with legal or similar effects",
+    "keywords": [
+      "automated decision",
+      "solely automated",
+      "without human intervention"
+    ],
+    "regulation_id": "BOTH",
+    "related_articles": [
+      "GDPR_ART_22",
+      "AIACT_ART_14",
+      "AIACT_ART_86",
+      "GDPR_ART_13",
+      "GDPR_ART_14",
+      "GDPR_ART_15"
+    ]
+  },
+  {
+    "id": "CONCEPT_PSEUDONYMISATION",
+    "type": "Concept",
+    "name": "Pseudonymisation",
+    "category": "processing_operation",
+    "description": "Processing so data cannot be attributed without additional information",
+    "keywords": [
+      "pseudonymisation",
+      "pseudonymised",
+      "pseudonymization"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_4",
+      "GDPR_ART_25",
+      "GDPR_ART_32",
+      "GDPR_ART_6",
+      "GDPR_ART_40",
+      "GDPR_ART_89",
+      "AIACT_ART_10"
+    ]
+  },
+  {
+    "id": "CONCEPT_CONSENT",
+    "type": "Concept",
+    "name": "Consent",
+    "category": "processing_operation",
+    "description": "Freely given, specific, informed, unambiguous indication of agreement",
+    "keywords": [
+      "consent",
+      "freely given",
+      "unambiguous"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_4",
+      "GDPR_ART_6",
+      "GDPR_ART_7",
+      "GDPR_ART_8",
+      "GDPR_ART_9",
+      "AIACT_ART_3",
+      "GDPR_ART_13",
+      "GDPR_ART_14",
+      "GDPR_ART_17",
+      "GDPR_ART_18"
+    ]
+  },
+  {
+    "id": "CONCEPT_LEGITIMATE_INTEREST",
+    "type": "Concept",
+    "name": "Legitimate Interest",
+    "category": "processing_operation",
+    "description": "Legal basis for processing where controller's interest is not overridden by data subject rights",
+    "keywords": [
+      "legitimate interest",
+      "balancing test",
+      "overridden by"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_6",
+      "GDPR_ART_49",
+      "GDPR_ART_13",
+      "GDPR_ART_14",
+      "GDPR_ART_22",
+      "GDPR_ART_35"
+    ]
+  },
+  {
+    "id": "CONCEPT_INTERNATIONAL_TRANSFER",
+    "type": "Concept",
+    "name": "International Data Transfer",
+    "category": "processing_operation",
+    "description": "Transfer of personal data to third countries or international organisations",
+    "keywords": [
+      "transfer",
+      "third country",
+      "adequacy",
+      "appropriate safeguards"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_44",
+      "GDPR_ART_45",
+      "GDPR_ART_46",
+      "GDPR_ART_47",
+      "GDPR_ART_48",
+      "GDPR_ART_49",
+      "GDPR_ART_13",
+      "GDPR_ART_14",
+      "GDPR_ART_15",
+      "GDPR_ART_70",
+      "GDPR_ART_28"
+    ]
+  },
+  {
+    "id": "CONCEPT_DATA_BREACH",
+    "type": "Concept",
+    "name": "Data Breach",
+    "category": "processing_operation",
+    "description": "Breach of security leading to accidental or unlawful destruction, loss, alteration, or disclosure",
+    "keywords": [
+      "data breach",
+      "personal data breach",
+      "security incident"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_4",
+      "GDPR_ART_33",
+      "GDPR_ART_34",
+      "GDPR_ART_40",
+      "GDPR_ART_58",
+      "GDPR_ART_70"
+    ]
+  },
+  {
+    "id": "CONCEPT_JOINT_CONTROLLERSHIP",
+    "type": "Concept",
+    "name": "Joint Controllership",
+    "category": "processing_operation",
+    "description": "Two or more controllers jointly determine purposes and means of processing",
+    "keywords": [
+      "joint controller",
+      "jointly determine"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_26",
+      "GDPR_ART_30",
+      "GDPR_ART_36"
+    ]
+  },
+  {
+    "id": "CONCEPT_DATA_PROTECTION_BY_DESIGN",
+    "type": "Concept",
+    "name": "Data Protection by Design and Default",
+    "category": "processing_operation",
+    "description": "Implementing data protection principles through technical and organisational measures from the design stage",
+    "keywords": [
+      "by design",
+      "by default",
+      "data protection by design"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_25",
+      "GDPR_ART_47"
+    ]
+  },
+  {
+    "id": "CONCEPT_SPECIAL_CATEGORY_PROCESSING",
+    "type": "Concept",
+    "name": "Special Category Processing",
+    "category": "processing_operation",
+    "description": "Processing of sensitive personal data under Art 9 with specific safeguards",
+    "keywords": [
+      "special categor",
+      "sensitive data",
+      "article 9"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_9",
+      "GDPR_ART_6",
+      "GDPR_ART_22",
+      "GDPR_ART_27",
+      "GDPR_ART_30",
+      "GDPR_ART_35"
+    ]
+  },
+  {
+    "id": "CONCEPT_DPIA",
+    "type": "Concept",
+    "name": "Data Protection Impact Assessment",
+    "category": "compliance_concept",
+    "description": "Assessment of impact of processing operations on data subject rights (Art 35)",
+    "keywords": [
+      "impact assessment",
+      "DPIA",
+      "data protection impact"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_35",
+      "GDPR_ART_36",
+      "GDPR_ART_39",
+      "GDPR_ART_57",
+      "GDPR_ART_64",
+      "AIACT_ART_26",
+      "AIACT_ART_27"
+    ]
+  },
+  {
+    "id": "CONCEPT_PRIOR_CONSULTATION",
+    "type": "Concept",
+    "name": "Prior Consultation",
+    "category": "compliance_concept",
+    "description": "Consulting supervisory authority before high-risk processing (Art 36)",
+    "keywords": [
+      "prior consultation",
+      "consult the supervisory"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_36",
+      "GDPR_ART_39",
+      "GDPR_ART_58",
+      "AIACT_ART_78"
+    ]
+  },
+  {
+    "id": "CONCEPT_RECORDS_OF_PROCESSING",
+    "type": "Concept",
+    "name": "Records of Processing Activities",
+    "category": "compliance_concept",
+    "description": "Maintaining records of all processing activities under controller/processor responsibility",
+    "keywords": [
+      "records of processing",
+      "record of processing",
+      "maintain a record"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_30",
+      "AIACT_ART_10"
+    ]
+  },
+  {
+    "id": "CONCEPT_DATA_BREACH_NOTIFICATION",
+    "type": "Concept",
+    "name": "Data Breach Notification",
+    "category": "compliance_concept",
+    "description": "Notifying supervisory authority and data subjects of personal data breaches",
+    "keywords": [
+      "breach notification",
+      "notify the supervisory",
+      "notify the data subject",
+      "without undue delay"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_33",
+      "GDPR_ART_34",
+      "GDPR_ART_12",
+      "GDPR_ART_16",
+      "GDPR_ART_17",
+      "GDPR_ART_61",
+      "GDPR_ART_64"
+    ]
+  },
+  {
+    "id": "CONCEPT_DPO_DESIGNATION",
+    "type": "Concept",
+    "name": "DPO Designation",
+    "category": "compliance_concept",
+    "description": "Designating a Data Protection Officer when required",
+    "keywords": [
+      "data protection officer",
+      "designate a DPO",
+      "DPO"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_37",
+      "GDPR_ART_38",
+      "GDPR_ART_39",
+      "GDPR_ART_13",
+      "GDPR_ART_14",
+      "GDPR_ART_30",
+      "GDPR_ART_33",
+      "GDPR_ART_35"
+    ]
+  },
+  {
+    "id": "CONCEPT_CERTIFICATION",
+    "type": "Concept",
+    "name": "Certification",
+    "category": "compliance_concept",
+    "description": "Voluntary certification mechanisms to demonstrate GDPR compliance",
+    "keywords": [
+      "certification",
+      "seal",
+      "mark",
+      "accreditation"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_42",
+      "GDPR_ART_43",
+      "GDPR_ART_57",
+      "GDPR_ART_70",
+      "GDPR_ART_64",
+      "AIACT_ART_3",
+      "AIACT_ART_58"
+    ]
+  },
+  {
+    "id": "CONCEPT_CODES_OF_CONDUCT",
+    "type": "Concept",
+    "name": "Codes of Conduct",
+    "category": "compliance_concept",
+    "description": "Approved codes of conduct as compliance tool",
+    "keywords": [
+      "code of conduct",
+      "codes of conduct"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_40",
+      "GDPR_ART_41",
+      "GDPR_ART_24",
+      "GDPR_ART_28",
+      "GDPR_ART_32",
+      "GDPR_ART_35",
+      "GDPR_ART_46"
+    ]
+  },
+  {
+    "id": "CONCEPT_ONE_STOP_SHOP",
+    "type": "Concept",
+    "name": "One-Stop-Shop Mechanism",
+    "category": "compliance_concept",
+    "description": "Lead supervisory authority mechanism for cross-border processing",
+    "keywords": [
+      "one-stop-shop",
+      "lead supervisory",
+      "cross-border"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_56",
+      "GDPR_ART_60",
+      "GDPR_ART_4",
+      "GDPR_ART_9",
+      "GDPR_ART_65",
+      "GDPR_ART_74",
+      "AIACT_ART_45"
+    ]
+  },
+  {
+    "id": "CONCEPT_BINDING_CORPORATE_RULES",
+    "type": "Concept",
+    "name": "Binding Corporate Rules",
+    "category": "compliance_concept",
+    "description": "Internal rules for international data transfers within a group of enterprises",
+    "keywords": [
+      "binding corporate rules",
+      "BCR"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_47",
+      "GDPR_ART_4",
+      "GDPR_ART_46",
+      "GDPR_ART_49",
+      "GDPR_ART_57",
+      "GDPR_ART_58"
+    ]
+  },
+  {
+    "id": "CONCEPT_STANDARD_CONTRACTUAL_CLAUSES",
+    "type": "Concept",
+    "name": "Standard Contractual Clauses",
+    "category": "compliance_concept",
+    "description": "Commission-approved clauses for international data transfers",
+    "keywords": [
+      "standard contractual clauses",
+      "SCC",
+      "model clauses"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_46",
+      "GDPR_ART_28",
+      "GDPR_ART_57"
+    ]
+  },
+  {
+    "id": "CONCEPT_ADEQUACY_DECISION",
+    "type": "Concept",
+    "name": "Adequacy Decision",
+    "category": "compliance_concept",
+    "description": "Commission decision that a third country provides adequate data protection",
+    "keywords": [
+      "adequacy decision",
+      "adequate level of protection"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_45",
+      "GDPR_ART_13",
+      "GDPR_ART_14",
+      "GDPR_ART_49",
+      "GDPR_ART_70"
+    ]
+  },
+  {
+    "id": "CONCEPT_SUPERVISORY_COOPERATION",
+    "type": "Concept",
+    "name": "Supervisory Authority Cooperation",
+    "category": "compliance_concept",
+    "description": "Cooperation and consistency mechanisms between supervisory authorities",
+    "keywords": [
+      "mutual assistance",
+      "consistency mechanism",
+      "cooperation"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_60",
+      "GDPR_ART_61",
+      "GDPR_ART_63",
+      "GDPR_ART_47",
+      "GDPR_ART_50",
+      "GDPR_ART_52",
+      "GDPR_ART_70",
+      "GDPR_ART_28"
+    ]
+  },
+  {
+    "id": "CONCEPT_PROCESSOR_AGREEMENT",
+    "type": "Concept",
+    "name": "Processor Agreement",
+    "category": "compliance_concept",
+    "description": "Binding contract or legal act governing processing by a processor",
+    "keywords": [
+      "processor agreement",
+      "binding contract",
+      "on behalf of"
+    ],
+    "regulation_id": "GDPR",
+    "related_articles": [
+      "GDPR_ART_28",
+      "GDPR_ART_4",
+      "GDPR_ART_30",
+      "AIACT_ART_71",
+      "AIACT_ART_91",
+      "AIACT_ART_92"
+    ]
+  },
+  {
+    "id": "CONCEPT_CONFORMITY_ASSESSMENT",
+    "type": "Concept",
+    "name": "Conformity Assessment",
+    "category": "ai_concept",
+    "description": "Process demonstrating that high-risk AI system meets requirements",
+    "keywords": [
+      "conformity assessment",
+      "harmonised standards"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_43",
+      "AIACT_ART_40",
+      "AIACT_ART_41",
+      "AIACT_ART_42",
+      "AIACT_ART_17",
+      "AIACT_ART_32",
+      "AIACT_ART_66",
+      "AIACT_ART_112",
+      "AIACT_ART_3"
+    ]
+  },
+  {
+    "id": "CONCEPT_RISK_MANAGEMENT",
+    "type": "Concept",
+    "name": "AI Risk Management System",
+    "category": "ai_concept",
+    "description": "Continuous iterative process for managing risks of high-risk AI systems",
+    "keywords": [
+      "risk management system",
+      "risk management",
+      "identify and analys"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_9",
+      "AIACT_ART_8",
+      "AIACT_ART_17"
+    ]
+  },
+  {
+    "id": "CONCEPT_HUMAN_OVERSIGHT",
+    "type": "Concept",
+    "name": "Human Oversight",
+    "category": "ai_concept",
+    "description": "Measures enabling human oversight of high-risk AI systems during use",
+    "keywords": [
+      "human oversight",
+      "human intervention",
+      "human-in-the-loop",
+      "human-on-the-loop"
+    ],
+    "regulation_id": "BOTH",
+    "related_articles": [
+      "AIACT_ART_14",
+      "GDPR_ART_22",
+      "AIACT_ART_13",
+      "AIACT_ART_26",
+      "AIACT_ART_27"
+    ]
+  },
+  {
+    "id": "CONCEPT_TECHNICAL_DOCUMENTATION",
+    "type": "Concept",
+    "name": "Technical Documentation",
+    "category": "ai_concept",
+    "description": "Documentation demonstrating compliance with AI Act requirements",
+    "keywords": [
+      "technical documentation",
+      "documentation requirements"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_11",
+      "AIACT_ART_53",
+      "AIACT_ART_3",
+      "AIACT_ART_18",
+      "AIACT_ART_22",
+      "AIACT_ART_23",
+      "AIACT_ART_43"
+    ]
+  },
+  {
+    "id": "CONCEPT_CE_MARKING",
+    "type": "Concept",
+    "name": "CE Marking",
+    "category": "ai_concept",
+    "description": "Marking indicating AI system conformity with EU legislation",
+    "keywords": [
+      "CE marking",
+      "CE mark",
+      "declaration of conformity"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_48",
+      "AIACT_ART_49",
+      "AIACT_ART_16",
+      "AIACT_ART_23",
+      "AIACT_ART_24",
+      "AIACT_ART_83",
+      "AIACT_ART_3"
+    ]
+  },
+  {
+    "id": "CONCEPT_REGULATORY_SANDBOX",
+    "type": "Concept",
+    "name": "AI Regulatory Sandbox",
+    "category": "ai_concept",
+    "description": "Controlled environment for testing innovative AI systems under regulatory supervision",
+    "keywords": [
+      "regulatory sandbox",
+      "sandbox",
+      "controlled environment"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_57",
+      "AIACT_ART_58",
+      "AIACT_ART_59",
+      "AIACT_ART_60",
+      "AIACT_ART_3",
+      "AIACT_ART_62",
+      "AIACT_ART_66",
+      "AIACT_ART_76"
+    ]
+  },
+  {
+    "id": "CONCEPT_FRIA",
+    "type": "Concept",
+    "name": "Fundamental Rights Impact Assessment",
+    "category": "ai_concept",
+    "description": "Assessment of AI system impact on fundamental rights before deployment",
+    "keywords": [
+      "fundamental rights impact",
+      "FRIA",
+      "impact assessment"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_27",
+      "AIACT_ART_5",
+      "GDPR_ART_35",
+      "GDPR_ART_36",
+      "GDPR_ART_39",
+      "GDPR_ART_57"
+    ]
+  },
+  {
+    "id": "CONCEPT_DATA_GOVERNANCE",
+    "type": "Concept",
+    "name": "AI Data Governance",
+    "category": "ai_concept",
+    "description": "Governance and management practices for training, validation, and testing data",
+    "keywords": [
+      "data governance",
+      "training data",
+      "validation data",
+      "testing data"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_10",
+      "AIACT_ART_3",
+      "AIACT_ART_13",
+      "AIACT_ART_15",
+      "AIACT_ART_74"
+    ]
+  },
+  {
+    "id": "CONCEPT_TRANSPARENCY_OBLIGATION",
+    "type": "Concept",
+    "name": "AI Transparency Obligation",
+    "category": "ai_concept",
+    "description": "Obligation to ensure AI systems are transparent to users and affected persons",
+    "keywords": [
+      "transparency obligation",
+      "inform natural person",
+      "disclose"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_13",
+      "AIACT_ART_50",
+      "AIACT_ART_52",
+      "GDPR_ART_4",
+      "GDPR_ART_6",
+      "GDPR_ART_9",
+      "GDPR_ART_14",
+      "GDPR_ART_15"
+    ]
+  },
+  {
+    "id": "CONCEPT_POST_MARKET_MONITORING",
+    "type": "Concept",
+    "name": "Post-Market Monitoring",
+    "category": "ai_concept",
+    "description": "System for actively collecting and reviewing data on AI system performance after deployment",
+    "keywords": [
+      "post-market monitoring",
+      "post-market",
+      "market surveillance"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_72",
+      "AIACT_ART_3",
+      "AIACT_ART_9",
+      "AIACT_ART_12",
+      "AIACT_ART_17",
+      "AIACT_ART_1"
+    ]
+  },
+  {
+    "id": "CONCEPT_SERIOUS_INCIDENT",
+    "type": "Concept",
+    "name": "Serious Incident Reporting",
+    "category": "ai_concept",
+    "description": "Reporting obligations for incidents involving AI systems causing serious harm",
+    "keywords": [
+      "serious incident",
+      "incident reporting",
+      "malfunction"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_73",
+      "AIACT_ART_3",
+      "AIACT_ART_17",
+      "AIACT_ART_26",
+      "AIACT_ART_55",
+      "AIACT_ART_60"
+    ]
+  },
+  {
+    "id": "CONCEPT_RECORD_KEEPING",
+    "type": "Concept",
+    "name": "AI Record Keeping",
+    "category": "ai_concept",
+    "description": "Automatic logging and record-keeping for high-risk AI systems",
+    "keywords": [
+      "record keeping",
+      "automatic logging",
+      "logs",
+      "traceability"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_12",
+      "AIACT_ART_19",
+      "AIACT_ART_13",
+      "AIACT_ART_16",
+      "AIACT_ART_21",
+      "AIACT_ART_22",
+      "AIACT_ART_26"
+    ]
+  },
+  {
+    "id": "CONCEPT_ROBUSTNESS",
+    "type": "Concept",
+    "name": "Robustness and Cybersecurity",
+    "category": "ai_concept",
+    "description": "Technical robustness and resilience of AI systems against errors and attacks",
+    "keywords": [
+      "robustness",
+      "resilience",
+      "cybersecurity",
+      "accuracy"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_15",
+      "AIACT_ART_13",
+      "AIACT_ART_58",
+      "GDPR_ART_5",
+      "GDPR_ART_18",
+      "GDPR_ART_32"
+    ]
+  },
+  {
+    "id": "CONCEPT_GPAI",
+    "type": "Concept",
+    "name": "General-Purpose AI Models",
+    "category": "ai_concept",
+    "description": "AI models trained on broad data for general tasks, with specific obligations",
+    "keywords": [
+      "general-purpose AI",
+      "GPAI",
+      "foundation model"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_51",
+      "AIACT_ART_52",
+      "AIACT_ART_53",
+      "AIACT_ART_54",
+      "AIACT_ART_55",
+      "AIACT_ART_56",
+      "AIACT_ART_1",
+      "AIACT_ART_2",
+      "AIACT_ART_3",
+      "AIACT_ART_25",
+      "AIACT_ART_40"
+    ]
+  },
+  {
+    "id": "CONCEPT_SYSTEMIC_RISK",
+    "type": "Concept",
+    "name": "Systemic Risk",
+    "category": "ai_concept",
+    "description": "Risk specific to high-impact capabilities of general-purpose AI models",
+    "keywords": [
+      "systemic risk",
+      "high-impact capabilities"
+    ],
+    "regulation_id": "EU_AI_ACT",
+    "related_articles": [
+      "AIACT_ART_51",
+      "AIACT_ART_55",
+      "AIACT_ART_3",
+      "AIACT_ART_52",
+      "AIACT_ART_53",
+      "AIACT_ART_54",
+      "AIACT_ART_56"
+    ]
+  }
+]

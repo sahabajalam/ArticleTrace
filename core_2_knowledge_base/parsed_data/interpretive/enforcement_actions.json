@@ -1,0 +1,567 @@
+[
+  {
+    "id": "ENF_AMAZON_TARGETED_ADVERTISING",
+    "type": "EnforcementAction",
+    "name": "Amazon Targeted Advertising",
+    "authority": "Commission Nationale pour la Protection des Données (CNPD), Luxembourg",
+    "target": "Amazon Europe Core S.à.r.l.",
+    "decision_date": "2021-07-16",
+    "fine_amount_eur": 746000000,
+    "fine_category": "GDPR Tier 2 (Art 83(5))",
+    "violations": [
+      "GDPR_ART_6",
+      "GDPR_ART_12"
+    ],
+    "facts": "\nFollowing a 2018 complaint co-ordinated by La Quadrature du Net (a French digital rights NGO), the Luxembourg DPA investigated Amazon's targeted advertising system. Amazon processed customer behavioural data for ad targeting without obtaining valid consent and without adequate transparency about how the system worked. The complaint was filed under GDPR Article 80(1) on behalf of over 10,000 individuals.",
+    "key_findings": [
+      "Amazon's advertising targeting system processed personal data without valid consent",
+      "Cookie consent mechanisms did not meet GDPR requirements",
+      "Behavioural profiling for advertising purposes lacked a valid legal basis",
+      "Amazon's privacy policy was insufficiently transparent about the ad targeting system",
+      "The fine was calculated based on Amazon's EUR 44 billion EU revenue (c. 1.7%)"
+    ],
+    "corrective_measures": [
+      "Bring advertising data processing into compliance with GDPR consent requirements",
+      "Overhaul cookie consent mechanisms"
+    ],
+    "ai_relevance": [
+      "AI-powered ad targeting and recommendation engines require valid consent for personal data processing",
+      "AI profiling for advertising must have an explicit, informed legal basis — not just 'legitimate interest'",
+      "AI personalisation engines using behavioural data face the same consent and transparency requirements",
+      "Revenue-based fine calculation means large AI companies face proportionally massive penalties"
+    ],
+    "description": "Enforcement against Amazon Europe Core S.à.r.l.",
+    "source_text": "Authority: Commission Nationale pour la Protection des Données (CNPD), Luxembourg\nTarget: Amazon Europe Core S.à.r.l.\nDecision Date: 2021-07-16\nFine Amount: EUR 746,000,000\nFine Category: GDPR Tier 2 (Art 83(5))\n\nViolations:\n- GDPR Article 6(1) — processing personal data for targeted advertising without valid legal basis\n- GDPR Articles 12-14 — insufficient transparency about advertising data processing\n\nFacts:\nFollowing a 2018 complaint co-ordinated by La Quadrature du Net (a French digital rights NGO), the Luxembourg DPA investigated Amazon's targeted advertising system. Amazon processed customer behavioural data for ad targeting without obtaining valid consent and without adequate transparency about how the system worked. The complaint was filed under GDPR Article 80(1) on behalf of over 10,000 individuals.\n\nKey Findings:\n1. Amazon's advertising targeting system processed personal data without valid consent\n2. Cookie consent mechanisms did not meet GDPR requirements\n3. Behavioural profiling for advertising purposes lacked a valid legal basis\n4. Amazon's privacy policy was insufficiently transparent about the ad targeting system\n5. The fine was calculated based on Amazon's EUR 44 billion EU revenue (c. 1.7%)\n\nCorrective Measures:\n- Bring advertising data processing into compliance with GDPR consent requirements\n- Overhaul cookie consent mechanisms\n\nAppeal Status: Fine reduced to EUR 746M on appeal (confirmed 2024). Amazon reformed consent mechanisms.\n\nAI Relevance:\n- AI-powered ad targeting and recommendation engines require valid consent for personal data processing\n- AI profiling for advertising must have an explicit, informed legal basis — not just 'legitimate interest'\n- AI personalisation engines using behavioural data face the same consent and transparency requirements\n- Revenue-based fine calculation means large AI companies face proportionally massive penalties",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\amazon_targeted_advertising.txt"
+  },
+  {
+    "id": "ENF_BRITISH_AIRWAYS_DATA_BREACH",
+    "type": "EnforcementAction",
+    "name": "British Airways Data Breach",
+    "authority": "Information Commissioner's Office (ICO), United Kingdom",
+    "target": "British Airways plc",
+    "decision_date": "2020-10-16",
+    "fine_amount_eur": 22046000,
+    "fine_category": "GDPR Tier 2 (Art 83(5))",
+    "violations": [
+      "GDPR_ART_5",
+      "GDPR_ART_32"
+    ],
+    "facts": "\nIn 2018, attackers exploited vulnerabilities in British Airways' website and mobile app by injecting malicious code (Magecart-style skimming attack) that redirected customer payment card details to an attacker-controlled server. Approximately 429,612 customers and staff members were affected. Data compromised included names, addresses, payment card numbers (including CVV codes), and login credentials. BA failed to detect the breach for over two months (June-September 2018).",
+    "key_findings": [
+      "BA did not have adequate security testing or monitoring to detect the Magecart script injection",
+      "Multi-factor authentication was not implemented for key systems",
+      "Excessive storage of payment card data (including CVV codes) increased impact",
+      "BA failed to detect the breach for over 2 months despite available detection controls",
+      "The initial proposed fine of GBP 183M was reduced by 89% due to COVID-19 economic impact and BA's cooperation"
+    ],
+    "corrective_measures": [
+      "Implement comprehensive security improvements including script monitoring",
+      "Enhance payment card data handling procedures"
+    ],
+    "ai_relevance": [
+      "AI-powered security monitoring (anomaly detection, intrusion detection) could have detected the breach earlier",
+      "AI systems processing payment data must implement robust security measures under Art 32",
+      "AI web applications face the same injection/skimming risks — security by design required",
+      "AI-based fraud detection systems handling card data must meet the same standards"
+    ],
+    "description": "Enforcement against British Airways plc",
+    "source_text": "Authority: Information Commissioner's Office (ICO), United Kingdom\nTarget: British Airways plc\nDecision Date: 2020-10-16\nFine Amount: EUR 22,046,000 (GBP 20,000,000 — reduced from initial notice of GBP 183M)\nFine Category: GDPR Tier 2 (Art 83(5))\n\nViolations:\n- GDPR Article 5(1)(f) — failure to process data securely\n- GDPR Article 32 — failure to implement appropriate technical and organisational security measures\n\nFacts:\nIn 2018, attackers exploited vulnerabilities in British Airways' website and mobile app by injecting malicious code (Magecart-style skimming attack) that redirected customer payment card details to an attacker-controlled server. Approximately 429,612 customers and staff members were affected. Data compromised included names, addresses, payment card numbers (including CVV codes), and login credentials. BA failed to detect the breach for over two months (June-September 2018).\n\nKey Findings:\n1. BA did not have adequate security testing or monitoring to detect the Magecart script injection\n2. Multi-factor authentication was not implemented for key systems\n3. Excessive storage of payment card data (including CVV codes) increased impact\n4. BA failed to detect the breach for over 2 months despite available detection controls\n5. The initial proposed fine of GBP 183M was reduced by 89% due to COVID-19 economic impact and BA's cooperation\n\nCorrective Measures:\n- Implement comprehensive security improvements including script monitoring\n- Enhance payment card data handling procedures\n\nAppeal Status: Fine reduced from GBP 183M to GBP 20M (no further appeal)\n\nAI Relevance:\n- AI-powered security monitoring (anomaly detection, intrusion detection) could have detected the breach earlier\n- AI systems processing payment data must implement robust security measures under Art 32\n- AI web applications face the same injection/skimming risks — security by design required\n- AI-based fraud detection systems handling card data must meet the same standards\n\nGDPRHub Facts Summary:\nAn ICO investigation found the airline was processing a significant amount of personal data without adequate security measures in place. This failure broke data protection law and, subsequently, British Airways (BA) was the subject of a cyber-attack during 2018, which it did not detect for more than two months. ICO investigators found BA ought to have identified weaknesses in its security and resolved them with security measures that were available at the time. The attacker is believed to have potentially accessed the personal data of approximately 429,612 customers and staff. This included names, addresses, payment card numbers and CVV numbers of 244,000 BA customers. Other details thought to have been accessed include the combined card and CVV numbers of 77,000 customers and card numbers only for 108,000 customers.\n\nGDPRHub Holding Summary:\nThe ICO held that BA was indeed liable. Because the BA breach happened in June 2018, before the UK left the EU, the ICO investigated on behalf of all EU authorities as lead supervisory authority under the GDPR. There were numerous measures BA could have used to mitigate or prevent the risk of an attacker being able to access the BA network. None of these measures would have entailed excessive cost or technical barriers, with some available through the Microsoft Operating System used by BA. Therefore, considering this, the ICO found that BA had failed to comply with Article 5(1)(f) GDPR.",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\british_airways_data_breach.txt"
+  },
+  {
+    "id": "ENF_CLEARVIEW_AI_BIOMETRIC_FINES",
+    "type": "EnforcementAction",
+    "name": "Clearview AI Biometric Fines",
+    "authority": "Multiple DPAs: CNIL (France), Garante (Italy), ICO (UK), HDPA (Greece), AP (Netherlands)",
+    "target": "Clearview AI Inc.",
+    "decision_date": "2022-2024 (multiple decisions)",
+    "fine_amount_eur": 90500000,
+    "fine_category": "GDPR Tier 2 (Art 83(5))",
+    "violations": [
+      "GDPR_ART_6",
+      "GDPR_ART_9",
+      "GDPR_ART_12",
+      "GDPR_ART_15",
+      "GDPR_ART_17",
+      "GDPR_ART_31",
+      "GDPR_ART_3"
+    ],
+    "facts": "\nClearview AI, a US-based company, scraped over 30 billion images from the internet (social media, news sites, public databases) to build a facial recognition database. The system extracts biometric templates (mathematical hashes) from facial images and sells search access to law enforcement and private companies. Multiple EU DPAs investigated following complaints and found that Clearview processed EU citizens' biometric data without any legal basis, failed to respond to access and erasure requests, and refused to cooperate with supervisory authorities.",
+    "key_findings": [
+      "Web scraping of publicly available images for facial recognition constitutes unlawful processing of biometric data",
+      "Biometric templates derived from facial images are special category data under Art 9 GDPR",
+      "GDPR applies extraterritorially to Clearview AI under Art 3(2)(b) — monitoring of EU data subjects' behaviour",
+      "No legal basis exists for mass scraping of facial images for commercial purposes",
+      "Clearview's 'law enforcement use' argument rejected — commercial sale is the dominant purpose",
+      "UK ICO fine of GBP 7.5M was overturned on appeal (tribunal found processing was for law enforcement purposes outside GDPR scope)",
+      "Legitimate interest cannot justify biometric data processing at this scale"
+    ],
+    "corrective_measures": [
+      "Delete all biometric data of EU/EEA residents",
+      "Cease all scraping and processing of EU data subjects' biometric data",
+      "Appoint an EU representative",
+      "Comply with data subject access and erasure requests"
+    ],
+    "ai_relevance": [
+      "AI facial recognition trained on scraped biometric data is UNLAWFUL under GDPR without explicit consent",
+      "Web scraping for AI training datasets must exclude biometric/sensitive data without legal basis",
+      "AI companies outside the EU face GDPR enforcement under extraterritorial provisions (Art 3(2))",
+      "AI biometric processing (face recognition, emotion detection, gait analysis) falls under Art 9 strict regime",
+      "Multiple coordinated EU DPA enforcement against a single AI company demonstrates regulatory convergence"
+    ],
+    "description": "Enforcement against Clearview AI Inc.",
+    "source_text": "Authority: Multiple DPAs: CNIL (France), Garante (Italy), ICO (UK), HDPA (Greece), AP (Netherlands)\nTarget: Clearview AI Inc.\nDecision Date: 2022-2024 (multiple decisions)\nFine Amount: EUR 90,500,000+ combined (France: EUR 20M; Italy: EUR 20M; Greece: EUR 20M; Netherlands: EUR 30.5M; UK: GBP 7.5M overturned on appeal)\nFine Category: GDPR Tier 2 (Art 83(5))\n\nViolations:\n- GDPR Article 6(1) — no legal basis for scraping and processing biometric data\n- GDPR Article 9 — unlawful processing of biometric data (special category)\n- GDPR Article 12, 15, 17 — violation of data subject rights (access, erasure)\n- GDPR Article 31 — failure to cooperate with DPAs\n- GDPR Article 3(2) — extraterritorial application to US company monitoring EU individuals\n\nFacts:\nClearview AI, a US-based company, scraped over 30 billion images from the internet (social media, news sites, public databases) to build a facial recognition database. The system extracts biometric templates (mathematical hashes) from facial images and sells search access to law enforcement and private companies. Multiple EU DPAs investigated following complaints and found that Clearview processed EU citizens' biometric data without any legal basis, failed to respond to access and erasure requests, and refused to cooperate with supervisory authorities.\n\nKey Findings:\n1. Web scraping of publicly available images for facial recognition constitutes unlawful processing of biometric data\n2. Biometric templates derived from facial images are special category data under Art 9 GDPR\n3. GDPR applies extraterritorially to Clearview AI under Art 3(2)(b) — monitoring of EU data subjects' behaviour\n4. No legal basis exists for mass scraping of facial images for commercial purposes\n5. Clearview's 'law enforcement use' argument rejected — commercial sale is the dominant purpose\n6. UK ICO fine of GBP 7.5M was overturned on appeal (tribunal found processing was for law enforcement purposes outside GDPR scope)\n7. Legitimate interest cannot justify biometric data processing at this scale\n\nCorrective Measures:\n- Delete all biometric data of EU/EEA residents\n- Cease all scraping and processing of EU data subjects' biometric data\n- Appoint an EU representative\n- Comply with data subject access and erasure requests\n\nAppeal Status: France, Italy, Greece, Netherlands fines stand. UK GBP 7.5M overturned (2023). Clearview largely non-compliant.\n\nAI Relevance:\n- AI facial recognition trained on scraped biometric data is UNLAWFUL under GDPR without explicit consent\n- Web scraping for AI training datasets must exclude biometric/sensitive data without legal basis\n- AI companies outside the EU face GDPR enforcement under extraterritorial provisions (Art 3(2))\n- AI biometric processing (face recognition, emotion detection, gait analysis) falls under Art 9 strict regime\n- Multiple coordinated EU DPA enforcement against a single AI company demonstrates regulatory convergence\n\nGDPRHub Facts Summary:\nThe controller operates a facial recognition tool (the tool) to identify data subjects using pictures and video's posted online (online content). The controller is established in the United States and has no establishment in the European Union (EU), but processes personal data of EU data subjects. Specifically, it collects online content in which faces appear, including faces of minors. The tool indexes freely accessible web pages and social media platforms. After the indexing, the tool extracts all images with faces of data subjects. Based on these images, the tool calculates a mathematical hash for each data subject, which is in turn based on a unique biometric template of the face in the picture. The mathematical hash is used to make data subjects searchable in the database. The controller sells access to its database to third parties. These third parties can upload a picture of a face to start a search in order to identify data subject, after which the tool creates a mathematical hash for this uploaded picture. This new hash is compared with existing hashes in the database. When the hashes are similar, the tool collects all the images with the same hash, including a reference to the original source of each picture. This process makes it possible to identify data subjects. In its privacy policy, the controller stated that data subjects could only exercise their right of access twice a year. The controller did not mention a retention period for the personal data. The DPA re\n\nGDPRHub Holding Summary:\nGDPR applicable? (Article 3(2) GDPR) The DPA held that the GDPR was applicable pursuant ofArticle 3(2) GDPR. Because the controller was not established in the EU, the DPA stated that it was necessary to determine two things: (1) whether the controllerprocessed personal datarelating to data subjects in EU territory and (2) if this processing waslinked to the monitoring of the behaviourof those individuals (recital 24 andGuidelines 3/2018). (1) The DPA held that the controller collected three sorts of personal data according to its privacy policy. It determined that the controller collected publicly accessiblephotographson the internet,information extractedfrom these photographs (such as geolocation data) andinformation from the facial appearanceof data subjects in these photographs. The DPA referred to CJEU case law, stating that the image of the individual photographed or filmed constitutes personal data when the individual can be recognised (see CJEU 11 December 2014, Rynes, C-212/13, point 22 and CJEU, 14 February 2019, F.K., C-345/17). The DPA additionally determined that the controller also processed biometric data (Article 4(1)(14) GDRP)and confirmed that the collection of pictures also concerned data subjects in the EU. (2) Secondly, the DPA held that the processing of the controller waslinked tothemonitoringof thebehaviourof data subjects(Article 3(2)(b) GDPR). The DPA stated that the processingmerely had to be ‘related’ to the monitoring. It was not necessary that monitoring of behaviour was the primary purpose of the processing. The DPA stated that monitoring could also include profiling (Article 4(1)(4) GDPRand recital 24). The DPA held that the search result associated with a photograph was abehavioural profileof the data subject because it contained numerous pieces of information about data subjects or allowed access to this information. The DPA stated that the controller created such behavioural profiles using all its collected pictures of data subjects",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\clearview_ai_biometric_fines.txt"
+  },
+  {
+    "id": "ENF_CRITEO_CONSENT_VIOLATIONS",
+    "type": "EnforcementAction",
+    "name": "Criteo Consent Violations",
+    "authority": "Commission Nationale de l'Informatique et des Libertés (CNIL), France",
+    "target": "Criteo SA",
+    "decision_date": "2023-06-15",
+    "fine_amount_eur": 40000000,
+    "fine_category": "GDPR Tier 2 (Art 83(5))",
+    "violations": [
+      "GDPR_ART_7",
+      "GDPR_ART_15",
+      "GDPR_ART_17",
+      "GDPR_ART_26"
+    ],
+    "facts": "\nCriteo, a major French ad-tech company specialising in behavioural retargeting, tracked users across thousands of websites using cookies and cross-device tracking to build detailed browsing profiles for personalised advertising. The CNIL found that Criteo could not demonstrate that valid consent had been obtained from the website publishers who deployed its tracking technology, and that the company failed to properly respond to data subject rights requests.",
+    "key_findings": [
+      "Criteo could NOT demonstrate valid consent was obtained — burden of proof lies with the controller",
+      "Reliance on downstream website partners to obtain consent was insufficient without verification",
+      "Criteo's cookie tracking and cross-device profiling lacked a valid legal basis",
+      "Joint controller arrangements with advertising partners were absent (Art 26 violation)",
+      "Data subject access and erasure requests were inadequately handled",
+      "The Criteo tracking identifier constitutes personal data subject to GDPR"
+    ],
+    "corrective_measures": [
+      "Verify and demonstrate valid consent before processing user data for ad targeting",
+      "Implement proper joint controller agreements with advertising partners",
+      "Ensure compliance with data subject rights requests"
+    ],
+    "ai_relevance": [
+      "AI ad-tech platforms cannot rely on downstream partners for consent — must verify consent themselves",
+      "AI behavioural profiling and retargeting requires demonstrable, valid consent under GDPR",
+      "AI cross-device tracking and identity resolution techniques constitute personal data processing",
+      "AI advertising systems using cookie-based tracking must implement joint controller agreements with partners"
+    ],
+    "description": "Enforcement against Criteo SA",
+    "source_text": "Authority: Commission Nationale de l'Informatique et des Libertés (CNIL), France\nTarget: Criteo SA\nDecision Date: 2023-06-15\nFine Amount: EUR 40,000,000\nFine Category: GDPR Tier 2 (Art 83(5))\n\nViolations:\n- GDPR Article 7(1) — inability to demonstrate valid consent\n- GDPR Article 15 — insufficient response to access requests\n- GDPR Article 17 — failure to delete data upon request\n- GDPR Article 26 — missing joint controller agreements with advertising partners\n\nFacts:\nCriteo, a major French ad-tech company specialising in behavioural retargeting, tracked users across thousands of websites using cookies and cross-device tracking to build detailed browsing profiles for personalised advertising. The CNIL found that Criteo could not demonstrate that valid consent had been obtained from the website publishers who deployed its tracking technology, and that the company failed to properly respond to data subject rights requests.\n\nKey Findings:\n1. Criteo could NOT demonstrate valid consent was obtained — burden of proof lies with the controller\n2. Reliance on downstream website partners to obtain consent was insufficient without verification\n3. Criteo's cookie tracking and cross-device profiling lacked a valid legal basis\n4. Joint controller arrangements with advertising partners were absent (Art 26 violation)\n5. Data subject access and erasure requests were inadequately handled\n6. The Criteo tracking identifier constitutes personal data subject to GDPR\n\nCorrective Measures:\n- Verify and demonstrate valid consent before processing user data for ad targeting\n- Implement proper joint controller agreements with advertising partners\n- Ensure compliance with data subject rights requests\n\nAppeal Status: Under appeal (2024)\n\nAI Relevance:\n- AI ad-tech platforms cannot rely on downstream partners for consent — must verify consent themselves\n- AI behavioural profiling and retargeting requires demonstrable, valid consent under GDPR\n- AI cross-device tracking and identity resolution techniques constitute personal data processing\n- AI advertising systems using cookie-based tracking must implement joint controller agreements with partners\n\nGDPRHub Facts Summary:\nOn 15 June 2023, the French DPA (CNIL) fined the online advertising company Criteo - the controller - €40,000,000. The DPA’s decision followed complaints lodged by the NGOs Privacy International and None of Your Business (noyb). Criteo used a behavioural targeting approach that tracked data subjects’ online activities to display personalised advertising. By collecting browsing data through its tracking tool (the cookie \"Criteo\") Criteo analysed data subjects’ browsing habits to determine the most relevant ads for each data subject. Online advertising companies participated then in real-time bidding and displayed personalised ads if they won the bid.\n\nGDPRHub Holding Summary:\nThe DPA found five breaches of the GDPR against the controller: Regarding the failure to demonstrate consent, the DPA held that Criteo failed to ensure that data subjects gave their consent to the placement of the tracker on their devices in violation ofArticle 7(1) GDPR. The DPA discovered instances in which the controller’s tracker was used by several of the controller's commercial partners without data subjects’ consent. According to the DPA, obtaining consent from Internet users for the processing of data concerns both Criteo and its commercial partners pursuant to Article 7 GDPR. The DPA insisted on a dual system of responsibility (joint controllership) to ensure an effective right to consent at every stage of the processing.Concerning the lack of information and transparency, the DPA considered Criteo's privacy policy to be incomplete and unclear about the intended purposes of the data processing, thus violatingArticles 12and13 GDPR. Some purposes were only vaguely formulated, so that data subjects could not fully understand which personal data were used for which purposes.As to the failure to comply with the right of access, the DPA established that Criteo did not adequately fulfil data subjects’ right of access in breach ofArticle 15(1) GDPR. When data subjects requested access to their personal data, Criteo only provided data from a subset of its database tables and did not disclose the information from other relevant tables.As to the failure to respect the right to withdraw consent and delete data, the DPA found a violation ofArticles 7(3)and17(1) GDPR.  When data subjects exercised their right to withdraw consent or requested deletion of their data, Criteo stopped displaying personalised ads but failed to remove the identifier assigned to the data subject or delete the related browsing events.Lastly, the DPA highlighted the lack of agreement between the joint controllers in breach ofArticle 26 GDPR. The agreements between Criteo and its commercial partner",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\criteo_consent_violations.txt"
+  },
+  {
+    "id": "ENF_GOOGLE_CNIL_COOKIES",
+    "type": "EnforcementAction",
+    "name": "Google/CNIL Cookies",
+    "authority": "Commission Nationale de l'Informatique et des Libertés (CNIL), France",
+    "target": "Google LLC and Google Ireland Ltd",
+    "decision_date": "2021-12-31",
+    "fine_amount_eur": 150000000,
+    "fine_category": "French Data Protection Act / ePrivacy Directive",
+    "violations": [
+      "GDPR_ART_82"
+    ],
+    "facts": "\nThe CNIL found that google.fr and youtube.com deposited advertising cookies automatically when users visited the sites, before any consent action. The cookie banner offered an easily accessible 'I Accept' button but required multiple clicks to refuse cookies. The CNIL determined that this asymmetric design did not provide a genuine choice and therefore consent was not freely given.",
+    "key_findings": [
+      "Advertising cookies were deposited before the user expressed any preference — a direct violation",
+      "The 'reject' option required significantly more clicks than the 'accept' option — consent was not freely given",
+      "An equivalent one-click reject mechanism must be provided alongside the accept button",
+      "The CNIL has jurisdiction over cookie violations by non-EU entities under ePrivacy rules (not limited by GDPR one-stop-shop)",
+      "The fine targeted both the US parent (Google LLC) and the Irish subsidiary"
+    ],
+    "corrective_measures": [
+      "Provide French users with an equally easy mechanism to refuse cookies as to accept them",
+      "Stop depositing cookies before user consent is obtained",
+      "Daily penalty of EUR 100,000 for non-compliance (later lifted after compliance)"
+    ],
+    "ai_relevance": [
+      "AI analytics and tracking cookies require valid prior consent — no pre-loading before user choice",
+      "AI-powered cookie consent banners (CMPs) must implement symmetric accept/reject UX",
+      "AI A/B testing and personalisation via cookies must wait for valid consent before any data collection",
+      "AI-driven 'dark patterns' in consent interfaces face direct enforcement action"
+    ],
+    "description": "Enforcement against Google LLC and Google Ireland Ltd",
+    "source_text": "Authority: Commission Nationale de l'Informatique et des Libertés (CNIL), France\nTarget: Google LLC and Google Ireland Ltd\nDecision Date: 2021-12-31\nFine Amount: EUR 150,000,000 (Google LLC: EUR 90M; Google Ireland: EUR 60M — later reduced on appeal)\nFine Category: French Data Protection Act / ePrivacy Directive\n\nViolations:\n- French Data Protection Act Article 82 (implementing ePrivacy Directive Art 5(3)) — cookies deposited without valid consent\n- Failure to provide equivalent one-click accept/one-click reject mechanism\n\nFacts:\nThe CNIL found that google.fr and youtube.com deposited advertising cookies automatically when users visited the sites, before any consent action. The cookie banner offered an easily accessible 'I Accept' button but required multiple clicks to refuse cookies. The CNIL determined that this asymmetric design did not provide a genuine choice and therefore consent was not freely given.\n\nKey Findings:\n1. Advertising cookies were deposited before the user expressed any preference — a direct violation\n2. The 'reject' option required significantly more clicks than the 'accept' option — consent was not freely given\n3. An equivalent one-click reject mechanism must be provided alongside the accept button\n4. The CNIL has jurisdiction over cookie violations by non-EU entities under ePrivacy rules (not limited by GDPR one-stop-shop)\n5. The fine targeted both the US parent (Google LLC) and the Irish subsidiary\n\nCorrective Measures:\n- Provide French users with an equally easy mechanism to refuse cookies as to accept them\n- Stop depositing cookies before user consent is obtained\n- Daily penalty of EUR 100,000 for non-compliance (later lifted after compliance)\n\nAppeal Status: Partly upheld on appeal (2023). Core findings confirmed.\n\nAI Relevance:\n- AI analytics and tracking cookies require valid prior consent — no pre-loading before user choice\n- AI-powered cookie consent banners (CMPs) must implement symmetric accept/reject UX\n- AI A/B testing and personalisation via cookies must wait for valid consent before any data collection\n- AI-driven 'dark patterns' in consent interfaces face direct enforcement action\n\nGDPRHub Facts Summary:\nFacebook Ireland Limited (hereafter 'FIL') is a subsidiary owned wholly by Meta Platforms Inc. In April 2021 the French DPA (CNIL) carried out an online inspection of the website \"facebook.com\" in the context of an investigation into the processing of the personal data of French individuals visiting the website. The purpose of this inspection was to verify the company's compliance with the Loi 'Informatique et Libertés', and in particular with Article 82 thereof. In September 2021, the case manager that carried out the inspection issued a report to the restricted panel (that ultimately determines whether a breach occurred) that recommended the latter issue a fine and an injunction (to bring its processing activities into compliance with Article 82 Loi 'Informatique et Libertés') against the company. The restricted panel considered the evidence that was gathered by the case manager, and drew the conclusions below.\n\nGDPRHub Holding Summary:\nOn the competence of the CNIL First, the CNIL had to justify that it was the competent authority in this case. The material competence of the CNIL and the non-application of the \"one-stop shop\" mechanism provided for by the GDPR FIL argued the CNIL was not the competent authority because the alleged breach did not fall within the material scope of the ePrivacy Directive. However, the CNIL considered the contrary, namely that it was materially competent under the Loi 'Informatique et Libertés' (which implemented the ePrivacy Directive) to monitor and sanction the access or registration of information by companies in the terminals of users of the \"facebook.com\" website in France. After a lengthy discussion of national authorities' powers under the \"one-stop shop\" mechanism provided for by the GDPR, the CNIL held that it was in fact competent to control and initiate a sanction procedure against the aforementioned processing, provided that the latter was related to its territorial jurisdiction. On the territorial jurisdiction of the CNIL The CNIL considered it was territorially competent under Article 3 GDPR since the processing that was the subject of the present procedure, namely consisting of accessing or recording information on the terminals of users residing in France when using the Facebook website, in particular for advertising purposes, was carried out within the \"framework of the activities\" of the company Facebook France, which constituted the \"establishment\" of the Facebook group in France. In response, Facebook argued that its establishment in the EU was located in Ireland. The CNIL considered a range of CJEU case law (included but not limited toGoogle Spain C-131/12,Weltimmo C-230/14, Wirtschaftsakademie C-210/16) and its findings in the previous decision SAN-2020-012, which pointed towards a broad interpretation of 'establishment' and 'in the context of the activities' and rejected this argument. As such, it held that French law was applicable and that it",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\google_cnil_cookies.txt"
+  },
+  {
+    "id": "ENF_H_M_EMPLOYEE_SURVEILLANCE",
+    "type": "EnforcementAction",
+    "name": "H&M Employee Surveillance",
+    "authority": "Hamburg Commissioner for Data Protection and Freedom of Information (HmbBfDI), Germany",
+    "target": "H&M Hennes & Mauritz Online Shop AB & Co. KG",
+    "decision_date": "2020-10-01",
+    "fine_amount_eur": 35258707,
+    "fine_category": "GDPR Tier 2 (Art 83(5))",
+    "violations": [
+      "GDPR_ART_5",
+      "GDPR_ART_6",
+      "GDPR_ART_9"
+    ],
+    "facts": "\nH&M's service centre in Nuremberg conducted systematic and extensive surveillance of employees from at least 2014 to 2019. After employees returned from leave or sick days, their supervisors conducted 'return-to-work' meetings collecting detailed personal information about health conditions, family problems, religious beliefs, and holiday experiences. This data was stored in a comprehensive digital profile system accessible to approximately 50 managers. A technical error in October 2019 briefly made the data accessible to all employees, leading to discovery.",
+    "key_findings": [
+      "Extensive personal profiling of employees including health data, family circumstances, religious beliefs",
+      "Systematic 'return-to-work' interviews were designed to extract private information",
+      "Data was stored for years in an easily searchable digital system without any legal basis",
+      "Special category data (Art 9) including health and religious information was processed unlawfully",
+      "The data was used to make employment decisions (performance reviews, task assignments)",
+      "Approximately 50 managers had access to the employee profiles"
+    ],
+    "corrective_measures": [
+      "Delete all unlawfully collected employee data",
+      "Implement comprehensive data protection compliance programme",
+      "H&M also paid compensation to affected employees (total c. EUR 35M)"
+    ],
+    "ai_relevance": [
+      "AI-powered employee monitoring systems (productivity tracking, sentiment analysis) face the same restrictions",
+      "AI workplace surveillance tools must respect data minimisation — no collection of health, religious, or family data",
+      "AI HR analytics using employee personal data for decision-making requires strict legal basis assessment",
+      "AI profiling of employees (e.g., attrition prediction, performance scoring) must not process sensitive data unlawfully"
+    ],
+    "description": "Enforcement against H&M Hennes & Mauritz Online Shop AB & Co. KG",
+    "source_text": "Authority: Hamburg Commissioner for Data Protection and Freedom of Information (HmbBfDI), Germany\nTarget: H&M Hennes & Mauritz Online Shop AB & Co. KG\nDecision Date: 2020-10-01\nFine Amount: EUR 35,258,707\nFine Category: GDPR Tier 2 (Art 83(5))\n\nViolations:\n- GDPR Article 5(1)(a)(b)(c) — violation of lawfulness, purpose limitation, and data minimisation\n- GDPR Article 6(1) — no valid legal basis for extensive employee monitoring\n- GDPR Article 9 — unlawful processing of special categories of data (health, religion)\n\nFacts:\nH&M's service centre in Nuremberg conducted systematic and extensive surveillance of employees from at least 2014 to 2019. After employees returned from leave or sick days, their supervisors conducted 'return-to-work' meetings collecting detailed personal information about health conditions, family problems, religious beliefs, and holiday experiences. This data was stored in a comprehensive digital profile system accessible to approximately 50 managers. A technical error in October 2019 briefly made the data accessible to all employees, leading to discovery.\n\nKey Findings:\n1. Extensive personal profiling of employees including health data, family circumstances, religious beliefs\n2. Systematic 'return-to-work' interviews were designed to extract private information\n3. Data was stored for years in an easily searchable digital system without any legal basis\n4. Special category data (Art 9) including health and religious information was processed unlawfully\n5. The data was used to make employment decisions (performance reviews, task assignments)\n6. Approximately 50 managers had access to the employee profiles\n\nCorrective Measures:\n- Delete all unlawfully collected employee data\n- Implement comprehensive data protection compliance programme\n- H&M also paid compensation to affected employees (total c. EUR 35M)\n\nAppeal Status: No appeal — H&M accepted the fine and cooperated\n\nAI Relevance:\n- AI-powered employee monitoring systems (productivity tracking, sentiment analysis) face the same restrictions\n- AI workplace surveillance tools must respect data minimisation — no collection of health, religious, or family data\n- AI HR analytics using employee personal data for decision-making requires strict legal basis assessment\n- AI profiling of employees (e.g., attrition prediction, performance scoring) must not process sensitive data unlawfully\n\nGDPRHub Facts Summary:\nH&M with seat in Hamburg operates a service center in Nuremberg. Since at least 2014, issues concerning the private life of employees have been comprehensively recorded and stored. E.g. after absence due to illness or because of vacation, the respective teamleader conducted a \"Welcome Back Talk\". Detailed information, e.g. information on the symptoms of illness and diagnoses of the employees, has been noted and stored. Moreover,  some supervisors also used information that they heard by accident, for example about family problems and religious beliefs in order to store them on the network drive, which could be accessed by up to 50 managers of the company. This network drive was used to evaluate the performance of the employees and to make employment decisions. This data collection became public due to a technical configuration error in October 2019. The data stored on the network drive could be seen company-wide for hours.\n\nGDPRHub Holding Summary:\nH&M is fined in the amount of EUR 35 258 708 for processing data concerning the private life of employees, making them available to up to 50 managers and making employment related decisions on these data. Therefore, H&M has to introduce corrective measures, provide employees with damages and an apology.",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\hm_employee_surveillance.txt"
+  },
+  {
+    "id": "ENF_MARRIOTT_DATA_BREACH",
+    "type": "EnforcementAction",
+    "name": "Marriott Data Breach",
+    "authority": "Information Commissioner's Office (ICO), United Kingdom",
+    "target": "Marriott International Inc.",
+    "decision_date": "2020-10-30",
+    "fine_amount_eur": 20450000,
+    "fine_category": "GDPR Tier 2 (Art 83(5))",
+    "violations": [
+      "GDPR_ART_5",
+      "GDPR_ART_32"
+    ],
+    "facts": "\nMarriott's Starwood guest reservation database was compromised in 2014 (before Marriott's acquisition of Starwood) and remained undetected until September 2018. Approximately 339 million guest records were exposed globally, including 30 million EEA residents' records. Exposed data included names, email addresses, phone numbers, passport numbers, dates of birth, and encrypted payment card details. Marriott failed to conduct adequate due diligence on Starwood's IT systems during the acquisition.",
+    "key_findings": [
+      "The breach originated from Starwood's systems compromised in 2014 — four years before detection",
+      "Marriott failed to conduct adequate IT security due diligence during the Starwood acquisition",
+      "339 million guest records were exposed globally (30 million EEA residents)",
+      "Passport numbers were among the compromised data — highly sensitive identity documents",
+      "Insufficient monitoring, alerting, and access controls on legacy Starwood systems",
+      "Reduction from GBP 99M to GBP 18.4M due to COVID impact and Marriott's cooperation"
+    ],
+    "corrective_measures": [
+      "Comprehensive security transformation of legacy Starwood systems",
+      "Enhanced monitoring and encryption of database systems"
+    ],
+    "ai_relevance": [
+      "AI system acquisitions and mergers require data protection due diligence on acquiring company's AI systems",
+      "Legacy AI data systems inherited through M&A carry GDPR liability for the acquiring entity",
+      "AI-powered hotel personalisation systems processing guest data must implement Art 32 security measures",
+      "AI breach detection tools would have been relevant in identifying the long-undetected breach"
+    ],
+    "description": "Enforcement against Marriott International Inc.",
+    "source_text": "Authority: Information Commissioner's Office (ICO), United Kingdom\nTarget: Marriott International Inc.\nDecision Date: 2020-10-30\nFine Amount: EUR 20,450,000 (GBP 18,400,000 — reduced from initial notice of GBP 99M)\nFine Category: GDPR Tier 2 (Art 83(5))\n\nViolations:\n- GDPR Article 5(1)(f) — failure to process data securely\n- GDPR Article 32 — insufficient technical and organisational security measures\n\nFacts:\nMarriott's Starwood guest reservation database was compromised in 2014 (before Marriott's acquisition of Starwood) and remained undetected until September 2018. Approximately 339 million guest records were exposed globally, including 30 million EEA residents' records. Exposed data included names, email addresses, phone numbers, passport numbers, dates of birth, and encrypted payment card details. Marriott failed to conduct adequate due diligence on Starwood's IT systems during the acquisition.\n\nKey Findings:\n1. The breach originated from Starwood's systems compromised in 2014 — four years before detection\n2. Marriott failed to conduct adequate IT security due diligence during the Starwood acquisition\n3. 339 million guest records were exposed globally (30 million EEA residents)\n4. Passport numbers were among the compromised data — highly sensitive identity documents\n5. Insufficient monitoring, alerting, and access controls on legacy Starwood systems\n6. Reduction from GBP 99M to GBP 18.4M due to COVID impact and Marriott's cooperation\n\nCorrective Measures:\n- Comprehensive security transformation of legacy Starwood systems\n- Enhanced monitoring and encryption of database systems\n\nAppeal Status: Fine reduced from GBP 99M to GBP 18.4M (no further appeal)\n\nAI Relevance:\n- AI system acquisitions and mergers require data protection due diligence on acquiring company's AI systems\n- Legacy AI data systems inherited through M&A carry GDPR liability for the acquiring entity\n- AI-powered hotel personalisation systems processing guest data must implement Art 32 security measures\n- AI breach detection tools would have been relevant in identifying the long-undetected breach\n\nGDPRHub Facts Summary:\nStarwood Hotels and Resorts Worldwide Inc’s (“Starwood”) IT system were first compromised by unknown attackers in 2014. Marriot subsequently acquired Starwood in 2016, but did not detect this attack at any time between that moment and September 2018. Therefore, between 2014 and 2018, the attackers  had access to Starwood’s systems through use of Remote Access Trojan malware, and kept extracting Starwood databases. Marriott became aware of potential attacks following an alert from a system applied to one of its most confidential databases on September 2018. After that Marriot found malware installed and proof that databases had been extracted over the years, so they promptly notified both the ICO and relevant data subjects of the breach. The ICO found that the attackers had obtained unencrypted personal data of the likes of: passport numbers, identifying information of the costumers such as name, date of birth and gender, plus credit card details in encrypted form.\n\nGDPRHub Holding Summary:\nAlthough the ICO and the relevant victims were notified promptly of the breach, the ICO found that  there were many failures in placing the technical and organizational measures to safeguard personal data in Marriott’s system as required under Article 5(1)(f) and Article 32 GDPR. Marriott’s shortcomings, as outlined by the ICO, were the following: insufficient monitoring of privileged accounts and their user activity, insufficient monitoring of databases, poor control of critical systems and systems that have access to large amounts of personal data, and the fact that only certain type of sensitive data was encrypted (e.g. credit card numbers) but not all (e.g. many passport numbers). The ICO fined Marriott in line ofArticle 83 GDPRbut also took into account mitigating factors such as the efforts that Marriott made to inform and help the victims of the breach, the $19 million investment it made on security the following year and the financial impacts of the Covid-19 pandemic, lowering the final amount of the fine from £24 million to £18.4 million.",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\marriott_data_breach.txt"
+  },
+  {
+    "id": "ENF_META_INSTAGRAM_CHILDREN_S_DATA",
+    "type": "EnforcementAction",
+    "name": "Meta/Instagram Children's Data",
+    "authority": "Irish Data Protection Commission (DPC)",
+    "target": "Meta Platforms Ireland Ltd (Instagram)",
+    "decision_date": "2022-09-05",
+    "fine_amount_eur": 405000000,
+    "fine_category": "GDPR Tier 2 (Art 83(5))",
+    "violations": [
+      "GDPR_ART_6",
+      "GDPR_ART_12",
+      "GDPR_ART_13",
+      "GDPR_ART_24",
+      "GDPR_ART_25",
+      "GDPR_ART_35"
+    ],
+    "facts": "\nInstagram allowed children aged 13-17 to operate business accounts that made their email addresses and phone numbers publicly visible. The platform's default settings for child accounts were set to 'public' rather than 'private'. Instagram failed to implement adequate age verification mechanisms and did not provide age-appropriate transparency information. The DPC found that Instagram's DPIA for children's data was inadequate.",
+    "key_findings": [
+      "Children's email addresses and phone numbers were made publicly visible through business accounts",
+      "Default settings for child accounts were 'public' rather than 'private' — violating data protection by design/default",
+      "Instagram's privacy policy was not written in clear, plain language understandable by children",
+      "Inadequate age verification allowed children under 13 to create accounts",
+      "The DPIA failed to adequately assess risks to children's rights and freedoms"
+    ],
+    "corrective_measures": [
+      "Order to bring processing into compliance with GDPR within specified timeframes",
+      "Implement privacy-by-default settings for all child accounts",
+      "Ensure appropriate age verification mechanisms"
+    ],
+    "ai_relevance": [
+      "AI-powered age verification systems for platform access face regulatory scrutiny",
+      "AI recommendation algorithms exposing children's data must implement data protection by design",
+      "AI content personalisation for minors must apply heightened privacy protections",
+      "AI social media features (suggested connections, public profiles) for children must default to private"
+    ],
+    "description": "Enforcement against Meta Platforms Ireland Ltd (Instagram)",
+    "source_text": "Authority: Irish Data Protection Commission (DPC)\nTarget: Meta Platforms Ireland Ltd (Instagram)\nDecision Date: 2022-09-05\nFine Amount: EUR 405,000,000\nFine Category: GDPR Tier 2 (Art 83(5))\n\nViolations:\n- GDPR Article 6(1) — lack of valid legal basis for processing children's data\n- GDPR Article 12 — failure to provide transparent information\n- GDPR Article 13 — inadequate information at point of data collection\n- GDPR Article 24 — failure to implement appropriate measures\n- GDPR Article 25 — failure to implement data protection by design and by default\n- GDPR Article 35 — inadequate Data Protection Impact Assessment\n\nFacts:\nInstagram allowed children aged 13-17 to operate business accounts that made their email addresses and phone numbers publicly visible. The platform's default settings for child accounts were set to 'public' rather than 'private'. Instagram failed to implement adequate age verification mechanisms and did not provide age-appropriate transparency information. The DPC found that Instagram's DPIA for children's data was inadequate.\n\nKey Findings:\n1. Children's email addresses and phone numbers were made publicly visible through business accounts\n2. Default settings for child accounts were 'public' rather than 'private' — violating data protection by design/default\n3. Instagram's privacy policy was not written in clear, plain language understandable by children\n4. Inadequate age verification allowed children under 13 to create accounts\n5. The DPIA failed to adequately assess risks to children's rights and freedoms\n\nCorrective Measures:\n- Order to bring processing into compliance with GDPR within specified timeframes\n- Implement privacy-by-default settings for all child accounts\n- Ensure appropriate age verification mechanisms\n\nAppeal Status: Appeal withdrawn (2023)\n\nAI Relevance:\n- AI-powered age verification systems for platform access face regulatory scrutiny\n- AI recommendation algorithms exposing children's data must implement data protection by design\n- AI content personalisation for minors must apply heightened privacy protections\n- AI social media features (suggested connections, public profiles) for children must default to private",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\meta_instagram_childrens_data.txt"
+  },
+  {
+    "id": "ENF_META_IRELAND_TRANSFER_FINE",
+    "type": "EnforcementAction",
+    "name": "Meta Ireland Transfer Fine",
+    "authority": "Irish Data Protection Commission (DPC)",
+    "target": "Meta Platforms Ireland Ltd",
+    "decision_date": "2023-05-22",
+    "fine_amount_eur": 1200000000,
+    "fine_category": "GDPR Tier 2 (Art 83(5)) — highest GDPR fine to date",
+    "violations": [
+      "GDPR_ART_46"
+    ],
+    "facts": "\nMeta continued transferring EU user data to the US for processing after the CJEU invalidated the Privacy Shield in Schrems II (July 2020). Meta relied on Standard Contractual Clauses (SCCs) but did not implement sufficient supplementary measures to address US surveillance law deficiencies. The Irish DPC initially adopted a draft decision without a fine, but following relevant and reasoned objections from other DPAs, the EDPB issued a binding decision under Article 65(1)(a) GDPR requiring the DPC to impose a fine and order data erasure.",
+    "key_findings": [
+      "SCCs alone were insufficient given US surveillance laws (FISA 702, EO 12333)",
+      "Meta's supplementary measures (encryption, access controls) were inadequate to address government access risks",
+      "The scale of data involved (all EU/EEA Facebook users) was an aggravating factor",
+      "The infringement was ongoing and systematic since Schrems II in July 2020",
+      "Meta could not rely on derogations under Article 49 GDPR for massive, repetitive transfers",
+      "The EDPB overruled the Irish DPC's decision not to impose a fine"
+    ],
+    "corrective_measures": [
+      "Suspend all data transfers to the US within 5 months",
+      "Bring processing into GDPR compliance within 6 months",
+      "Order to erase personal data unlawfully transferred and stored in the US"
+    ],
+    "ai_relevance": [
+      "AI systems processing EU data in US data centres face identical transfer requirements",
+      "Cloud AI providers must implement supplementary measures for EU personal data",
+      "AI training pipelines sending EU data to US servers must have valid transfer mechanisms",
+      "Scale of processing is an aggravating factor — large-scale AI training increases fine risk"
+    ],
+    "description": "Enforcement against Meta Platforms Ireland Ltd",
+    "source_text": "Authority: Irish Data Protection Commission (DPC)\nTarget: Meta Platforms Ireland Ltd\nDecision Date: 2023-05-22\nFine Amount: EUR 1,200,000,000\nFine Category: GDPR Tier 2 (Art 83(5)) — highest GDPR fine to date\n\nViolations:\n- GDPR Article 46(1) — transfers without appropriate safeguards\n- GDPR Chapter V — systematic unlawful international data transfers\n\nFacts:\nMeta continued transferring EU user data to the US for processing after the CJEU invalidated the Privacy Shield in Schrems II (July 2020). Meta relied on Standard Contractual Clauses (SCCs) but did not implement sufficient supplementary measures to address US surveillance law deficiencies. The Irish DPC initially adopted a draft decision without a fine, but following relevant and reasoned objections from other DPAs, the EDPB issued a binding decision under Article 65(1)(a) GDPR requiring the DPC to impose a fine and order data erasure.\n\nKey Findings:\n1. SCCs alone were insufficient given US surveillance laws (FISA 702, EO 12333)\n2. Meta's supplementary measures (encryption, access controls) were inadequate to address government access risks\n3. The scale of data involved (all EU/EEA Facebook users) was an aggravating factor\n4. The infringement was ongoing and systematic since Schrems II in July 2020\n5. Meta could not rely on derogations under Article 49 GDPR for massive, repetitive transfers\n6. The EDPB overruled the Irish DPC's decision not to impose a fine\n\nCorrective Measures:\n- Suspend all data transfers to the US within 5 months\n- Bring processing into GDPR compliance within 6 months\n- Order to erase personal data unlawfully transferred and stored in the US\n\nAppeal Status: Under appeal before the CJEU (2024). Partly superseded by EU-US Data Privacy Framework adequacy decision (July 2023)\n\nAI Relevance:\n- AI systems processing EU data in US data centres face identical transfer requirements\n- Cloud AI providers must implement supplementary measures for EU personal data\n- AI training pipelines sending EU data to US servers must have valid transfer mechanisms\n- Scale of processing is an aggravating factor — large-scale AI training increases fine risk\n\nGDPRHub Facts Summary:\nIn the aftermath of the Schrems I and II judgements (C-362/14andC-311/18), the Irish DPA started an ex office procedure into the issue of Meta Platforms Ireland Ltd. (Meta Ireland) transferring personal data to Meta Platforms Inc. (Meta U.S.) in violation of Chapter V of the GDPR. Meta Ireland had been transferring personal data to the U.S. despite the lack of a valid adequacy decision underArticle 45 GDPR(as both “safe harbor” and its successor “privacy shield” were invalidated by the CJEU in Schrems I and II). While negotiation of a new adequacy decision for EU-U.S. data transfers are ongoing, Meta Ireland claimed to have undertaken data transfers on the basis of standard contractual clauses adopted by the Commission underArticle 46(2)(c) GDPReven before the CJEU passed the Schrems II decision.\n\nGDPRHub Holding Summary:\nFirst, the Irish DPA ascertained whether US law guaranteed an essentially equivalent level of protection of data protection rights in light of Schrems II. This was excluded by the supervisory authority, especially due to the lack of effective judicial remedies against the violation of data subjects’ fundamental rights by U.S. intelligence agencies and due to the lack of limitations imposed on the latters’ investigation powers. The latest developments in U.S. law (which are supposed to ensure a higher level of protection for data transferred to the U.S.) were deemed insufficient by the Irish DPA, especially since some of the promised reforms have not yet been implemented. Second, the Irish DPA found that Standard Contractual Clauses (SCCs) pursuant toArticle 46(2)(c) GDPRinvoked by Meta Ireland could not compensate for the lack of an equivalent level of data protection. In particular, SCCs did not (and could not) address the activity of U.S. intelligence agencies or the lack of judicial remedies against such activity. Third, the supervisory authority considered whether Meta Ireland implemented sufficient supplementary measures that would, in addition to SSCs, ensure an equivalent level of data protection. Neither of the organisational, technical or legal measures Meta Ireland Ltd claimed to have implemented could compensate for a problem that stems from US public law. Finally, Meta Ireland could not rely on derogations underArticle 49 GDPR, as derogations to fundamental rights enshrined in the European Charter of Fundamental Rights shall be interpreted strictly. In this case, the Irish DPA found (following the CJEU in Schrems I and II) that U.S. law interfered with the essence of Europeans’ fundamental rights and therefore did not pass the test set out in Article 52 of the Charter. Moreover, according to the Irish DPC, derogations underArticle 49 GDPRcan only be invoked for “occasional and non-repetitive” transfers, which was clearly not the case with the Meta group,",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\meta_ireland_transfer_fine.txt"
+  },
+  {
+    "id": "ENF_META_WHATSAPP_TRANSPARENCY",
+    "type": "EnforcementAction",
+    "name": "Meta/WhatsApp Transparency",
+    "authority": "Irish Data Protection Commission (DPC)",
+    "target": "WhatsApp Ireland Ltd",
+    "decision_date": "2021-09-02",
+    "fine_amount_eur": 225000000,
+    "fine_category": "GDPR Tier 2 (Art 83(5))",
+    "violations": [
+      "GDPR_ART_12",
+      "GDPR_ART_13",
+      "GDPR_ART_14"
+    ],
+    "facts": "\nThe DPC investigated WhatsApp's compliance with transparency obligations under GDPR Articles 12-14 regarding the information provided to users and non-users about data processing. The investigation found that WhatsApp did not adequately inform users about data sharing with other Meta/Facebook companies. The EDPB issued a binding decision under Art 65(1)(a) requiring the DPC to increase the fine amount and broaden the scope of violations found.",
+    "key_findings": [
+      "WhatsApp failed to transparently inform users how their data was shared within the Meta/Facebook group",
+      "Non-users whose data was processed by WhatsApp (through contacts) were not adequately informed",
+      "The privacy policy was insufficiently clear about the purposes and legal bases for processing",
+      "The EDPB significantly increased the fine from the DPC's initial draft (€50M → €225M)",
+      "Transparency failures affect the validity of consent for all dependent processing activities"
+    ],
+    "corrective_measures": [
+      "Bring processing into compliance with Articles 12-14 GDPR",
+      "Provide clear and accessible information about data sharing within Meta companies"
+    ],
+    "ai_relevance": [
+      "AI systems must provide transparent information about how personal data is processed — including AI-specific disclosures",
+      "AI-driven data sharing across affiliated services (like Meta's cross-platform data use) requires clear transparency",
+      "Transparency failures undermine consent validity for AI training on messaging data",
+      "AI chatbot services processing user communications must meet the same transparency standards"
+    ],
+    "description": "Enforcement against WhatsApp Ireland Ltd",
+    "source_text": "Authority: Irish Data Protection Commission (DPC)\nTarget: WhatsApp Ireland Ltd\nDecision Date: 2021-09-02\nFine Amount: EUR 225,000,000\nFine Category: GDPR Tier 2 (Art 83(5))\n\nViolations:\n- GDPR Articles 12, 13, 14 — failure to meet transparency requirements\n\nFacts:\nThe DPC investigated WhatsApp's compliance with transparency obligations under GDPR Articles 12-14 regarding the information provided to users and non-users about data processing. The investigation found that WhatsApp did not adequately inform users about data sharing with other Meta/Facebook companies. The EDPB issued a binding decision under Art 65(1)(a) requiring the DPC to increase the fine amount and broaden the scope of violations found.\n\nKey Findings:\n1. WhatsApp failed to transparently inform users how their data was shared within the Meta/Facebook group\n2. Non-users whose data was processed by WhatsApp (through contacts) were not adequately informed\n3. The privacy policy was insufficiently clear about the purposes and legal bases for processing\n4. The EDPB significantly increased the fine from the DPC's initial draft (€50M → €225M)\n5. Transparency failures affect the validity of consent for all dependent processing activities\n\nCorrective Measures:\n- Bring processing into compliance with Articles 12-14 GDPR\n- Provide clear and accessible information about data sharing within Meta companies\n\nAppeal Status: Reduction to EUR 5.5M by Irish courts (2025) — DPC appealing\n\nAI Relevance:\n- AI systems must provide transparent information about how personal data is processed — including AI-specific disclosures\n- AI-driven data sharing across affiliated services (like Meta's cross-platform data use) requires clear transparency\n- Transparency failures undermine consent validity for AI training on messaging data\n- AI chatbot services processing user communications must meet the same transparency standards\n\nGDPRHub Facts Summary:\nThis DPC decision is the result of an own-volition inquiry pursuant tosection 110 Data Protection Act 2018. It was prompted by various complaints sent by individual data subjects as well as a mutual assistance request from theGerman Federal Data Protection Authorityconcerning WhatsApp’s transparency obligations following the entry into force of the GDPR in May 2018. The inquiry focused on: WhatsApp’s transparency obligations in the context of non-users underArticles 14and12(1) GDPRWhatsApp’s transparency obligations in the context of users underArticles 13and12(1) GDPR.WhatsApp’s transparency obligations in the context of its relationship with other Facebook Companies and any sharing of user data in the context of that relationship. Following an investigation lasting from December 2018 to December 2020, the DPC submitted a composite draft decision to other DPAs in accordance withArticle 60 GDPR. On 24 December 2020, it referred the objections to theEDPB, as required by theArticle 65(1)(a)dispute resolution mechanism. The EDPB then adopted its bindingArticle 65 GDPRdecision on July 28 2021. Consequently, the DPC amended its draft to take into account the EDPB’s determination of the various objections from the other DPAs which it deemed to be “relevant and reasoned” for the purpose ofArticle 4(24)of the GDPR. Notably, it required the DPC to find that WhatsApp failed to comply with the key principle of transparency set out inArticle 5(1)(a) GDPR, a matter it had not originally a\n\nGDPRHub Holding Summary:\nFirst, it found WhatsApp denied non-users their right to exercise control over their personal data by failing to provide them with the information prescribed byArticle 14 GDPR. Second, it held WhatsApp failed to provide users with sufficiently meaningful information regarding nearly every category of information to be provided underArticle 13 GDPR, making it impossible for them to adequately consider and exercise their data rights. Third, it included an infringement of the key principle of transparency underArticle 5(1)(a) GDPRin its final decision following an objection to its original decision by the Italian SA and adecision by the EDPB. WhatsApp’s transparency obligations in the context of non-users under Articles 14 and 12(1) GDPR In its assessment of WhatsApp’s processing of non-user personal data, the DPC first analysed how the ‘Contact Feature’ operates in practice. It found that the data it generates, a table of lossy hashes together with the associated users’ mobile phone numbers, is personal data because non-users are identifiable. It held WhatsApp processed this personal data as a controller due to the degree of control it has over the purposes and means of that processing. Having concluded WhatsApp processes non-user personal data as a controller, the DPC evaluated its compliance with the transparency obligations set out inArticles 14and12(1)GDPR. WhatsApp argued that it took “appropriate measures” to inform non-users of the “very limited ways” in which it processed their personal data. This was supposedly done by stating users provide the company with all their contacts’ phone numbers in their Privacy Policy. The DPC rejected this argument, pointing out the lack of a discoverable and accessible “public notice” that would provide non-users of WhatsApp services with the information they are entitled to underArticle 14. For example, they should be provided with details about the “circumstances in which any non-user personal data is shared with any of the F",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\meta_whatsapp_transparency.txt"
+  },
+  {
+    "id": "ENF_MICROSOFT_LINKEDIN_BEHAVIORAL_ADS",
+    "type": "EnforcementAction",
+    "name": "Microsoft/LinkedIn Behavioral Ads",
+    "authority": "Irish Data Protection Commission (DPC)",
+    "target": "LinkedIn Ireland Unlimited Company",
+    "decision_date": "2024-10-22",
+    "fine_amount_eur": 310000000,
+    "fine_category": "GDPR Tier 2 (Art 83(5))",
+    "violations": [
+      "GDPR_ART_5",
+      "GDPR_ART_6",
+      "GDPR_ART_13"
+    ],
+    "facts": "\nThe Irish DPC investigated LinkedIn's processing of member data for behavioural advertising following a complaint from the French digital rights organisation La Quadrature du Net. LinkedIn used member profile data and behavioural data for targeted advertising purposes, relying on legitimate interest and contractual necessity as legal bases. The DPC found that neither basis was valid for behavioural advertising, and that LinkedIn's transparency about its advertising practices was inadequate.",
+    "key_findings": [
+      "Legitimate interest (Art 6(1)(f)) is NOT a valid basis for behavioural advertising by social media platforms",
+      "Contractual necessity (Art 6(1)(b)) cannot justify advertising — ad targeting is not 'necessary' for LinkedIn's service",
+      "Only valid consent (Art 6(1)(a)) can legitimise behavioural advertising",
+      "LinkedIn's privacy policy was insufficiently transparent about advertising data processing",
+      "The DPC imposed a reprimand in addition to the financial sanction"
+    ],
+    "corrective_measures": [
+      "Bring behavioural advertising processing into GDPR compliance (obtain valid consent)",
+      "Improve transparency disclosures about advertising data practices"
+    ],
+    "ai_relevance": [
+      "AI-powered behavioural ad targeting on professional networks requires valid consent, not just legitimate interest",
+      "AI profiling for advertising purposes falls under strict legal basis requirements — contractual necessity rejected",
+      "AI recommendation engines on social platforms that serve advertising must separate ad consent from core service",
+      "AI-driven personalisation for advertising must be clearly disclosed to users"
+    ],
+    "description": "Enforcement against LinkedIn Ireland Unlimited Company",
+    "source_text": "Authority: Irish Data Protection Commission (DPC)\nTarget: LinkedIn Ireland Unlimited Company\nDecision Date: 2024-10-22\nFine Amount: EUR 310,000,000\nFine Category: GDPR Tier 2 (Art 83(5))\n\nViolations:\n- GDPR Article 5(1)(a) — violation of lawfulness, fairness and transparency principles\n- GDPR Article 6(1) — lack of valid legal basis for behavioural advertising\n- GDPR Article 13 — failure to provide adequate information about ad targeting practices\n\nFacts:\nThe Irish DPC investigated LinkedIn's processing of member data for behavioural advertising following a complaint from the French digital rights organisation La Quadrature du Net. LinkedIn used member profile data and behavioural data for targeted advertising purposes, relying on legitimate interest and contractual necessity as legal bases. The DPC found that neither basis was valid for behavioural advertising, and that LinkedIn's transparency about its advertising practices was inadequate.\n\nKey Findings:\n1. Legitimate interest (Art 6(1)(f)) is NOT a valid basis for behavioural advertising by social media platforms\n2. Contractual necessity (Art 6(1)(b)) cannot justify advertising — ad targeting is not 'necessary' for LinkedIn's service\n3. Only valid consent (Art 6(1)(a)) can legitimise behavioural advertising\n4. LinkedIn's privacy policy was insufficiently transparent about advertising data processing\n5. The DPC imposed a reprimand in addition to the financial sanction\n\nCorrective Measures:\n- Bring behavioural advertising processing into GDPR compliance (obtain valid consent)\n- Improve transparency disclosures about advertising data practices\n\nAppeal Status: Decision issued October 2024 — appeal expected\n\nAI Relevance:\n- AI-powered behavioural ad targeting on professional networks requires valid consent, not just legitimate interest\n- AI profiling for advertising purposes falls under strict legal basis requirements — contractual necessity rejected\n- AI recommendation engines on social platforms that serve advertising must separate ad consent from core service\n- AI-driven personalisation for advertising must be clearly disclosed to users\n\nGDPRHub Facts Summary:\nOn the 20 August 2018, the French non-profit organisation “La Quadrature du Net” filed a complaint against LinkedIn for intransparent data processing. The complaint had initially been made to the French DPA (CNIL) and was later taken over by the Irish DPA (DPC) as the lead supervisory authority for LinkedIn. The inquiry analysed LinkedIn’s processing of personal data for the purposes of behavioural analysis and targeted advertising to its users. It focussed on the obligation to provide information to data subjects and whether LinkedIn could rely on a legal basis for under Article 6 GDPR for this processing.\n\nGDPRHub Holding Summary:\nIn a press realease, the DPC highlighted that LinkedIn had breached the overarching principles of fairness and transparency (Article 5(1)(a) GDPR) all throughout the course of the processing. The inquiry found that none of the legal basis invoked by LinkedIn justified the data processing at hand. Specifically, the consent of the LinkedIn users to this processing had not been freely given, sufficiently informed, specific or unambiguous. Further, LinkedIn’s legitimate interests were overridden by the interests and fundamental rights and freedoms of data subjects and LinkedIn could not rely on contractual necessity for the processing. In addition, the inquiry showed that the information provided to data subjects by LinkedIn regarding the lawful basis it claimed to rely on, namelyArticle 6(1)(a), 6(1)(b) and 6(1)(f) GDPRwas insufficient. The DPC held that LinkedIn could not rely on consent underArticle 6(1)(a) GDPR, legitimate interests underArticle 6(1)(f) GDPRnor contractual necessity underArticle 6(1)(b) GDPRfor its processing. In addition toArticle 5(1)(a) GDPR, the DPC held that the information provided to data subjects violated Articles13(1)(c)and14(1)(c) GDPR. Made up of three administrative fines, the DPC fined LinkedIn with a total of €310,000,000 for infringements ofArticles 5(1)(a),6(1)(a),6(1)(f),6(1)(b),13(1)(c)and14(1)(c) GDPR. In addition to the fine, the DPC issued a reprimand underArticle 58(2)(b) GDPRand ordered LinkedIn to bring its processing into compliance as perArticle 58(2)(d) GDPR.",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\microsoft_linkedin_behavioral_ads.txt"
+  },
+  {
+    "id": "ENF_OPENAI_CHATGPT_ITALIAN_BAN",
+    "type": "EnforcementAction",
+    "name": "OpenAI/ChatGPT Italian Ban",
+    "authority": "Garante per la protezione dei dati personali, Italy",
+    "target": "OpenAI LLC (ChatGPT)",
+    "decision_date": "2023-03-30 (temporary restriction); 2024-03-22 (final decision with EUR 15M fine)",
+    "fine_amount_eur": 15000000,
+    "fine_category": "GDPR Tier 2 (Art 83(5))",
+    "violations": [
+      "GDPR_ART_5",
+      "GDPR_ART_6",
+      "GDPR_ART_13",
+      "GDPR_ART_8"
+    ],
+    "facts": "\nThe Italian DPA (Garante) issued an emergency order on 30 March 2023 temporarily banning ChatGPT in Italy — the first Western regulator to restrict a generative AI service. Concerns included: no legal basis for mass data collection for training; no adequate information to data subjects whose data was used in training; no age verification to prevent minors from accessing the service; and the generation of factually inaccurate information about identifiable individuals ('hallucinations'). The ban was lifted after OpenAI implemented initial compliance measures. In March 2024, the Garante issued a EUR 15M fine for ongoing violations.",
+    "key_findings": [
+      "Mass scraping of internet data for LLM training lacks a clear legal basis under GDPR",
+      "AI-generated 'hallucinations' producing false personal information violate the accuracy principle (Art 5(1)(d))",
+      "Users and data subjects must be informed that their data is used for AI training",
+      "Age verification is required before minors can access generative AI services",
+      "Legitimate interest MAY be a valid basis for AI training IF transparency and opt-out mechanisms are provided (per Garante's conditional guidance)",
+      "First-ever GDPR enforcement action specifically targeting a generative AI system"
+    ],
+    "corrective_measures": [
+      "Implement age verification mechanism for Italian users",
+      "Provide clear privacy policy explaining AI training data practices",
+      "Offer data subjects opt-out from training data",
+      "Implement a mechanism for data subjects to request correction of inaccurate AI-generated outputs",
+      "Conduct a publicity campaign to inform Italian data subjects about their rights"
+    ],
+    "ai_relevance": [
+      "LANDMARK: First GDPR enforcement specifically targeting a generative AI system — sets global precedent",
+      "AI hallucinations producing false personal information = GDPR accuracy violation",
+      "Mass web scraping for AI training data requires a GDPR legal basis (legitimate interest with safeguards may suffice)",
+      "All generative AI services must implement age verification for minors",
+      "AI companies must provide transparency about training data sources and processing",
+      "Data subjects have the right to opt out of AI training data usage",
+      "AI companies must implement mechanisms to correct factual inaccuracies in AI outputs about individuals"
+    ],
+    "description": "Enforcement against OpenAI LLC (ChatGPT)",
+    "source_text": "Authority: Garante per la protezione dei dati personali, Italy\nTarget: OpenAI LLC (ChatGPT)\nDecision Date: 2023-03-30 (temporary restriction); 2024-03-22 (final decision with EUR 15M fine)\nFine Amount: EUR 15,000,000 (2024 fine) + temporary service ban (2023)\nFine Category: GDPR Tier 2 (Art 83(5))\n\nViolations:\n- GDPR Article 5(1)(a) — lack of transparency about data processing\n- GDPR Article 6(1) — no valid legal basis for mass processing of personal data for AI training\n- GDPR Article 13 — failure to provide information to data subjects\n- GDPR Article 8 — no age verification to protect minors from generative AI\n- GDPR Article 5(1)(d) — accuracy: ChatGPT generates factually incorrect information about identifiable individuals\n\nFacts:\nThe Italian DPA (Garante) issued an emergency order on 30 March 2023 temporarily banning ChatGPT in Italy — the first Western regulator to restrict a generative AI service. Concerns included: no legal basis for mass data collection for training; no adequate information to data subjects whose data was used in training; no age verification to prevent minors from accessing the service; and the generation of factually inaccurate information about identifiable individuals ('hallucinations'). The ban was lifted after OpenAI implemented initial compliance measures. In March 2024, the Garante issued a EUR 15M fine for ongoing violations.\n\nKey Findings:\n1. Mass scraping of internet data for LLM training lacks a clear legal basis under GDPR\n2. AI-generated 'hallucinations' producing false personal information violate the accuracy principle (Art 5(1)(d))\n3. Users and data subjects must be informed that their data is used for AI training\n4. Age verification is required before minors can access generative AI services\n5. Legitimate interest MAY be a valid basis for AI training IF transparency and opt-out mechanisms are provided (per Garante's conditional guidance)\n6. First-ever GDPR enforcement action specifically targeting a generative AI system\n\nCorrective Measures:\n- Implement age verification mechanism for Italian users\n- Provide clear privacy policy explaining AI training data practices\n- Offer data subjects opt-out from training data\n- Implement a mechanism for data subjects to request correction of inaccurate AI-generated outputs\n- Conduct a publicity campaign to inform Italian data subjects about their rights\n\nAppeal Status: OpenAI is appealing the EUR 15M fine (2024)\n\nAI Relevance:\n- LANDMARK: First GDPR enforcement specifically targeting a generative AI system — sets global precedent\n- AI hallucinations producing false personal information = GDPR accuracy violation\n- Mass web scraping for AI training data requires a GDPR legal basis (legitimate interest with safeguards may suffice)\n- All generative AI services must implement age verification for minors\n- AI companies must provide transparency about training data sources and processing\n- Data subjects have the right to opt out of AI training data usage\n- AI companies must implement mechanisms to correct factual inaccuracies in AI outputs about individuals\n\nGDPRHub Facts Summary:\nThe Italian DPA after receiving complaint fromInder Kahlonon 24th February 2023 (Numero protocollo: 0033835) opened an investigation concerning ChatGPT, an AI service offered by the American company OpenAI. The investigation focused on three main areas. First, the controller did not provide the data subjects whose personal data had been collected through the Internet with appropriate information about the processing. Second, the DPA found that ChatGPT final outcome – its “answers” – despite based also on personal data and thus often containing personal data, did not always represent reality in an accurate way. Finally, the investigation showed that OpenAI did not adopt any measure to check that users were above the minimum age requirement of 13 years.\n\nGDPRHub Holding Summary:\nThe Italian DPA held that the controller did not comply with its obligation to provide data subjects with a privacy policy pursuant toArticle 13 GDPR. Moreover, the collection of personal data and their use in the training of ChatGPT algorithms were undertaken in lack of a proper legal basis,in violation ofArticle 5and6 GDPR. Concerning specifically data of people other than the users, namely those data subjects whose data were collected on the internet, the DPA found that the algorithms behind the functioning of ChatGPT did not guarantee the principle of accuracy as enshrined inArticle 5(1)(d). Finally, the DPA also considered that the lack of any mechanism to check the age of the users entailed a violation ofArticle 8 GDPR. In light of the above and in the context of an urgency procedure, the DPA imposed on OpenAI a temporary limitation of processing pursuant toArticle 58(2)(f) GDPR. Such limitation concerns all processing operations involving data subjects on the Italian territory.",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\openai_chatgpt_italian_ban.txt"
+  },
+  {
+    "id": "ENF_SPOTIFY_ACCESS_RIGHTS",
+    "type": "EnforcementAction",
+    "name": "Spotify Access Rights",
+    "authority": "Integritetsskyddsmyndigheten (IMY), Sweden",
+    "target": "Spotify AB",
+    "decision_date": "2023-06-13",
+    "fine_amount_eur": 5000000,
+    "fine_category": "GDPR Tier 1 (Art 83(4))",
+    "violations": [
+      "GDPR_ART_15",
+      "GDPR_ART_12"
+    ],
+    "facts": "\nThe Swedish DPA (IMY) investigated Spotify following complaints from data subjects (co-ordinated by noyb) about the quality of responses to data subject access requests. Spotify provided data subjects with a downloadable data package, but the IMY found that it was not sufficiently clear how the different data categories related to the information requirements under Article 15 GDPR. Spotify's explanations of purposes and retention periods were unclear.",
+    "key_findings": [
+      "Spotify's data download package did not clearly map to the mandatory information under Article 15 GDPR",
+      "Purposes of processing were described too vaguely in access request responses",
+      "Retention periods were not adequately specified for different data categories",
+      "Providing raw data without clear context/explanation is insufficient to satisfy Art 15",
+      "The format of access responses must be intelligible and meaningful to the average data subject"
+    ],
+    "corrective_measures": [
+      "Restructure access request responses to clearly respond to each element of Article 15",
+      "Provide clear explanations of purposes and retention periods per data category"
+    ],
+    "ai_relevance": [
+      "AI music recommendation engines must provide clear, structured responses to access requests about profiling data",
+      "AI systems processing personal data must be able to generate meaningful Art 15 access responses — not just raw data dumps",
+      "AI-derived inferences and profiles are personal data subject to access rights",
+      "AI services must provide transparency about how AI-generated categories and preferences relate to personal data collected"
+    ],
+    "description": "Enforcement against Spotify AB",
+    "source_text": "Authority: Integritetsskyddsmyndigheten (IMY), Sweden\nTarget: Spotify AB\nDecision Date: 2023-06-13\nFine Amount: EUR 5,000,000 (SEK 58,000,000)\nFine Category: GDPR Tier 1 (Art 83(4))\n\nViolations:\n- GDPR Article 15 — failure to provide adequately clear access to personal data\n- GDPR Article 12 — information provided was not transparent, intelligible or easily accessible\n\nFacts:\nThe Swedish DPA (IMY) investigated Spotify following complaints from data subjects (co-ordinated by noyb) about the quality of responses to data subject access requests. Spotify provided data subjects with a downloadable data package, but the IMY found that it was not sufficiently clear how the different data categories related to the information requirements under Article 15 GDPR. Spotify's explanations of purposes and retention periods were unclear.\n\nKey Findings:\n1. Spotify's data download package did not clearly map to the mandatory information under Article 15 GDPR\n2. Purposes of processing were described too vaguely in access request responses\n3. Retention periods were not adequately specified for different data categories\n4. Providing raw data without clear context/explanation is insufficient to satisfy Art 15\n5. The format of access responses must be intelligible and meaningful to the average data subject\n\nCorrective Measures:\n- Restructure access request responses to clearly respond to each element of Article 15\n- Provide clear explanations of purposes and retention periods per data category\n\nAppeal Status: Fine upheld (2024)\n\nAI Relevance:\n- AI music recommendation engines must provide clear, structured responses to access requests about profiling data\n- AI systems processing personal data must be able to generate meaningful Art 15 access responses — not just raw data dumps\n- AI-derived inferences and profiles are personal data subject to access rights\n- AI services must provide transparency about how AI-generated categories and preferences relate to personal data collected\n\nGDPRHub Facts Summary:\nBackground Following a complaint filed bynoyb, in January 2019, as well as, complaints from the Netherlands and Denmark against Spotify AB (Spotify) regarding the right of access underArticle 15 GDPR, the Swedish DPA initiated an ex officio investigation on whether Spotify’s general practices for handling access requests comply with the GDPR. After 3 years of inactivity from the DPA,noybsought remedy underArticle 78(2) GDPRfrom the Stockholm Administrative Court, which eventually sided withnoyb. As a result, the DPA has now finally issued a decision onnoyb’s complaint, as well as, the other complaints filed against Spotify simultaneously with the DPA’s ex officio investigation. Since Spotify operates in several EU Member States, the DPA applied the cooperation and consistency mechanisms set out in Chapter VII GDPR. The complaint brought bynoybwas identified as ‘complaint 2’, and the complaint from the Netherlands as ‘complaint 1’. The complaint from Denmark was eventually rejected, because the investigation of the case did not show that Spotify has failed in its handling of the complainant's request for access. Facts on Spotify’s general procedures for handling access requests (ex officio investigation) With regard to Spotify's general practices on handling access requests, Spotify provides information required byArticle 15(1)(a)-(h)and15(2)GDPR via an online function. When Spotify provides a copy of personal data underArticle 15(3) GDPRit includes a file called \"Read me firs\n\nGDPRHub Holding Summary:\nHolding with regard to the ex officio investigation on Spotify’s general procedures for handling access requests Spotify’s practices, with regard to providing the information via an online tool, were found to be sufficient in ensuring that information in accordance withArticle 15 GDPRwas provided to its users. However, the DPa emphasized that such information must be formulated, in a way, that it fulfils the purpose of the right of access. This means that such information must ensure that i. the data subject is aware of the processing and ii. can verify its lawfulness. Furthermore, the DPA noted that such information must also be provided in a way that fulfils the transparency requirements ofArticle 12(1) GDPR. Essentially, the DPA found that Spotify should have taken steps to adapt the information to a user’s specific situation in order for the data subject to be able to verify the lawfulness of the processing concerning them. This was not the case with Spotify’s practices, as it provided the same information to users regardless of who requested access. Moreover, the DPA found that the information provided by Spotify was not concise, clear and transparent, nor easily accessible, because the information was of a general nature or too imprecise for a data subject to understand. In this respect, Spotify was found to be in breach of the ArticlesArticles 15(1)(a)-(d) and (g),andArticle 15(2) GDPRas well asArticle 12(1) GDPR. Since a data subject has to take different actions to request the different layers of data, the DPA considered it may cause some inconvenience to the data subject. However, Spotify's practices in this respect did not violateArticle 15(1) and (3) GDPRbecause the DPA considered that the data subject has the possibility to take all these actions at the same, if requested directly through Spotify's customer service. After an overall assessment, DPA concluded that Spotify's general procedures allow data subjects to request access in a sufficiently simple",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\spotify_access_rights.txt"
+  },
+  {
+    "id": "ENF_TIKTOK_CHILDREN_S_DATA",
+    "type": "EnforcementAction",
+    "name": "TikTok Children's Data",
+    "authority": "Irish Data Protection Commission (DPC)",
+    "target": "TikTok Technology Ltd",
+    "decision_date": "2023-09-01",
+    "fine_amount_eur": 345000000,
+    "fine_category": "GDPR Tier 2 (Art 83(5))",
+    "violations": [
+      "GDPR_ART_5",
+      "GDPR_ART_12",
+      "GDPR_ART_24",
+      "GDPR_ART_25"
+    ],
+    "facts": "\nThe DPC investigated TikTok's processing of children's (aged 13-17) personal data following requests from Dutch and French DPAs. TikTok set children's accounts to 'public' by default, used 'dark patterns' to nudge minors towards less private settings, failed to implement adequate age verification, and did not provide age-appropriate transparency information. The EDPB issued a binding decision under Art 65(1)(a) requiring the DPC to find additional violations regarding dark patterns and the fairness principle.",
+    "key_findings": [
+      "Children's TikTok accounts were set to 'public' by default — violating privacy by design and by default",
+      "TikTok used 'dark patterns' to nudge children towards accepting less private settings ('Skip' vs 'Go Private')",
+      "The EDPB found violations of the FAIRNESS principle (Art 5(1)(a)) — a novel enforcement development",
+      "Age verification mechanisms (age gate) were easily circumvented",
+      "The EDPB highlighted that the principle of data protection by design requires 'state of the art' age verification",
+      "Transparency information was not adapted to be understandable by children"
+    ],
+    "corrective_measures": [
+      "Bring processing into compliance with GDPR requirements for children's data",
+      "Implement privacy-by-default settings for all child accounts",
+      "Eliminate dark patterns from the consent/settings interfaces for minors"
+    ],
+    "ai_relevance": [
+      "AI recommendation algorithms for minors must implement privacy-by-default principles",
+      "AI-powered 'engagement optimisation' for children constitutes dark patterns when it undermines privacy choices",
+      "AI age verification systems represent 'state of the art' measures that platforms may be required to implement",
+      "AI content curation for children must respect data minimisation — no collecting unnecessary behavioural data",
+      "AI UX design optimising for data collection from children is a GDPR violation (fairness + dark patterns)"
+    ],
+    "description": "Enforcement against TikTok Technology Ltd",
+    "source_text": "Authority: Irish Data Protection Commission (DPC)\nTarget: TikTok Technology Ltd\nDecision Date: 2023-09-01\nFine Amount: EUR 345,000,000\nFine Category: GDPR Tier 2 (Art 83(5))\n\nViolations:\n- GDPR Article 5(1)(a) — violation of fairness principle (dark patterns for children)\n- GDPR Article 5(1)(c) — violation of data minimisation for children's data\n- GDPR Article 5(1)(f) — violation of integrity and confidentiality\n- GDPR Article 12-13 — insufficient transparency for children\n- GDPR Article 24 — inadequate measures for child protection\n- GDPR Article 25 — failure to implement privacy by design and by default for children\n\nFacts:\nThe DPC investigated TikTok's processing of children's (aged 13-17) personal data following requests from Dutch and French DPAs. TikTok set children's accounts to 'public' by default, used 'dark patterns' to nudge minors towards less private settings, failed to implement adequate age verification, and did not provide age-appropriate transparency information. The EDPB issued a binding decision under Art 65(1)(a) requiring the DPC to find additional violations regarding dark patterns and the fairness principle.\n\nKey Findings:\n1. Children's TikTok accounts were set to 'public' by default — violating privacy by design and by default\n2. TikTok used 'dark patterns' to nudge children towards accepting less private settings ('Skip' vs 'Go Private')\n3. The EDPB found violations of the FAIRNESS principle (Art 5(1)(a)) — a novel enforcement development\n4. Age verification mechanisms (age gate) were easily circumvented\n5. The EDPB highlighted that the principle of data protection by design requires 'state of the art' age verification\n6. Transparency information was not adapted to be understandable by children\n\nCorrective Measures:\n- Bring processing into compliance with GDPR requirements for children's data\n- Implement privacy-by-default settings for all child accounts\n- Eliminate dark patterns from the consent/settings interfaces for minors\n\nAppeal Status: Under appeal (2024)\n\nAI Relevance:\n- AI recommendation algorithms for minors must implement privacy-by-default principles\n- AI-powered 'engagement optimisation' for children constitutes dark patterns when it undermines privacy choices\n- AI age verification systems represent 'state of the art' measures that platforms may be required to implement\n- AI content curation for children must respect data minimisation — no collecting unnecessary behavioural data\n- AI UX design optimising for data collection from children is a GDPR violation (fairness + dark patterns)\n\nGDPRHub Facts Summary:\nIn 2021, the Dutch and French DPAs asked the Irish DPA to provide mutual assistance pursuant toArticle 61 GDPRin the context of the processing activities undertaken by TikTok, the controller. The Irish DPA was Leading Supervisory Authority (LSA) underArticle 56 GDPR. TikTok allegedly processed personal data of children in lack of sufficient identification mechanisms and implementing user settings that were not private. In particular, TikTok did not identify children under the age of 13 and made social media contents of all minors public-by-default.\n\nGDPRHub Holding Summary:\nNational procedure leading to the Irish Draft Decision First, the Irish DPA assessed whether TikTok’s default settings complied with the principles of data minimisation (Article 5(1)(c) GDPR), integrity and confidentiality (Article 5(1)(f) GDPR) and privacy by design and by default (Article 25 GDPR). These principles should be complied with by means of appropriate technical and organisational measures (Article 24 GDPR). The Irish DPA noted that new TikTok users were presented with a pop-up window where they could choose between ‘Go Private’ or ‘Skip’. If the user decided to skip, their account was made public by default. The DPA also stressed that TikTok’s privacy policy lacked transparency concerning the processing of minors’ data. Therefore, the controller violated the above-mentioned provisions. Second, the DPA examined whether age verification mechanisms were sufficient to guarantee compliance with the same provisions mentioned above. TikTok asked users to confirm their date of birth via an age gate. Children who used a date of birth that showed they were less than 13 were blocked and did not have a second opportunity to create an account. TikTok did not require ID documents (‘hard identifiers’) to be uploaded. However, TikTok declared to have removed children below 13 after reports by other users. Aware of that fact that no age verification mechanism is sufficient to fully guarantee that children below 13 do not have access to the service, the DPA embraced a risk-based approach. According to the DPA, Tiktok never assessed the existence of these risks in its DPIA. However, the DPA also acknowledged that the controller put in place several measures – most of which are blackened in the text of the decision, but including content moderation – to prevent children below 13 from accessing its services. In light of the above, the DPA initially found no violation with regard to this point. Third, the DPA found that TikTok did not comply with transparency requirements pu",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\tiktok_childrens_data.txt"
+  },
+  {
+    "id": "ENF_UBER_INTERNATIONAL_TRANSFERS",
+    "type": "EnforcementAction",
+    "name": "Uber International Transfers",
+    "authority": "Autoriteit Persoonsgegevens (AP), Netherlands",
+    "target": "Uber Technologies Inc. and Uber B.V.",
+    "decision_date": "2024-08-26",
+    "fine_amount_eur": 290000000,
+    "fine_category": "GDPR Tier 2 (Art 83(5))",
+    "violations": [
+      "GDPR_ART_44"
+    ],
+    "facts": "\nThe Dutch DPA (AP), acting as Lead Supervisory Authority, found that Uber transferred personal data of European drivers to the US for over two years without a valid transfer mechanism. Following the Schrems II judgment, Uber discontinued use of SCCs but then failed to implement an alternative valid transfer mechanism for a prolonged period. The case was initiated following mass complaints filed by French taxi drivers via the French human rights organisation Ligue des Droits de l'Homme, referred to the Dutch DPA as Lead Supervisory Authority.",
+    "key_findings": [
+      "Uber transferred EU driver data to US servers for over two years without any valid transfer mechanism",
+      "After Schrems II invalidated the Privacy Shield, Uber failed to rapidly implement alternative safeguards",
+      "Driver data included highly sensitive information: location tracking, identity documents, earnings data",
+      "The prolonged duration of non-compliance (2+ years) was an aggravating factor",
+      "The Dutch DPA acted as Lead Supervisory Authority — one-stop-shop mechanism applied",
+      "Third-highest GDPR fine ever at time of issuance"
+    ],
+    "corrective_measures": [
+      "Bring all data transfers to the US into compliance with GDPR Chapter V",
+      "Implement valid transfer mechanisms compliant with Schrems II requirements"
+    ],
+    "ai_relevance": [
+      "AI ride-hailing algorithms processing EU driver/rider location data in US data centres face same transfer restrictions",
+      "AI pricing algorithms (surge pricing) using EU personal data must comply with Chapter V transfer rules",
+      "AI driver monitoring and scoring systems transmitting EU data to US must have valid transfer mechanisms",
+      "Gig economy AI platforms (Uber, Lyft, DoorDash) face high exposure for cross-border data transfer violations"
+    ],
+    "description": "Enforcement against Uber Technologies Inc. and Uber B.V.",
+    "source_text": "Authority: Autoriteit Persoonsgegevens (AP), Netherlands\nTarget: Uber Technologies Inc. and Uber B.V.\nDecision Date: 2024-08-26\nFine Amount: EUR 290,000,000\nFine Category: GDPR Tier 2 (Art 83(5))\n\nViolations:\n- GDPR Article 44 — unlawful international transfer of personal data\n- GDPR Chapter V — transfers without appropriate safeguards\n\nFacts:\nThe Dutch DPA (AP), acting as Lead Supervisory Authority, found that Uber transferred personal data of European drivers to the US for over two years without a valid transfer mechanism. Following the Schrems II judgment, Uber discontinued use of SCCs but then failed to implement an alternative valid transfer mechanism for a prolonged period. The case was initiated following mass complaints filed by French taxi drivers via the French human rights organisation Ligue des Droits de l'Homme, referred to the Dutch DPA as Lead Supervisory Authority.\n\nKey Findings:\n1. Uber transferred EU driver data to US servers for over two years without any valid transfer mechanism\n2. After Schrems II invalidated the Privacy Shield, Uber failed to rapidly implement alternative safeguards\n3. Driver data included highly sensitive information: location tracking, identity documents, earnings data\n4. The prolonged duration of non-compliance (2+ years) was an aggravating factor\n5. The Dutch DPA acted as Lead Supervisory Authority — one-stop-shop mechanism applied\n6. Third-highest GDPR fine ever at time of issuance\n\nCorrective Measures:\n- Bring all data transfers to the US into compliance with GDPR Chapter V\n- Implement valid transfer mechanisms compliant with Schrems II requirements\n\nAppeal Status: Under appeal (2024). Uber claims EU-US Data Privacy Framework now covers its transfers.\n\nAI Relevance:\n- AI ride-hailing algorithms processing EU driver/rider location data in US data centres face same transfer restrictions\n- AI pricing algorithms (surge pricing) using EU personal data must comply with Chapter V transfer rules\n- AI driver monitoring and scoring systems transmitting EU data to US must have valid transfer mechanisms\n- Gig economy AI platforms (Uber, Lyft, DoorDash) face high exposure for cross-border data transfer violations\n\nGDPRHub Facts Summary:\nUber B.V. (UBV) is a company based in the Netherlands and is part of the Uber group of companies. Uber Technologies Inc. (UTI) is based in the United States (US) and is the parent company of, among others, UBV (the controller). Drivers (the data subjects) make use of the Uber Driver App to offer rides to customers. Using this app required the creation of a driver account. Via their account, data subjects are rated by their customers after a ride and paid by Uber for services rendered. The data subjects located in the EEA entered into an agreement with UBV when they would make use of the app. For this, the controller used a centralised IT infrastructure and servers that are located in the US. Personal data of the the data subjects that are located in the EEA were therefore processed in the United States in two situations: 1. Through the driver app, the personal data of the data subjects, who are located within the EEA, are collected and stored on a platform physically located in the US. This includes account, location, criminal and health data, proof of identity and a cab license. 2. When data subjects want to exercise their rights under the GDPR, UBV is responsible for responding to these requests. However, as the personal data is stored in the US, UTI is responsible for making the personal data available to UBV in order to respond to requests. UBV and UTI previously entered into the controller-to-controllerstandard contractual clauses of the European Commission('SCCs') in th\n\nGDPRHub Holding Summary:\nOn the applicability ofArticle 3 GDPRand Chapter V The DPA noted that the rationale behind Chapter V of the GDPR on data transfer was complementary to the rationale ofArticle 3 GDPRon the territorial scope, as it prevents the denial, undermining or circumvention of data protection under EU law. The DPA noted that although the GDPR applies to all processing operations underArticle 3 GDPR, the application of the GDPR outside the EEA territory did not provide the same protection. Therefore, the provisions in Chapter V contain mechanisms, which counterbalance the difficulty of enforcing obligations under EU law against parties in third countries. The DPA held that any other interpretation of these mechanisms would result in a weakening of the protection offered within the Union, which is not consistent with the standard required by the CJEU (seeC-40/17 - Fashion ID). Thus, the controllers' argument that Chapter V did not apply whenArticle 3 GDPRapplies, would be contrary to the rationale behind Chapter V in the GDPR. The DPA also stated that nowhere in the GDPR was stated thatArticle 3 GDPRtook precedence over Chapter V. The DPA further noted that the protection the provisions in Chapter V offer were in fact complementary toArticle 3 GDPRto set a higher standard of protection both in practice and by law to avoid circumventing the protection provided by EU law. The DPA rejected the controller’s argument that ifArticle 3 GDPRand Chapter V could apply at the same time, this would be in violation with the WTO agreement, because the WTO agreement did not take precedence over EU law, specifically the GDPR. Transfer of personal data The DPA used theEDPB Guidelines 05/2021 on the Interplay between the application of Article 3 and the provisions on international transfers as per Chapter V of the GDPR’s three cumulative criteria to qualify whether the controllers’ processing operation was a transfer: Criteria 1: A controller or a processor (“exporter”) is subject to the GDPR for",
+    "source_file": "D:\\60 Days\\Projects\\Portfolio_Series\\gdpr_kg\\Data\\enforcement_actions\\uber_international_transfers.txt"
+  }
+]

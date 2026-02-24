@@ -1,0 +1,330 @@
+[
+  {
+    "source_id": "RIGHT_TRANSPARENT_INFO",
+    "target_id": "GDPR_ART_12",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_TRANSPARENT_INFO",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_INFORMATION_COLLECTED",
+    "target_id": "GDPR_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_INFORMATION_COLLECTED",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_INFORMATION_INDIRECT",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_INFORMATION_INDIRECT",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_ACCESS",
+    "target_id": "GDPR_ART_15",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_ACCESS",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_RECTIFICATION",
+    "target_id": "GDPR_ART_16",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_RECTIFICATION",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_ERASURE",
+    "target_id": "GDPR_ART_17",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_ERASURE",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_RESTRICTION",
+    "target_id": "GDPR_ART_18",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_RESTRICTION",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_NOTIFICATION",
+    "target_id": "GDPR_ART_19",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_NOTIFICATION",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_PORTABILITY",
+    "target_id": "GDPR_ART_20",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_PORTABILITY",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_OBJECT",
+    "target_id": "GDPR_ART_21",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_OBJECT",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_AUTOMATED_DECISIONS",
+    "target_id": "GDPR_ART_22",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_AUTOMATED_DECISIONS",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_LODGE_COMPLAINT",
+    "target_id": "GDPR_ART_77",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_LODGE_COMPLAINT",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_EFFECTIVE_REMEDY_SA",
+    "target_id": "GDPR_ART_78",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_EFFECTIVE_REMEDY_SA",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_EFFECTIVE_REMEDY_CTRL",
+    "target_id": "GDPR_ART_79",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_EFFECTIVE_REMEDY_CTRL",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_COMPENSATION",
+    "target_id": "GDPR_ART_82",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_COMPENSATION",
+    "target_id": "ACTOR_DATA_SUBJECT",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_AI_EXPLANATION",
+    "target_id": "AIACT_ART_86",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_AI_EXPLANATION",
+    "target_id": "ACTOR_AFFECTED_PERSON",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_AI_COMPLAINT",
+    "target_id": "AIACT_ART_85",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_AI_COMPLAINT",
+    "target_id": "ACTOR_AFFECTED_PERSON",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_AI_EFFECTIVE_REMEDY",
+    "target_id": "AIACT_ART_85",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_AI_EFFECTIVE_REMEDY",
+    "target_id": "ACTOR_AFFECTED_PERSON",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_AI_NOTIFICATION",
+    "target_id": "AIACT_ART_50",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "source_article"
+    }
+  },
+  {
+    "source_id": "RIGHT_AI_NOTIFICATION",
+    "target_id": "ACTOR_AFFECTED_PERSON",
+    "type": "APPLIES_TO",
+    "properties": {
+      "role": "right_holder"
+    }
+  },
+  {
+    "source_id": "RIGHT_AUTOMATED_DECISIONS",
+    "target_id": "RIGHT_AI_EXPLANATION",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "cross_regulation_right"
+    }
+  },
+  {
+    "source_id": "RIGHT_LODGE_COMPLAINT",
+    "target_id": "RIGHT_AI_COMPLAINT",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "cross_regulation_right"
+    }
+  },
+  {
+    "source_id": "RIGHT_EFFECTIVE_REMEDY_CTRL",
+    "target_id": "RIGHT_AI_EFFECTIVE_REMEDY",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "cross_regulation_right"
+    }
+  }
+]

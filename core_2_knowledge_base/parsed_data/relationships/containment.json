@@ -1,0 +1,5030 @@
+[
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_CH_1",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_1",
+    "target_id": "GDPR",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_CH_2",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_2",
+    "target_id": "GDPR",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_CH_3",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_CH_4",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_CH_5",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_5",
+    "target_id": "GDPR",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_CH_6",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_6",
+    "target_id": "GDPR",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_CH_7",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_CH_8",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_8",
+    "target_id": "GDPR",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_CH_9",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_9",
+    "target_id": "GDPR",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_CH_10",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_10",
+    "target_id": "GDPR",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_CH_11",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_11",
+    "target_id": "GDPR",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_1",
+    "target_id": "GDPR_ART_1",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_1",
+    "target_id": "GDPR_CH_1",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_1",
+    "target_id": "GDPR_ART_2",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_2",
+    "target_id": "GDPR_CH_1",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_1",
+    "target_id": "GDPR_ART_3",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_3",
+    "target_id": "GDPR_CH_1",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_1",
+    "target_id": "GDPR_ART_4",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_CH_1",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_2",
+    "target_id": "GDPR_ART_5",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_5",
+    "target_id": "GDPR_CH_2",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_2",
+    "target_id": "GDPR_ART_6",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_6",
+    "target_id": "GDPR_CH_2",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_2",
+    "target_id": "GDPR_ART_7",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_7",
+    "target_id": "GDPR_CH_2",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_2",
+    "target_id": "GDPR_ART_8",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_8",
+    "target_id": "GDPR_CH_2",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_2",
+    "target_id": "GDPR_ART_9",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_9",
+    "target_id": "GDPR_CH_2",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_2",
+    "target_id": "GDPR_ART_10",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_10",
+    "target_id": "GDPR_CH_2",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_2",
+    "target_id": "GDPR_ART_11",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_11",
+    "target_id": "GDPR_CH_2",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR_ART_12",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_12",
+    "target_id": "GDPR_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR_ART_13",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_13",
+    "target_id": "GDPR_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR_ART_14",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_14",
+    "target_id": "GDPR_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR_ART_15",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_15",
+    "target_id": "GDPR_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR_ART_16",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_16",
+    "target_id": "GDPR_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR_ART_17",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_17",
+    "target_id": "GDPR_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR_ART_18",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_18",
+    "target_id": "GDPR_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR_ART_19",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_19",
+    "target_id": "GDPR_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR_ART_20",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_20",
+    "target_id": "GDPR_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR_ART_21",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_21",
+    "target_id": "GDPR_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR_ART_22",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_22",
+    "target_id": "GDPR_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_3",
+    "target_id": "GDPR_ART_23",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_23",
+    "target_id": "GDPR_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_24",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_24",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_25",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_25",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_26",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_26",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_27",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_27",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_28",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_28",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_29",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_29",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_30",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_30",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_31",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_31",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_32",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_32",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_33",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_33",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_34",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_34",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_35",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_35",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_36",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_36",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_37",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_37",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_38",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_38",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_39",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_39",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_40",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_40",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_41",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_41",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_42",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_42",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_4",
+    "target_id": "GDPR_ART_43",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_43",
+    "target_id": "GDPR_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_5",
+    "target_id": "GDPR_ART_44",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_44",
+    "target_id": "GDPR_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_5",
+    "target_id": "GDPR_ART_45",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_45",
+    "target_id": "GDPR_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_5",
+    "target_id": "GDPR_ART_46",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_46",
+    "target_id": "GDPR_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_5",
+    "target_id": "GDPR_ART_47",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_47",
+    "target_id": "GDPR_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_5",
+    "target_id": "GDPR_ART_48",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_48",
+    "target_id": "GDPR_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_5",
+    "target_id": "GDPR_ART_49",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_49",
+    "target_id": "GDPR_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_5",
+    "target_id": "GDPR_ART_50",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_50",
+    "target_id": "GDPR_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_6",
+    "target_id": "GDPR_ART_51",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_51",
+    "target_id": "GDPR_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_6",
+    "target_id": "GDPR_ART_52",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_52",
+    "target_id": "GDPR_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_6",
+    "target_id": "GDPR_ART_53",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_53",
+    "target_id": "GDPR_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_6",
+    "target_id": "GDPR_ART_54",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_54",
+    "target_id": "GDPR_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_6",
+    "target_id": "GDPR_ART_55",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_55",
+    "target_id": "GDPR_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_6",
+    "target_id": "GDPR_ART_56",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_56",
+    "target_id": "GDPR_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_6",
+    "target_id": "GDPR_ART_57",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_57",
+    "target_id": "GDPR_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_6",
+    "target_id": "GDPR_ART_58",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_58",
+    "target_id": "GDPR_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_6",
+    "target_id": "GDPR_ART_59",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_59",
+    "target_id": "GDPR_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_60",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_60",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_61",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_61",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_62",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_62",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_63",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_63",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_64",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_64",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_65",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_65",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_66",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_66",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_67",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_67",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_68",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_68",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_69",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_69",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_70",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_70",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_71",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_71",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_72",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_72",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_73",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_73",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_74",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_74",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_75",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_75",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_7",
+    "target_id": "GDPR_ART_76",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_76",
+    "target_id": "GDPR_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_8",
+    "target_id": "GDPR_ART_77",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_77",
+    "target_id": "GDPR_CH_8",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_8",
+    "target_id": "GDPR_ART_78",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_78",
+    "target_id": "GDPR_CH_8",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_8",
+    "target_id": "GDPR_ART_79",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_79",
+    "target_id": "GDPR_CH_8",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_8",
+    "target_id": "GDPR_ART_80",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_80",
+    "target_id": "GDPR_CH_8",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_8",
+    "target_id": "GDPR_ART_81",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_81",
+    "target_id": "GDPR_CH_8",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_8",
+    "target_id": "GDPR_ART_82",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_82",
+    "target_id": "GDPR_CH_8",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_8",
+    "target_id": "GDPR_ART_83",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_83",
+    "target_id": "GDPR_CH_8",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_8",
+    "target_id": "GDPR_ART_84",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_84",
+    "target_id": "GDPR_CH_8",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_9",
+    "target_id": "GDPR_ART_85",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_85",
+    "target_id": "GDPR_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_9",
+    "target_id": "GDPR_ART_86",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_86",
+    "target_id": "GDPR_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_9",
+    "target_id": "GDPR_ART_87",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_87",
+    "target_id": "GDPR_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_9",
+    "target_id": "GDPR_ART_88",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_88",
+    "target_id": "GDPR_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_9",
+    "target_id": "GDPR_ART_89",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_89",
+    "target_id": "GDPR_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_9",
+    "target_id": "GDPR_ART_90",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_90",
+    "target_id": "GDPR_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_9",
+    "target_id": "GDPR_ART_91",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_91",
+    "target_id": "GDPR_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_10",
+    "target_id": "GDPR_ART_92",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_92",
+    "target_id": "GDPR_CH_10",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_10",
+    "target_id": "GDPR_ART_93",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_93",
+    "target_id": "GDPR_CH_10",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_11",
+    "target_id": "GDPR_ART_94",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_94",
+    "target_id": "GDPR_CH_11",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_11",
+    "target_id": "GDPR_ART_95",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_95",
+    "target_id": "GDPR_CH_11",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_11",
+    "target_id": "GDPR_ART_96",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_96",
+    "target_id": "GDPR_CH_11",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_11",
+    "target_id": "GDPR_ART_97",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_97",
+    "target_id": "GDPR_CH_11",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_11",
+    "target_id": "GDPR_ART_98",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_98",
+    "target_id": "GDPR_CH_11",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_CH_11",
+    "target_id": "GDPR_ART_99",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR_ART_99",
+    "target_id": "GDPR_CH_11",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_1",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_1",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_2",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_2",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_3",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_4",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_4",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_5",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_5",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_6",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_6",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_7",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_7",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_8",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_8",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_9",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_10",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_10",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_11",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_11",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_12",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_12",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_CH_13",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_1",
+    "target_id": "AIACT_ART_1",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_1",
+    "target_id": "AIACT_CH_1",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_1",
+    "target_id": "AIACT_ART_2",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_2",
+    "target_id": "AIACT_CH_1",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_1",
+    "target_id": "AIACT_ART_3",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_CH_1",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_1",
+    "target_id": "AIACT_ART_4",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_4",
+    "target_id": "AIACT_CH_1",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_2",
+    "target_id": "AIACT_ART_5",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_5",
+    "target_id": "AIACT_CH_2",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_6",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_6",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_7",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_7",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_8",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_8",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_9",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_9",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_10",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_10",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_11",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_11",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_12",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_12",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_13",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_13",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_14",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_14",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_15",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_15",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_16",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_16",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_17",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_17",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_18",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_18",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_19",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_19",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_20",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_20",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_21",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_21",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_22",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_22",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_23",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_23",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_24",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_24",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_25",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_25",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_26",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_26",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_27",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_27",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_28",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_28",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_29",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_29",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_30",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_30",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_31",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_31",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_32",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_32",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_33",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_33",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_34",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_34",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_35",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_35",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_36",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_36",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_37",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_37",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_38",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_38",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_39",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_39",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_40",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_40",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_41",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_41",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_42",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_42",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_43",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_43",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_44",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_44",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_45",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_45",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_46",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_46",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_47",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_47",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_48",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_48",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_3",
+    "target_id": "AIACT_ART_49",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_49",
+    "target_id": "AIACT_CH_3",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_4",
+    "target_id": "AIACT_ART_50",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_50",
+    "target_id": "AIACT_CH_4",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_5",
+    "target_id": "AIACT_ART_51",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_51",
+    "target_id": "AIACT_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_5",
+    "target_id": "AIACT_ART_52",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_52",
+    "target_id": "AIACT_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_5",
+    "target_id": "AIACT_ART_53",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_53",
+    "target_id": "AIACT_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_5",
+    "target_id": "AIACT_ART_54",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_54",
+    "target_id": "AIACT_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_5",
+    "target_id": "AIACT_ART_55",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_55",
+    "target_id": "AIACT_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_5",
+    "target_id": "AIACT_ART_56",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_56",
+    "target_id": "AIACT_CH_5",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_6",
+    "target_id": "AIACT_ART_57",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_57",
+    "target_id": "AIACT_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_6",
+    "target_id": "AIACT_ART_58",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_58",
+    "target_id": "AIACT_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_6",
+    "target_id": "AIACT_ART_59",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_59",
+    "target_id": "AIACT_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_6",
+    "target_id": "AIACT_ART_60",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_60",
+    "target_id": "AIACT_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_6",
+    "target_id": "AIACT_ART_61",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_61",
+    "target_id": "AIACT_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_6",
+    "target_id": "AIACT_ART_62",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_62",
+    "target_id": "AIACT_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_6",
+    "target_id": "AIACT_ART_63",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_63",
+    "target_id": "AIACT_CH_6",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_7",
+    "target_id": "AIACT_ART_64",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_64",
+    "target_id": "AIACT_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_7",
+    "target_id": "AIACT_ART_65",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_65",
+    "target_id": "AIACT_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_7",
+    "target_id": "AIACT_ART_66",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_66",
+    "target_id": "AIACT_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_7",
+    "target_id": "AIACT_ART_67",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_67",
+    "target_id": "AIACT_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_7",
+    "target_id": "AIACT_ART_68",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_68",
+    "target_id": "AIACT_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_7",
+    "target_id": "AIACT_ART_69",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_69",
+    "target_id": "AIACT_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_7",
+    "target_id": "AIACT_ART_70",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_70",
+    "target_id": "AIACT_CH_7",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_8",
+    "target_id": "AIACT_ART_71",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_71",
+    "target_id": "AIACT_CH_8",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_72",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_72",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_73",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_73",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_74",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_74",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_75",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_75",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_76",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_76",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_77",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_77",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_78",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_78",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_79",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_79",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_80",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_80",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_81",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_81",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_82",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_82",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_83",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_83",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_84",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_84",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_85",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_85",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_86",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_86",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_87",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_87",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_88",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_88",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_89",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_89",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_90",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_90",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_91",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_91",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_92",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_92",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_93",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_93",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_9",
+    "target_id": "AIACT_ART_94",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_94",
+    "target_id": "AIACT_CH_9",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_10",
+    "target_id": "AIACT_ART_95",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_95",
+    "target_id": "AIACT_CH_10",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_10",
+    "target_id": "AIACT_ART_96",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_96",
+    "target_id": "AIACT_CH_10",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_11",
+    "target_id": "AIACT_ART_97",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_97",
+    "target_id": "AIACT_CH_11",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_11",
+    "target_id": "AIACT_ART_98",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_98",
+    "target_id": "AIACT_CH_11",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_12",
+    "target_id": "AIACT_ART_99",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_99",
+    "target_id": "AIACT_CH_12",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_12",
+    "target_id": "AIACT_ART_100",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_100",
+    "target_id": "AIACT_CH_12",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_12",
+    "target_id": "AIACT_ART_101",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_101",
+    "target_id": "AIACT_CH_12",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "AIACT_ART_102",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_102",
+    "target_id": "AIACT_CH_13",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "AIACT_ART_103",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_103",
+    "target_id": "AIACT_CH_13",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "AIACT_ART_104",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_104",
+    "target_id": "AIACT_CH_13",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "AIACT_ART_105",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_105",
+    "target_id": "AIACT_CH_13",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "AIACT_ART_106",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_106",
+    "target_id": "AIACT_CH_13",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "AIACT_ART_107",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_107",
+    "target_id": "AIACT_CH_13",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "AIACT_ART_108",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_108",
+    "target_id": "AIACT_CH_13",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "AIACT_ART_109",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_109",
+    "target_id": "AIACT_CH_13",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "AIACT_ART_110",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_110",
+    "target_id": "AIACT_CH_13",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "AIACT_ART_111",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_111",
+    "target_id": "AIACT_CH_13",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "AIACT_ART_112",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_112",
+    "target_id": "AIACT_CH_13",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_CH_13",
+    "target_id": "AIACT_ART_113",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "AIACT_ART_113",
+    "target_id": "AIACT_CH_13",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_1",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_2",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_3",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_4",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_5",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_6",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_7",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_8",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_9",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_10",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_11",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_12",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_13",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_14",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_15",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_16",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_17",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_18",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_19",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_20",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_21",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_22",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_23",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_24",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_25",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_26",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_27",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_28",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_29",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_30",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_31",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_32",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_33",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_34",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_35",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_36",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_37",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_38",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_39",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_40",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_41",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_42",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_43",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_44",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_45",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_46",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_47",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_48",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_49",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_50",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_51",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_52",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_53",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_54",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_55",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_56",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_57",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_58",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_59",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_60",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_61",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_62",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_63",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_64",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_65",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_66",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_67",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_68",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_69",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_70",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_71",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_72",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_73",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_74",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_75",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_76",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_77",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_78",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_79",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_80",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_81",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_82",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_83",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_84",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_85",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_86",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_87",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_88",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_89",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_90",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_91",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_92",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_93",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_94",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_95",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_96",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_97",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_98",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_99",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_100",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_101",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_102",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_103",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_104",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_105",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_106",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_107",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_108",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_109",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_110",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_111",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_112",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_113",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_114",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_115",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_116",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_117",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_118",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_119",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_120",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_121",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_122",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_123",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_124",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_125",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_126",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_127",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_128",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_129",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_130",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_131",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_132",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_133",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_134",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_135",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_136",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_137",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_138",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_139",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_140",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_141",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_142",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_143",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_144",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_145",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_146",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_147",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_148",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_149",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_150",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_151",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_152",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_153",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_154",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_155",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_156",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_157",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_158",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_159",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_160",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_161",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_162",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_163",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_164",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_165",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_166",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_167",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_168",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_169",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_170",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_171",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_172",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "GDPR",
+    "target_id": "GDPR_REC_173",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_1",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_2",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_3",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_4",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_5",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_6",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_7",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_8",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_9",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_10",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_11",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_12",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_13",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_14",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_15",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_16",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_17",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_18",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_19",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_20",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_21",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_22",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_23",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_24",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_25",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_26",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_27",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_28",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_29",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_30",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_31",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_32",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_33",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_34",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_35",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_36",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_37",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_38",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_39",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_40",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_41",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_42",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_43",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_44",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_45",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_46",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_47",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_48",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_49",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_50",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_51",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_52",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_53",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_54",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_55",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_56",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_57",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_58",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_59",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_60",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_61",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_62",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_63",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_64",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_65",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_66",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_67",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_68",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_69",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_70",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_71",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_72",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_73",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_74",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_75",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_76",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_77",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_78",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_79",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_80",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_81",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_82",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_83",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_84",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_85",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_86",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_87",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_88",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_89",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_90",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_91",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_92",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_93",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_94",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_95",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_96",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_97",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_98",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_99",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_100",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_101",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_102",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_103",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_104",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_105",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_106",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_107",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_108",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_109",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_110",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_111",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_112",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_113",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_114",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_115",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_116",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_117",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_118",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_119",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_120",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_121",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_122",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_123",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_124",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_125",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_126",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_127",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_128",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_129",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_130",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_131",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_132",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_133",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_134",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_135",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_136",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_137",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_138",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_139",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_140",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_141",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_142",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_143",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_144",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_145",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_146",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_147",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_148",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_149",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_150",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_151",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_152",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_153",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_154",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_155",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_156",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_157",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_158",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_159",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_160",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_161",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_162",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_163",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_164",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_165",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_166",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_167",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_168",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_169",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_170",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_171",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_172",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_173",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_174",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_175",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_176",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_177",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_178",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_179",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_REC_180",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_I",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_II",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_III",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_IV",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_V",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_VI",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_VII",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_VIII",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_IX",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_X",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_XI",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_XII",
+    "type": "CONTAINS",
+    "properties": {}
+  },
+  {
+    "source_id": "EU_AI_ACT",
+    "target_id": "AIACT_ANNEX_XIII",
+    "type": "CONTAINS",
+    "properties": {}
+  }
+]

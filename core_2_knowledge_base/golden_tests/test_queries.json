@@ -1,0 +1,50 @@
+[
+  {
+    "id": "GT_01_PROHIBITED_AI",
+    "query": "Is social scoring by public authorities allowed under the EU AI Act?",
+    "expected_answer_type": "prohibition",
+    "expected_citations": ["AIACT_ART_5"],
+    "expected_entities": ["RISK_PROHIBITED", "AIST_SOCIAL_SCORING_PUBLIC", "PEN_AIACT_PROHIBITED"],
+    "description": "Tests detection of prohibited AI practices and associated penalties"
+  },
+  {
+    "id": "GT_02_CROSS_REG_OBLIGATIONS",
+    "query": "What obligations apply when using automated decision-making that processes personal data under both GDPR and AI Act?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["GDPR_ART_22", "AIACT_ART_14"],
+    "expected_entities": ["CONCEPT_AUTOMATED_DECISION", "CONCEPT_HUMAN_OVERSIGHT"],
+    "description": "Tests cross-regulation retrieval for automated decision-making"
+  },
+  {
+    "id": "GT_03_DATA_SUBJECT_RIGHTS",
+    "query": "What rights does a data subject have regarding access to their personal data?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["GDPR_ART_15"],
+    "expected_entities": ["RIGHT_ACCESS"],
+    "description": "Tests data subject rights retrieval"
+  },
+  {
+    "id": "GT_04_DPIA_FRIA",
+    "query": "When must a Data Protection Impact Assessment and a Fundamental Rights Impact Assessment both be conducted?",
+    "expected_answer_type": "conditional_permission",
+    "expected_citations": ["GDPR_ART_35", "AIACT_ART_27"],
+    "expected_entities": ["CONCEPT_DPIA", "CONCEPT_FRIA"],
+    "description": "Tests co-triggering of DPIA and FRIA requirements"
+  },
+  {
+    "id": "GT_05_TRANSPARENCY",
+    "query": "What are the transparency requirements for deploying a chatbot under the AI Act?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["AIACT_ART_50"],
+    "expected_entities": ["AIST_CHATBOT", "CONCEPT_TRANSPARENCY_OBLIGATION"],
+    "description": "Tests AI Act transparency obligations for limited-risk systems"
+  },
+  {
+    "id": "GT_06_HOUSEHOLD_EXEMPTION",
+    "query": "Does the GDPR apply to personal use of data for household activities?",
+    "expected_answer_type": "non_applicable",
+    "expected_citations": ["GDPR_ART_2"],
+    "expected_entities": [],
+    "description": "Tests household exemption / scope exclusion"
+  }
+]

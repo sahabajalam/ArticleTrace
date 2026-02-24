@@ -1,0 +1,512 @@
+[
+  {
+    "source_id": "ENF_AMAZON_TARGETED_ADVERTISING",
+    "target_id": "GDPR_ART_6",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_AMAZON_TARGETED_ADVERTISING",
+    "target_id": "GDPR_ART_12",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_BRITISH_AIRWAYS_DATA_BREACH",
+    "target_id": "GDPR_ART_5",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_BRITISH_AIRWAYS_DATA_BREACH",
+    "target_id": "GDPR_ART_32",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_CLEARVIEW_AI_BIOMETRIC_FINES",
+    "target_id": "GDPR_ART_6",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_CLEARVIEW_AI_BIOMETRIC_FINES",
+    "target_id": "GDPR_ART_9",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_CLEARVIEW_AI_BIOMETRIC_FINES",
+    "target_id": "GDPR_ART_12",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_CLEARVIEW_AI_BIOMETRIC_FINES",
+    "target_id": "GDPR_ART_15",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_CLEARVIEW_AI_BIOMETRIC_FINES",
+    "target_id": "GDPR_ART_17",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_CLEARVIEW_AI_BIOMETRIC_FINES",
+    "target_id": "GDPR_ART_31",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_CLEARVIEW_AI_BIOMETRIC_FINES",
+    "target_id": "GDPR_ART_3",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_CRITEO_CONSENT_VIOLATIONS",
+    "target_id": "GDPR_ART_7",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_CRITEO_CONSENT_VIOLATIONS",
+    "target_id": "GDPR_ART_15",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_CRITEO_CONSENT_VIOLATIONS",
+    "target_id": "GDPR_ART_17",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_CRITEO_CONSENT_VIOLATIONS",
+    "target_id": "GDPR_ART_26",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_GOOGLE_CNIL_COOKIES",
+    "target_id": "GDPR_ART_82",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_H_M_EMPLOYEE_SURVEILLANCE",
+    "target_id": "GDPR_ART_5",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_H_M_EMPLOYEE_SURVEILLANCE",
+    "target_id": "GDPR_ART_6",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_H_M_EMPLOYEE_SURVEILLANCE",
+    "target_id": "GDPR_ART_9",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_MARRIOTT_DATA_BREACH",
+    "target_id": "GDPR_ART_5",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_MARRIOTT_DATA_BREACH",
+    "target_id": "GDPR_ART_32",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_META_INSTAGRAM_CHILDREN_S_DATA",
+    "target_id": "GDPR_ART_6",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_META_INSTAGRAM_CHILDREN_S_DATA",
+    "target_id": "GDPR_ART_12",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_META_INSTAGRAM_CHILDREN_S_DATA",
+    "target_id": "GDPR_ART_13",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_META_INSTAGRAM_CHILDREN_S_DATA",
+    "target_id": "GDPR_ART_24",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_META_INSTAGRAM_CHILDREN_S_DATA",
+    "target_id": "GDPR_ART_25",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_META_INSTAGRAM_CHILDREN_S_DATA",
+    "target_id": "GDPR_ART_35",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_META_IRELAND_TRANSFER_FINE",
+    "target_id": "GDPR_ART_46",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_META_WHATSAPP_TRANSPARENCY",
+    "target_id": "GDPR_ART_12",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_META_WHATSAPP_TRANSPARENCY",
+    "target_id": "GDPR_ART_13",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_META_WHATSAPP_TRANSPARENCY",
+    "target_id": "GDPR_ART_14",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_MICROSOFT_LINKEDIN_BEHAVIORAL_ADS",
+    "target_id": "GDPR_ART_5",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_MICROSOFT_LINKEDIN_BEHAVIORAL_ADS",
+    "target_id": "GDPR_ART_6",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_MICROSOFT_LINKEDIN_BEHAVIORAL_ADS",
+    "target_id": "GDPR_ART_13",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_OPENAI_CHATGPT_ITALIAN_BAN",
+    "target_id": "GDPR_ART_5",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_OPENAI_CHATGPT_ITALIAN_BAN",
+    "target_id": "GDPR_ART_6",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_OPENAI_CHATGPT_ITALIAN_BAN",
+    "target_id": "GDPR_ART_13",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_OPENAI_CHATGPT_ITALIAN_BAN",
+    "target_id": "GDPR_ART_8",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_SPOTIFY_ACCESS_RIGHTS",
+    "target_id": "GDPR_ART_15",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_SPOTIFY_ACCESS_RIGHTS",
+    "target_id": "GDPR_ART_12",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_TIKTOK_CHILDREN_S_DATA",
+    "target_id": "GDPR_ART_5",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_TIKTOK_CHILDREN_S_DATA",
+    "target_id": "GDPR_ART_12",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_TIKTOK_CHILDREN_S_DATA",
+    "target_id": "GDPR_ART_24",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_TIKTOK_CHILDREN_S_DATA",
+    "target_id": "GDPR_ART_25",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "ENF_UBER_INTERNATIONAL_TRANSFERS",
+    "target_id": "GDPR_ART_44",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_131_12",
+    "target_id": "GDPR_ART_2",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_131_12",
+    "target_id": "GDPR_ART_4",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_131_12",
+    "target_id": "GDPR_ART_12",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_131_12",
+    "target_id": "GDPR_ART_14",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_136_17",
+    "target_id": "GDPR_ART_8",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_136_17",
+    "target_id": "GDPR_ART_12",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_136_17",
+    "target_id": "GDPR_ART_14",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_154_21",
+    "target_id": "GDPR_ART_12",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_154_21",
+    "target_id": "GDPR_ART_15",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_175_20",
+    "target_id": "GDPR_ART_6",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_184_20",
+    "target_id": "GDPR_ART_5",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_210_16",
+    "target_id": "GDPR_ART_2",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_210_16",
+    "target_id": "GDPR_ART_4",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_210_16",
+    "target_id": "GDPR_ART_17",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_210_16",
+    "target_id": "GDPR_ART_28",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_252_21",
+    "target_id": "GDPR_ART_4",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_300_21",
+    "target_id": "GDPR_ART_82",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_311_18",
+    "target_id": "GDPR_ART_44",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_311_18",
+    "target_id": "GDPR_ART_45",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_311_18",
+    "target_id": "GDPR_ART_46",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_311_18",
+    "target_id": "GDPR_ART_49",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_340_21",
+    "target_id": "GDPR_ART_5",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_40_17",
+    "target_id": "GDPR_ART_2",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_40_17",
+    "target_id": "GDPR_ART_7",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_40_17",
+    "target_id": "GDPR_ART_10",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_40_17",
+    "target_id": "GDPR_ART_22",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_446_21",
+    "target_id": "GDPR_ART_5",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_460_20",
+    "target_id": "GDPR_ART_5",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_61_19",
+    "target_id": "GDPR_ART_4",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_634_21",
+    "target_id": "GDPR_ART_6",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_634_21",
+    "target_id": "GDPR_ART_22",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_645_19",
+    "target_id": "GDPR_ART_55",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_645_19",
+    "target_id": "GDPR_ART_56",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_645_19",
+    "target_id": "GDPR_ART_58",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_645_19",
+    "target_id": "GDPR_ART_60",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_667_21",
+    "target_id": "GDPR_ART_9",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_673_17",
+    "target_id": "GDPR_ART_4",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_673_17",
+    "target_id": "GDPR_ART_2",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_683_21",
+    "target_id": "GDPR_ART_4",
+    "type": "CITES",
+    "properties": {}
+  },
+  {
+    "source_id": "CJEU_C_807_21",
+    "target_id": "GDPR_ART_4",
+    "type": "CITES",
+    "properties": {}
+  }
+]

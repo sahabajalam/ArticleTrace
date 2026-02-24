@@ -1,0 +1,2530 @@
+[
+  {
+    "source_id": "CONCEPT_LAWFULNESS",
+    "target_id": "GDPR_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LAWFULNESS",
+    "target_id": "GDPR_ART_6",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LAWFULNESS",
+    "target_id": "GDPR_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LAWFULNESS",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LAWFULNESS",
+    "target_id": "GDPR_ART_7",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LAWFULNESS",
+    "target_id": "AIACT_ART_59",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LAWFULNESS",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_FAIRNESS",
+    "target_id": "GDPR_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_FAIRNESS",
+    "target_id": "GDPR_ART_6",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_FAIRNESS",
+    "target_id": "GDPR_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_FAIRNESS",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_FAIRNESS",
+    "target_id": "GDPR_ART_40",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_FAIRNESS",
+    "target_id": "AIACT_ART_58",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY",
+    "target_id": "GDPR_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY",
+    "target_id": "GDPR_ART_12",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY",
+    "target_id": "GDPR_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY",
+    "target_id": "AIACT_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY",
+    "target_id": "GDPR_ART_26",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY",
+    "target_id": "GDPR_ART_40",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY",
+    "target_id": "GDPR_ART_42",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY",
+    "target_id": "AIACT_ART_50",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PURPOSE_LIMITATION",
+    "target_id": "GDPR_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PURPOSE_LIMITATION",
+    "target_id": "GDPR_ART_6",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PURPOSE_LIMITATION",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PURPOSE_LIMITATION",
+    "target_id": "GDPR_ART_47",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_MINIMISATION",
+    "target_id": "GDPR_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_MINIMISATION",
+    "target_id": "GDPR_ART_25",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_MINIMISATION",
+    "target_id": "GDPR_ART_47",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_MINIMISATION",
+    "target_id": "GDPR_ART_89",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_MINIMISATION",
+    "target_id": "GDPR_ART_45",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_MINIMISATION",
+    "target_id": "GDPR_ART_70",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCURACY",
+    "target_id": "GDPR_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCURACY",
+    "target_id": "GDPR_ART_16",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCURACY",
+    "target_id": "GDPR_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCURACY",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCURACY",
+    "target_id": "GDPR_ART_15",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCURACY",
+    "target_id": "GDPR_ART_18",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCURACY",
+    "target_id": "GDPR_ART_19",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_STORAGE_LIMITATION",
+    "target_id": "GDPR_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_STORAGE_LIMITATION",
+    "target_id": "AIACT_ART_10",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_STORAGE_LIMITATION",
+    "target_id": "AIACT_ART_17",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_STORAGE_LIMITATION",
+    "target_id": "AIACT_ART_59",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTEGRITY_CONFIDENTIALITY",
+    "target_id": "GDPR_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTEGRITY_CONFIDENTIALITY",
+    "target_id": "GDPR_ART_32",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTEGRITY_CONFIDENTIALITY",
+    "target_id": "AIACT_ART_31",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTEGRITY_CONFIDENTIALITY",
+    "target_id": "GDPR_ART_28",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTEGRITY_CONFIDENTIALITY",
+    "target_id": "GDPR_ART_35",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTEGRITY_CONFIDENTIALITY",
+    "target_id": "GDPR_ART_38",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTEGRITY_CONFIDENTIALITY",
+    "target_id": "GDPR_ART_40",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCOUNTABILITY",
+    "target_id": "GDPR_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCOUNTABILITY",
+    "target_id": "GDPR_ART_24",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCOUNTABILITY",
+    "target_id": "AIACT_ART_66",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCOUNTABILITY",
+    "target_id": "GDPR_ART_25",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCOUNTABILITY",
+    "target_id": "GDPR_ART_28",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCOUNTABILITY",
+    "target_id": "GDPR_ART_32",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCOUNTABILITY",
+    "target_id": "GDPR_ART_35",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROFILING",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROFILING",
+    "target_id": "GDPR_ART_22",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROFILING",
+    "target_id": "AIACT_ART_6",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROFILING",
+    "target_id": "GDPR_ART_35",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROFILING",
+    "target_id": "GDPR_ART_47",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROFILING",
+    "target_id": "GDPR_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROFILING",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROFILING",
+    "target_id": "GDPR_ART_15",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_AUTOMATED_DECISION",
+    "target_id": "GDPR_ART_22",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_AUTOMATED_DECISION",
+    "target_id": "AIACT_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_AUTOMATED_DECISION",
+    "target_id": "AIACT_ART_86",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_AUTOMATED_DECISION",
+    "target_id": "GDPR_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_AUTOMATED_DECISION",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_AUTOMATED_DECISION",
+    "target_id": "GDPR_ART_15",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PSEUDONYMISATION",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PSEUDONYMISATION",
+    "target_id": "GDPR_ART_25",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PSEUDONYMISATION",
+    "target_id": "GDPR_ART_32",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PSEUDONYMISATION",
+    "target_id": "GDPR_ART_6",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PSEUDONYMISATION",
+    "target_id": "GDPR_ART_40",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PSEUDONYMISATION",
+    "target_id": "GDPR_ART_89",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PSEUDONYMISATION",
+    "target_id": "AIACT_ART_10",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONSENT",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONSENT",
+    "target_id": "GDPR_ART_6",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONSENT",
+    "target_id": "GDPR_ART_7",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONSENT",
+    "target_id": "GDPR_ART_8",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONSENT",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONSENT",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONSENT",
+    "target_id": "GDPR_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONSENT",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONSENT",
+    "target_id": "GDPR_ART_17",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONSENT",
+    "target_id": "GDPR_ART_18",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LEGITIMATE_INTEREST",
+    "target_id": "GDPR_ART_6",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LEGITIMATE_INTEREST",
+    "target_id": "GDPR_ART_49",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LEGITIMATE_INTEREST",
+    "target_id": "GDPR_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LEGITIMATE_INTEREST",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LEGITIMATE_INTEREST",
+    "target_id": "GDPR_ART_22",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LEGITIMATE_INTEREST",
+    "target_id": "GDPR_ART_35",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTERNATIONAL_TRANSFER",
+    "target_id": "GDPR_ART_44",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTERNATIONAL_TRANSFER",
+    "target_id": "GDPR_ART_45",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTERNATIONAL_TRANSFER",
+    "target_id": "GDPR_ART_46",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTERNATIONAL_TRANSFER",
+    "target_id": "GDPR_ART_47",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTERNATIONAL_TRANSFER",
+    "target_id": "GDPR_ART_48",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTERNATIONAL_TRANSFER",
+    "target_id": "GDPR_ART_49",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTERNATIONAL_TRANSFER",
+    "target_id": "GDPR_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTERNATIONAL_TRANSFER",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTERNATIONAL_TRANSFER",
+    "target_id": "GDPR_ART_15",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTERNATIONAL_TRANSFER",
+    "target_id": "GDPR_ART_70",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTERNATIONAL_TRANSFER",
+    "target_id": "GDPR_ART_28",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH",
+    "target_id": "GDPR_ART_33",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH",
+    "target_id": "GDPR_ART_34",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH",
+    "target_id": "GDPR_ART_40",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH",
+    "target_id": "GDPR_ART_58",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH",
+    "target_id": "GDPR_ART_70",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_JOINT_CONTROLLERSHIP",
+    "target_id": "GDPR_ART_26",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_JOINT_CONTROLLERSHIP",
+    "target_id": "GDPR_ART_30",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_JOINT_CONTROLLERSHIP",
+    "target_id": "GDPR_ART_36",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_PROTECTION_BY_DESIGN",
+    "target_id": "GDPR_ART_25",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_PROTECTION_BY_DESIGN",
+    "target_id": "GDPR_ART_47",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SPECIAL_CATEGORY_PROCESSING",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SPECIAL_CATEGORY_PROCESSING",
+    "target_id": "GDPR_ART_6",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SPECIAL_CATEGORY_PROCESSING",
+    "target_id": "GDPR_ART_22",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SPECIAL_CATEGORY_PROCESSING",
+    "target_id": "GDPR_ART_27",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SPECIAL_CATEGORY_PROCESSING",
+    "target_id": "GDPR_ART_30",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SPECIAL_CATEGORY_PROCESSING",
+    "target_id": "GDPR_ART_35",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPIA",
+    "target_id": "GDPR_ART_35",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPIA",
+    "target_id": "GDPR_ART_36",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPIA",
+    "target_id": "GDPR_ART_39",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPIA",
+    "target_id": "GDPR_ART_57",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPIA",
+    "target_id": "GDPR_ART_64",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPIA",
+    "target_id": "AIACT_ART_26",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPIA",
+    "target_id": "AIACT_ART_27",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PRIOR_CONSULTATION",
+    "target_id": "GDPR_ART_36",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PRIOR_CONSULTATION",
+    "target_id": "GDPR_ART_39",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PRIOR_CONSULTATION",
+    "target_id": "GDPR_ART_58",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PRIOR_CONSULTATION",
+    "target_id": "AIACT_ART_78",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RECORDS_OF_PROCESSING",
+    "target_id": "GDPR_ART_30",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RECORDS_OF_PROCESSING",
+    "target_id": "AIACT_ART_10",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH_NOTIFICATION",
+    "target_id": "GDPR_ART_33",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH_NOTIFICATION",
+    "target_id": "GDPR_ART_34",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH_NOTIFICATION",
+    "target_id": "GDPR_ART_12",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH_NOTIFICATION",
+    "target_id": "GDPR_ART_16",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH_NOTIFICATION",
+    "target_id": "GDPR_ART_17",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH_NOTIFICATION",
+    "target_id": "GDPR_ART_61",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH_NOTIFICATION",
+    "target_id": "GDPR_ART_64",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPO_DESIGNATION",
+    "target_id": "GDPR_ART_37",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPO_DESIGNATION",
+    "target_id": "GDPR_ART_38",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPO_DESIGNATION",
+    "target_id": "GDPR_ART_39",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPO_DESIGNATION",
+    "target_id": "GDPR_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPO_DESIGNATION",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPO_DESIGNATION",
+    "target_id": "GDPR_ART_30",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPO_DESIGNATION",
+    "target_id": "GDPR_ART_33",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPO_DESIGNATION",
+    "target_id": "GDPR_ART_35",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CERTIFICATION",
+    "target_id": "GDPR_ART_42",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CERTIFICATION",
+    "target_id": "GDPR_ART_43",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CERTIFICATION",
+    "target_id": "GDPR_ART_57",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CERTIFICATION",
+    "target_id": "GDPR_ART_70",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CERTIFICATION",
+    "target_id": "GDPR_ART_64",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CERTIFICATION",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CERTIFICATION",
+    "target_id": "AIACT_ART_58",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CODES_OF_CONDUCT",
+    "target_id": "GDPR_ART_40",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CODES_OF_CONDUCT",
+    "target_id": "GDPR_ART_41",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CODES_OF_CONDUCT",
+    "target_id": "GDPR_ART_24",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CODES_OF_CONDUCT",
+    "target_id": "GDPR_ART_28",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CODES_OF_CONDUCT",
+    "target_id": "GDPR_ART_32",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CODES_OF_CONDUCT",
+    "target_id": "GDPR_ART_35",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CODES_OF_CONDUCT",
+    "target_id": "GDPR_ART_46",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ONE_STOP_SHOP",
+    "target_id": "GDPR_ART_56",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ONE_STOP_SHOP",
+    "target_id": "GDPR_ART_60",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ONE_STOP_SHOP",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ONE_STOP_SHOP",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ONE_STOP_SHOP",
+    "target_id": "GDPR_ART_65",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ONE_STOP_SHOP",
+    "target_id": "GDPR_ART_74",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ONE_STOP_SHOP",
+    "target_id": "AIACT_ART_45",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_BINDING_CORPORATE_RULES",
+    "target_id": "GDPR_ART_47",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_BINDING_CORPORATE_RULES",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_BINDING_CORPORATE_RULES",
+    "target_id": "GDPR_ART_46",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_BINDING_CORPORATE_RULES",
+    "target_id": "GDPR_ART_49",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_BINDING_CORPORATE_RULES",
+    "target_id": "GDPR_ART_57",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_BINDING_CORPORATE_RULES",
+    "target_id": "GDPR_ART_58",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_STANDARD_CONTRACTUAL_CLAUSES",
+    "target_id": "GDPR_ART_46",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_STANDARD_CONTRACTUAL_CLAUSES",
+    "target_id": "GDPR_ART_28",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_STANDARD_CONTRACTUAL_CLAUSES",
+    "target_id": "GDPR_ART_57",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ADEQUACY_DECISION",
+    "target_id": "GDPR_ART_45",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ADEQUACY_DECISION",
+    "target_id": "GDPR_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ADEQUACY_DECISION",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ADEQUACY_DECISION",
+    "target_id": "GDPR_ART_49",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ADEQUACY_DECISION",
+    "target_id": "GDPR_ART_70",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SUPERVISORY_COOPERATION",
+    "target_id": "GDPR_ART_60",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SUPERVISORY_COOPERATION",
+    "target_id": "GDPR_ART_61",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SUPERVISORY_COOPERATION",
+    "target_id": "GDPR_ART_63",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SUPERVISORY_COOPERATION",
+    "target_id": "GDPR_ART_47",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SUPERVISORY_COOPERATION",
+    "target_id": "GDPR_ART_50",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SUPERVISORY_COOPERATION",
+    "target_id": "GDPR_ART_52",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SUPERVISORY_COOPERATION",
+    "target_id": "GDPR_ART_70",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SUPERVISORY_COOPERATION",
+    "target_id": "GDPR_ART_28",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROCESSOR_AGREEMENT",
+    "target_id": "GDPR_ART_28",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROCESSOR_AGREEMENT",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROCESSOR_AGREEMENT",
+    "target_id": "GDPR_ART_30",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROCESSOR_AGREEMENT",
+    "target_id": "AIACT_ART_71",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROCESSOR_AGREEMENT",
+    "target_id": "AIACT_ART_91",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_PROCESSOR_AGREEMENT",
+    "target_id": "AIACT_ART_92",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONFORMITY_ASSESSMENT",
+    "target_id": "AIACT_ART_43",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONFORMITY_ASSESSMENT",
+    "target_id": "AIACT_ART_40",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONFORMITY_ASSESSMENT",
+    "target_id": "AIACT_ART_41",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONFORMITY_ASSESSMENT",
+    "target_id": "AIACT_ART_42",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONFORMITY_ASSESSMENT",
+    "target_id": "AIACT_ART_17",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONFORMITY_ASSESSMENT",
+    "target_id": "AIACT_ART_32",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONFORMITY_ASSESSMENT",
+    "target_id": "AIACT_ART_66",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONFORMITY_ASSESSMENT",
+    "target_id": "AIACT_ART_112",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CONFORMITY_ASSESSMENT",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RISK_MANAGEMENT",
+    "target_id": "AIACT_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RISK_MANAGEMENT",
+    "target_id": "AIACT_ART_8",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RISK_MANAGEMENT",
+    "target_id": "AIACT_ART_17",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_HUMAN_OVERSIGHT",
+    "target_id": "AIACT_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_HUMAN_OVERSIGHT",
+    "target_id": "GDPR_ART_22",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_HUMAN_OVERSIGHT",
+    "target_id": "AIACT_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_HUMAN_OVERSIGHT",
+    "target_id": "AIACT_ART_26",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_HUMAN_OVERSIGHT",
+    "target_id": "AIACT_ART_27",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TECHNICAL_DOCUMENTATION",
+    "target_id": "AIACT_ART_11",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TECHNICAL_DOCUMENTATION",
+    "target_id": "AIACT_ART_53",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TECHNICAL_DOCUMENTATION",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TECHNICAL_DOCUMENTATION",
+    "target_id": "AIACT_ART_18",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TECHNICAL_DOCUMENTATION",
+    "target_id": "AIACT_ART_22",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TECHNICAL_DOCUMENTATION",
+    "target_id": "AIACT_ART_23",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TECHNICAL_DOCUMENTATION",
+    "target_id": "AIACT_ART_43",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CE_MARKING",
+    "target_id": "AIACT_ART_48",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CE_MARKING",
+    "target_id": "AIACT_ART_49",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CE_MARKING",
+    "target_id": "AIACT_ART_16",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CE_MARKING",
+    "target_id": "AIACT_ART_23",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CE_MARKING",
+    "target_id": "AIACT_ART_24",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CE_MARKING",
+    "target_id": "AIACT_ART_83",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CE_MARKING",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_REGULATORY_SANDBOX",
+    "target_id": "AIACT_ART_57",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_REGULATORY_SANDBOX",
+    "target_id": "AIACT_ART_58",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_REGULATORY_SANDBOX",
+    "target_id": "AIACT_ART_59",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_REGULATORY_SANDBOX",
+    "target_id": "AIACT_ART_60",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_REGULATORY_SANDBOX",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_REGULATORY_SANDBOX",
+    "target_id": "AIACT_ART_62",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_REGULATORY_SANDBOX",
+    "target_id": "AIACT_ART_66",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_REGULATORY_SANDBOX",
+    "target_id": "AIACT_ART_76",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_FRIA",
+    "target_id": "AIACT_ART_27",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_FRIA",
+    "target_id": "AIACT_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_FRIA",
+    "target_id": "GDPR_ART_35",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_FRIA",
+    "target_id": "GDPR_ART_36",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_FRIA",
+    "target_id": "GDPR_ART_39",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_FRIA",
+    "target_id": "GDPR_ART_57",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_GOVERNANCE",
+    "target_id": "AIACT_ART_10",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_GOVERNANCE",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_GOVERNANCE",
+    "target_id": "AIACT_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_GOVERNANCE",
+    "target_id": "AIACT_ART_15",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_GOVERNANCE",
+    "target_id": "AIACT_ART_74",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY_OBLIGATION",
+    "target_id": "AIACT_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY_OBLIGATION",
+    "target_id": "AIACT_ART_50",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY_OBLIGATION",
+    "target_id": "AIACT_ART_52",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY_OBLIGATION",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY_OBLIGATION",
+    "target_id": "GDPR_ART_6",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY_OBLIGATION",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY_OBLIGATION",
+    "target_id": "GDPR_ART_14",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY_OBLIGATION",
+    "target_id": "GDPR_ART_15",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_POST_MARKET_MONITORING",
+    "target_id": "AIACT_ART_72",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_POST_MARKET_MONITORING",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_POST_MARKET_MONITORING",
+    "target_id": "AIACT_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_POST_MARKET_MONITORING",
+    "target_id": "AIACT_ART_12",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_POST_MARKET_MONITORING",
+    "target_id": "AIACT_ART_17",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_POST_MARKET_MONITORING",
+    "target_id": "AIACT_ART_1",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SERIOUS_INCIDENT",
+    "target_id": "AIACT_ART_73",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SERIOUS_INCIDENT",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SERIOUS_INCIDENT",
+    "target_id": "AIACT_ART_17",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SERIOUS_INCIDENT",
+    "target_id": "AIACT_ART_26",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SERIOUS_INCIDENT",
+    "target_id": "AIACT_ART_55",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SERIOUS_INCIDENT",
+    "target_id": "AIACT_ART_60",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RECORD_KEEPING",
+    "target_id": "AIACT_ART_12",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RECORD_KEEPING",
+    "target_id": "AIACT_ART_19",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RECORD_KEEPING",
+    "target_id": "AIACT_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RECORD_KEEPING",
+    "target_id": "AIACT_ART_16",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RECORD_KEEPING",
+    "target_id": "AIACT_ART_21",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RECORD_KEEPING",
+    "target_id": "AIACT_ART_22",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RECORD_KEEPING",
+    "target_id": "AIACT_ART_26",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ROBUSTNESS",
+    "target_id": "AIACT_ART_15",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ROBUSTNESS",
+    "target_id": "AIACT_ART_13",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ROBUSTNESS",
+    "target_id": "AIACT_ART_58",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ROBUSTNESS",
+    "target_id": "GDPR_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ROBUSTNESS",
+    "target_id": "GDPR_ART_18",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ROBUSTNESS",
+    "target_id": "GDPR_ART_32",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_GPAI",
+    "target_id": "AIACT_ART_51",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_GPAI",
+    "target_id": "AIACT_ART_52",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_GPAI",
+    "target_id": "AIACT_ART_53",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_GPAI",
+    "target_id": "AIACT_ART_54",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_GPAI",
+    "target_id": "AIACT_ART_55",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_GPAI",
+    "target_id": "AIACT_ART_56",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_GPAI",
+    "target_id": "AIACT_ART_1",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_GPAI",
+    "target_id": "AIACT_ART_2",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_GPAI",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_GPAI",
+    "target_id": "AIACT_ART_25",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_GPAI",
+    "target_id": "AIACT_ART_40",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SYSTEMIC_RISK",
+    "target_id": "AIACT_ART_51",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SYSTEMIC_RISK",
+    "target_id": "AIACT_ART_55",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "curated"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SYSTEMIC_RISK",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SYSTEMIC_RISK",
+    "target_id": "AIACT_ART_52",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SYSTEMIC_RISK",
+    "target_id": "AIACT_ART_53",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SYSTEMIC_RISK",
+    "target_id": "AIACT_ART_54",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_SYSTEMIC_RISK",
+    "target_id": "AIACT_ART_56",
+    "type": "APPLIES_TO",
+    "properties": {
+      "link_method": "keyword"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LAWFULNESS",
+    "target_id": "CONCEPT_CONSENT",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_LAWFULNESS",
+    "target_id": "CONCEPT_LEGITIMATE_INTEREST",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_TRANSPARENCY",
+    "target_id": "CONCEPT_TRANSPARENCY_OBLIGATION",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DPIA",
+    "target_id": "CONCEPT_FRIA",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_AUTOMATED_DECISION",
+    "target_id": "CONCEPT_HUMAN_OVERSIGHT",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_AUTOMATED_DECISION",
+    "target_id": "CONCEPT_PROFILING",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_PROTECTION_BY_DESIGN",
+    "target_id": "CONCEPT_DATA_MINIMISATION",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_DATA_BREACH",
+    "target_id": "CONCEPT_DATA_BREACH_NOTIFICATION",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CERTIFICATION",
+    "target_id": "CONCEPT_CONFORMITY_ASSESSMENT",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_INTEGRITY_CONFIDENTIALITY",
+    "target_id": "CONCEPT_ROBUSTNESS",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCURACY",
+    "target_id": "CONCEPT_DATA_GOVERNANCE",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_ACCOUNTABILITY",
+    "target_id": "CONCEPT_RECORDS_OF_PROCESSING",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_RISK_MANAGEMENT",
+    "target_id": "CONCEPT_DPIA",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_POST_MARKET_MONITORING",
+    "target_id": "CONCEPT_SERIOUS_INCIDENT",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_GPAI",
+    "target_id": "CONCEPT_SYSTEMIC_RISK",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  },
+  {
+    "source_id": "CONCEPT_CE_MARKING",
+    "target_id": "CONCEPT_CONFORMITY_ASSESSMENT",
+    "type": "REFERENCES",
+    "properties": {
+      "link_type": "concept_cross_ref"
+    }
+  }
+]

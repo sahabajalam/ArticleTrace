@@ -1,0 +1,164 @@
+[
+  {
+    "id": "ACTOR_CONTROLLER",
+    "name": "Controller",
+    "regulation_id": "GDPR",
+    "definition_article": "GDPR_ART_4",
+    "description": "Natural or legal person which determines the purposes and means of processing",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_PROCESSOR",
+    "name": "Processor",
+    "regulation_id": "GDPR",
+    "definition_article": "GDPR_ART_4",
+    "description": "Natural or legal person which processes personal data on behalf of the controller",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_DATA_SUBJECT",
+    "name": "Data Subject",
+    "regulation_id": "GDPR",
+    "definition_article": "GDPR_ART_4",
+    "description": "Identified or identifiable natural person",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_DPO",
+    "name": "Data Protection Officer",
+    "regulation_id": "GDPR",
+    "definition_article": "GDPR_ART_37",
+    "description": "Designated officer overseeing data protection compliance",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_SUPERVISORY_AUTHORITY",
+    "name": "Supervisory Authority",
+    "regulation_id": "GDPR",
+    "definition_article": "GDPR_ART_4",
+    "description": "Independent public authority established by a Member State",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_RECIPIENT",
+    "name": "Recipient",
+    "regulation_id": "GDPR",
+    "definition_article": "GDPR_ART_4",
+    "description": "Natural or legal person to which personal data are disclosed",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_THIRD_PARTY",
+    "name": "Third Party",
+    "regulation_id": "GDPR",
+    "definition_article": "GDPR_ART_4",
+    "description": "Person other than data subject, controller, processor, or authorized persons",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_REPRESENTATIVE",
+    "name": "Representative",
+    "regulation_id": "GDPR",
+    "definition_article": "GDPR_ART_4",
+    "description": "Person designated to represent controller/processor in EU",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_PROVIDER",
+    "name": "Provider",
+    "regulation_id": "EU_AI_ACT",
+    "definition_article": "AIACT_ART_3",
+    "description": "Person that develops an AI system or has one developed and places it on the market",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_DEPLOYER",
+    "name": "Deployer",
+    "regulation_id": "EU_AI_ACT",
+    "definition_article": "AIACT_ART_3",
+    "description": "Person using an AI system under its authority",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_IMPORTER",
+    "name": "Importer",
+    "regulation_id": "EU_AI_ACT",
+    "definition_article": "AIACT_ART_3",
+    "description": "Person located in EU placing AI system from third country on market",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_DISTRIBUTOR",
+    "name": "Distributor",
+    "regulation_id": "EU_AI_ACT",
+    "definition_article": "AIACT_ART_3",
+    "description": "Person in supply chain making AI system available, other than provider/importer",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_PRODUCT_MANUFACTURER",
+    "name": "Product Manufacturer",
+    "regulation_id": "EU_AI_ACT",
+    "definition_article": "AIACT_ART_3",
+    "description": "Manufacturer placing AI system with their product under their name",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_AUTHORISED_REP",
+    "name": "Authorised Representative",
+    "regulation_id": "EU_AI_ACT",
+    "definition_article": "AIACT_ART_3",
+    "description": "Person in EU with written mandate from provider",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_NOTIFIED_BODY",
+    "name": "Notified Body",
+    "regulation_id": "EU_AI_ACT",
+    "definition_article": "AIACT_ART_3",
+    "description": "Conformity assessment body designated under AI Act",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_MARKET_SURVEILLANCE",
+    "name": "Market Surveillance Authority",
+    "regulation_id": "EU_AI_ACT",
+    "definition_article": "AIACT_ART_3",
+    "description": "National authority carrying out market surveillance",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_AI_OFFICE",
+    "name": "AI Office",
+    "regulation_id": "EU_AI_ACT",
+    "definition_article": "AIACT_ART_64",
+    "description": "Commission body supporting AI Act implementation",
+    "type": "Actor",
+    "responsibilities": []
+  },
+  {
+    "id": "ACTOR_AFFECTED_PERSON",
+    "name": "Affected Person",
+    "regulation_id": "EU_AI_ACT",
+    "definition_article": "AIACT_ART_3",
+    "description": "Person subject to or affected by an AI system",
+    "type": "Actor",
+    "responsibilities": []
+  }
+]

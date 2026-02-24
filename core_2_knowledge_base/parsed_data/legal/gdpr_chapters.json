@@ -1,0 +1,57 @@
+[
+  {
+    "number": 1,
+    "name": "General provisions",
+    "regulation_id": "GDPR"
+  },
+  {
+    "number": 2,
+    "name": "Principles",
+    "regulation_id": "GDPR"
+  },
+  {
+    "number": 3,
+    "name": "Rights of the data subject",
+    "regulation_id": "GDPR"
+  },
+  {
+    "number": 4,
+    "name": "Controller and processor",
+    "regulation_id": "GDPR"
+  },
+  {
+    "number": 5,
+    "name": "Transfers of personal data to third countries or international organisations",
+    "regulation_id": "GDPR"
+  },
+  {
+    "number": 6,
+    "name": "Independent supervisory authorities",
+    "regulation_id": "GDPR"
+  },
+  {
+    "number": 7,
+    "name": "Cooperation and consistency",
+    "regulation_id": "GDPR"
+  },
+  {
+    "number": 8,
+    "name": "Remedies, liability and penalties",
+    "regulation_id": "GDPR"
+  },
+  {
+    "number": 9,
+    "name": "Provisions relating to specific processing situations",
+    "regulation_id": "GDPR"
+  },
+  {
+    "number": 10,
+    "name": "Delegated acts and implementing acts",
+    "regulation_id": "GDPR"
+  },
+  {
+    "number": 11,
+    "name": "Final provisions",
+    "regulation_id": "GDPR"
+  }
+]

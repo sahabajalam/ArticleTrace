@@ -1,0 +1,722 @@
+[
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_PERSONAL_DATA",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 1
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_PROCESSING",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 2
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_RESTRICTION_OF_PROCESSING",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 3
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_PROFILING",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 4
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_PSEUDONYMISATION",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 5
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_FILING_SYSTEM",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 6
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_CONTROLLER",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 7
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_PROCESSOR",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 8
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_RECIPIENT",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 9
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_THIRD_PARTY",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 10
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_PERSONAL_DATA_BREACH",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 12
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_GENETIC_DATA",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 13
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_BIOMETRIC_DATA",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 14
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_DATA_CONCERNING_HEALTH",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 15
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_REPRESENTATIVE",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 17
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_ENTERPRISE",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 18
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_GROUP_OF_UNDERTAKINGS",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 19
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_BINDING_CORPORATE_RULES",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 20
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_SUPERVISORY_AUTHORITY",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 21
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_SUPERVISORY_AUTHORITY_CONCERNED",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 22
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_CROSS_BORDER_PROCESSING",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 23
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_RELEVANT_AND_REASONED_OBJECTION",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 24
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_INFORMATION_SOCIETY_SERVICE",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 25
+    }
+  },
+  {
+    "source_id": "GDPR_ART_4",
+    "target_id": "GDPR_DEF_INTERNATIONAL_ORGANISATION",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 26
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_AI_SYSTEM",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 1
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_RISK",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 2
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_PROVIDER",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 3
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_DEPLOYER",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 4
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_AUTHORISED_REPRESENTATIVE",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 5
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_IMPORTER",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 6
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_DISTRIBUTOR",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 7
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_OPERATOR",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 8
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_PLACING_ON_THE_MARKET",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 9
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_MAKING_AVAILABLE_ON_THE_MARKET",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 10
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_PUTTING_INTO_SERVICE",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 11
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_INTENDED_PURPOSE",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 12
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_REASONABLY_FORESEEABLE_MISUSE",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 13
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_SAFETY_COMPONENT",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 14
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_INSTRUCTIONS_FOR_USE",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 15
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_RECALL_OF_AN_AI_SYSTEM",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 16
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_WITHDRAWAL_OF_AN_AI_SYSTEM",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 17
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_PERFORMANCE_OF_AN_AI_SYSTEM",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 18
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_NOTIFYING_AUTHORITY",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 19
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_CONFORMITY_ASSESSMENT",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 20
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_CONFORMITY_ASSESSMENT_BODY",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 21
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_NOTIFIED_BODY",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 22
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_SUBSTANTIAL_MODIFICATION",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 23
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_CE_MARKING",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 24
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_POST_MARKET_MONITORING_SYSTEM",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 25
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_MARKET_SURVEILLANCE_AUTHORITY",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 26
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_HARMONISED_STANDARD",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 27
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_COMMON_SPECIFICATION",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 28
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_TRAINING_DATA",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 29
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_VALIDATION_DATA",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 30
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_VALIDATION_DATA_SET",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 31
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_TESTING_DATA",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 32
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_INPUT_DATA",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 33
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_BIOMETRIC_DATA",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 34
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_BIOMETRIC_IDENTIFICATION",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 35
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_BIOMETRIC_VERIFICATION",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 36
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_SPECIAL_CATEGORIES_OF_PERSONAL_DATA",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 37
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_SENSITIVE_OPERATIONAL_DATA",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 38
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_EMOTION_RECOGNITION_SYSTEM",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 39
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_BIOMETRIC_CATEGORISATION_SYSTEM",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 40
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_REMOTE_BIOMETRIC_IDENTIFICATION_SYSTEM",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 41
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_REAL_TIME_REMOTE_BIOMETRIC_IDENTIFICATION_SYSTEM",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 42
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_POST_REMOTE_BIOMETRIC_IDENTIFICATION_SYSTEM",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 43
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_PUBLICLY_ACCESSIBLE_SPACE",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 44
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_LAW_ENFORCEMENT",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 46
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_AI_OFFICE",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 47
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_NATIONAL_COMPETENT_AUTHORITY",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 48
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_SERIOUS_INCIDENT",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 49
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_PERSONAL_DATA",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 50
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_NON_PERSONAL_DATA",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 51
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_PROFILING",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 52
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_REAL_WORLD_TESTING_PLAN",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 53
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_SANDBOX_PLAN",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 54
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_AI_REGULATORY_SANDBOX",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 55
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_AI_LITERACY",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 56
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_TESTING_IN_REAL_WORLD_CONDITIONS",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 57
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_INFORMED_CONSENT",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 59
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_DEEP_FAKE",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 60
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_WIDESPREAD_INFRINGEMENT",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 61
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_CRITICAL_INFRASTRUCTURE",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 62
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_GENERAL_PURPOSE_AI_MODEL",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 63
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_HIGH_IMPACT_CAPABILITIES",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 64
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_SYSTEMIC_RISK",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 65
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_GENERAL_PURPOSE_AI_SYSTEM",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 66
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_FLOATING_POINT_OPERATION",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 67
+    }
+  },
+  {
+    "source_id": "AIACT_ART_3",
+    "target_id": "AIACT_DEF_DOWNSTREAM_PROVIDER",
+    "type": "DEFINES",
+    "properties": {
+      "definition_number": 68
+    }
+  }
+]

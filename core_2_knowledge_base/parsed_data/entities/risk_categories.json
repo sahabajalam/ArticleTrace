@@ -1,0 +1,35 @@
+[
+  {
+    "id": "RISK_PROHIBITED",
+    "name": "Prohibited AI Practices",
+    "risk_level": "PROHIBITED",
+    "source_article": "AIACT_ART_5",
+    "description": "AI practices banned outright under Art 5",
+    "type": "RiskCategory"
+  },
+  {
+    "id": "RISK_HIGH",
+    "name": "High-Risk AI Systems",
+    "risk_level": "HIGH_RISK",
+    "source_article": "AIACT_ART_6",
+    "annex_reference": "AIACT_ANNEX_III",
+    "description": "AI systems classified as high-risk under Art 6 + Annex III",
+    "type": "RiskCategory"
+  },
+  {
+    "id": "RISK_LIMITED",
+    "name": "Limited Risk AI Systems",
+    "risk_level": "LIMITED_RISK",
+    "source_article": "AIACT_ART_50",
+    "description": "AI systems with transparency obligations under Art 50",
+    "type": "RiskCategory"
+  },
+  {
+    "id": "RISK_MINIMAL",
+    "name": "Minimal Risk AI Systems",
+    "risk_level": "MINIMAL_RISK",
+    "source_article": null,
+    "description": "All other AI systems — no specific obligations",
+    "type": "RiskCategory"
+  }
+]

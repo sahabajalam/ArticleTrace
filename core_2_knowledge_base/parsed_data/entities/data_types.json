@@ -1,0 +1,188 @@
+[
+  {
+    "id": "DT_PERSONAL_DATA",
+    "name": "Personal Data",
+    "parent_type": null,
+    "is_special_category": false,
+    "regulated_by": [
+      "GDPR_ART_4"
+    ],
+    "description": "Any information relating to an identified or identifiable natural person",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_BIOMETRIC",
+    "name": "Biometric Data",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": true,
+    "regulated_by": [
+      "GDPR_ART_4",
+      "GDPR_ART_9"
+    ],
+    "description": "Data from specific technical processing of physical/physiological/behavioural characteristics",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_HEALTH",
+    "name": "Health Data",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": true,
+    "regulated_by": [
+      "GDPR_ART_4",
+      "GDPR_ART_9"
+    ],
+    "description": "Data related to physical or mental health",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_GENETIC",
+    "name": "Genetic Data",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": true,
+    "regulated_by": [
+      "GDPR_ART_4",
+      "GDPR_ART_9"
+    ],
+    "description": "Data relating to inherited or acquired genetic characteristics",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_RACIAL_ETHNIC",
+    "name": "Racial/Ethnic Data",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": true,
+    "regulated_by": [
+      "GDPR_ART_9"
+    ],
+    "description": "Data revealing racial or ethnic origin",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_POLITICAL",
+    "name": "Political Opinions",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": true,
+    "regulated_by": [
+      "GDPR_ART_9"
+    ],
+    "description": "Data revealing political opinions",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_RELIGIOUS",
+    "name": "Religious/Philosophical Beliefs",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": true,
+    "regulated_by": [
+      "GDPR_ART_9"
+    ],
+    "description": "Data revealing religious or philosophical beliefs",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_TRADE_UNION",
+    "name": "Trade Union Membership",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": true,
+    "regulated_by": [
+      "GDPR_ART_9"
+    ],
+    "description": "Data revealing trade union membership",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_SEXUAL_ORIENTATION",
+    "name": "Sexual Orientation",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": true,
+    "regulated_by": [
+      "GDPR_ART_9"
+    ],
+    "description": "Data concerning sex life or sexual orientation",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_CRIMINAL",
+    "name": "Criminal Conviction Data",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": false,
+    "regulated_by": [
+      "GDPR_ART_10"
+    ],
+    "description": "Data relating to criminal convictions and offences (Art 10 separate regime)",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_PSEUDONYMISED",
+    "name": "Pseudonymised Data",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": false,
+    "regulated_by": [
+      "GDPR_ART_4"
+    ],
+    "description": "Personal data processed so it cannot be attributed without additional information. STILL personal data under GDPR.",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_LOCATION",
+    "name": "Location Data",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": false,
+    "regulated_by": [
+      "GDPR_ART_4"
+    ],
+    "description": "Data about physical location of a person",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_ONLINE_IDENTIFIER",
+    "name": "Online Identifiers",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": false,
+    "regulated_by": [
+      "GDPR_ART_4"
+    ],
+    "description": "IP addresses, cookie identifiers, device fingerprints",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_FINANCIAL",
+    "name": "Financial Data",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": false,
+    "regulated_by": [
+      "GDPR_ART_4"
+    ],
+    "description": "Bank account, transaction, credit data",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_BEHAVIOURAL",
+    "name": "Behavioural Data",
+    "parent_type": "DT_PERSONAL_DATA",
+    "is_special_category": false,
+    "regulated_by": [
+      "GDPR_ART_4"
+    ],
+    "description": "Data used for profiling: browsing, purchase patterns",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_ANONYMISED",
+    "name": "Anonymised Data",
+    "parent_type": null,
+    "is_special_category": false,
+    "regulated_by": [],
+    "description": "Truly anonymous data — GDPR does not apply (Recital 26)",
+    "type": "DataType"
+  },
+  {
+    "id": "DT_AGGREGATED",
+    "name": "Aggregated Data",
+    "parent_type": null,
+    "is_special_category": false,
+    "regulated_by": [],
+    "description": "Irreversibly aggregated data — non-personal only if re-identification impossible",
+    "type": "DataType"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "number": 1,
+    "name": "GENERAL PROVISIONS",
+    "regulation_id": "EU_AI_ACT"
+  },
+  {
+    "number": 2,
+    "name": "PROHIBITED AI PRACTICES",
+    "regulation_id": "EU_AI_ACT"
+  },
+  {
+    "number": 3,
+    "name": "HIGH-RISK AI SYSTEMS",
+    "regulation_id": "EU_AI_ACT"
+  },
+  {
+    "number": 4,
+    "name": "TRANSPARENCY OBLIGATIONS FOR PROVIDERS AND DEPLOYERS OF CERTAIN AI SYSTEMS",
+    "regulation_id": "EU_AI_ACT"
+  },
+  {
+    "number": 5,
+    "name": "GENERAL-PURPOSE AI MODELS",
+    "regulation_id": "EU_AI_ACT"
+  },
+  {
+    "number": 6,
+    "name": "MEASURES IN SUPPORT OF INNOVATION",
+    "regulation_id": "EU_AI_ACT"
+  },
+  {
+    "number": 7,
+    "name": "GOVERNANCE",
+    "regulation_id": "EU_AI_ACT"
+  },
+  {
+    "number": 8,
+    "name": "EU DATABASE FOR HIGH-RISK AI SYSTEMS",
+    "regulation_id": "EU_AI_ACT"
+  },
+  {
+    "number": 9,
+    "name": "POST-MARKET MONITORING, INFORMATION SHARING AND MARKET SURVEILLANCE",
+    "regulation_id": "EU_AI_ACT"
+  },
+  {
+    "number": 10,
+    "name": "CODES OF CONDUCT AND GUIDELINES",
+    "regulation_id": "EU_AI_ACT"
+  },
+  {
+    "number": 11,
+    "name": "DELEGATION OF POWER AND COMMITTEE PROCEDURE",
+    "regulation_id": "EU_AI_ACT"
+  },
+  {
+    "number": 12,
+    "name": "PENALTIES",
+    "regulation_id": "EU_AI_ACT"
+  },
+  {
+    "number": 13,
+    "name": "FINAL PROVISIONS",
+    "regulation_id": "EU_AI_ACT"
+  }
+]

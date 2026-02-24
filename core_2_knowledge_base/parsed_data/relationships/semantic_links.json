@@ -1,0 +1,902 @@
+[
+  {
+    "source_id": "ACTOR_CONTROLLER",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_PROCESSOR",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_DATA_SUBJECT",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_DPO",
+    "target_id": "GDPR_ART_37",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_SUPERVISORY_AUTHORITY",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_RECIPIENT",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_THIRD_PARTY",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_REPRESENTATIVE",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_PROVIDER",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_DEPLOYER",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_IMPORTER",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_DISTRIBUTOR",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_PRODUCT_MANUFACTURER",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_AUTHORISED_REP",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_NOTIFIED_BODY",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_MARKET_SURVEILLANCE",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_AI_OFFICE",
+    "target_id": "AIACT_ART_64",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "ACTOR_AFFECTED_PERSON",
+    "target_id": "AIACT_ART_3",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_PERSONAL_DATA",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_BIOMETRIC",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_BIOMETRIC",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_BIOMETRIC",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_HEALTH",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_HEALTH",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_HEALTH",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_GENETIC",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_GENETIC",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_GENETIC",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_RACIAL_ETHNIC",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_RACIAL_ETHNIC",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_POLITICAL",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_POLITICAL",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_RELIGIOUS",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_RELIGIOUS",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_TRADE_UNION",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_TRADE_UNION",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_SEXUAL_ORIENTATION",
+    "target_id": "GDPR_ART_9",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_SEXUAL_ORIENTATION",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_CRIMINAL",
+    "target_id": "GDPR_ART_10",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_CRIMINAL",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_PSEUDONYMISED",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_PSEUDONYMISED",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_LOCATION",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_LOCATION",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_ONLINE_IDENTIFIER",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_ONLINE_IDENTIFIER",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_FINANCIAL",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_FINANCIAL",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_BEHAVIOURAL",
+    "target_id": "GDPR_ART_4",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_BEHAVIOURAL",
+    "target_id": "DT_PERSONAL_DATA",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_ANONYMISED",
+    "target_id": "GDPR_REC_26",
+    "type": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "source_id": "DT_AGGREGATED",
+    "target_id": "GDPR_REC_26",
+    "type": "REFERENCES",
+    "properties": {}
+  },
+  {
+    "source_id": "RISK_PROHIBITED",
+    "target_id": "AIACT_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "RISK_HIGH",
+    "target_id": "AIACT_ART_6",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "RISK_LIMITED",
+    "target_id": "AIACT_ART_50",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "RISK_MINIMAL",
+    "target_id": "EU_AI_ACT",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_SUBLIMINAL_MANIPULATION",
+    "target_id": "RISK_PROHIBITED",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_SUBLIMINAL_MANIPULATION",
+    "target_id": "AIACT_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_VULNERABILITY_EXPLOITATION",
+    "target_id": "RISK_PROHIBITED",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_VULNERABILITY_EXPLOITATION",
+    "target_id": "AIACT_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_SOCIAL_SCORING_PUBLIC",
+    "target_id": "RISK_PROHIBITED",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_SOCIAL_SCORING_PUBLIC",
+    "target_id": "AIACT_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_REALTIME_BIOMETRIC_PUBLIC",
+    "target_id": "RISK_PROHIBITED",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_REALTIME_BIOMETRIC_PUBLIC",
+    "target_id": "AIACT_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_EMOTION_RECOGNITION_WORK",
+    "target_id": "RISK_PROHIBITED",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_EMOTION_RECOGNITION_WORK",
+    "target_id": "AIACT_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_EMOTION_RECOGNITION_EDU",
+    "target_id": "RISK_PROHIBITED",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_EMOTION_RECOGNITION_EDU",
+    "target_id": "AIACT_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_UNTARGETED_FACIAL_SCRAPING",
+    "target_id": "RISK_PROHIBITED",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_UNTARGETED_FACIAL_SCRAPING",
+    "target_id": "AIACT_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_BIOMETRIC_CATEGORISATION",
+    "target_id": "RISK_PROHIBITED",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_BIOMETRIC_CATEGORISATION",
+    "target_id": "AIACT_ART_5",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_BIOMETRIC_ID",
+    "target_id": "RISK_HIGH",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_BIOMETRIC_ID",
+    "target_id": "AIACT_ANNEX_III",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_CRITICAL_INFRASTRUCTURE",
+    "target_id": "RISK_HIGH",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_CRITICAL_INFRASTRUCTURE",
+    "target_id": "AIACT_ANNEX_III",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_EDUCATION_ASSESSMENT",
+    "target_id": "RISK_HIGH",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_EDUCATION_ASSESSMENT",
+    "target_id": "AIACT_ANNEX_III",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_EMPLOYMENT",
+    "target_id": "RISK_HIGH",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_EMPLOYMENT",
+    "target_id": "AIACT_ANNEX_III",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_ESSENTIAL_SERVICES",
+    "target_id": "RISK_HIGH",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_ESSENTIAL_SERVICES",
+    "target_id": "AIACT_ANNEX_III",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_LAW_ENFORCEMENT",
+    "target_id": "RISK_HIGH",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_LAW_ENFORCEMENT",
+    "target_id": "AIACT_ANNEX_III",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_MIGRATION_BORDER",
+    "target_id": "RISK_HIGH",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_MIGRATION_BORDER",
+    "target_id": "AIACT_ANNEX_III",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_JUSTICE_DEMOCRACY",
+    "target_id": "RISK_HIGH",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_JUSTICE_DEMOCRACY",
+    "target_id": "AIACT_ANNEX_III",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_CHATBOT",
+    "target_id": "RISK_LIMITED",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_CHATBOT",
+    "target_id": "AIACT_ART_50",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_DEEPFAKE",
+    "target_id": "RISK_LIMITED",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_DEEPFAKE",
+    "target_id": "AIACT_ART_50",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_AI_GENERATED_CONTENT",
+    "target_id": "RISK_LIMITED",
+    "type": "PART_OF",
+    "properties": {}
+  },
+  {
+    "source_id": "AIST_AI_GENERATED_CONTENT",
+    "target_id": "AIACT_ART_50",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_83",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_8",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_11",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_25",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_26",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_27",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_28",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_29",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_30",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_31",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_32",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_33",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_34",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_35",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_36",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_37",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_38",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_39",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_42",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER1",
+    "target_id": "GDPR_ART_43",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_83",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_5",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_6",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_7",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_9",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_12",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_13",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_14",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_15",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_16",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_17",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_18",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_19",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_20",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_21",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_22",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_44",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_45",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_46",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_47",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_48",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER2",
+    "target_id": "GDPR_ART_49",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_GDPR_TIER3",
+    "target_id": "GDPR_ART_83",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_PROHIBITED",
+    "target_id": "AIACT_ART_99",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_PROHIBITED",
+    "target_id": "AIACT_ART_5",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_HIGH_RISK",
+    "target_id": "AIACT_ART_99",
+    "type": "APPLIES_TO",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_HIGH_RISK",
+    "target_id": "AIACT_ART_6",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_HIGH_RISK",
+    "target_id": "AIACT_ART_9",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_HIGH_RISK",
+    "target_id": "AIACT_ART_10",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_HIGH_RISK",
+    "target_id": "AIACT_ART_11",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_HIGH_RISK",
+    "target_id": "AIACT_ART_12",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_HIGH_RISK",
+    "target_id": "AIACT_ART_13",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_HIGH_RISK",
+    "target_id": "AIACT_ART_14",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_HIGH_RISK",
+    "target_id": "AIACT_ART_15",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_HIGH_RISK",
+    "target_id": "AIACT_ART_43",
+    "type": "ENFORCES",
+    "properties": {}
+  },
+  {
+    "source_id": "PEN_AIACT_INFO",
+    "target_id": "AIACT_ART_99",
+    "type": "APPLIES_TO",
+    "properties": {}
+  }
+]

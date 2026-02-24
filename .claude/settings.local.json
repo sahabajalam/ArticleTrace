@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(du:*)",
+      "Bash(tail:*)",
+      "Bash(cd \"D:\\\\60 Days\\\\Projects\\\\Portfolio_Series\\\\Project_1_EU AI Regulatory Compliance Engine\\\\Project_1_EU AI Regulatory Compliance Engine\\\\frontend\" && node -e \"require\\('react-markdown'\\); console.log\\('ok'\\)\" 2>&1)"
+    ]
+  }
+}

@@ -1,0 +1,758 @@
+[
+  {
+    "source_id": "GDPR_ART_22",
+    "target_id": "AIACT_ART_14",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Automated decision-making (GDPR) reinforced by human oversight requirements (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_14",
+    "target_id": "GDPR_ART_22",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Automated decision-making (GDPR) reinforced by human oversight requirements (AI Act)"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_13",
+    "target_id": "AIACT_ART_13",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Information provision to data subjects (GDPR) reinforced by transparency requirements (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_13",
+    "target_id": "GDPR_ART_13",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Information provision to data subjects (GDPR) reinforced by transparency requirements (AI Act)"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_14",
+    "target_id": "AIACT_ART_13",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Information for indirect collection (GDPR) reinforced by AI Act transparency"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_13",
+    "target_id": "GDPR_ART_14",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Information for indirect collection (GDPR) reinforced by AI Act transparency"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_5",
+    "target_id": "AIACT_ART_10",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Data quality principles (GDPR) reinforced by training data governance (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_10",
+    "target_id": "GDPR_ART_5",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Data quality principles (GDPR) reinforced by training data governance (AI Act)"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_25",
+    "target_id": "AIACT_ART_9",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Data protection by design (GDPR) reinforced by risk management system (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_9",
+    "target_id": "GDPR_ART_25",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Data protection by design (GDPR) reinforced by risk management system (AI Act)"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_32",
+    "target_id": "AIACT_ART_15",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Security of processing (GDPR) reinforced by accuracy/robustness/cybersecurity (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_15",
+    "target_id": "GDPR_ART_32",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Security of processing (GDPR) reinforced by accuracy/robustness/cybersecurity (AI Act)"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_30",
+    "target_id": "AIACT_ART_12",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Records of processing (GDPR) reinforced by record-keeping/logging (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_12",
+    "target_id": "GDPR_ART_30",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Records of processing (GDPR) reinforced by record-keeping/logging (AI Act)"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_12",
+    "target_id": "AIACT_ART_50",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Transparent communication (GDPR) reinforced by AI transparency obligations"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_50",
+    "target_id": "GDPR_ART_12",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Transparent communication (GDPR) reinforced by AI transparency obligations"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_15",
+    "target_id": "AIACT_ART_86",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Right of access (GDPR) reinforced by right to explanation for AI decisions (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_86",
+    "target_id": "GDPR_ART_15",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Right of access (GDPR) reinforced by right to explanation for AI decisions (AI Act)"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_22",
+    "target_id": "AIACT_ART_86",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Automated decision rights (GDPR) reinforced by AI Act explanation rights"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_86",
+    "target_id": "GDPR_ART_22",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Automated decision rights (GDPR) reinforced by AI Act explanation rights"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_37",
+    "target_id": "AIACT_ART_26",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "DPO designation (GDPR) reinforced by deployer human oversight obligation (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_26",
+    "target_id": "GDPR_ART_37",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "DPO designation (GDPR) reinforced by deployer human oversight obligation (AI Act)"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_24",
+    "target_id": "AIACT_ART_26",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Controller responsibility (GDPR) reinforced by deployer obligations (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_26",
+    "target_id": "GDPR_ART_24",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Controller responsibility (GDPR) reinforced by deployer obligations (AI Act)"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_35",
+    "target_id": "AIACT_ART_27",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "DPIA (GDPR) and FRIA (AI Act) both required for high-risk AI processing personal data"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_27",
+    "target_id": "GDPR_ART_35",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "DPIA (GDPR) and FRIA (AI Act) both required for high-risk AI processing personal data"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_36",
+    "target_id": "AIACT_ART_27",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Prior consultation with DPA (GDPR) co-triggered with fundamental rights impact assessment (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_27",
+    "target_id": "GDPR_ART_36",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Prior consultation with DPA (GDPR) co-triggered with fundamental rights impact assessment (AI Act)"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_6",
+    "target_id": "AIACT_ART_10",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Legal basis for processing (GDPR) + training data requirements (AI Act) both apply to AI training"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_10",
+    "target_id": "GDPR_ART_6",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Legal basis for processing (GDPR) + training data requirements (AI Act) both apply to AI training"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_9",
+    "target_id": "AIACT_ART_10",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Special category data (GDPR) + bias detection data (AI Act) create dual compliance requirement"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_10",
+    "target_id": "GDPR_ART_9",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Special category data (GDPR) + bias detection data (AI Act) create dual compliance requirement"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_28",
+    "target_id": "AIACT_ART_25",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Processor obligations (GDPR) + provider obligations (AI Act) when processor deploys high-risk AI"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_25",
+    "target_id": "GDPR_ART_28",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Processor obligations (GDPR) + provider obligations (AI Act) when processor deploys high-risk AI"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_44",
+    "target_id": "AIACT_ART_5",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "International transfer rules (GDPR) + prohibited practices (AI Act) both restrict cross-border AI"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_5",
+    "target_id": "GDPR_ART_44",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "International transfer rules (GDPR) + prohibited practices (AI Act) both restrict cross-border AI"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_7",
+    "target_id": "AIACT_ART_50",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Consent conditions (GDPR) + transparency (AI Act) both apply to AI chatbots processing personal data"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_50",
+    "target_id": "GDPR_ART_7",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Consent conditions (GDPR) + transparency (AI Act) both apply to AI chatbots processing personal data"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_83",
+    "target_id": "AIACT_ART_99",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CUMULATIVE",
+      "description": "GDPR fines (up to 4% turnover) + AI Act fines (up to 7%) = cumulative up to 11% turnover"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_99",
+    "target_id": "GDPR_ART_83",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CUMULATIVE",
+      "description": "GDPR fines (up to 4% turnover) + AI Act fines (up to 7%) = cumulative up to 11% turnover"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_58",
+    "target_id": "AIACT_ART_64",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CUMULATIVE",
+      "description": "DPA investigative powers (GDPR) + market surveillance powers (AI Act) create dual oversight"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_64",
+    "target_id": "GDPR_ART_58",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CUMULATIVE",
+      "description": "DPA investigative powers (GDPR) + market surveillance powers (AI Act) create dual oversight"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_77",
+    "target_id": "AIACT_ART_85",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CUMULATIVE",
+      "description": "Right to lodge complaint with DPA (GDPR) + right to complaint under AI Act = dual remedy"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_85",
+    "target_id": "GDPR_ART_77",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CUMULATIVE",
+      "description": "Right to lodge complaint with DPA (GDPR) + right to complaint under AI Act = dual remedy"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_9",
+    "target_id": "AIACT_ART_10",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CREATES_EXCEPTION",
+      "description": "AI Act Art 10(5) creates exception to GDPR Art 9 ban: allows special category processing for bias detection"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_10",
+    "target_id": "GDPR_ART_9",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CREATES_EXCEPTION",
+      "description": "AI Act Art 10(5) creates exception to GDPR Art 9 ban: allows special category processing for bias detection"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_6",
+    "target_id": "AIACT_ART_10",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CREATES_EXCEPTION",
+      "description": "AI Act Art 10 creates specific legal basis for training data processing beyond GDPR Art 6 grounds"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_10",
+    "target_id": "GDPR_ART_6",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CREATES_EXCEPTION",
+      "description": "AI Act Art 10 creates specific legal basis for training data processing beyond GDPR Art 6 grounds"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_22",
+    "target_id": "AIACT_ART_14",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CREATES_EXCEPTION",
+      "description": "AI Act human oversight may satisfy GDPR Art 22(3) 'suitable measures' requirement"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_14",
+    "target_id": "GDPR_ART_22",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CREATES_EXCEPTION",
+      "description": "AI Act human oversight may satisfy GDPR Art 22(3) 'suitable measures' requirement"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_17",
+    "target_id": "AIACT_ART_12",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CREATES_EXCEPTION",
+      "description": "AI Act logging requirements may limit right to erasure when logs needed for compliance"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_12",
+    "target_id": "GDPR_ART_17",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CREATES_EXCEPTION",
+      "description": "AI Act logging requirements may limit right to erasure when logs needed for compliance"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_5",
+    "target_id": "AIACT_ART_10",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CREATES_EXCEPTION",
+      "description": "AI Act training data retention may create exception to GDPR storage limitation principle"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_10",
+    "target_id": "GDPR_ART_5",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CREATES_EXCEPTION",
+      "description": "AI Act training data retention may create exception to GDPR storage limitation principle"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_2",
+    "target_id": "AIACT_ART_2",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "DELEGATES",
+      "description": "AI Act Art 2(7) defers to GDPR for personal data processing: 'This Regulation is without prejudice to' GDPR"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_2",
+    "target_id": "GDPR_ART_2",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "DELEGATES",
+      "description": "AI Act Art 2(7) defers to GDPR for personal data processing: 'This Regulation is without prejudice to' GDPR"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_51",
+    "target_id": "AIACT_ART_70",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "DELEGATES",
+      "description": "GDPR DPAs have jurisdiction for AI systems processing personal data; AI Act national authorities for other AI matters"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_70",
+    "target_id": "GDPR_ART_51",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "DELEGATES",
+      "description": "GDPR DPAs have jurisdiction for AI systems processing personal data; AI Act national authorities for other AI matters"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_40",
+    "target_id": "AIACT_ART_69",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "DELEGATES",
+      "description": "GDPR codes of conduct + AI Act codes of practice: each regulation owns its domain"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_69",
+    "target_id": "GDPR_ART_40",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "DELEGATES",
+      "description": "GDPR codes of conduct + AI Act codes of practice: each regulation owns its domain"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_42",
+    "target_id": "AIACT_ART_43",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "DELEGATES",
+      "description": "GDPR certification + AI Act conformity assessment: separate but complementary schemes"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_43",
+    "target_id": "GDPR_ART_42",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "DELEGATES",
+      "description": "GDPR certification + AI Act conformity assessment: separate but complementary schemes"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_45",
+    "target_id": "AIACT_ART_5",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "DELEGATES",
+      "description": "Adequacy decisions (GDPR) remain with Commission; AI Act prohibited practices independently assessed"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_5",
+    "target_id": "GDPR_ART_45",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "DELEGATES",
+      "description": "Adequacy decisions (GDPR) remain with Commission; AI Act prohibited practices independently assessed"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_33",
+    "target_id": "AIACT_ART_62",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Data breach notification (GDPR) + serious incident reporting (AI Act) both triggered by AI system failures"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_62",
+    "target_id": "GDPR_ART_33",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Data breach notification (GDPR) + serious incident reporting (AI Act) both triggered by AI system failures"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_34",
+    "target_id": "AIACT_ART_62",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Communication to data subjects (GDPR) + incident reporting (AI Act) create dual notification duty"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_62",
+    "target_id": "GDPR_ART_34",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Communication to data subjects (GDPR) + incident reporting (AI Act) create dual notification duty"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_16",
+    "target_id": "AIACT_ART_15",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Right to rectification (GDPR) reinforced by AI Act accuracy requirements"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_15",
+    "target_id": "GDPR_ART_16",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Right to rectification (GDPR) reinforced by AI Act accuracy requirements"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_21",
+    "target_id": "AIACT_ART_14",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Right to object (GDPR) reinforced by human oversight right to override AI (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_14",
+    "target_id": "GDPR_ART_21",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Right to object (GDPR) reinforced by human oversight right to override AI (AI Act)"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_20",
+    "target_id": "AIACT_ART_11",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Data portability (GDPR) related to AI Act technical documentation requirements"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_11",
+    "target_id": "GDPR_ART_20",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "Data portability (GDPR) related to AI Act technical documentation requirements"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_39",
+    "target_id": "AIACT_ART_26",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "DPO tasks (GDPR) complemented by deployer monitoring obligations (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_26",
+    "target_id": "GDPR_ART_39",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "REINFORCES",
+      "description": "DPO tasks (GDPR) complemented by deployer monitoring obligations (AI Act)"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_47",
+    "target_id": "AIACT_ART_5",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Binding corporate rules (GDPR) + prohibited practices (AI Act) for multinational AI deployments"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_5",
+    "target_id": "GDPR_ART_47",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Binding corporate rules (GDPR) + prohibited practices (AI Act) for multinational AI deployments"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_49",
+    "target_id": "AIACT_ART_5",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Transfer derogations (GDPR) + prohibited practices (AI Act) for international AI systems"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_5",
+    "target_id": "GDPR_ART_49",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Transfer derogations (GDPR) + prohibited practices (AI Act) for international AI systems"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_35",
+    "target_id": "AIACT_ART_6",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "DPIA (GDPR) co-triggered when AI system classified as high-risk under Art 6/Annex III"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_6",
+    "target_id": "GDPR_ART_35",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "DPIA (GDPR) co-triggered when AI system classified as high-risk under Art 6/Annex III"
+    }
+  },
+  {
+    "source_id": "GDPR_ART_9",
+    "target_id": "AIACT_ART_6",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Special category processing (GDPR) intersects with high-risk AI classification (AI Act)"
+    }
+  },
+  {
+    "source_id": "AIACT_ART_6",
+    "target_id": "GDPR_ART_9",
+    "type": "COMPLEMENTS",
+    "properties": {
+      "interaction_type": "CO_TRIGGERS",
+      "description": "Special category processing (GDPR) intersects with high-risk AI classification (AI Act)"
+    }
+  }
+]

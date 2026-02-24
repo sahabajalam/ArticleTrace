@@ -1,0 +1,192 @@
+[
+  {
+    "id": "RIGHT_TRANSPARENT_INFO",
+    "type": "Right",
+    "name": "Right to Transparent Information",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_12",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to receive information in a concise, transparent, intelligible and easily accessible form",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_INFORMATION_COLLECTED",
+    "type": "Right",
+    "name": "Right to Information (Direct Collection)",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_13",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to be informed when personal data is collected directly from the data subject",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_INFORMATION_INDIRECT",
+    "type": "Right",
+    "name": "Right to Information (Indirect Collection)",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_14",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to be informed when personal data is obtained from sources other than the data subject",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_ACCESS",
+    "type": "Right",
+    "name": "Right of Access",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_15",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to obtain confirmation of processing and access to personal data and supplementary information",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_RECTIFICATION",
+    "type": "Right",
+    "name": "Right to Rectification",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_16",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to have inaccurate personal data rectified without undue delay",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_ERASURE",
+    "type": "Right",
+    "name": "Right to Erasure (Right to be Forgotten)",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_17",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to have personal data erased when no longer necessary, consent withdrawn, or unlawfully processed",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_RESTRICTION",
+    "type": "Right",
+    "name": "Right to Restriction of Processing",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_18",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to restrict processing in certain circumstances (accuracy contested, unlawful, no longer needed)",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_NOTIFICATION",
+    "type": "Right",
+    "name": "Right to Notification of Rectification/Erasure/Restriction",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_19",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to be informed about recipients notified of rectification, erasure, or restriction",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_PORTABILITY",
+    "type": "Right",
+    "name": "Right to Data Portability",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_20",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to receive personal data in structured, commonly used, machine-readable format and transmit to another controller",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_OBJECT",
+    "type": "Right",
+    "name": "Right to Object",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_21",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to object to processing based on legitimate interest or public interest, including profiling",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_AUTOMATED_DECISIONS",
+    "type": "Right",
+    "name": "Right Not to be Subject to Automated Decisions",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_22",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right not to be subject to decisions based solely on automated processing which produce legal or significant effects",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_LODGE_COMPLAINT",
+    "type": "Right",
+    "name": "Right to Lodge a Complaint",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_77",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to lodge a complaint with a supervisory authority",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_EFFECTIVE_REMEDY_SA",
+    "type": "Right",
+    "name": "Right to Effective Judicial Remedy (Against SA)",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_78",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to effective judicial remedy against a supervisory authority decision",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_EFFECTIVE_REMEDY_CTRL",
+    "type": "Right",
+    "name": "Right to Effective Judicial Remedy (Against Controller/Processor)",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_79",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to effective judicial remedy against a controller or processor",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_COMPENSATION",
+    "type": "Right",
+    "name": "Right to Compensation",
+    "regulation_id": "GDPR",
+    "source_article": "GDPR_ART_82",
+    "right_holder": "ACTOR_DATA_SUBJECT",
+    "description": "Right to receive compensation for material or non-material damage from GDPR infringement",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_AI_EXPLANATION",
+    "type": "Right",
+    "name": "Right to Explanation of AI Decision",
+    "regulation_id": "EU_AI_ACT",
+    "source_article": "AIACT_ART_86",
+    "right_holder": "ACTOR_AFFECTED_PERSON",
+    "description": "Right of affected persons to obtain clear and meaningful explanations of AI system decisions affecting their rights",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_AI_COMPLAINT",
+    "type": "Right",
+    "name": "Right to Complain About AI System",
+    "regulation_id": "EU_AI_ACT",
+    "source_article": "AIACT_ART_85",
+    "right_holder": "ACTOR_AFFECTED_PERSON",
+    "description": "Right to lodge a complaint with market surveillance authority about AI system non-compliance",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_AI_EFFECTIVE_REMEDY",
+    "type": "Right",
+    "name": "Right to Effective Remedy (AI Act)",
+    "regulation_id": "EU_AI_ACT",
+    "source_article": "AIACT_ART_85",
+    "right_holder": "ACTOR_AFFECTED_PERSON",
+    "description": "Right to effective judicial remedy in relation to AI system decisions",
+    "conditions": []
+  },
+  {
+    "id": "RIGHT_AI_NOTIFICATION",
+    "type": "Right",
+    "name": "Right to AI System Disclosure",
+    "regulation_id": "EU_AI_ACT",
+    "source_article": "AIACT_ART_50",
+    "right_holder": "ACTOR_AFFECTED_PERSON",
+    "description": "Right to be informed when interacting with an AI system or when subject to emotion recognition/biometric categorisation",
+    "conditions": []
+  }
+]
