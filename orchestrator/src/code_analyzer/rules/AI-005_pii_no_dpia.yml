@@ -1,0 +1,40 @@
+id: AI-005
+title: PII handling without DPIA documentation
+severity: high
+technique: content_scan
+languages: [python, javascript, typescript]
+patterns:
+  collect_pii: true
+  keywords:
+    - email
+    - ssn
+    - national_id
+    - passport
+    - phone_number
+    - date_of_birth
+    - biometric
+    - health_record
+    - medical_record
+    - ethnicity
+    - religion
+    - sexual_orientation
+  extensions: [.py, .js, .ts, .tsx, .jsx, .yaml, .yml]
+maps_to:
+  articles: [GDPR_ART_35, GDPR_ART_9, GDPR_ART_6, AIACT_ART_27]
+  obligation_anchors:
+    - data protection impact assessment
+    - special category data
+    - lawful basis
+    - fundamental rights impact assessment
+confidence:
+  base: 0.55
+  dampeners:
+    - when: "file_matches: (^|/)(tests?|spec|fixtures)/"
+      factor: 0.4
+remediation: >
+  Processing of personal or special-category data at scale requires a Data
+  Protection Impact Assessment under GDPR Art 35, and — where the system is
+  high-risk under the AI Act — a Fundamental Rights Impact Assessment under
+  Art 27. Document a lawful basis (GDPR Art 6; Art 9(2) for special category),
+  data minimisation measures, and residual risk. Add `DPIA.md` to the repo
+  root or `docs/dpia.md`.

@@ -1,0 +1,40 @@
+id: AI-009
+title: Real-time biometric identification in public-space context
+severity: critical
+technique: cooccurrence
+languages: [python, javascript, typescript]
+patterns:
+  requires_rule: AI-001
+  keywords:
+    - cctv
+    - public_space
+    - public space
+    - street
+    - square
+    - realtime
+    - real_time
+    - real-time
+    - live_stream
+    - livestream
+    - law_enforcement
+    - surveillance
+  within_lines: 200
+maps_to:
+  articles: [AIACT_ART_5]
+  obligation_anchors:
+    - real-time remote biometric identification
+    - publicly accessible spaces
+    - prohibited AI practice
+confidence:
+  base: 0.85
+  dampeners:
+    - when: "file_matches: (^|/)(tests?|docs?|examples?)/"
+      factor: 0.5
+remediation: >
+  AI Act Art 5(1)(h) prohibits real-time remote biometric identification
+  systems in publicly accessible spaces for law-enforcement purposes, with
+  narrow exceptions (targeted search for victims, prevention of specific
+  terrorist threats, localisation of suspects of serious crime) all requiring
+  prior judicial authorisation. Any deployment outside those exceptions is
+  prohibited; deployments inside them require an authorisation workflow and
+  a fundamental-rights impact assessment under Art 27.

@@ -1,7 +1,8 @@
 version: '3.8'
 
-# Master docker-compose file for all three core modules
-# This allows starting all modules with a single command: docker-compose up -d
+# Master docker-compose for AlloyCode (orchestrator + knowledge_engine).
+# The monitor module was decommissioned — it provided no signal without
+# continuous production traffic.
 
 networks:
   compliance-network:
@@ -9,47 +10,44 @@ networks:
 
 services:
   # ========================================
-  # CORE 3: EU AI Act Compliance Agent (Port 8000)
+  # ORCHESTRATOR: Scan-driven compliance engine (Port 8004)
   # ========================================
-  compliance-agent:
-    build: ./core_3
-    container_name: compliance-agent
+  orchestrator:
+    build: ./orchestrator
+    container_name: alloycode-orchestrator
     ports:
-      - "8000:8000"
+      - "8004:8004"
     environment:
       - GEMINI_API_KEY=${GEMINI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
-      - DATABASE_URL=postgresql://postgres:postgres@compliance-db:5432/compliance
-      - REDIS_URL=redis://compliance-redis:6379/0
+      - DATABASE_URL=postgresql://postgres:postgres@orchestrator-db:5432/compliance
+      - REDIS_URL=redis://orchestrator-redis:6379/0
       - GRAPHRAG_API_URL=http://graphrag-api:8001
-      - MONITORING_API_URL=http://monitoring-api:8002
       - LOG_LEVEL=INFO
     depends_on:
-      compliance-db:
+      orchestrator-db:
         condition: service_healthy
-      compliance-redis:
+      orchestrator-redis:
         condition: service_started
       graphrag-api:
-        condition: service_started
-      monitoring-api:
         condition: service_started
     networks:
       - compliance-network
     restart: unless-stopped
 
-  compliance-db:
+  orchestrator-db:
     image: postgres:15-alpine
-    container_name: compliance-db
+    container_name: alloycode-orchestrator-db
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=compliance
     volumes:
-      - compliance_postgres_data:/var/lib/postgresql/data
+      - orchestrator_postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -57,23 +55,23 @@ services:
       - compliance-network
     restart: unless-stopped
 
-  compliance-redis:
+  orchestrator-redis:
     image: redis:7-alpine
-    container_name: compliance-redis
+    container_name: alloycode-orchestrator-redis
     ports:
       - "6379:6379"
     volumes:
-      - compliance_redis_data:/data
+      - orchestrator_redis_data:/data
     networks:
       - compliance-network
     restart: unless-stopped
 
   # ========================================
-  # CORE 2: GraphRAG Legal Research Engine (Port 8001)
+  # KNOWLEDGE ENGINE: GraphRAG Legal Research (Port 8001)
   # ========================================
   graphrag-api:
-    build: ./core_2_knowledge_base
-    container_name: graphrag-api
+    build: ./knowledge_engine
+    container_name: alloycode-knowledge-engine
     ports:
       - "8001:8001"
     environment:
@@ -81,74 +79,41 @@ services:
       - NEO4J_URI=${NEO4J_URI}
       - NEO4J_USER=${NEO4J_USER}
       - NEO4J_PASSWORD=${NEO4J_PASSWORD}
-    networks:
-      - compliance-network
-    restart: unless-stopped
-
-  # ========================================
-  # CORE 1: Monitoring & Governance (Port 8002)
-  # ========================================
-  monitoring-api:
-    build: ./core_1
-    container_name: monitoring-api
-    ports:
-      - "8002:8002"
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@monitoring-postgres:5432/monitoring
-      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL:-}
-      - LOG_LEVEL=INFO
+      - WEAVIATE_HOST=weaviate
+      - WEAVIATE_HTTP_PORT=8080
+      - WEAVIATE_GRPC_PORT=50051
     depends_on:
-      monitoring-postgres:
+      weaviate:
         condition: service_healthy
     networks:
       - compliance-network
     restart: unless-stopped
 
-  monitoring-postgres:
-    image: postgres:15-alpine
-    container_name: monitoring-postgres
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=monitoring
-    volumes:
-      - monitoring_postgres_data:/var/lib/postgresql/data
+  weaviate:
+    image: cr.weaviate.io/semitechnologies/weaviate:1.27.6
+    container_name: alloycode-weaviate
     ports:
-      - "5433:5432" # Different port to avoid conflict
+      - "8080:8080"
+      - "50051:50051"
+    environment:
+      - QUERY_DEFAULTS_LIMIT=25
+      - AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED=true
+      - PERSISTENCE_DATA_PATH=/var/lib/weaviate
+      - DEFAULT_VECTORIZER_MODULE=none
+      - ENABLE_MODULES=
+      - CLUSTER_HOSTNAME=node1
+    volumes:
+      - weaviate_data:/var/lib/weaviate
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/v1/.well-known/ready"]
       interval: 5s
       timeout: 5s
-      retries: 5
-    networks:
-      - compliance-network
-    restart: unless-stopped
-
-  # Optional: Prometheus for metrics (from core_1)
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
-    ports:
-      - "9091:9090"
-    volumes:
-      - ./core_1/prometheus.yml:/etc/prometheus/prometheus.yml
-      - prometheus_data:/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
+      retries: 10
     networks:
       - compliance-network
     restart: unless-stopped
 
 volumes:
-  # Core 3 volumes
-  compliance_postgres_data:
-  compliance_redis_data:
-
-  # Core 2 volumes
-  neo4j_data:
-  neo4j_logs:
-
-  # Core 1 volumes
-  monitoring_postgres_data:
-  prometheus_data:
+  orchestrator_postgres_data:
+  orchestrator_redis_data:
+  weaviate_data:

@@ -1,0 +1,791 @@
+# Deployment Guide — Aegis Compliance Engine
+
+> Canonical instructions for deploying the EU AI Regulatory Compliance Engine.
+> Covers local development, Docker, Google Cloud Run, and best practices.
+
+---
+
+## Table of Contents
+
+1. [Architecture Overview](#1-architecture-overview)
+2. [Prerequisites](#2-prerequisites)
+3. [Repository Structure](#3-repository-structure)
+4. [Environment Configuration](#4-environment-configuration)
+5. [Local Development (UV + npm)](#5-local-development-uv--npm)
+6. [Docker Deployment](#6-docker-deployment)
+7. [Google Cloud Run Deployment](#7-google-cloud-run-deployment)
+8. [Service Details](#7-service-details)
+9. [Pipeline Scripts](#9-pipeline-scripts)
+10. [Health Checks & Verification](#10-health-checks--verification)
+11. [Known Issues & Workarounds](#11-known-issues--workarounds)
+12. [Troubleshooting](#12-troubleshooting)
+13. [Best Practices](#13-best-practices)
+
+---
+
+## 1. Architecture Overview
+
+```
+                         +-------------------+
+                         |    Frontend        |
+                         |  Next.js 16        |
+                         |  Port 3000         |
+                         +---------+---------+
+                                   |
+                                   | NEXT_PUBLIC_API_URL
+                                   v
+                 +-----------------+------------------+
+                 |          Orchestrator               |
+                 |   Multi-Agent Compliance Engine     |
+                 |   LangGraph + Gemini 2.5 Flash      |
+                 |   Port 8004                         |
+                 +-----------------+-------------------+
+                                   |
+                                   v
+                      +------------+---------+
+                      |  Knowledge Engine    |
+                      |  GraphRAG Research   |
+                      |  Neo4j + Vectors     |
+                      |  Port 8001           |
+                      +----------------------+
+```
+
+**Data flow:**
+1. User submits an AI system assessment via the frontend
+2. Orchestrator runs a LangGraph workflow (Supervisor, Risk Classifier, Legal Research, Documentation Generator)
+3. Legal Research Agent queries the Knowledge Engine for regulation-grounded answers
+4. Results (including per-scan audit log) display in the frontend dashboard
+
+---
+
+## 2. Prerequisites
+
+### Local Development
+
+| Tool | Version | Purpose | Install |
+|------|---------|---------|---------|
+| **UV** | >= 0.9.x | Python package manager & runner | [docs.astral.sh/uv](https://docs.astral.sh/uv/) |
+| **Python** | >= 3.11 (managed by UV) | Backend runtime | Installed automatically by UV |
+| **Node.js** | >= 20.x | Frontend runtime | [nodejs.org](https://nodejs.org/) |
+| **npm** | >= 10.x | Frontend package manager | Bundled with Node.js |
+| **Git** | >= 2.x | Version control | [git-scm.com](https://git-scm.com/) |
+
+### Docker / Cloud Run Deployment
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| **Docker** | >= 24.x | Container runtime |
+| **Docker Compose** | >= 2.x | Multi-container orchestration (local Docker) |
+| **gcloud CLI** | Latest | Google Cloud deployment |
+
+### External Services
+
+| Service | Required | Purpose |
+|---------|----------|---------|
+| **Google AI Studio API Key** | Yes | Gemini 2.5 Flash LLM + `gemini-embedding-001` (3072-dim) |
+| **Neo4j Aura DB** | Yes | Knowledge graph (cloud-hosted) |
+| **PostgreSQL** | For Orchestrator | Scan persistence |
+| **Redis** | For Orchestrator | Session state, caching (optional on Cloud Run) |
+
+---
+
+## 3. Repository Structure
+
+```
+Project Root/
+|-- docker-compose.yml          # Master compose (all backend services)
+|-- start-all-modules.ps1       # One-command pipeline startup (local)
+|-- stop-all-modules.ps1        # One-command pipeline shutdown (local)
+|-- deploy.ps1                  # Cloud Run build + deploy (main script)
+|-- deploy.clean.ps1            # Wrapper: clean build (no Docker cache)
+|-- deploy.fast.ps1             # Wrapper: fast build (uses Docker cache)
+|-- deploy_gcp.ps1              # First-time GCP project setup
+|-- setup-secrets.ps1           # Push .env secrets to GCP Secret Manager
+|-- cleanup_gcp.ps1             # Tear down all GCP resources
+|-- .env                        # Root env (used by docker-compose)
+|
+|-- orchestrator/               # Port 8004 (local) / 8000 (Docker)
+|   |-- src/
+|   |   |-- api/main.py         #   FastAPI app
+|   |   |-- agents/             #   LangGraph agent definitions
+|   |   |-- control_plane/      #   Workflow orchestration
+|   |   |-- state/              #   LangGraph state schema
+|   |   |-- templates/          #   Report templates
+|   |   |-- utils/              #   Helpers (cost tracker, etc.)
+|   |   +-- config.py           #   Pydantic Settings
+|   |-- Dockerfile
+|   |-- pyproject.toml
+|   +-- .env
+|
+|-- knowledge_engine/           # Port 8001
+|   |-- src/
+|   |   |-- api/main.py         #   FastAPI app
+|   |   |-- stores/
+|   |   |   |-- graph_store.py  #   Neo4j client
+|   |   |   +-- vector_store.py #   Custom JSON vector store
+|   |   |-- retrieval/
+|   |   |   |-- engine.py       #   Hybrid retrieval (RRF)
+|   |   |   +-- reasoning_engine.py
+|   |   +-- config.py
+|   |-- chroma_data/            #   JSON vector store files (NOT ChromaDB)
+|   |-- parsed_data/            #   Parsed regulatory texts
+|   |-- scripts/                #   Data loading scripts (01-08)
+|   |-- Dockerfile
+|   |-- pyproject.toml
+|   +-- .env
+|
+|-- frontend/                   # Port 3000 — AlloyCode Dashboard
+|   |-- src/
+|   |   |-- app/                #   Next.js App Router pages
+|   |   |-- components/         #   Layout (Sidebar, Topbar, MainLayout)
+|   |   +-- lib/api.ts          #   Centralized API URL config
+|   |-- Dockerfile
+|   +-- package.json
+```
+
+---
+
+## 4. Environment Configuration
+
+### 4.1 Root `.env` (used by `docker-compose.yml`)
+
+```bash
+# Required
+GEMINI_API_KEY=<your-google-ai-studio-api-key>
+GOOGLE_API_KEY=<same-key-or-separate>
+
+# Neo4j Aura DB
+NEO4J_URI=neo4j+ssc://<instance-id>.databases.neo4j.io
+NEO4J_USER=<instance-id>
+NEO4J_PASSWORD=<your-neo4j-password>
+
+# Optional
+ANTHROPIC_API_KEY=
+SLACK_WEBHOOK_URL=
+```
+
+### 4.2 `orchestrator/.env`
+
+```bash
+GEMINI_API_KEY=<your-google-ai-studio-api-key>     # REQUIRED — no default
+ANTHROPIC_API_KEY=                                   # optional fallback
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/compliance
+REDIS_URL=redis://localhost:6379/0
+GRAPHRAG_API_URL=http://localhost:8001
+ENVIRONMENT=development
+LOG_LEVEL=INFO
+```
+
+> **Critical:** The config expects `GEMINI_API_KEY`, not `OPENAI_API_KEY`. If you see a `ValidationError` for `gemini_api_key`, your `.env` has the wrong key name. See [DEVLOG DL-005](./DEVLOG.md).
+
+### 4.3 `knowledge_engine/.env`
+
+```bash
+NEO4J_URI=neo4j+ssc://<instance-id>.databases.neo4j.io
+NEO4J_USER=<instance-id>
+NEO4J_PASSWORD=<your-neo4j-password>
+NEO4J_DATABASE=<instance-id>
+GOOGLE_API_KEY=<your-google-ai-studio-api-key>
+PARSED_DATA_DIR=./parsed_data
+
+# Optional — pin the embedding model explicitly so a Google deprecation
+# becomes a 30-second .env edit instead of a code change. The default in
+# src/config.py is `gemini-embedding-001` (3072-dim).
+# EMBEDDING_MODEL=gemini-embedding-001
+```
+
+### 4.4 Frontend Environment
+
+The frontend reads one variable at **build time**:
+
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:8004    # Set in start script
+```
+
+This is automatically set when using `start-all-modules.ps1`. For Cloud Run, the orchestrator URL is baked in via Docker build arg.
+
+---
+
+## 5. Local Development (UV + npm)
+
+### 5.1 One-Command Startup (Recommended)
+
+```powershell
+.\start-all-modules.ps1
+```
+
+This will:
+1. Check prerequisites (UV, Node.js)
+2. Kill any stale processes on ports 8004, 8001, 3000
+3. Clear orphaned PowerShell background jobs
+4. Verify `.env` files exist for each module
+5. Start knowledge_engine (8001), orchestrator (8004)
+6. Start frontend (3000) with `NEXT_PUBLIC_API_URL` auto-configured
+7. Wait for each service to become reachable
+
+```powershell
+# Backend only (skip frontend)
+.\start-all-modules.ps1 -SkipFrontend
+
+# Stop everything
+.\stop-all-modules.ps1
+```
+
+### 5.2 Manual Startup (Individual Modules)
+
+If you need to start modules individually for debugging:
+
+```bash
+# Terminal 1 — Knowledge Engine
+cd knowledge_engine
+uv run python -m uvicorn src.api.main:app --reload --port 8001 --host 0.0.0.0
+
+# Terminal 2 — Orchestrator
+cd orchestrator
+uv run python -m uvicorn src.api.main:app --reload --port 8004 --host 0.0.0.0
+
+# Terminal 3 — Frontend
+cd frontend
+npm install       # first time only
+npm run dev
+```
+
+> **Important:** Use `uv run python -m uvicorn`, NOT `uv run uvicorn`. The direct `uvicorn` script path fails when the project directory contains spaces. See [DEVLOG DL-007](./DEVLOG.md).
+
+### 5.3 Startup Order
+
+Services can start in any order, but the intended dependency chain is:
+
+```
+knowledge_engine (8001)  -->  orchestrator (8004)  -->  frontend (3000)
+```
+
+- **Orchestrator depends on:** Knowledge Engine (for legal research)
+- **Frontend depends on:** Orchestrator (API calls)
+
+---
+
+## 6. Docker Deployment
+
+### 6.1 Full Stack via Root Compose
+
+```bash
+# Start all backend services (detached)
+docker-compose up -d --build
+
+# View logs
+docker-compose logs -f
+
+# Stop everything
+docker-compose down
+
+# Stop and remove volumes (full reset)
+docker-compose down -v
+```
+
+The root `docker-compose.yml` starts 4 services:
+
+| Service | Container | Port | Image |
+|---------|-----------|------|-------|
+| orchestrator | alloycode-orchestrator | 8004 | Built from `./orchestrator` |
+| orchestrator-db | alloycode-orchestrator-db | 5432 | `postgres:15-alpine` |
+| orchestrator-redis | alloycode-orchestrator-redis | 6379 | `redis:7-alpine` |
+| graphrag-api | alloycode-knowledge-engine | 8001 | Built from `./knowledge_engine` |
+
+### 6.2 Docker + Frontend Hybrid
+
+Docker Compose runs the backend. For frontend development alongside:
+
+```powershell
+# Start backend via Docker
+docker-compose up -d
+
+# Start frontend locally (hot reload)
+cd frontend
+npm run dev
+```
+
+Or use the start script in docker mode:
+
+```powershell
+.\start-all-modules.ps1 -Mode docker
+```
+
+---
+
+## 7. Google Cloud Run Deployment
+
+### 7.1 Script Overview
+
+| Script | Purpose | Builds Images? |
+|--------|---------|----------------|
+| `deploy_gcp.ps1` | First-time GCP setup (project, APIs, registry, secrets) | No |
+| `setup-secrets.ps1` | Push `.env` values to Secret Manager | No |
+| `deploy.ps1` | Build images + push to Artifact Registry + deploy to Cloud Run | Yes |
+| `deploy.clean.ps1` | Wrapper: `deploy.ps1` with no Docker cache | Yes |
+| `deploy.fast.ps1` | Wrapper: `deploy.ps1 -UseCache -SkipCachePrune` | Yes |
+| `cleanup_gcp.ps1` | Delete all Cloud Run services, images, and secrets | No |
+
+### 7.2 First-Time Setup
+
+```powershell
+# 1. Authenticate with Google Cloud
+gcloud auth login
+
+# 2. Ensure billing is enabled on the project
+#    https://console.cloud.google.com/billing
+
+# 3. Populate .env files for all modules (see Section 4)
+
+# 4. Run first-time setup (creates project, APIs, registry, secrets)
+.\deploy_gcp.ps1
+
+# 5. Build and deploy all services
+.\deploy.clean.ps1
+```
+
+### 7.3 Subsequent Deployments
+
+```powershell
+# Fast deploy (reuses Docker cache — good for code-only changes)
+.\deploy.fast.ps1
+
+# Clean deploy (full rebuild — use when dependencies change)
+.\deploy.clean.ps1
+```
+
+### 7.4 Updating Secrets Only
+
+If you rotate an API key:
+
+```powershell
+# 1. Update the key in the relevant .env file
+# 2. Re-push all secrets
+.\setup-secrets.ps1
+
+# 3. Redeploy to pick up new secret version
+.\deploy.fast.ps1
+```
+
+### 7.5 Starting From Scratch
+
+```powershell
+# Tear down everything
+.\cleanup_gcp.ps1
+
+# Re-setup and deploy
+.\deploy_gcp.ps1
+.\deploy.clean.ps1
+```
+
+### 7.6 Cloud Run Configuration
+
+| Service | Cloud Run Name | Port | Memory | CPU | Secrets |
+|---------|---------------|------|--------|-----|---------|
+| Knowledge Engine | `aegis-knowledge-engine` | 8001 | 2Gi | 2 | `GOOGLE_API_KEY`, `NEO4J_*` |
+| Orchestrator | `aegis-orchestrator` | 8004 | 2Gi | 2 | `GEMINI_API_KEY`, `DATABASE_URL_ORCHESTRATOR` |
+| Frontend | `aegis-frontend` | 3000 | 512Mi | 1 | (none) |
+
+**Region:** `europe-west1` (Belgium) — supports domain mapping.
+
+**Deploy order:** Knowledge Engine -> Orchestrator -> Frontend (frontend needs orchestrator URL baked in at build time).
+
+### 7.7 Custom Domain Mapping
+
+Domain mapping is only available in specific Cloud Run regions. `europe-west1` supports it.
+
+```powershell
+# 1. Verify domain ownership (one-time)
+gcloud domains verify yourdomain.com
+
+# 2. Map domain to frontend service
+gcloud beta run domain-mappings create --service=aegis-frontend --domain=app.yourdomain.com --region=europe-west1
+
+# 3. Add the DNS records shown by gcloud to your domain registrar
+# 4. Wait 15-30 minutes for SSL certificate provisioning
+```
+
+**If domain mapping takes >1 hour:**
+1. Verify DNS records are correct: `gcloud beta run domain-mappings describe --domain=app.yourdomain.com --region=europe-west1`
+2. Check domain ownership: [Google Search Console](https://search.google.com/search-console)
+3. Check for CAA DNS records blocking `pki.goog` (Google's certificate authority)
+4. Check certificate status: `gcloud beta run domain-mappings list --region=europe-west1`
+5. Alternative: use Firebase Hosting or a Global Application Load Balancer
+
+**Regions that do NOT support domain mapping:** `europe-west2` (London), `asia-south1`, and others. See [Cloud Run locations docs](https://cloud.google.com/run/docs/locations).
+
+### 7.8 CORS Configuration
+
+The orchestrator's CORS settings are controlled by the `CORS_ORIGINS` environment variable:
+
+- **Local development:** `ENVIRONMENT=development` automatically allows all origins (`*`)
+- **Cloud Run:** `deploy.ps1` sets `CORS_ORIGINS=*` because the frontend URL is dynamic and not known when the orchestrator deploys
+
+For restricted production environments, do a two-pass deploy:
+1. Deploy orchestrator (with `CORS_ORIGINS=*` temporarily)
+2. Deploy frontend, note its URL
+3. Update orchestrator: `CORS_ORIGINS=https://aegis-frontend-xxxxx.run.app`
+
+---
+
+## 8. Service Details
+
+### 8.1 Orchestrator (Port 8004 local / 8000 Docker)
+
+**Purpose:** Multi-agent AI compliance assessment engine.
+
+**Stack:** FastAPI, LangGraph, Gemini 2.5 Flash, PostgreSQL, Redis
+
+**Key Endpoints:**
+
+| Method | Path | Description |
+|--------|------|-------------|
+| `POST` | `/api/v1/assessments` | Start a new compliance assessment |
+| `GET` | `/api/v1/assessments/{session_id}` | Get assessment status/results |
+| `GET` | `/api/v1/approvals` | List pending human approvals |
+| `POST` | `/api/v1/approvals/{id}/decide` | Approve/reject a request |
+| `GET` | `/api/v1/statistics` | System statistics |
+| `GET` | `/health` | Health check |
+
+**Agent Workflow (LangGraph):**
+
+```
+START -> Supervisor -> Risk Classifier -> Technical Assessor
+                                              |
+                                    Legal Research Agent
+                                    (calls Knowledge Engine)
+                                              |
+                                    Documentation Generator -> END
+```
+
+**Config:** `orchestrator/src/config.py` — Pydantic Settings, reads from `.env`
+
+**Required env vars:** `GEMINI_API_KEY` (no default, will crash without it)
+
+---
+
+### 8.2 Knowledge Engine (Port 8001)
+
+**Purpose:** GraphRAG legal research engine for EU AI Act and GDPR.
+
+**Stack:** FastAPI, Neo4j (Aura DB), Custom JSON Vector Store, Gemini Embeddings
+
+**Key Endpoints:**
+
+| Method | Path | Description |
+|--------|------|-------------|
+| `POST` | `/api/v1/vector/search` | Vector similarity search |
+| `POST` | `/api/v1/graph/traverse` | Neo4j graph traversal |
+| `POST` | `/api/v1/hybrid/search` | Combined RRF search |
+| `POST` | `/api/v1/hybrid/reason` | Multi-hop reasoning with LLM synthesis |
+| `GET` | `/health` | Health check |
+
+**Knowledge Base Statistics:**
+- Neo4j: 2,301 nodes (18 entity types), 4,423 relationships (13 types)
+- Vector Store: 2,198 documents across 7 collections
+- Embedding model: Gemini `gemini-embedding-001` (3072 dimensions). The earlier `text-embedding-004` model was deprecated by Google on the `v1beta` endpoint and now returns 404 — see [DEVLOG DL-019](./DEVLOG.md). The stored vectors in `chroma_data/*.json` are already 3072-dim, so no re-embed is needed when upgrading from older code.
+- Retrieval: Reciprocal Rank Fusion (RRF) combining graph + vector results
+
+**Vector Store Implementation:**
+The vector store uses a custom JSON-backed implementation (`src/stores/vector_store.py`), NOT ChromaDB. ChromaDB was removed due to Python 3.14 incompatibility. Data files are stored in `chroma_data/` as JSON (the directory name is historical).
+
+---
+
+### 8.3 Frontend (Port 3000)
+
+**Purpose:** AlloyCode Compliance Dashboard — premium UI for managing assessments.
+
+**Stack:** Next.js 16 (App Router), React 19, Tailwind CSS v4, lucide-react, framer-motion
+
+**Pages:**
+
+| Route | Description |
+|-------|-------------|
+| `/` | Dashboard — KPIs, risk distribution, recent assessments |
+| `/assessments/new` | Start new assessment (6 golden test cases included) |
+| `/assessments/[id]` | Assessment detail view |
+| `/approvals` | Human review queue |
+| `/knowledge` | Knowledge graph explorer |
+
+**API Configuration:** All backend URLs are centralized in `frontend/src/lib/api.ts`. The base URL is set via `NEXT_PUBLIC_API_URL` (defaults to `http://localhost:8004`).
+
+---
+
+## 9. Pipeline Scripts
+
+### `start-all-modules.ps1`
+
+```
+Usage: .\start-all-modules.ps1 [-Mode <docker|local>] [-SkipFrontend]
+Default: -Mode local
+```
+
+**Startup sequence:**
+1. Prerequisite check (UV/Node.js or Docker)
+2. Kill stale processes on ports 8004, 8001, 3000
+3. Clear orphaned PowerShell background jobs
+4. Verify `.env` files (copies from `.env.example` if missing)
+5. Start backend services (UV or Docker Compose)
+6. Wait for each service to respond (30s timeout per service)
+7. Start frontend (npm dev server as background job)
+8. Print endpoint summary
+
+### `stop-all-modules.ps1`
+
+```
+Usage: .\stop-all-modules.ps1 [-Mode <docker|local>]
+Default: -Mode local
+```
+
+### Checking Running Jobs
+
+```powershell
+Get-Job                                             # List all jobs
+Receive-Job -Id <job-id> -Keep                      # View output
+Get-NetTCPConnection -LocalPort 8004 -ErrorAction SilentlyContinue  # Check port
+```
+
+---
+
+## 10. Health Checks & Verification
+
+### Quick Verification (All Services)
+
+```bash
+# Orchestrator
+curl http://localhost:8004/health
+
+# Knowledge Engine
+curl http://localhost:8001/health
+
+# Frontend
+curl http://localhost:3000/
+```
+
+### End-to-End Test
+
+Submit a test assessment to verify the full pipeline:
+
+```bash
+curl -X POST http://localhost:8004/api/v1/assessments \
+  -H "Content-Type: application/json" \
+  -d '{
+    "system_description": "AI-powered resume screening tool that automatically filters job applications",
+    "system_type": "Resume Screening AI",
+    "company": "Test Corp",
+    "context": "Used for hiring decisions in the EU market"
+  }'
+```
+
+Expected: Returns a `session_id`. Poll `GET /api/v1/assessments/{session_id}` to watch the workflow progress.
+
+### Golden Test Cases
+
+The frontend includes 6 predefined test cases (GT-01 through GT-06) on the New Assessment page. These cover:
+- GT-01: Resume screening AI (high-risk employment)
+- GT-02: Medical diagnosis AI (high-risk healthcare)
+- GT-03: Content recommendation (limited risk)
+- GT-04: Spam filter (minimal risk)
+- GT-05: Social scoring system (prohibited)
+- GT-06: Credit scoring AI (high-risk financial)
+
+---
+
+## 11. Known Issues & Workarounds
+
+### Spaces in Project Path
+
+The project path contains spaces (`D:\60 Days\Projects\...`). This causes:
+
+- **`uv run uvicorn` fails** — Use `uv run python -m uvicorn` instead. The start script handles this automatically.
+- **PowerShell `Start-Job` PATH issues** — The start script resolves full executable paths before launching jobs.
+
+### Python Version
+
+UV manages its own Python. The project uses Python 3.13.x (managed by UV). ChromaDB is not compatible with Python 3.14, which is why the project uses a custom JSON-backed vector store.
+
+### Neo4j Aura DB
+
+The knowledge graph is hosted on Neo4j Aura DB (cloud). If the Aura instance is paused (free tier auto-pauses after 3 days of inactivity), the Knowledge Engine will fail to connect. Resume the instance from the [Neo4j Aura Console](https://console.neo4j.io/).
+
+### PostgreSQL for Orchestrator
+
+The orchestrator persists scan results in PostgreSQL. In local mode (without Docker), it falls back to in-memory storage if no database is reachable on `DATABASE_URL`.
+
+### Frontend Build Warning
+
+The Knowledge Graph page uses static data (not fetched from APIs). This is intentional — it displays verified knowledge base statistics. Live data integration is a future enhancement.
+
+### Cloud Run Port Mismatch
+
+Cloud Run defaults to `PORT=8080`. Each service has a custom port in its Dockerfile. The deploy script explicitly passes `--port=<port>` for each service. If you deploy manually, always include `--port`.
+
+### Gemini Embedding Model Deprecation
+
+Google periodically removes embedding models from the `v1beta` endpoint that the `google-genai` Python SDK targets. When this happens, every retrieval endpoint in the Knowledge Engine returns HTTP 500 and the `legal_research` agent silently produces empty `finding_citations` (the workflow still completes — only the "Legal citations" block in the scan UI is missing).
+
+**Currently supported model:** `gemini-embedding-001` (3072-dim).
+**Removed:** `text-embedding-004` (returns 404 NOT_FOUND on `embedContent`).
+
+**Diagnose:** `curl -X POST http://localhost:8001/api/v1/vector/search -H "Content-Type: application/json" -d '{"query":"test","top_k":1}'`. A 500 here with `/health` reporting `vector_store: loaded` is a near-certain match for this failure mode. See [DEVLOG DL-019](./DEVLOG.md).
+
+### Cloud Run `PORT` Environment Variable
+
+Cloud Run reserves `PORT` as a system environment variable. Do NOT pass it in `--set-env-vars` — Cloud Run sets it automatically from `--port`. Doing so will cause deployment to fail.
+
+---
+
+## 12. Troubleshooting
+
+### "Failed to canonicalize script path"
+
+```
+$ uv run uvicorn src.api.main:app --port 8004
+Failed to canonicalize script path
+```
+
+**Fix:** Use `uv run python -m uvicorn src.api.main:app --port 8004`
+
+### "ValidationError: gemini_api_key Field required"
+
+```
+pydantic_core.ValidationError: gemini_api_key Field required
+```
+
+**Fix:** Add `GEMINI_API_KEY=<your-key>` to `orchestrator/.env`. Do NOT use `OPENAI_API_KEY`.
+
+### "API key not valid" on Cloud Run
+
+```
+Error calling model 'gemini-2.5-flash': API key not valid.
+```
+
+**Diagnose:**
+1. Test your key directly: `curl "https://generativelanguage.googleapis.com/v1beta/models?key=YOUR_KEY"`
+2. If invalid, generate a new one at [Google AI Studio](https://aistudio.google.com/app/apikey)
+3. Update `orchestrator/.env` and re-push: `.\setup-secrets.ps1`
+4. Redeploy: `.\deploy.fast.ps1`
+
+### "Attribute name 'metadata' is reserved"
+
+```
+sqlalchemy.exc.InvalidRequestError: Attribute name 'metadata' is reserved
+```
+
+**Fix:** Already fixed in the codebase. If you see this error, pull the latest code.
+
+### Backend Job Fails Silently
+
+If a backend job shows `[X] ... failed to start!` with no error details:
+
+```powershell
+Get-Job
+Receive-Job -Id <job-id> -Keep -ErrorAction SilentlyContinue
+```
+
+Common causes: missing `.env` file, port already in use, Python import error.
+
+### Port Already in Use After Stop
+
+```powershell
+Get-NetTCPConnection -LocalPort 8004 | Select-Object OwningProcess
+Get-Process -Id <pid>
+Stop-Process -Id <pid> -Force
+```
+
+### Frontend Shows "Failed to connect to AlloyCode API"
+
+Check:
+1. Is the orchestrator running? `curl http://localhost:8004/health`
+2. Is `NEXT_PUBLIC_API_URL` set? (Auto-set by `start-all-modules.ps1` locally; baked in via Docker build arg on Cloud Run)
+3. CORS configured? Orchestrator allows `*` origins in development. On Cloud Run, `CORS_ORIGINS=*` is set via env var.
+
+### Cloud Run Deploy: "Container failed to start"
+
+```
+ERROR: The user-provided container failed to start and listen on the port
+defined provided by the PORT=8080
+```
+
+**Fix:** Add `--port=<actual-port>` to the `gcloud run deploy` command. Each service listens on its own port, not 8080.
+
+### Knowledge Engine `/api/v1/hybrid/reason` Returns 500
+
+Symptoms: scan completes, finding rows render `mapped_articles` badges (from rule YAML), but the "Legal citations" block is missing on every expanded row. The `legal_research` agent catches HTTP errors per-rule and returns empty citations without surfacing a workflow-level warning, so the dashboard looks healthy.
+
+**Quick check:**
+
+```bash
+curl -X POST http://localhost:8001/api/v1/vector/search \
+  -H "Content-Type: application/json" \
+  -d '{"query":"test","top_k":1}'
+```
+
+If this returns `Internal Server Error` while `curl http://localhost:8001/health` returns 200, the most likely cause is a deprecated Gemini embedding model name. Confirm in the Knowledge Engine's terminal — look for `google.genai.errors.ClientError: 404 NOT_FOUND ... is not supported for embedContent`.
+
+**Fix:** Set `EMBEDDING_MODEL=gemini-embedding-001` in `knowledge_engine/.env` (or update the default in `src/config.py`) and restart the service. The stored vectors in `chroma_data/*.json` are already 3072-dim and match this model — no re-embed required. See [DEVLOG DL-019](./DEVLOG.md).
+
+### Neo4j Connection Timeout
+
+The Knowledge Engine can't reach Neo4j Aura. Check:
+1. Is the Aura instance running? Log in to [console.neo4j.io](https://console.neo4j.io/)
+2. Are `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` correct in `knowledge_engine/.env`?
+3. Is `neo4j+ssc://` (TLS) being used? Aura requires encrypted connections.
+
+### gcloud stderr Crashes PowerShell Script
+
+```
+NativeCommandError: Listing items under project...
+```
+
+**Cause:** `$ErrorActionPreference = "Stop"` + gcloud writes info messages to stderr.
+**Fix:** Wrap gcloud read-only calls in `Invoke-GcloudQuery` (already done in all deploy scripts).
+
+### Domain Mapping Stuck / Takes Too Long
+
+If `gcloud beta run domain-mappings create` shows pending for >30 min:
+1. Verify DNS records match exactly what gcloud showed
+2. Check `gcloud beta run domain-mappings describe --domain=yourdomain.com --region=europe-west1`
+3. Ensure no CAA records block `pki.goog`
+4. Ensure domain is verified in Google Search Console
+5. Consider Firebase Hosting or ALB as alternatives
+
+---
+
+## 13. Best Practices
+
+### Deployment
+
+1. **Always test API keys before deploying.** Run a quick curl against the provider's API to verify the key works before pushing to Secret Manager.
+2. **Use `deploy.fast.ps1` for code-only changes.** It reuses the Docker layer cache and skips the cache prune step — typically 5-10x faster than a clean build.
+3. **Use `deploy.clean.ps1` when changing dependencies.** Modified `pyproject.toml`, `package.json`, or `Dockerfile`? Do a clean build to ensure layers are rebuilt.
+4. **Never hardcode Cloud Run URLs.** Use environment variables (`GRAPHRAG_API_URL`, `MONITORING_API_URL`, `NEXT_PUBLIC_API_URL`) — the deploy script resolves and injects them automatically.
+5. **Tag images with timestamps.** The deploy script creates `manual-YYYYMMDD-HHmmss` tags alongside `:latest`. This makes rollback trivial: `gcloud run deploy --image=<old-tag>`.
+
+### Secrets Management
+
+6. **Keep `.env` files out of git.** They're in `.gitignore`. Never commit API keys.
+7. **Use `setup-secrets.ps1` as the single source of truth** for pushing secrets to GCP. Don't manually create secrets in the console — it's easy to get names wrong.
+8. **Test secrets after rotation.** After updating a key in `.env` and running `setup-secrets.ps1`, always redeploy to verify the new key works end-to-end.
+9. **Never pipe secrets to `gcloud --data-file=-` on Windows.** PowerShell 5.1 appends `\r\n` to piped strings, and `WriteAllText` adds a UTF-8 BOM — both corrupt secret values. Use `WriteAllBytes` to write a temp file with exact bytes, then pass `--data-file=$tmpFile`. See [DEVLOG DL-018](./DEVLOG.md).
+
+### PowerShell Scripting for GCP
+
+9. **Never use `$args` as a variable name.** It's a reserved automatic variable in PowerShell. Use `$dockerArgs`, `$cmdArgs`, etc.
+10. **Always wrap gcloud queries in `Invoke-GcloudQuery`.** gcloud writes informational messages to stderr, which PowerShell treats as errors under `$ErrorActionPreference = "Stop"`.
+11. **Don't use `$script:` scope tricks across function boundaries.** Use return values or `Invoke-GcloudQuery` instead. Variables set as `$script:foo` inside a scriptblock passed to another function won't be visible in the calling function's local scope.
+12. **Don't pass `PORT` in `--set-env-vars`.** Cloud Run reserves it. Use `--port` flag instead.
+
+### Retrieval & Embeddings
+
+13. **Pin the embedding model in `.env`, not as a code default.** Google deprecates models on `v1beta` without warning; an `.env`-driven name turns a deprecation into a 30-second config change instead of a code edit + redeploy. See [DEVLOG DL-019](./DEVLOG.md).
+14. **Cross-check stored embedding dimensions against the configured model before switching.** A 768-dim model querying 3072-dim stored vectors won't 500 — it will silently produce garbage rankings, which is worse. Verify with `len(json.load(open("chroma_data/articles.json"))["embeddings"][0])`.
+15. **Make `/health` exercise the retrieval path.** A health probe that only checks "store is loaded" misses deprecated-model failures. Add a synthetic embed + 1-doc cosine lookup so the probe fails the moment the embedding API stops responding.
+16. **Don't let agents swallow upstream failures silently.** The `legal_research` agent catches HTTP errors per-rule (correct for partial outages) but currently produces no workflow-level signal when **every** lookup fails. If you add a new agent that depends on an upstream service, surface a top-level warning when that service is unreachable so the UI can flag it instead of rendering an empty block.
+
+### Architecture
+
+17. **Deploy services in dependency order.** Knowledge Engine first, then Orchestrator (needs its URL), then Frontend (needs Orchestrator URL baked in at build time).
+18. **Use wildcard CORS for demos, explicit origins for production.** The deploy script sets `CORS_ORIGINS=*` which is fine for a public portfolio demo. For production, whitelist specific origins.
+19. **Use `--min-instances=0` for cost efficiency.** Cold starts add 5-10 seconds but save money when the demo isn't being used. Set `--min-instances=1` for the orchestrator if cold starts are unacceptable.
+20. **Choose regions that support domain mapping.** `europe-west1` (Belgium) supports it. `europe-west2` (London) does not. Check the [Cloud Run locations docs](https://cloud.google.com/run/docs/locations) before deploying.

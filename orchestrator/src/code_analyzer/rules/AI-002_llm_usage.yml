@@ -1,0 +1,36 @@
+id: AI-002
+title: Generative AI / LLM SDK usage
+severity: high
+technique: import_scan
+languages: [python, javascript, typescript]
+patterns:
+  imports:
+    - openai
+    - anthropic
+    - google.generativeai
+    - langchain
+    - langchain_core
+    - langchain_community
+    - llama_index
+    - transformers
+    - cohere
+    - mistralai
+    - "@anthropic-ai/sdk"
+    - "@google/generative-ai"
+    - "@langchain/core"
+maps_to:
+  articles: [AIACT_ART_50, AIACT_ART_52, AIACT_ART_13]
+  obligation_anchors:
+    - generative AI transparency
+    - AI-generated content disclosure
+    - synthetic content labelling
+confidence:
+  base: 0.95
+  dampeners:
+    - when: "file_matches: (^|/)(tests?|spec|examples?)/"
+      factor: 0.6
+remediation: >
+  EU AI Act Art 50 requires providers and deployers of generative AI to inform
+  users they are interacting with AI and to mark synthetic content. Ensure a
+  clear disclosure is presented in any user-facing surface that returns LLM
+  output, and that synthetic text / media is machine-readably labelled.

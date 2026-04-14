@@ -1,0 +1,25 @@
+id: AI-010
+title: No human-override mechanism for high-risk AI endpoint
+severity: high
+technique: ast_scan
+languages: [python, javascript, typescript]
+patterns:
+  kind: no_override
+maps_to:
+  articles: [AIACT_ART_14, AIACT_ART_26, GDPR_ART_22]
+  obligation_anchors:
+    - human oversight
+    - ability to override
+    - right to contest
+confidence:
+  base: 0.65
+  dampeners:
+    - when: "file_matches: (^|/)(tests?|spec)/"
+      factor: 0.4
+remediation: >
+  AI Act Art 14(4) requires high-risk AI systems to be designed so that
+  natural persons supervising them can decide not to use the system, disregard
+  its output, or reverse it. GDPR Art 22(3) requires that the data subject be
+  given at least the right to obtain human intervention, to express a point
+  of view and to contest the decision. Add a sibling route / UI path for
+  override, appeal, or rejection; document the process in `model_card.md`.

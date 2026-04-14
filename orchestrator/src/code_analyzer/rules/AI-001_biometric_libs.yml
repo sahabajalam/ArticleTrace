@@ -1,0 +1,34 @@
+id: AI-001
+title: Biometric / face / emotion recognition library usage
+severity: critical
+technique: import_scan
+languages: [python, javascript, typescript]
+patterns:
+  imports:
+    - face_recognition
+    - deepface
+    - dlib.get_frontal_face_detector
+    - mediapipe.solutions.face_detection
+    - mediapipe.solutions.face_mesh
+    - fer
+    - face-api.js
+    - "@vladmandic/face-api"
+maps_to:
+  articles: [AIACT_ART_5, AIACT_ANNEX_III, GDPR_ART_9]
+  obligation_anchors:
+    - biometric identification
+    - face recognition
+    - special category data
+    - emotion recognition
+confidence:
+  base: 0.9
+  dampeners:
+    - when: "file_matches: (^|/)(tests?|spec|examples?|docs?)/"
+      factor: 0.4
+remediation: >
+  Real-time remote biometric identification in publicly accessible spaces is
+  prohibited by AI Act Art 5(1)(h) except for narrow law-enforcement carve-outs.
+  Emotion recognition in workplace / education is prohibited by Art 5(1)(f).
+  In closed / consented contexts this remains a high-risk system under Annex
+  III §1 and triggers GDPR Art 9 special-category requirements — add a DPIA
+  (GDPR Art 35) and a lawful basis under Art 9(2).

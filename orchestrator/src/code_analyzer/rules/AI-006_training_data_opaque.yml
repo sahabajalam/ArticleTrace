@@ -1,0 +1,29 @@
+id: AI-006
+title: Training data source opacity — no data card
+severity: medium
+technique: file_pattern
+languages: [python]
+patterns:
+  mode: absent
+  markers:
+    - data_card.md
+    - DATA_CARD.md
+    - DATASHEET.md
+    - datasheet.md
+    - docs/data_card.md
+    - docs/datasheet.md
+  requires_any_rule: [AI-001, AI-002]
+maps_to:
+  articles: [AIACT_ART_10, AIACT_ART_11]
+  obligation_anchors:
+    - data governance
+    - training data quality
+    - dataset documentation
+confidence:
+  base: 0.65
+remediation: >
+  AI Act Art 10 requires that training, validation and testing datasets for
+  high-risk systems meet quality criteria and are subject to governance
+  practices (representativeness, bias checks, provenance). Publish a
+  `DATASHEET.md` or `data_card.md` covering data sources, collection method,
+  pre-processing, known biases, and intended coverage.

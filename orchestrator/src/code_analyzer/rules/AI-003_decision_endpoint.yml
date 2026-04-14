@@ -1,0 +1,25 @@
+id: AI-003
+title: User-facing AI decision endpoint without human review
+severity: high
+technique: ast_scan
+languages: [python, javascript, typescript]
+patterns:
+  kind: decision_endpoint
+maps_to:
+  articles: [AIACT_ART_14, GDPR_ART_22, AIACT_ART_26]
+  obligation_anchors:
+    - human oversight
+    - automated decision-making
+    - right to human intervention
+confidence:
+  base: 0.8
+  dampeners:
+    - when: "file_matches: (^|/)(tests?|spec)/"
+      factor: 0.4
+remediation: >
+  AI Act Art 14 requires high-risk AI systems to be designed so a natural
+  person can effectively oversee them. GDPR Art 22 grants the data subject a
+  right not to be subject to decisions based solely on automated processing.
+  Wrap this endpoint with an approval / human-review step, or document why
+  Art 22 exemptions apply (explicit consent, contract necessity, legal
+  authorisation) and surface the human-intervention pathway to the user.

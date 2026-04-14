@@ -1,0 +1,37 @@
+id: AI-008
+title: Social scoring / behavioral prediction keywords (prohibited practice)
+severity: critical
+technique: content_scan
+languages: [python, javascript, typescript]
+patterns:
+  keywords:
+    - social_score
+    - social_scoring
+    - trustworthiness_score
+    - creditworthiness_by_behavior
+    - predictive_policing
+    - recidivism_prediction
+    - subliminal_manipulation
+    - emotion_recognition_workplace
+    - untargeted_scraping
+  extensions: [.py, .js, .ts, .tsx, .jsx, .md, .rst, .txt, .yaml, .yml]
+maps_to:
+  articles: [AIACT_ART_5]
+  obligation_anchors:
+    - prohibited AI practice
+    - social scoring
+    - predictive policing
+    - subliminal techniques
+confidence:
+  base: 0.7
+  dampeners:
+    - when: "file_matches: (^|/)(tests?|docs?|examples?)/"
+      factor: 0.5
+remediation: >
+  AI Act Art 5 lists prohibited practices including social scoring by public
+  authorities (5(1)(c)), predictive policing based solely on profiling
+  (5(1)(d)), untargeted scraping of facial images (5(1)(e)), emotion
+  recognition in workplace/education (5(1)(f)), and subliminal techniques
+  (5(1)(a)). If the keyword reflects the system's actual function, the
+  system must be redesigned or withdrawn; fines reach up to €35M or 7% of
+  worldwide turnover (Art 99).

@@ -1,0 +1,25 @@
+id: AI-007
+title: AI decision without audit logging
+severity: medium
+technique: ast_scan
+languages: [python, javascript, typescript]
+patterns:
+  kind: audit_missing
+maps_to:
+  articles: [AIACT_ART_12, AIACT_ART_26, GDPR_ART_30]
+  obligation_anchors:
+    - record keeping
+    - logging
+    - traceability
+confidence:
+  base: 0.6
+  dampeners:
+    - when: "file_matches: (^|/)(tests?|spec)/"
+      factor: 0.3
+remediation: >
+  AI Act Art 12 requires high-risk AI systems to technically allow the
+  automatic recording of events (logs) throughout the system's lifecycle, to
+  a degree appropriate to the intended purpose. GDPR Art 30 separately
+  requires records of processing activities. Wrap the inference call with a
+  structured logger that records inputs hash, model version, output, and
+  decision subject id.

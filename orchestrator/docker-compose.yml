@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  orchestrator:
+    build: .
+    ports:
+      - "8004:8004"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/compliance
+      - REDIS_URL=redis://redis:6379/0
+      - GRAPHRAG_API_URL=${GRAPHRAG_API_URL:-http://graphrag:8001}
+      - LOG_LEVEL=INFO
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=compliance
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # knowledge_engine GraphRAG API (placeholder — use the root docker-compose.yml
+  # instead to run both modules together).
+  # graphrag:
+  #   image: your-graphrag-image
+  #   ports:
+  #     - "8001:8001"
+
+volumes:
+  postgres_data:
+  redis_data:
