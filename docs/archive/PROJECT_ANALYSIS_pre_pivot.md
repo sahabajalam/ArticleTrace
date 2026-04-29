@@ -228,8 +228,7 @@ This means **scripts 01-05 have already been run successfully at some point**. O
 | Core 1 Dockerfile | `core_1/Dockerfile` | ✅ Multi-stage UV build |
 | Core 2 Dockerfile | `core_2_knowledge_base/Dockerfile` | ✅ Multi-stage UV build, copies chroma_data + parsed_data |
 | Core 3 Dockerfile | `core_3/Dockerfile` | ✅ Multi-stage UV build, copies golden test data |
-| Start script | `start-all-modules.ps1` | ✅ 231 lines, supports docker and local mode |
-| Stop script | `stop-all-modules.ps1` | ✅ Present |
+| Pipeline script | `pipeline.ps1` | ✅ Unified lifecycle: start / stop / restart-orch / kill-ports |
 
 ### Environment Variables (.env)
 
@@ -383,7 +382,7 @@ Step 5:  Load knowledge graph into Neo4j
             uv run python scripts/04_load_full_kg.py
 
 Step 6:  Start all API services
-            docker-compose up -d  (or use start-all-modules.ps1)
+            docker-compose up -d  (or use .\pipeline.ps1 -Action start -Mode docker)
 
 Step 7:  Verify health endpoints
             curl http://localhost:8000/health  (Core 3)

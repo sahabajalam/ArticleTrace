@@ -1,503 +1,352 @@
-# TECHNICAL REFERENCE
+# AlloyCode — Technical Reference
 
-**Consolidated from:** `01_PROJECT_PORTFOLIO.md`, `02_ARCHITECTURE_AND_INTEGRATION.md`, `03_KB_DESIGN_AND_CONSTRUCTION.md`, `04_GAP_ANALYSIS_AND_IMPROVEMENTS.md`
-**Date:** 2026-02-24
-
----
-
-## Table of Contents
-
-1. [System Architecture](#1-system-architecture)
-2. [Neo4j Knowledge Graph Schema](#2-neo4j-knowledge-graph-schema)
-3. [Retrieval Pipeline](#3-retrieval-pipeline)
-4. [Agent Architecture (Core 3)](#4-agent-architecture-core-3)
-5. [Cross-Module Integration](#5-cross-module-integration)
-6. [Data Types & Risk Categories](#6-data-types--risk-categories)
-7. [Cross-Regulation Mappings](#7-cross-regulation-mappings)
-8. [EU AI Act Enforcement Timeline](#8-eu-ai-act-enforcement-timeline)
-9. [Technology Stack](#9-technology-stack)
-10. [Business Impact](#10-business-impact)
+**Last updated:** 2026-04-13
+**Covers:** Knowledge base schema · Rule catalog · Implementation status · Roadmap
 
 ---
 
-## 1. System Architecture
+## 1. Knowledge Base — the moat
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│     CORE 3: Compliance Agent (Port 8000)                     │
-│     • 5 AI Agents: Risk Classifier, GDPR Auditor, Legal      │
-│       Research, Documentation Generator, Supervisor          │
-│     • Uses LangGraph for workflow orchestration              │
-└────────────┬─────────────────────────────────────────────────┘
-             │ Queries knowledge graph for legal citations
-             ▼
-┌──────────────────────────────────────────────────────────────┐
-│     CORE 2: GraphRAG Knowledge Engine (Port 8001)            │
-│     • Neo4j Knowledge Graph (2,301 nodes, 4,431 rels)        │
-│     • JSON-backed Vector Store (2,132+ docs, 7 collections)  │
-│     • Hybrid Retrieval (RRF) + Multi-Hop Reasoning           │
-└────────────┬─────────────────────────────────────────────────┘
-             │
-             ▼
-┌──────────────────────────────────────────────────────────────┐
-│     CORE 1: Monitoring & Governance (Port 8002)              │
-│     • EU AI Act Article 14 compliance (human oversight)      │
-│     • Bias detection (chi-square), drift detection (Evidently)│
-│     • Prometheus metrics, Slack/email alerts                 │
-└──────────────────────────────────────────────────────────────┘
-```
+The KG and vector store are the **rule corpus** for the scanner. Every detection rule (§3) maps to Articles / Obligations stored here. Do not throw this away — this is the single hardest thing in the repo to rebuild.
 
-### Portfolio Integration Context
+### 1.1 Current state (verified 2026-04-13)
 
-```
-Project 1 (Basic RAG) → Regulatory knowledge base
-Project 3 (GraphRAG)  → Legal research engine     → Core 2
-Project 4 (Multi-Agent) → Compliance automation   → Core 3
-Project 2 (MLOps)     → Governance monitoring     → Core 1
-```
+| Store | Count | Notes |
+|---|---|---|
+| Neo4j nodes | **2,301** | Every node carries `Entity` super-label + one specialized label |
+| Neo4j relationships | **4,423** | |
+| Vector store docs | **2,198** | Custom JSON store (not ChromaDB — Python 3.14 compat; legacy folder name) |
+| Vector collections | **7** | articles, obligations, recitals, definitions, concepts, rights, interpretive |
+| Embedding model | `gemini-embedding-001` | 768-dim, cosine similarity |
 
----
+### 1.2 Entity types (19)
 
-## 2. Neo4j Knowledge Graph Schema
+| Label | Count | Label | Count |
+|---|--:|---|--:|
+| Obligation | 1,325 | AISystemType | 19 |
+| Recital | 353 | Right | 19 |
+| Article | 212 | Actor | 18 |
+| Exemption | 96 | DataType | 17 |
+| Definition | 90 | EnforcementAction | 15 |
+| Concept | 47 | Annex | 13 |
+| Chapter | 24 | Penalty | 6 |
+| Guideline | 21 | RiskCategory | 4 |
+| CaseLaw | 20 | Regulation | 2 |
 
-### 2.1 Entity Types (17 types — as built)
+### 1.3 Relationship types (top 13)
 
-| Label | Description | Example ID |
-|-------|-------------|------------|
-| `Regulation` | Top-level framework | `GDPR`, `EU_AI_ACT` |
-| `Chapter` | Chapter grouping | `GDPR_CHAPTER_4` |
-| `Article` | Individual article | `GDPR_ART_35`, `AIACT_ART_6` |
-| `Recital` | Interpretive recital | `GDPR_REC_71` |
-| `Annex` | Technical annex | `AIACT_ANNEX_III` |
-| `Definition` | Legal term | `GDPR_DEF_PERSONAL_DATA` |
-| `Concept` | Abstract concept | `CONCEPT_DPIA` |
-| `Right` | Data subject right | `RIGHT_ACCESS` |
-| `Obligation` | Must/must-not requirement | `OBL_GDPR_LAWFUL_BASIS` |
-| `Exemption` | Exception pathway | `EXM_GDPR_ART9_2_A` |
-| `Actor` | Legal role | `ACTOR_CONTROLLER` |
-| `DataType` | Data classification | `DT_BIOMETRIC` |
-| `AISystemType` | AI risk classification | `AIST_FACIAL_RECOGNITION` |
-| `RiskCategory` | Risk level | `RISK_HIGH` |
-| `Penalty` | Fine/sanction tier | `PEN_GDPR_TIER2` |
-| `CaseLaw` | CJEU decision | `CJEU_C_311_18` |
-| `Guideline` | EDPB guideline | `EDPB_GL_05_2020` |
-| `EnforcementAction` | DPA enforcement decision | `ENF_CLEARVIEW_AI` |
+| Type | Count | Type | Count |
+|---|--:|---|--:|
+| REQUIRES | 1,008 | PART_OF | 270 |
+| APPLIES_TO | 939 | PERMITS | 232 |
+| CONTAINS | 602 | EXEMPTS | 96 |
+| REFERENCES | 587 | DEFINES | 90 |
+| INTERPRETS | 303 | CITES / PROHIBITS | 85 each |
+| ENFORCES | 50 | COMPLEMENTS | 76 |
 
-### 2.2 Relationship Types (13 types — as built)
+### 1.4 Raw data inventory (still on disk for rebuild)
 
-| Type | Meaning | Example |
-|------|---------|---------|
-| `CONTAINS` | Parent → Child (structural) | `(GDPR)-[:CONTAINS]->(GDPR_ART_5)` |
-| `PART_OF` | Child → Parent | — |
-| `REFERENCES` | Cross-reference | `(AIACT_ART_6)-[:REFERENCES]->(AIACT_ANNEX_III)` |
-| `DEFINES` | Definition provision | `(GDPR)-[:DEFINES]->(GDPR_DEF_PERSONAL_DATA)` |
-| `REQUIRES` | Creates obligation | — |
-| `PROHIBITS` | Forbids activity | `(AIACT_ART_5)-[:PROHIBITS]->(AIST_EMOTION_RECOG)` |
-| `PERMITS` | Allows activity | — |
-| `EXEMPTS` | Provides exception | — |
-| `APPLIES_TO` | Affects which actors | — |
-| `ENFORCES` | Authority enforces | — |
-| `INTERPRETS` | Recital/Guideline → Article | `(GDPR_REC_71)-[:INTERPRETS]->(GDPR_ART_22)` |
-| `CITES` | CaseLaw/Enforcement → Article | `(ENF_CLEARVIEW_AI)-[:CITES]->(GDPR_ART_9)` |
-| `COMPLEMENTS` | Cross-regulation link | `(GDPR_ART_22)-[:COMPLEMENTS]->(AIACT_ART_14)` |
+89 files, 5.7 MB under [../legacy_prototypes/New_Data/](../legacy_prototypes/New_Data/) (already ingested into `knowledge_engine/parsed_data/`):
 
-**COMPLEMENTS subtypes (5):** `REINFORCES`, `CO_TRIGGERS`, `CREATES_EXCEPTION`, `CUMULATIVE`, `DELEGATES`
+| Category | Files | Entities |
+|---|---|---|
+| GDPR chapters | 11 `.txt` | 99 articles |
+| GDPR recitals | 1 `.txt` | 173 recitals |
+| EU AI Act chapters | 13 `.txt` | 113 articles |
+| EU AI Act recitals | 1 `.txt` | ~180 recitals |
+| EU AI Act annexes | 1 `.txt` | 13 annexes |
+| CJEU case law | 17 `.txt` | 20 decisions |
+| EDPB guidelines | 22 `.txt` | 22 guidelines |
+| Enforcement actions | 18 `.txt` | 15 DPA decisions |
 
-### 2.3 Entity ID Naming Convention
+### 1.5 ID naming convention (unchanged)
 
 | Pattern | Example | Meaning |
-|---------|---------|---------|
+|---|---|---|
 | `GDPR_ART_{N}` | `GDPR_ART_35` | GDPR Article |
-| `AIACT_ART_{N}` | `AIACT_ART_6` | AI Act Article |
-| `GDPR_DEF_{TERM}` | `GDPR_DEF_BIOMETRIC_DATA` | GDPR Definition |
-| `AIACT_DEF_{TERM}` | `AIACT_DEF_AI_SYSTEM` | AI Act Definition |
+| `AIACT_ART_{N}` | `AIACT_ART_14` | AI Act Article |
 | `AIACT_ANNEX_{ROMAN}` | `AIACT_ANNEX_III` | AI Act Annex |
-| `ANNEX_III_{N}` | `ANNEX_III_1` | Annex III Category |
-| `OBL_GDPR_{NAME}` | `OBL_GDPR_LAWFUL_BASIS` | Obligation |
-| `AUTH_{ACRONYM}` | `AUTH_EDPB` | Authority |
-| `CJEU_C_{NUM}` | `CJEU_C_311_18` | Case Law |
-| `ENF_{NAME}` | `ENF_CLEARVIEW_AI` | Enforcement Action |
-| `RISK_{LEVEL}` | `RISK_PROHIBITED` | Risk Category |
-| `AIST_{TYPE}` | `AIST_CHATBOT` | AI System Type |
+| `GDPR_DEF_{TERM}` | `GDPR_DEF_BIOMETRIC_DATA` | Definition |
+| `OBL_{REG}_{NAME}` | `OBL_GDPR_LAWFUL_BASIS` | Obligation |
+| `CJEU_C_{NUM}` | `CJEU_C_311_18` | Case law |
+| `ENF_{NAME}` | `ENF_CLEARVIEW_AI` | Enforcement action |
 
-### 2.4 Key Article Node Properties
+### 1.6 Rebuild pipeline
 
-```json
+Scripts in [../knowledge_engine/scripts/](../knowledge_engine/scripts/), run in order:
+
+```
+01_parse_raw_data.py            raw_data/*.txt → parsed_data/{legal,entities,interpretive}/*.json
+02_load_structural_kg.py        → Regulation / Article / Annex nodes
+02a_extract_structural_rels.py  → CONTAINS / REFERENCES edges
+02b_validate_graph_local.py     → integrity check
+03_extract_semantic.py          → concepts, principles
+03b_extract_obligations.py      → 1,325 Obligation nodes
+03c_extract_cross_regulation.py → GDPR ↔ AI Act bridges
+03e_extract_concepts.py         → Concept nodes
+03f_extract_rights.py           → Right nodes
+03d_validate_full_graph.py      → validation
+04_load_full_kg.py              → final state (2,301/4,423)
+05_load_vector_store.py         → embed text → write to Neo4j :Entity.embedding
+07_run_golden_tests.py          → 6 golden queries
+08_coverage_report.py           → coverage metrics
+09_load_vectors_to_neo4j.py     → bulk-load pre-computed embeddings → Neo4j
+```
+
+---
+
+## 2. AI System Profile (the new orchestrator input)
+
+The scanner's job is to produce this JSON artifact from a repo. Agents consume it instead of free-text.
+
+```jsonc
 {
-  "id": "GDPR_ART_35",
-  "type": "Article",
-  "title": "Data protection impact assessment",
-  "regulation_id": "GDPR",
-  "chapter": "Chapter 4",
-  "article_number": "35",
-  "full_text": "<complete article text>",
-  "paragraphs": { "1": "...", "2": "...", "3": { "intro": "...", "a": "...", "b": "..." } },
-  "modality": "MUST",
-  "applies_to_actors": ["controller"],
-  "cross_references": ["GDPR_ART_36", "GDPR_ART_9"]
+  "scan_id": "scn_01H...",
+  "repo": { "url": "...", "ref": "main", "commit": "abc123", "languages": ["python"] },
+  "ai_components": [
+    { "kind": "llm_sdk",        "evidence": [{"file": "src/chat.py", "line": 12, "import": "openai"}] },
+    { "kind": "biometric_lib",  "evidence": [{"file": "src/verify.py", "line": 3, "import": "face_recognition"}] }
+  ],
+  "decision_surfaces": [
+    { "endpoint": "POST /api/approve", "file": "src/api/approve.py", "line": 42,
+      "calls_model": true, "has_human_review": false }
+  ],
+  "data_signals": {
+    "pii_fields": ["email", "national_id"],
+    "has_dpia_doc": false,
+    "has_model_card": false,
+    "has_data_card": false,
+    "audit_logging": "partial"
+  },
+  "findings": [ /* see §3 */ ]
 }
 ```
 
-### 2.5 Current Graph Statistics
-
-| Metric | Count |
-|--------|-------|
-| Total Nodes | 2,301 |
-| Total Relationships | 4,431 |
-| Entity Types | 17 |
-| Relationship Types | 13 |
-| COMPLEMENTS (cross-reg) edges | 84 |
-| Articles (GDPR + AI Act) | 212 |
-| Recitals | 353 |
-| Obligations | 1,325 |
-| Exemptions | 96 |
-| Definitions | 90 |
-| Concepts | 47 |
-| Rights | 19 |
-| Avg relationships/article | 19.1 |
-| Orphan nodes | 0 |
-| Connectivity | 100% |
-
-### 2.6 Key Cross-Regulation Relationships
-
-```
-(ANNEX_III_1)  -[:CO_TRIGGERS]-> (GDPR_ART_35)       -- Biometrics → DPIA
-(GDPR_ART_22)  -[:COMPLEMENTS]-> (AIACT_ART_14)       -- ADM ↔ Human oversight
-(AIACT_ART_14) -[:REFERENCES]->  (GDPR_ART_22)        -- Human oversight ↔ ADM
-(AIACT_ART_5)  -[:PROHIBITS]->   (AIST_EMOTION_RECOG) -- Prohibited systems
-(AIACT_ART_6)  -[:REFERENCES]->  (AIACT_ANNEX_III)    -- High-risk categories
-(GDPR_ART_83)  -[:CUMULATIVE]->  (AIACT_ART_99)       -- Stacking fines
-```
-
-### 2.7 Example Graph Traversals
-
-**"Does facial recognition require a DPIA?"**
-```
-facial_recognition → AIACT_DEF_BIOMETRIC_ID → ANNEX_III_1 → GDPR_ART_35 (via TRIGGERS)
-                   → GDPR_ART_9 (via REGULATED_BY → GDPR_DEF_BIOMETRIC_DATA)
-```
-
-**"What AI practices are prohibited?"**
-```
-AIACT_ART_5 -[:PROHIBITS]→ [subliminal manipulation, social scoring,
-                             real-time biometric in public, emotion recognition workplace, ...]
-```
-
-**"AI hiring system requirements"**
-```
-ANNEX_III_4 (Employment) → AIACT_ART_6 (High-risk) → GDPR_ART_22 (Automated decisions)
-                         → AIACT_ART_14 (Human oversight) → AIACT_ART_43 (Conformity)
-```
+This is what every agent downstream reads.
 
 ---
 
-## 3. Retrieval Pipeline
+## 3. Rule Catalog — Phase 1 MVP (10 rules)
 
-### 3.1 Vector Store (JSON-backed, 7 collections)
+Rules live in [../orchestrator/src/code_analyzer/rules/](../orchestrator/src/code_analyzer/rules/) as YAML (Semgrep-style; rule-as-data). Each maps to one or more KG obligations.
 
-| Collection | Content | Docs |
-|------------|---------|------|
-| `articles` | Article paragraphs (GDPR + AI Act) | 212 |
-| `recitals` | Interpretive recitals | 353 |
-| `obligations` | Extracted obligations | 1,421 |
-| `definitions` | Legal definitions | 90 |
-| `concepts` | Compliance concepts | 47 |
-| `rights` | Data subject rights | 19 |
-| `interpretive` | Case law + guidelines + enforcement | 56 |
-| **Total** | | **2,132+** |
+### 3.1 Rule definitions
 
-- **Embedding model:** `gemini-embedding-001` (3,072 dims)
-- **Similarity:** Cosine
-- **Note:** ChromaDB incompatible with Python 3.14 — custom JSON-backed store used
+| # | ID | Detects | Technique | Severity | Maps to |
+|---|---|---|---|---|---|
+| 1 | `AI-001` | Biometric / face / emotion recognition libs | Import scan: `face_recognition`, `deepface`, `mediapipe.solutions.face`, `dlib.get_frontal_face_detector`, `fer` | Critical | AIACT Art 5(1)(f,h) · Annex III §1 · GDPR Art 9 |
+| 2 | `AI-002` | LLM / generative AI usage | Import scan: `openai`, `anthropic`, `google.generativeai`, `transformers`, `langchain`, `llama_index` | High | AIACT Art 50 · Art 52 |
+| 3 | `AI-003` | User-facing AI decision endpoint | AST: FastAPI/Flask route returning model inference, no `human_review` / `approval` keyword in handler | High | AIACT Art 14 · GDPR Art 22 |
+| 4 | `AI-004` | Missing transparency disclosure | File absence: no `model_card.md`, no `/disclose` endpoint, no "AI-generated" / "this is an AI" string in user-facing templates | Medium | AIACT Art 13 + 50 |
+| 5 | `AI-005` | PII handling without DPIA marker | Regex/AST on schemas: fields matching `email\|ssn\|national_id\|biometric\|health`; no `dpia.md` / `DPIA.md` in repo root | High | GDPR Art 35 · Art 9 |
+| 6 | `AI-006` | Training-data source opacity | File scan: `.csv` / `.parquet` / HuggingFace dataset refs in training scripts; no `data_card.md` / `DATASHEET.md` | Medium | AIACT Art 10 |
+| 7 | `AI-007` | No logging / audit trail on AI decisions | AST: inference call not wrapped in `logger.*` / audit call within same function scope | Medium | AIACT Art 12 |
+| 8 | `AI-008` | Social-scoring / behavioral-prediction keywords | Content scan in docstrings, README, identifiers: `social_score`, `trustworthiness`, `creditworthiness_by_behavior`, `predictive_policing` | Critical | AIACT Art 5(1)(c) |
+| 9 | `AI-009` | Real-time biometric in public-space context | Co-occurrence: `AI-001` signal + keywords `cctv`, `public`, `street`, `realtime`, `live_stream` within 20 LOC or same file | Critical | AIACT Art 5(1)(h) |
+| 10 | `AI-010` | No human-override mechanism for high-risk endpoint | AST: `AI-003` endpoint + no sibling `override` / `reject` / `appeal` route in same router | High | AIACT Art 14(4) |
 
-### 3.2 Hybrid Search (RRF Fusion)
+### 3.2 Rule schema (YAML)
+
+```yaml
+# orchestrator/src/code_analyzer/rules/AI-001_biometric_libs.yml
+id: AI-001
+title: Biometric recognition library usage
+severity: critical
+technique: import_scan
+languages: [python]
+patterns:
+  imports:
+    - face_recognition
+    - deepface
+    - dlib.get_frontal_face_detector
+    - mediapipe.solutions.face_detection
+    - fer
+maps_to:
+  articles: [AIACT_ART_5, AIACT_ANNEX_III, GDPR_ART_9]
+  obligation_anchors: [biometric_id, face_recognition, special_category_data]
+confidence:
+  base: 0.9
+  dampeners:
+    - { when: "file_matches: tests/|spec/", factor: 0.4 }  # test file → low confidence
+    - { when: "import_unused: true", factor: 0.5 }
+remediation: >
+  Real-time remote biometric identification in publicly accessible spaces is
+  prohibited by AI Act Art 5(1)(h) except for narrow law-enforcement carve-outs.
+  If used in a closed / consented context, it remains a high-risk system under
+  Annex III §1 and triggers GDPR Art 9 special-category requirements. Add a
+  DPIA (GDPR Art 35) and a lawful basis under Art 9(2).
+```
+
+### 3.3 Confidence & suppressions
+
+- Each finding carries a **confidence score 0.0–1.0** (base × dampeners).
+- Suppressions via `.alloycode.yml` at repo root (pattern copied from Semgrep):
+  ```yaml
+  suppress:
+    - rule: AI-001
+      path: "tests/**"
+    - rule: AI-002
+      reason: "Internal tool, no user-facing transparency obligation"
+      expires: 2026-12-31
+  ```
+
+### 3.4 Scanner architecture
 
 ```
-Vector search → semantic similarity → ranked list A
-Graph traversal → keyword/structural → ranked list B
-RRF_score = Σ 1/(60 + rank_i)  for each list containing the entity
+orchestrator/src/code_analyzer/
+├── __init__.py
+├── ingest.py              # shallow clone, language detect, file index
+├── profile.py             # aggregate findings -> AI System Profile
+├── rules/                 # rule definitions (YAML)
+│   ├── AI-001_biometric_libs.yml
+│   └── ... (10 total)
+├── scanners/
+│   ├── base.py            # Scanner ABC, loads rules, emits findings
+│   ├── import_scanner.py  # ast.Import / ast.ImportFrom walks
+│   ├── ast_scanner.py     # AST pattern matching (routes, inference calls)
+│   ├── file_pattern.py    # presence/absence of marker files
+│   └── content_scanner.py # regex on docstrings, README, identifiers
+└── mapper.py              # finding -> KG obligation via knowledge_engine
 ```
 
-### 3.3 Multi-Hop Reasoning Pipeline
-
-```
-1. Vector search → seed entities (7 collections)
-2. Graph traversal from seeds (N hops via Neo4j)
-3. Build context from entities + paths
-4. Gemini LLM synthesizes answer (gemini-2.0-flash)
-5. Validate citations (anti-hallucination: all cited articles must appear in retrieval)
-6. Score confidence: result count (30%) + fusion overlap (30%) + citation validity (40%)
-```
-
-**Rate limiting:** 4s delay between LLM calls (15 RPM free tier)
-
-### 3.4 Query Types
-
-| Type | Request Model | Use Case |
-|------|--------------|----------|
-| Compliance query | `ComplianceQueryRequest` | General compliance questions |
-| Risk classification | `RiskClassificationRequest` | AI system risk tier |
-| Obligation lookup | `ObligationLookupRequest` | "What must we do?" |
-| Cross-regulation | `CrossRegulationRequest` | GDPR ↔ AI Act interaction |
-
-**Answer templates (6):** `prohibition`, `obligation`, `conditional_permission`, `non_applicable`, `legal_uncertainty`, `general`
+Folded into orchestrator (not a separate service) — fewer moving parts for a portfolio project. Extract later if it grows.
 
 ---
 
-## 4. Agent Architecture (Core 3)
+## 4. Orchestrator — revised agent contract
 
-### 4.1 LangGraph Workflow
+Each agent now consumes the **AI System Profile** (§2) instead of free-text.
 
-```
-classify_risk → check_human_review → [conditional]
-                                      ├─ needs_review → await_approval (INTERRUPT) → assess_gdpr
-                                      └─ proceed → assess_gdpr
-assess_gdpr → research_legal → check_conflicts → generate_docs → synthesize → END
-```
+| Agent | Before | After |
+|---|---|---|
+| Risk Classifier | "user typed a description" → LLM guesses tier | Reads `ai_components` + `decision_surfaces` → deterministic tier bands → LLM refines |
+| Technical Assessor | Free-text GDPR gap analysis | Walks `data_signals` + detected PII fields → KG lookup for each gap |
+| Legal Research | Generic `question` to knowledge_engine | `anchors[]` grounded in profile signals → focused RRF retrieval |
+| Doc Generator | Writes DPIA / ROPA from scratch | Fills DPIA template with actual evidence (file:line) from profile |
+| Supervisor | LangGraph orchestration | **Unchanged** — same state machine, richer state |
 
-Human review triggered when: classification = PROHIBITED, or HIGH_RISK with confidence < 80%, or conflicting agent outputs.
-
-### 4.2 Agent Components
-
-| Agent | File | Lines | Role |
-|-------|------|-------|------|
-| Supervisor | `supervisor.py` | 552 | LangGraph orchestrator, conflict detection, synthesis |
-| Risk Classifier | `risk_classifier.py` | 398 | EU AI Act 4-tier classification (Art 5, Annex III) |
-| Technical Assessor | `technical_assessor.py` | 424 | GDPR audit (Arts 5, 6, 9, 22, 32) |
-| Legal Research | `legal_research.py` | 389 | Calls Core 2 GraphRAG API with retry/fallback |
-| Documentation Generator | `documentation_generator.py` | 443 | DPIA, ROPA, Conformity Assessment, Transparency Notice |
-
-### 4.3 Risk Classification Logic
-
-| Category | Article | Trigger |
-|----------|---------|---------|
-| **PROHIBITED** | Article 5 | Social scoring, subliminal manipulation, real-time biometric in public, emotion detection in workplace/education |
-| **HIGH_RISK** | Annex III | Biometrics, critical infrastructure, employment, education, credit scoring, law enforcement |
-| **LIMITED_RISK** | Article 52 | Chatbots, deepfakes (transparency required) |
-| **MINIMAL_RISK** | — | No specific obligations |
-
-### 4.4 Assessment Sequence
-
-```
-User → Core 3: POST /api/v1/assessments
-  Supervisor activates workflow
-  Risk Classifier → classification + confidence
-  Technical Assessor → GDPR violations
-  Core 3 → Core 2: Legal research query (hybrid/reason endpoint)
-    Core 2: Hybrid search (Neo4j + Vector) → Multi-hop reasoning
-    Core 2 → Core 3: Citations + reasoning chains
-  Documentation Generator → DPIA, ROPA, Conformity docs
-  Supervisor → synthesizes final report
-User receives: Complete compliance report + documents
-```
-
-### 4.5 SystemProfile Schema (input to KB queries)
-
-```python
-class SystemProfile(BaseModel):
-    system_name: str
-    capabilities: list[str]           # ["facial_recognition", "attendance_tracking"]
-    data_types_processed: list[str]   # ["biometric", "employee_records"]
-    special_category_data: list[str]
-    deployment_context: str           # "workplace", "public_space"
-    decision_types: list[str]
-    autonomy_level: str               # "fully_automated", "human_in_loop"
-    operator_role: str                # "provider", "deployer"
-    cross_border_transfers: bool
-```
-
-**Field → KG mapping:**
-
-| Field | Maps To | Relationship |
-|-------|---------|-------------|
-| `data_types_processed` | DataType nodes | → REGULATED_BY → Article |
-| `capabilities` | AISystemType nodes | → CLASSIFIED_AS → RiskCategory |
-| `deployment_context` | Annex III categories | → maps to HIGH_RISK |
-| `operator_role` | Actor nodes | → RESPONSIBLE_FOR → Obligation |
+The LangGraph state machine in [../orchestrator/src/agents/supervisor.py](../orchestrator/src/agents/supervisor.py) and the human-in-loop approval queue ([../orchestrator/src/control_plane/approval_queue.py](../orchestrator/src/control_plane/approval_queue.py)) are retained. Only the input contract changes.
 
 ---
 
-## 5. Cross-Module Integration
+## 5. API surface — after Phase 1
 
-### 5.1 Integration Points
+### 5.1 Orchestrator (Port 8004)
 
-| Integration | Mechanism | Endpoint | Data Flow |
-|-------------|-----------|----------|-----------|
-| Core 3 → Core 2 | HTTP (httpx + tenacity retry) | `POST /api/v1/hybrid/reason` | Legal queries → citation chains |
-| Core 3 → Core 1 | MonitoringClient SDK | `POST /api/v1/monitoring/agent-decision` | Agent decisions → drift/bias monitoring |
-| Core 2 → Core 1 | MonitoringClient SDK | `POST /api/v1/monitoring/graphrag-query` | Query metrics → performance monitoring |
+| Endpoint | Method | Purpose | Status |
+|---|---|---|---|
+| `/api/v1/scans` | POST | Submit repo URL for scan | **NEW** |
+| `/api/v1/scans` | GET | List scans | **NEW** |
+| `/api/v1/scans/{id}` | GET | Scan state + findings report | **NEW** |
+| `/api/v1/scans/{id}/profile` | GET | Raw AI System Profile JSON | **NEW** |
+| `/api/v1/scans/{id}/findings` | GET | Flat findings list | **NEW** |
+| `/api/v1/approvals` / `/approvals/{id}/decide` | GET/POST | Human-in-loop (retained) | Kept |
+| `/api/v1/audit-log` | GET | Event stream per scan | Kept |
+| `/api/v1/assessments*` | — | Old free-text endpoints | **DEPRECATED — removed** |
 
-**Note:** Core 3 → Core 1 integration exists (SDK in `core_1/src/client/monitoring_client.py`) but is not yet wired into Core 3 agents. See `PROJECT_ANALYSIS.md` Priority 2 item #7.
+### 5.2 Knowledge_engine (Port 8001) — unchanged
 
-### 5.2 Integration Code Example
-
-```python
-# Core 3: Legal Research Agent calls Core 2
-class LegalResearchAgent:
-    async def research(self, query: str) -> dict:
-        response = await httpx.post(
-            f"{self.graphrag_url}/api/v1/hybrid/reason",
-            json={"question": query}
-        )
-        return response.json()  # citations + reasoning chains
-```
-
-### 5.3 URL Configuration
-
-| Env Var | Default | Used By |
-|---------|---------|---------|
-| `GRAPHRAG_API_URL` | `http://localhost:8001` | Core 3 Legal Research Agent |
-| `MONITORING_API_URL` | `http://localhost:8002` | Core 3/2 MonitoringClient |
+| Endpoint | Method | Purpose |
+|---|---|---|
+| `/api/v1/vector/search` | POST | Semantic top-K |
+| `/api/v1/graph/traverse` | POST | Multi-hop Cypher |
+| `/api/v1/hybrid/search` | POST | RRF fusion |
+| `/api/v1/hybrid/reason` | POST | Fusion + LLM synth (accepts new `anchors[]` param) |
+| `/health` | GET | Health + node/doc counts |
 
 ---
 
-## 6. Data Types & Risk Categories
+## 6. Honest audit — why `monitor/` was removed
 
-### DataType Hierarchy
+The pre-pivot audit rated `monitor/` at 85% complete. On honest re-review, for a **portfolio project**, it added weight without signal:
 
-```
-DataType
-├── PersonalData
-│   ├── SpecialCategoryData
-│   │   ├── BiometricData
-│   │   ├── HealthData
-│   │   ├── GeneticData
-│   │   ├── RacialEthnicData
-│   │   └── PoliticalOpinionData
-│   └── RegularPersonalData
-│       ├── ContactData
-│       ├── LocationData
-│       └── BehavioralData
-└── NonPersonalData
-    ├── AnonymisedData
-    ├── AggregatedData
-    └── PseudonymisedData (→ PersonalData by GDPR)
-```
+| Claim | Reality |
+|---|---|
+| Drift detection | Needs continuous traffic to show anything. Run 6 golden tests once → flat lines forever. |
+| Bias detection | Chi-square on protected attributes requires a dataset with protected attributes. We didn't have one. |
+| Article 14 compliance check | One rule: `if risk=="HIGH_RISK" and not human_reviewed: flag`. The orchestrator already enforces this at the workflow level. |
+| Prometheus metrics | Collected but nothing consumed them. No Grafana wired. |
+| Monitored "all systems" | Monitored only the orchestrator's own agents — circular. |
 
-### RiskCategory Hierarchy
+**What was removed:**
+- `monitor/` service from [../docker-compose.yml](../docker-compose.yml)
+- Entries in [../pipeline.ps1](../pipeline.ps1) (start/stop actions)
+- `/monitoring` page from frontend + sidebar link
+- Port 8002 is no longer in use
+- The one useful idea — a per-scan audit log — lives in the orchestrator (`/api/v1/audit-log`)
 
-```
-RiskCategory
-├── PROHIBITED (Art 5)
-│   ├── SubliminalManipulation
-│   ├── SocialScoring (govt)
-│   ├── RealTimeBiometricPublic
-│   ├── EmotionRecognitionWorkplace
-│   └── EmotionRecognitionEducation
-├── HIGH_RISK (Annex III)
-│   ├── BiometricIdentification
-│   ├── CriticalInfrastructure
-│   ├── Education/Training
-│   ├── Employment/HR
-│   ├── EssentialServices (credit, insurance)
-│   ├── LawEnforcement
-│   ├── MigrationAsylum
-│   └── JusticeAdministration
-├── LIMITED_RISK (Art 50)
-│   ├── Chatbots
-│   ├── EmotionRecognition (non-prohibited)
-│   └── Deepfakes
-└── MINIMAL_RISK (everything else)
-```
-
-### Knowledge Base Query Interface
-
-| Consumer | Query | Expected Output |
-|----------|-------|----------------|
-| Risk Classifier Agent | System capabilities | `(AISystemType, RiskCategory, source Article)` tuples |
-| Legal Research Agent | Legal question | Answer + cited entities + reasoning chain |
-| Technical Assessor | GDPR obligations | Applicable articles + conditions |
-| Documentation Generator | Obligation set | Organised obligations + citations for DPIA/ROPA |
+Freed ~1,500 LOC, 2 Docker services (monitor + monitoring-postgres), and simplified the deploy story.
 
 ---
 
-## 7. Cross-Regulation Mappings
+## 7. Implementation status (post-pivot snapshot)
 
-### GDPR ↔ AI Act Article Mappings
-
-| GDPR | Relationship | AI Act | Rationale |
-|------|-------------|--------|-----------|
-| Art 5 (principles) | COMPLEMENTS | Art 10 (data governance) | AI data must follow GDPR principles |
-| Art 9 (special categories) | COMPLEMENTS | Art 10(5) (bias detection) | Narrow exception for debiasing |
-| Art 22 (automated decisions) | COMPLEMENTS | Art 14 (human oversight) | Both require human involvement |
-| Art 25 (privacy by design) | COMPLEMENTS | Art 9 (risk management) | Both mandate built-in safeguards |
-| Art 35 (DPIA) | COMPLEMENTS | Art 6 + Art 27 (risk + FRIA) | High-risk AI triggers DPIA |
-| Art 13–14 (transparency) | COMPLEMENTS | Art 13 + Art 50 (transparency) | Both mandate informing individuals |
-| Art 83 (admin fines) | CUMULATIVE_WITH | Art 99 (penalties) | Penalties can stack |
-
-### Actor Mappings
-
-| GDPR Actor | AI Act Actor | Relationship |
-|------------|-------------|-------------|
-| Controller | Provider / Deployer | MAY_BE |
-| Processor | Provider | MAY_BE |
-| Data Subject | Affected Person | EQUIVALENT |
-| DPA | AI Office | COORDINATES_WITH |
-| EDPB | AI Board | COORDINATES_WITH |
-
-### Architectural Gaps (still relevant for KB improvements)
-
-**GAP A: Articles treated as atomic units**
-Articles stored as single entities — breaks for multi-clause articles (Art 6, Art 9, Art 22).
-Fix: paragraph-level nodes with sub-item granularity.
-
-**GAP B: Conditions & exceptions are implicit**
-Conditions stored as flat lists, not navigable graph entities.
-Fix: Exemption nodes with `HAS_EXCEPTION` relationships.
-
-**GAP C: No negative knowledge**
-System doesn't know when requirements DON'T apply (research exemptions, SME carve-outs).
-Fix: Model exclusions as explicit graph paths.
-
-**GAP D: Missing procedural workflows**
-Static rules only — no decision trees or step-by-step compliance procedures.
-Fix: Workflow nodes (DPIA procedure, conformity assessment steps).
+| Component | Status | Notes |
+|---|---|---|
+| knowledge_engine (2,301 nodes) | ✅ Complete | No changes needed |
+| Neo4j Aura instance | ⚠️ Live | Auto-pauses after 3 days on free tier; resumes on demand |
+| Orchestrator LangGraph core | ✅ Kept | Input contract being reshaped |
+| Orchestrator `code_analyzer/` module | ⬜ **Phase 1 — to build** | Scanner, rules, profile |
+| 10 MVP detection rules | ⬜ **Phase 1 — to build** | Python-only AST/import/file-pattern |
+| Finding → KG obligation mapper | ⬜ **Phase 1 — to build** | Uses `/hybrid/reason` with anchors |
+| Frontend `/scan` page | ⬜ **Phase 1 — to build** | URL input → progress → findings |
+| Frontend `/scans/[id]` report | ⬜ **Phase 1 — to build** | file:line anchored findings, article citations |
+| Frontend `/knowledge` page | ✅ Kept | Force-directed KG explorer — demoable as-is |
+| Old `/assessments/*` pages | 🗑️ To remove | Replaced by `/scans/*` |
+| `monitor/` module + `/monitoring` page | ✅ Removed | See §6 |
+| Tree-sitter / multi-language scanner | ⬜ Phase 2 | Python-first keeps Phase 1 small |
+| VS Code extension | ⬜ Phase 3 | Depends on stable scan API |
+| PDF report export | ⬜ Phase 2 | Markdown → weasyprint |
+| Delta / on-save scan API | ⬜ Phase 2 | Prereq for VS Code extension |
 
 ---
 
-## 8. EU AI Act Enforcement Timeline
+## 8. Roadmap
 
-| Date | Requirement |
-|------|-------------|
-| Feb 2, 2025 | Prohibited AI systems ban takes effect |
-| Aug 2, 2025 | Governance structure requirements |
-| Aug 2, 2026 | General-purpose AI (GPAI) model obligations |
-| Aug 2, 2027 | High-risk AI system requirements (MAIN deadline) |
+### Phase 1 — Prove the thesis (current)
+
+Goal: demoable end-to-end scan of a real public Python AI repo producing file:line findings mapped to KG articles.
+
+- [ ] Scaffold `orchestrator/src/code_analyzer/`
+- [ ] Ingest: `git clone --depth=1`, language detect, file index
+- [ ] Implement 10 rules as YAML + 4 scanners (import, AST, file-pattern, content)
+- [ ] Profile aggregator → `AISystemProfile` schema
+- [ ] Mapper: findings → obligations via knowledge_engine `/hybrid/reason`
+- [ ] Reshape agents to consume profile (not free-text)
+- [ ] Frontend `/scan` + `/scans/[id]` pages
+- [x] Delete `monitor/` module + `/monitoring` page
+- [ ] Delete old `/assessments/*` pages
+- [ ] Golden test: scan a known-violating fixture repo → assert expected findings
+
+### Phase 2 — Make it good
+
+- Expand to ~50 rules across tree-sitter (JS/TS/Go/Java)
+- Full obligation catalog mapping (~1,325 obligations)
+- LLM-generated narrative in report (post-detection)
+- SBOM / dependency graph scanning (catch transitive AI usage)
+- Scan history + diff view (what changed since last scan)
+- PDF export
+
+### Phase 3 — VS Code extension
+
+- Delta scans on save / commit
+- Diagnostics in Problems panel with file:line + article reference
+- Code lens: "Run full compliance scan"
+- Authentication for private repos
+- Publish to VS Code Marketplace
 
 ---
 
-## 9. Technology Stack
+## 9. Key risks (called out honestly)
 
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| LLM | Gemini 2.0 Flash | Reasoning, classification |
-| Embeddings | gemini-embedding-001 (3,072 dims) | Semantic search |
-| Agent Framework | LangGraph + LangChain | Workflow orchestration |
-| API | FastAPI | REST endpoints |
-| Graph DB | Neo4j 5.x Community | Structural knowledge |
-| Vector Store | JSON-backed (custom) | Semantic search (ChromaDB incompatible with Py 3.14) |
-| Relational DB | PostgreSQL 15 | Audit logs, assessments |
-| Cache | Redis 7 | Session state |
-| Monitoring | Prometheus + Evidently | Metrics, drift |
-| Rate Limiting | SlowAPI | 60 req/min |
-| Package Manager | UV | Modern pip/poetry replacement |
-| Linter | Ruff | Replaces flake8, isort, black |
-
-**Gemini SDK note:** Use `google-genai` (`genai.Client()` API), NOT deprecated `google-generativeai`.
+| Risk | Mitigation |
+|---|---|
+| **False positives** — `import face_recognition` in a test file is noise | Dampener rules; `.alloycode.yml` suppressions; confidence score |
+| **Signal → obligation mapping is soft** | KG provides grounded citations; every finding links to the Article; reviewer can judge fit |
+| **Python-only limits demo repos** | Phase 1 scope accepted; tree-sitter in Phase 2 |
+| **Neo4j Aura free tier auto-pauses** | Not worth fixing for a portfolio; resume on demand takes 30s |
+| **LLM cost if narrative is per-finding** | Narrative is per-scan, not per-finding; batched single Gemini call |
 
 ---
 
-## 10. Business Impact
-
-| Metric | Manual Process | With System | Improvement |
-|--------|---------------|-------------|-------------|
-| Assessment time | 40 hours | 6.5 hours | **84%** |
-| Cost per assessment | £8,500 | £1,200 | **86%** |
-| Annual savings (15/mo) | — | £1.3M | — |
-| Fine prevention | Unknown | Up to €35M | Risk mitigation |
-| Compliance detection time | Weeks | < 48 hours | Faster response |
-| Legal research cost | £2,500/query | £0.08/query | 31,250× cheaper |
-
-### Interview Pitch
-
-> "I built an autonomous EU AI Act compliance platform that saves companies £1.3M/year by reducing assessment time from 40 hours to 6.5 hours. It uses a 5-agent LangGraph system where the Legal Research Agent makes real API calls to my GraphRAG system for multi-hop reasoning across 2,301 graph nodes covering EU AI Act and GDPR. The monitoring module tracks all agent decisions for EU AI Act Article 14 compliance and triggers alerts when quality degrades."
+*Supersedes and merges the prior `03_KB_DESIGN_AND_CONSTRUCTION.md` (KG schema) and `04_IMPLEMENTATION_AUDIT.md` (pre-pivot audit).*

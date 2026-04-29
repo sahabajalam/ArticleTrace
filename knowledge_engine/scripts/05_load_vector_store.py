@@ -271,24 +271,84 @@ def prepare_right_docs() -> tuple[list[str], list[str], list[dict]]:
     return ids, texts, metas
 
 
+class _Neo4jVectorWriter:
+    """Minimal write/count adapter that targets the Neo4j vector index.
+
+    Mirrors the old WeaviateVectorStore interface this script relied on
+    (add_documents, count, clear_all) so the rest of `main()` stays
+    untouched. Embeddings are stored as :Entity.embedding properties;
+    documents land in :Entity.document_text.
+    """
+
+    BATCH_SIZE = 250
+
+    def __init__(self, graph_store):
+        self.graph_store = graph_store
+
+    def add_documents(self, collection, ids, documents, embeddings, metadatas):
+        items = [
+            {
+                "id": ids[i],
+                "embedding": embeddings[i],
+                "collection": collection,
+                "document": documents[i],
+            }
+            for i in range(len(ids))
+        ]
+        written = 0
+        with self.graph_store._driver.session() as session:
+            for start in range(0, len(items), self.BATCH_SIZE):
+                chunk = items[start : start + self.BATCH_SIZE]
+                record = session.run(
+                    "UNWIND $items AS item "
+                    "MATCH (n:Entity {id: item.id}) "
+                    "SET n.embedding = item.embedding, "
+                    "    n.collection = item.collection, "
+                    "    n.document_text = item.document "
+                    "RETURN count(n) AS updated",
+                    items=chunk,
+                ).single()
+                written += record["updated"] if record else 0
+        return written
+
+    def count(self, collection):
+        with self.graph_store._driver.session() as session:
+            record = session.run(
+                "MATCH (n:Entity) "
+                "WHERE n.collection = $coll AND n.embedding IS NOT NULL "
+                "RETURN count(n) AS cnt",
+                coll=collection,
+            ).single()
+            return record["cnt"] if record else 0
+
+    def clear_all(self):
+        with self.graph_store._driver.session() as session:
+            session.run(
+                "MATCH (n:Entity) "
+                "WHERE n.embedding IS NOT NULL "
+                "REMOVE n.embedding, n.collection, n.document_text"
+            )
+
+
 def main():
-    from src.stores.weaviate_store import WeaviateVectorStore
+    from src.stores.graph_store import GraphStore
     from src.config import settings
 
     print("=" * 60)
-    print("PHASE 5: Load Vector Store (Weaviate + Gemini Embeddings)")
+    print("PHASE 5: Load Vector Store (Neo4j vector index + Gemini Embeddings)")
     print("=" * 60)
 
     # Initialize
     print("\n[1/7] Initializing...")
     client = get_embedding_client()
-    vs = WeaviateVectorStore(
-        host=settings.weaviate_host,
-        http_port=settings.weaviate_http_port,
-        grpc_port=settings.weaviate_grpc_port,
+    graph = GraphStore(
+        uri=settings.neo4j_uri,
+        user=settings.neo4j_user,
+        password=settings.neo4j_password,
     )
+    vs = _Neo4jVectorWriter(graph)
     print(f"  Gemini client ready")
-    print(f"  Weaviate: {settings.weaviate_host}:{settings.weaviate_http_port}")
+    print(f"  Neo4j: {settings.neo4j_uri}")
 
     # Clear if requested
     if "--clear" in sys.argv:
@@ -362,11 +422,15 @@ def main():
     print("=" * 60)
 
     total = 0
-    for coll_name in WeaviateVectorStore.COLLECTIONS:
+    for coll_name in GraphStore.VECTOR_COLLECTIONS:
         count = vs.count(coll_name)
         total += count
         print(f"  {coll_name:20s}: {count:5d} documents")
     print(f"  {'TOTAL':20s}: {total:5d} documents")
+
+    # Ensure the vector index exists (idempotent)
+    graph.create_vector_index()
+    print(f"  Vector index '{GraphStore.VECTOR_INDEX_NAME}' ensured.")
 
     # Exit gate
     checks = {

@@ -25,7 +25,6 @@ from google import genai
 
 from src.config import settings
 from src.stores.graph_store import GraphStore
-from src.stores.weaviate_store import WeaviateVectorStore as VectorStore
 from src.retrieval.engine import RetrievalEngine
 from src.retrieval.reasoning_engine import ReasoningEngine
 from src.retrieval.query_models import (
@@ -38,7 +37,6 @@ logger = logging.getLogger(__name__)
 # ── Globals (initialized at startup) ─────────────────────────────────────────
 
 graph_store: GraphStore | None = None
-vector_store: VectorStore | None = None
 retrieval_engine: RetrievalEngine | None = None
 reasoning_engine: ReasoningEngine | None = None
 
@@ -98,14 +96,14 @@ class HybridSearchResponse(BaseModel):
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Initialize stores and engines on startup, close on shutdown."""
-    global graph_store, vector_store, retrieval_engine, reasoning_engine
+    global graph_store, retrieval_engine, reasoning_engine
 
     logger.info("Starting GraphRAG API server...")
 
     # Initialize Google AI client
     genai_client = genai.Client(api_key=settings.google_api_key)
 
-    # Initialize stores
+    # Initialize stores — Neo4j is now the sole backend (graph + vectors).
     try:
         graph_store = GraphStore(
             uri=settings.neo4j_uri,
@@ -117,21 +115,10 @@ async def lifespan(app: FastAPI):
         logger.warning(f"Neo4j connection failed (will retry on request): {e}")
         graph_store = None
 
-    vector_store = VectorStore(
-        host=settings.weaviate_host,
-        http_port=settings.weaviate_http_port,
-        grpc_port=settings.weaviate_grpc_port,
-    )
-    logger.info(
-        f"Weaviate vector store connected at "
-        f"{settings.weaviate_host}:{settings.weaviate_http_port}"
-    )
-
     # Initialize engines
     if graph_store:
         retrieval_engine = RetrievalEngine(
             graph_store=graph_store,
-            vector_store=vector_store,
             genai_client=genai_client,
             embedding_model=settings.embedding_model,
             rrf_k=settings.rrf_k,
@@ -154,9 +141,6 @@ async def lifespan(app: FastAPI):
     if graph_store:
         graph_store.close()
         logger.info("Neo4j connection closed")
-    if vector_store:
-        vector_store.close()
-        logger.info("Weaviate connection closed")
 
 
 # ── App ──────────────────────────────────────────────────────────────────────
@@ -191,24 +175,22 @@ async def root():
 @app.get("/health")
 async def health():
     neo4j_ok = graph_store is not None
-    vector_ok = vector_store is not None
+    vector_index_ok = False
+    collections_count: dict[str, int] = {}
+    node_counts: dict[str, int] = {}
 
-    collections_count = {}
-    if vector_ok:
-        for coll in VectorStore.COLLECTIONS:
-            collections_count[coll] = vector_store.count(coll)
-
-    node_counts = {}
     if neo4j_ok:
         try:
             node_counts = graph_store.count_nodes()
+            vector_index_ok = graph_store.vector_index_exists()
+            collections_count = graph_store.vector_collection_counts()
         except Exception:
             neo4j_ok = False
 
     return {
-        "status": "healthy" if (neo4j_ok and vector_ok) else "degraded",
+        "status": "healthy" if (neo4j_ok and vector_index_ok) else "degraded",
         "neo4j": "connected" if neo4j_ok else "disconnected",
-        "vector_store": "loaded" if vector_ok else "not loaded",
+        "vector_index": "online" if vector_index_ok else "missing",
         "collections": collections_count,
         "graph_nodes": node_counts,
     }
@@ -219,50 +201,34 @@ async def health():
 @app.post("/api/v1/vector/search", response_model=VectorSearchResponse)
 async def vector_search(request: VectorSearchRequest):
     """Vector similarity search across legal document collections."""
-    if not retrieval_engine:
+    if not retrieval_engine or not graph_store:
         raise HTTPException(status_code=503, detail="Retrieval engine not available")
 
-    # Embed the query
     query_embedding = retrieval_engine._embed_query(request.query)
+    collections = request.collections or GraphStore.VECTOR_COLLECTIONS
+    regulation = (
+        request.filter_regulations[0]
+        if request.filter_regulations and len(request.filter_regulations) == 1
+        else None
+    )
 
-    # Determine collections
-    collections = request.collections or VectorStore.COLLECTIONS
-
-    # Build regulation filter
-    where = None
-    if request.filter_regulations and len(request.filter_regulations) == 1:
-        where = {"regulation_id": request.filter_regulations[0]}
-
-    all_results: list[dict[str, Any]] = []
-    for coll_name in collections:
-        result = vector_store.query(
-            collection_name=coll_name,
-            query_embedding=query_embedding,
-            n_results=request.top_k,
-            where=where,
-        )
-        if result["ids"] and result["ids"][0]:
-            for i, doc_id in enumerate(result["ids"][0]):
-                distance = result["distances"][0][i] if result["distances"][0] else 1.0
-                all_results.append({
-                    "id": doc_id,
-                    "text": result["documents"][0][i] if result["documents"][0] else "",
-                    "metadata": result["metadatas"][0][i] if result["metadatas"][0] else {},
-                    "score": 1.0 - distance,
-                    "collection": coll_name,
-                })
-
-    # Sort by score descending, deduplicate, take top_k
-    all_results.sort(key=lambda x: x["score"], reverse=True)
-    seen = set()
-    deduped = []
-    for r in all_results:
-        if r["id"] not in seen:
-            seen.add(r["id"])
-            deduped.append(r)
-
-    top_results = deduped[:request.top_k]
-    return VectorSearchResponse(results=top_results, count=len(top_results))
+    hits = graph_store.vector_search(
+        query_embedding=query_embedding,
+        n_results=request.top_k,
+        collections=collections,
+        regulation_filter=regulation,
+    )
+    results = [
+        {
+            "id": h["entity_id"],
+            "text": h["document"],
+            "metadata": h["metadata"],
+            "score": h["similarity"],
+            "collection": h["collection"],
+        }
+        for h in hits
+    ]
+    return VectorSearchResponse(results=results, count=len(results))
 
 
 # ── Entity Resolution ────────────────────────────────────────────────────────

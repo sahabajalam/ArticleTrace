@@ -13,15 +13,10 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    # Neo4j
+    # Neo4j (also hosts the native vector index — see graph_store.vector_search)
     neo4j_uri: str = "bolt://localhost:7687"
     neo4j_user: str = "neo4j"
     neo4j_password: str = ""
-
-    # Weaviate
-    weaviate_host: str = "localhost"
-    weaviate_http_port: int = 8080
-    weaviate_grpc_port: int = 50051
 
     # Google AI
     google_api_key: str = ""

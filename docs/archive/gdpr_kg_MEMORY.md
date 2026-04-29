@@ -79,12 +79,11 @@
 - Connection: `neo4j://127.0.0.1:7687`, user `neo4j`
 
 ### Phase 5 — Vector Store (`05_load_vector_store.py`)
-- 7 logical collections written as `:Entity.embedding` properties on Neo4j nodes (graph_store hosts the native HNSW vector index `entity_embedding`)
-- 2,198 documents embedded with `gemini-embedding-001` (3,072 dimensions)
+- Updated to 7 collections (added concepts + rights)
+- 2,132+ documents embedded with `gemini-embedding-001` (3,072 dimensions)
 - Collections: articles (212), recitals (353), interpretive (56), definitions (90), obligations (1,421), concepts (47), rights (19)
-- Single Neo4j vector index over `:Entity`; queries filter by `n.collection`. The earlier JSON-backed VectorStore and Weaviate sidecar were both retired
+- JSON-backed vector store (ChromaDB incompatible with Python 3.14)
 - Exit gates updated: concepts >= 40, rights >= 15
-- Companion script `09_load_vectors_to_neo4j.py` bulk-loads pre-computed embeddings (skips the Gemini round-trip)
 
 ### Retrieval Engine (`src/retrieval/engine.py`)
 - Graph RAG with Reciprocal Rank Fusion (RRF, k=60)
@@ -120,10 +119,10 @@
 - Validates: retrieval coverage (citations + entities) and answer type matching
 
 ### Unit Tests (`tests/`)
-- Test files:
+- 42 tests passing across 3 test files:
   - `test_extractors.py` (20 tests): ConceptExtractor (7), RightExtractor (7), DefinitionExtractor (2), ObligationExtractor (4)
-  - `test_retrieval.py`: QueryModels + ReasoningEngine (vector retrieval is exercised end-to-end by `scripts/07_run_golden_tests.py` against live Aura, since the vector store is now Neo4j-native and not unit-mockable)
-- Fixtures in `conftest.py`: sample articles, sample retrieval results
+  - `test_retrieval.py` (22 tests): VectorStore (7), QueryModels (4), ReasoningEngine (11)
+- Fixtures in `conftest.py`: sample articles, mock vector store, sample retrieval results
 
 ### Coverage Report (`scripts/08_coverage_report.py`)
 - 5 checks, all passing (100% score):
@@ -151,7 +150,7 @@ REINFORCES, CO_TRIGGERS, CREATES_EXCEPTION, CUMULATIVE, DELEGATES
 - **Gemini SDK**: `google-genai` (new SDK, NOT deprecated `google-generativeai`)
 - **Embedding model**: `gemini-embedding-001` (NOT `text-embedding-004`)
 - **LLM model**: `gemini-2.0-flash`
-- **Vector store**: Neo4j native vector index (`entity_embedding`, HNSW, cosine, dim=3072) over `:Entity.embedding`
+- **Vector store**: JSON-backed (ChromaDB incompatible with Python 3.14)
 - **Windows console**: ASCII only — no Unicode arrows/checkmarks in print()
 
 ## Directory Structure
@@ -179,7 +178,8 @@ eu_ai_knowledge_base/
       concept_extractor.py       # 47 concepts (4 categories, keyword matching)
       right_extractor.py         # 19 rights (GDPR + AI Act, cross-reg links)
     stores/
-      graph_store.py             # Neo4j CRUD + native vector index (entity_embedding)
+      graph_store.py             # Neo4j CRUD with batch ops
+      vector_store.py            # JSON-backed vector store (7 collections)
     retrieval/
       engine.py                  # Graph RAG with RRF fusion
       reasoning_engine.py        # LLM synthesis, intent classification, citation validation
@@ -196,15 +196,14 @@ eu_ai_knowledge_base/
     03e_extract_concepts.py      # Phase 3e: 47 concepts
     03f_extract_rights.py        # Phase 3f: 19 rights
     04_load_full_kg.py           # Phase 4: Load everything into Neo4j
-    05_load_vector_store.py      # Phase 5: Embed text + write embeddings to Neo4j
+    05_load_vector_store.py      # Phase 5: Embed + load vector store (7 collections)
     06_demo_query.py             # Demo: Graph RAG queries (--reason for LLM mode)
     07_run_golden_tests.py       # Golden query test suite (6 cases)
     08_coverage_report.py        # Coverage report (5 checks)
-    09_load_vectors_to_neo4j.py  # Bulk-load pre-computed embeddings -> Neo4j
   tests/
-    conftest.py                  # Fixtures: sample articles
+    conftest.py                  # Fixtures: sample articles, mock stores
     test_extractors.py           # 20 tests: concept, right, definition, obligation
-    test_retrieval.py            # query models + reasoning engine (vector covered by 07)
+    test_retrieval.py            # 22 tests: vector store, query models, reasoning engine
   golden_tests/
     test_queries.json            # 6 golden test cases with expected outputs
   parsed_data/
@@ -212,8 +211,7 @@ eu_ai_knowledge_base/
     interpretive/                # Case law, guidelines, enforcement
     entities/                    # Definitions, actors, obligations, concepts, rights, etc.
     relationships/               # All relationship JSON files
-  # Vectors live in Neo4j as :Entity.embedding (cosine, dim=3072) — no
-  # separate vector store directory anymore.
+  chroma_data/                   # Vector store (JSON files, 7 collections)
 ```
 
 ## Known Issues & Gotchas
@@ -224,7 +222,7 @@ eu_ai_knowledge_base/
 5. **Definition extraction**: 90/94 defs (24/26 GDPR, 66/68 AI Act) — 4 missing use non-standard formatting
 6. **Neo4j COMPLEMENTS dedup**: 84 JSON edges -> 76 in Neo4j (bidirectional pairs with same props collapsed)
 7. **Orphan node fixes**: CaseLaw (Directive 95/46/EC pattern), Guidelines (scan 20000 chars not 5000), Enforcement (raw text fallback)
-8. **Vector backend history**: ChromaDB (Python 3.14 incompatible) → JSON-backed VectorStore → Weaviate sidecar → **Neo4j native vector index** (current). Each prior backend is gone from the codebase.
+8. **ChromaDB**: Incompatible with Python 3.14 (pydantic v1 issue) — use JSON-backed store
 9. **Windows console**: `UnicodeEncodeError` with arrows/checkmarks — use ASCII only
 
 ## Pipeline Run Order

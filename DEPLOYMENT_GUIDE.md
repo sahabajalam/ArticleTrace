@@ -94,14 +94,8 @@
 ```
 Project Root/
 |-- docker-compose.yml          # Master compose (all backend services)
-|-- start-all-modules.ps1       # One-command pipeline startup (local)
-|-- stop-all-modules.ps1        # One-command pipeline shutdown (local)
-|-- deploy.ps1                  # Cloud Run build + deploy (main script)
-|-- deploy.clean.ps1            # Wrapper: clean build (no Docker cache)
-|-- deploy.fast.ps1             # Wrapper: fast build (uses Docker cache)
-|-- deploy_gcp.ps1              # First-time GCP project setup
-|-- setup-secrets.ps1           # Push .env secrets to GCP Secret Manager
-|-- cleanup_gcp.ps1             # Tear down all GCP resources
+|-- pipeline.ps1                # Unified lifecycle: -Action start|stop|restart-orch|kill-ports
+|-- gcp.ps1                     # Unified GCP lifecycle: -Action setup|secrets|deploy|deploy-fast|cleanup
 |-- .env                        # Root env (used by docker-compose)
 |
 |-- orchestrator/               # Port 8004 (local) / 8000 (Docker)
@@ -121,15 +115,13 @@ Project Root/
 |   |-- src/
 |   |   |-- api/main.py         #   FastAPI app
 |   |   |-- stores/
-|   |   |   |-- graph_store.py  #   Neo4j client
-|   |   |   +-- vector_store.py #   Custom JSON vector store
+|   |   |   +-- graph_store.py  #   Neo4j client (graph + native vector index)
 |   |   |-- retrieval/
 |   |   |   |-- engine.py       #   Hybrid retrieval (RRF)
 |   |   |   +-- reasoning_engine.py
 |   |   +-- config.py
-|   |-- chroma_data/            #   JSON vector store files (NOT ChromaDB)
 |   |-- parsed_data/            #   Parsed regulatory texts
-|   |-- scripts/                #   Data loading scripts (01-08)
+|   |-- scripts/                #   Data loading scripts (01-09)
 |   |-- Dockerfile
 |   |-- pyproject.toml
 |   +-- .env
@@ -202,7 +194,7 @@ The frontend reads one variable at **build time**:
 NEXT_PUBLIC_API_URL=http://localhost:8004    # Set in start script
 ```
 
-This is automatically set when using `start-all-modules.ps1`. For Cloud Run, the orchestrator URL is baked in via Docker build arg.
+This is automatically set when using `pipeline.ps1 -Action start`. For Cloud Run, the orchestrator URL is baked in via Docker build arg.
 
 ---
 
@@ -211,7 +203,7 @@ This is automatically set when using `start-all-modules.ps1`. For Cloud Run, the
 ### 5.1 One-Command Startup (Recommended)
 
 ```powershell
-.\start-all-modules.ps1
+.\pipeline.ps1 -Action start
 ```
 
 This will:
@@ -225,10 +217,16 @@ This will:
 
 ```powershell
 # Backend only (skip frontend)
-.\start-all-modules.ps1 -SkipFrontend
+.\pipeline.ps1 -Action start -SkipFrontend
 
 # Stop everything
-.\stop-all-modules.ps1
+.\pipeline.ps1 -Action stop
+
+# Restart just the orchestrator (clears __pycache__, relaunches :8004)
+.\pipeline.ps1 -Action restart-orch
+
+# Free the pipeline ports without touching anything else
+.\pipeline.ps1 -Action kill-ports
 ```
 
 ### 5.2 Manual Startup (Individual Modules)
@@ -308,7 +306,7 @@ npm run dev
 Or use the start script in docker mode:
 
 ```powershell
-.\start-all-modules.ps1 -Mode docker
+.\pipeline.ps1 -Action start -Mode docker
 ```
 
 ---
@@ -317,14 +315,13 @@ Or use the start script in docker mode:
 
 ### 7.1 Script Overview
 
-| Script | Purpose | Builds Images? |
-|--------|---------|----------------|
-| `deploy_gcp.ps1` | First-time GCP setup (project, APIs, registry, secrets) | No |
-| `setup-secrets.ps1` | Push `.env` values to Secret Manager | No |
-| `deploy.ps1` | Build images + push to Artifact Registry + deploy to Cloud Run | Yes |
-| `deploy.clean.ps1` | Wrapper: `deploy.ps1` with no Docker cache | Yes |
-| `deploy.fast.ps1` | Wrapper: `deploy.ps1 -UseCache -SkipCachePrune` | Yes |
-| `cleanup_gcp.ps1` | Delete all Cloud Run services, images, and secrets | No |
+| Script | Action | Purpose | Builds Images? |
+|--------|--------|---------|----------------|
+| `gcp.ps1` | `setup`       | First-time GCP setup (project, APIs, registry, secrets) | No |
+| `gcp.ps1` | `secrets`     | Push `.env` values to Secret Manager | No |
+| `gcp.ps1` | `deploy`      | Clean build + deploy (no Docker cache) | Yes |
+| `gcp.ps1` | `deploy-fast` | Cached build + deploy (fast, code-only changes) | Yes |
+| `gcp.ps1` | `cleanup`     | Delete all Cloud Run services, images, and secrets | No |
 
 ### 7.2 First-Time Setup
 
@@ -338,20 +335,20 @@ gcloud auth login
 # 3. Populate .env files for all modules (see Section 4)
 
 # 4. Run first-time setup (creates project, APIs, registry, secrets)
-.\deploy_gcp.ps1
+.\gcp.ps1 -Action setup
 
 # 5. Build and deploy all services
-.\deploy.clean.ps1
+.\gcp.ps1 -Action deploy
 ```
 
 ### 7.3 Subsequent Deployments
 
 ```powershell
 # Fast deploy (reuses Docker cache — good for code-only changes)
-.\deploy.fast.ps1
+.\gcp.ps1 -Action deploy-fast
 
 # Clean deploy (full rebuild — use when dependencies change)
-.\deploy.clean.ps1
+.\gcp.ps1 -Action deploy
 ```
 
 ### 7.4 Updating Secrets Only
@@ -361,21 +358,21 @@ If you rotate an API key:
 ```powershell
 # 1. Update the key in the relevant .env file
 # 2. Re-push all secrets
-.\setup-secrets.ps1
+.\gcp.ps1 -Action secrets
 
 # 3. Redeploy to pick up new secret version
-.\deploy.fast.ps1
+.\gcp.ps1 -Action deploy-fast
 ```
 
 ### 7.5 Starting From Scratch
 
 ```powershell
 # Tear down everything
-.\cleanup_gcp.ps1
+.\gcp.ps1 -Action cleanup
 
 # Re-setup and deploy
-.\deploy_gcp.ps1
-.\deploy.clean.ps1
+.\gcp.ps1 -Action setup
+.\gcp.ps1 -Action deploy
 ```
 
 ### 7.6 Cloud Run Configuration
@@ -419,7 +416,7 @@ gcloud beta run domain-mappings create --service=aegis-frontend --domain=app.you
 The orchestrator's CORS settings are controlled by the `CORS_ORIGINS` environment variable:
 
 - **Local development:** `ENVIRONMENT=development` automatically allows all origins (`*`)
-- **Cloud Run:** `deploy.ps1` sets `CORS_ORIGINS=*` because the frontend URL is dynamic and not known when the orchestrator deploys
+- **Cloud Run:** `gcp.ps1 -Action deploy` sets `CORS_ORIGINS=*` because the frontend URL is dynamic and not known when the orchestrator deploys
 
 For restricted production environments, do a two-pass deploy:
 1. Deploy orchestrator (with `CORS_ORIGINS=*` temporarily)
@@ -482,12 +479,12 @@ START -> Supervisor -> Risk Classifier -> Technical Assessor
 
 **Knowledge Base Statistics:**
 - Neo4j: 2,301 nodes (18 entity types), 4,423 relationships (13 types)
-- Vector Store: 2,198 documents across 7 collections
-- Embedding model: Gemini `gemini-embedding-001` (3072 dimensions). The earlier `text-embedding-004` model was deprecated by Google on the `v1beta` endpoint and now returns 404 — see [DEVLOG DL-019](./DEVLOG.md). The stored vectors in `chroma_data/*.json` are already 3072-dim, so no re-embed is needed when upgrading from older code.
-- Retrieval: Reciprocal Rank Fusion (RRF) combining graph + vector results
+- Vector index: 2,198 embeddings across 7 logical collections (articles, recitals, interpretive, definitions, obligations, concepts, rights), all stored as `:Entity.embedding` properties
+- Embedding model: Gemini `gemini-embedding-001` (3072 dimensions). The earlier `text-embedding-004` model was deprecated by Google on the `v1beta` endpoint and now returns 404 — see [DEVLOG DL-019](./DEVLOG.md).
+- Retrieval: Reciprocal Rank Fusion (RRF) combining graph traversal + vector similarity, both sourced from the same Neo4j instance.
 
 **Vector Store Implementation:**
-The vector store uses a custom JSON-backed implementation (`src/stores/vector_store.py`), NOT ChromaDB. ChromaDB was removed due to Python 3.14 incompatibility. Data files are stored in `chroma_data/` as JSON (the directory name is historical).
+Vectors live in Neo4j's native vector index (`entity_embedding`, HNSW, cosine, dim=3072) over the `:Entity` label. A single index covers all 7 logical collections; queries filter via `n.collection`. The earlier JSON-backed `VectorStore` and Weaviate sidecar were both retired in favour of this consolidated backend — see [DEVLOG](./DEVLOG.md). Re-embedding from raw text is handled by `scripts/05_load_vector_store.py`; bulk-loading pre-computed embeddings (e.g., from a backup) by `scripts/09_load_vectors_to_neo4j.py`.
 
 ---
 
@@ -513,14 +510,22 @@ The vector store uses a custom JSON-backed implementation (`src/stores/vector_st
 
 ## 9. Pipeline Scripts
 
-### `start-all-modules.ps1`
+### `pipeline.ps1`
 
 ```
-Usage: .\start-all-modules.ps1 [-Mode <docker|local>] [-SkipFrontend]
+Usage: .\pipeline.ps1 -Action <start|stop|restart-orch|kill-ports>
+                      [-Mode <docker|local>] [-SkipFrontend] [-SkipInfra]
+                      [-Ports <int[]>] [-All]
 Default: -Mode local
 ```
 
-**Startup sequence:**
+**Actions:**
+- `start` — full pipeline startup (sequence below)
+- `stop` — stop jobs, free ports (Neo4j Aura is remote, nothing to stop locally)
+- `restart-orch` — kill :8004, clear orchestrator `__pycache__`, relaunch the orchestrator job
+- `kill-ports` — terminate processes on `-Ports` (default 8004/8001/3000) or all user-space listeners (`-All`)
+
+**`start` sequence:**
 1. Prerequisite check (UV/Node.js or Docker)
 2. Kill stale processes on ports 8004, 8001, 3000
 3. Clear orphaned PowerShell background jobs
@@ -529,13 +534,6 @@ Default: -Mode local
 6. Wait for each service to respond (30s timeout per service)
 7. Start frontend (npm dev server as background job)
 8. Print endpoint summary
-
-### `stop-all-modules.ps1`
-
-```
-Usage: .\stop-all-modules.ps1 [-Mode <docker|local>]
-Default: -Mode local
-```
 
 ### Checking Running Jobs
 
@@ -602,7 +600,7 @@ The project path contains spaces (`D:\60 Days\Projects\...`). This causes:
 
 ### Python Version
 
-UV manages its own Python. The project uses Python 3.13.x (managed by UV). ChromaDB is not compatible with Python 3.14, which is why the project uses a custom JSON-backed vector store.
+UV manages its own Python. The project uses Python 3.13.x (managed by UV). Vectors are stored in Neo4j (native vector index), so there is no ChromaDB / Weaviate dependency.
 
 ### Neo4j Aura DB
 
@@ -627,7 +625,7 @@ Google periodically removes embedding models from the `v1beta` endpoint that the
 **Currently supported model:** `gemini-embedding-001` (3072-dim).
 **Removed:** `text-embedding-004` (returns 404 NOT_FOUND on `embedContent`).
 
-**Diagnose:** `curl -X POST http://localhost:8001/api/v1/vector/search -H "Content-Type: application/json" -d '{"query":"test","top_k":1}'`. A 500 here with `/health` reporting `vector_store: loaded` is a near-certain match for this failure mode. See [DEVLOG DL-019](./DEVLOG.md).
+**Diagnose:** `curl -X POST http://localhost:8001/api/v1/vector/search -H "Content-Type: application/json" -d '{"query":"test","top_k":1}'`. A 500 here with `/health` reporting `vector_index: online` is a near-certain match for this failure mode (Neo4j is fine; the per-request Gemini embedding call is what's failing). See [DEVLOG DL-019](./DEVLOG.md).
 
 ### Cloud Run `PORT` Environment Variable
 
@@ -663,8 +661,8 @@ Error calling model 'gemini-2.5-flash': API key not valid.
 **Diagnose:**
 1. Test your key directly: `curl "https://generativelanguage.googleapis.com/v1beta/models?key=YOUR_KEY"`
 2. If invalid, generate a new one at [Google AI Studio](https://aistudio.google.com/app/apikey)
-3. Update `orchestrator/.env` and re-push: `.\setup-secrets.ps1`
-4. Redeploy: `.\deploy.fast.ps1`
+3. Update `orchestrator/.env` and re-push: `.\gcp.ps1 -Action secrets`
+4. Redeploy: `.\gcp.ps1 -Action deploy-fast`
 
 ### "Attribute name 'metadata' is reserved"
 
@@ -697,7 +695,7 @@ Stop-Process -Id <pid> -Force
 
 Check:
 1. Is the orchestrator running? `curl http://localhost:8004/health`
-2. Is `NEXT_PUBLIC_API_URL` set? (Auto-set by `start-all-modules.ps1` locally; baked in via Docker build arg on Cloud Run)
+2. Is `NEXT_PUBLIC_API_URL` set? (Auto-set by `pipeline.ps1 -Action start` locally; baked in via Docker build arg on Cloud Run)
 3. CORS configured? Orchestrator allows `*` origins in development. On Cloud Run, `CORS_ORIGINS=*` is set via env var.
 
 ### Cloud Run Deploy: "Container failed to start"
@@ -723,7 +721,7 @@ curl -X POST http://localhost:8001/api/v1/vector/search \
 
 If this returns `Internal Server Error` while `curl http://localhost:8001/health` returns 200, the most likely cause is a deprecated Gemini embedding model name. Confirm in the Knowledge Engine's terminal — look for `google.genai.errors.ClientError: 404 NOT_FOUND ... is not supported for embedContent`.
 
-**Fix:** Set `EMBEDDING_MODEL=gemini-embedding-001` in `knowledge_engine/.env` (or update the default in `src/config.py`) and restart the service. The stored vectors in `chroma_data/*.json` are already 3072-dim and match this model — no re-embed required. See [DEVLOG DL-019](./DEVLOG.md).
+**Fix:** Set `EMBEDDING_MODEL=gemini-embedding-001` in `knowledge_engine/.env` (or update the default in `src/config.py`) and restart the service. The stored vectors in Neo4j (property `:Entity.embedding`) are 3072-dim and match this model — no re-embed required. See [DEVLOG DL-019](./DEVLOG.md).
 
 ### Neo4j Connection Timeout
 
@@ -757,16 +755,16 @@ If `gcloud beta run domain-mappings create` shows pending for >30 min:
 ### Deployment
 
 1. **Always test API keys before deploying.** Run a quick curl against the provider's API to verify the key works before pushing to Secret Manager.
-2. **Use `deploy.fast.ps1` for code-only changes.** It reuses the Docker layer cache and skips the cache prune step — typically 5-10x faster than a clean build.
-3. **Use `deploy.clean.ps1` when changing dependencies.** Modified `pyproject.toml`, `package.json`, or `Dockerfile`? Do a clean build to ensure layers are rebuilt.
+2. **Use `gcp.ps1 -Action deploy-fast` for code-only changes.** It reuses the Docker layer cache and skips the cache prune step — typically 5-10x faster than a clean build.
+3. **Use `gcp.ps1 -Action deploy` when changing dependencies.** Modified `pyproject.toml`, `package.json`, or `Dockerfile`? Do a clean build to ensure layers are rebuilt.
 4. **Never hardcode Cloud Run URLs.** Use environment variables (`GRAPHRAG_API_URL`, `MONITORING_API_URL`, `NEXT_PUBLIC_API_URL`) — the deploy script resolves and injects them automatically.
 5. **Tag images with timestamps.** The deploy script creates `manual-YYYYMMDD-HHmmss` tags alongside `:latest`. This makes rollback trivial: `gcloud run deploy --image=<old-tag>`.
 
 ### Secrets Management
 
 6. **Keep `.env` files out of git.** They're in `.gitignore`. Never commit API keys.
-7. **Use `setup-secrets.ps1` as the single source of truth** for pushing secrets to GCP. Don't manually create secrets in the console — it's easy to get names wrong.
-8. **Test secrets after rotation.** After updating a key in `.env` and running `setup-secrets.ps1`, always redeploy to verify the new key works end-to-end.
+7. **Use `gcp.ps1 -Action secrets` as the single source of truth** for pushing secrets to GCP. Don't manually create secrets in the console — it's easy to get names wrong.
+8. **Test secrets after rotation.** After updating a key in `.env` and running `gcp.ps1 -Action secrets`, always redeploy to verify the new key works end-to-end.
 9. **Never pipe secrets to `gcloud --data-file=-` on Windows.** PowerShell 5.1 appends `\r\n` to piped strings, and `WriteAllText` adds a UTF-8 BOM — both corrupt secret values. Use `WriteAllBytes` to write a temp file with exact bytes, then pass `--data-file=$tmpFile`. See [DEVLOG DL-018](./DEVLOG.md).
 
 ### PowerShell Scripting for GCP
@@ -779,7 +777,7 @@ If `gcloud beta run domain-mappings create` shows pending for >30 min:
 ### Retrieval & Embeddings
 
 13. **Pin the embedding model in `.env`, not as a code default.** Google deprecates models on `v1beta` without warning; an `.env`-driven name turns a deprecation into a 30-second config change instead of a code edit + redeploy. See [DEVLOG DL-019](./DEVLOG.md).
-14. **Cross-check stored embedding dimensions against the configured model before switching.** A 768-dim model querying 3072-dim stored vectors won't 500 — it will silently produce garbage rankings, which is worse. Verify with `len(json.load(open("chroma_data/articles.json"))["embeddings"][0])`.
+14. **Cross-check stored embedding dimensions against the configured model before switching.** A 768-dim model querying 3072-dim stored vectors won't 500 — it will silently produce garbage rankings, which is worse. Verify against Neo4j with `MATCH (n:Entity) WHERE n.embedding IS NOT NULL RETURN size(n.embedding) AS dim LIMIT 1`.
 15. **Make `/health` exercise the retrieval path.** A health probe that only checks "store is loaded" misses deprecated-model failures. Add a synthetic embed + 1-doc cosine lookup so the probe fails the moment the embedding API stops responding.
 16. **Don't let agents swallow upstream failures silently.** The `legal_research` agent catches HTTP errors per-rule (correct for partial outages) but currently produces no workflow-level signal when **every** lookup fails. If you add a new agent that depends on an upstream service, surface a top-level warning when that service is unreachable so the UI can flag it instead of rendering an empty block.
 

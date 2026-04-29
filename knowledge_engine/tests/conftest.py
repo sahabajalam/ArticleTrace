@@ -97,13 +97,6 @@ def sample_definition_article() -> dict:
 
 
 @pytest.fixture
-def mock_vector_store(tmp_path):
-    """Create a temporary VectorStore for testing."""
-    from src.stores.vector_store import VectorStore
-    return VectorStore(persist_dir=str(tmp_path / "test_vectors"))
-
-
-@pytest.fixture
 def sample_retrieval_results() -> list[dict]:
     """Sample retrieval results for reasoning engine tests."""
     return [

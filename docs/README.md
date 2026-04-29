@@ -1,255 +1,176 @@
-# EU AI Regulatory Compliance Engine
+# AlloyCode — Project Overview & System Architecture
 
-**A complete multi-agent compliance platform for EU AI Act and GDPR assessments**
-
----
-
-## Overview
-
-This is an integrated platform consisting of three core modules that work together to automate AI compliance assessments:
-
-### Core Modules
-
-| Module | Description | Port | Technology |
-|--------|-------------|------|------------|
-| **core_3** | EU AI Act Compliance Automation Agent | 8000 | LangGraph, FastAPI |
-| **core_2** | GraphRAG Legal Research Engine | 8001 | Neo4j, ChromaDB |
-| **core_1** | AI Model Governance & Monitoring | 8002 | PostgreSQL, Prometheus |
-
-### Architecture
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│                       USER/API CLIENT                         │
-└────────────────────────┬─────────────────────────────────────┘
-                         │
-                         ▼
-┌──────────────────────────────────────────────────────────────┐
-│     CORE_3: Compliance Agent (Port 8000)                     │
-│     • Risk Classification                                     │
-│     • GDPR Assessment                                         │
-│     • Document Generation                                     │
-│     • Multi-Agent Orchestration                              │
-└────────┬────────────────────────────┬────────────────────────┘
-         │                            │
-         │ Calls GraphRAG API         │ Reports to Monitoring
-         ▼                            ▼
-┌─────────────────────────┐  ┌──────────────────────────────────┐
-│ CORE_2: GraphRAG (8001) │  │ CORE_1: Monitoring (8002)        │
-│ • Neo4j Knowledge Graph │  │ • Decision Tracking              │
-│ • Vector Store          │  │ • Compliance Violations          │
-│ • Multi-hop Reasoning   │  │ • Drift Detection                │
-│ • Legal Citation        │  │ • Bias Detection                 │
-└─────────────────────────┘  └──────────────────────────────────┘
-```
+**Last updated:** 2026-04-13
+**Status:** Phase 1 (active) — pivoting from free-text assessment to static repo compliance scanning
 
 ---
 
-## Quick Start
+## 1. What it is
 
-### Prerequisites
+AlloyCode is a **static compliance scanner for AI codebases** that maps detected code patterns to concrete EU AI Act and GDPR obligations. Point it at a GitHub repo; it returns a report of likely regulatory violations with **file:line anchors** and article citations.
 
-- **Docker Desktop** (recommended) or Docker + Docker Compose
-- **Python 3.11+** and **UV** (for local development)
-- **Gemini API Key** (required — `GEMINI_API_KEY` and `GOOGLE_API_KEY`)
-- **Neo4j Password** (will be set during setup)
+Two entrypoints:
 
-### Option 1: Start All Modules with Docker (Recommended)
-
-```powershell
-# 1. Navigate to project root
-cd "D:\60 Days\Projects\Portfolio_Series\Project_1_EU AI Regulatory Compliance Engine\Project_1_EU AI Regulatory Compliance Engine"
-
-# 2. Create .env file (fill in real values)
-# See .env file at project root — fill in API keys
-
-# 3. Start all modules at once
-docker-compose up -d
-```
-
-**All three modules will start and be available at:**
-- Compliance Agent: http://localhost:8000
-- GraphRAG API: http://localhost:8001
-- Monitoring API: http://localhost:8002
-- Neo4j Browser: http://localhost:7474
-- Prometheus: http://localhost:9091
-
-### Option 2: Start with PowerShell Script
-
-```powershell
-# Start all modules with Docker
-.\start-all-modules.ps1
-
-# Or start in local development mode
-.\start-all-modules.ps1 -Mode local
-
-# Stop all modules
-.\stop-all-modules.ps1
-```
-
-### Option 3: Start Individual Modules
-
-```powershell
-cd core_3 && docker-compose up -d
-cd core_2 && docker-compose up -d
-cd core_1 && docker-compose up -d
-```
+1. **Web UI** — paste a GitHub URL, run a one-shot scan, read the findings report.
+2. **VS Code extension** (Phase 3) — scans on save / commit / schedule, surfaces findings as editor diagnostics.
 
 ---
 
-## Usage
+## 2. Why this exists (and why the old direction was wrong)
 
-### 1. Start a Compliance Assessment
+**The old direction (shipped, now being retired):** user types a free-text description of their AI system into a form; five agents classify it against the EU AI Act. This had three fatal portfolio problems:
 
-```bash
-curl -X POST http://localhost:8000/api/v1/assessments \
-  -H "Content-Type: application/json" \
-  -d '{
-    "system_description": "Facial recognition for employee attendance tracking",
-    "system_type": "facial_recognition",
-    "deployment_context": "employee_monitoring",
-    "company_name": "Acme Corp"
-  }'
-```
+- Input is vibes — the user can be vague, wrong, or dishonest. The classifier has no ground truth.
+- Every demo looks the same: a textbox, a loading spinner, a markdown report.
+- No differentiator vs. any LLM-wrapper project.
 
-### 2. Query Legal Research Engine
+**The new direction:** the input is **real code from a real repo**. Findings cite **real files and real lines**. The knowledge graph (2,301 nodes of EU AI Act + GDPR structure) becomes a **rule corpus**, not a research Q&A bot. Every claim in the report is grounded in an artifact the reviewer can open.
 
-```bash
-curl -X POST http://localhost:8001/api/v1/hybrid/reason \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "Does facial recognition require a DPIA under GDPR?",
-    "max_hops": 3
-  }'
-```
-
-### 3. Check Compliance Monitoring
-
-```bash
-curl http://localhost:8002/api/v1/compliance/status
-curl http://localhost:8002/api/v1/compliance/violations
-```
+This is the gap in the AI-governance tooling landscape: Credo AI and Holistic AI collect self-reported answers; Fairlearn / AIF360 audit models at runtime with access to training data; Guardrails AI validates LLM outputs. **Nobody statically scans AI application code against regulatory obligations.**
 
 ---
 
-## Data Flow Example
+## 3. Competitive landscape — what we borrow
+
+Modern security / compliance scanners converged on a common shape. We borrow it directly.
+
+| Tool | Pattern we borrow |
+|---|---|
+| Semgrep | Rule catalog as data (YAML), not hand-coded if/else |
+| SonarQube | Confidence scoring + per-rule severity + suppressions via config |
+| Snyk | Dependency / SBOM scanning; findings tied to fix suggestions |
+| GitGuardian | Pre-commit and on-save delta scanning for low-friction UX |
+| Trivy | Deterministic scanning first; LLMs only for narrative post-hoc |
+| OpenSSF Scorecard | Repo hygiene signals that compose into a score |
+
+**Core principle** shared across all of them: **LLMs are kept out of the detection hot path.** Static analysis is fast, cheap, explainable; LLMs are slow, expensive, and hallucinate. AlloyCode follows the same rule — deterministic scanners and KG lookups find the facts; Gemini only writes the human narrative at the end.
+
+---
+
+## 4. System architecture
+
+Three live modules after the pivot (monitor is decommissioned).
 
 ```
-User submits: "Facial recognition for hiring"
-       ↓
-[Core 3: Compliance Agent]
-   1. Risk Classifier → "HIGH_RISK (EU AI Act Annex III)"
-   2. Technical Assessor → "GDPR violations found"
-   3. Legal Research Agent → Calls Core 2
-       ↓
-   [Core 2: GraphRAG]
-      Query: "Does facial recognition for hiring require DPIA?"
-      Graph traversal: facial_recognition → biometric_data → GDPR_Art_9 → DPIA
-      Returns: YES + legal citations
-       ↓
-   4. Documentation Generator → Creates DPIA, ROPA, Conformity Assessment
-   5. Supervisor → Synthesizes final report
-       ↓
-[Core 1: Monitoring]
-   Tracks agent decisions, checks for policy violations, logs audit trail
-       ↓
-User receives: Complete compliance report with documentation
+┌─────────────────────────────────────────────────────────────────┐
+│  FRONTEND (Next.js 16, Port 3000)                               │
+│  Pages: /scan (new), /scans/[id], /knowledge, /approvals        │
+└───────────────────────┬─────────────────────────────────────────┘
+                        │ HTTP fetch → localhost:8004
+                        ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  ORCHESTRATOR (FastAPI, Port 8004)                              │
+│  • code_analyzer/     — clone + scan + profile (NEW)            │
+│  • agents/            — Risk Classifier, Technical Assessor,    │
+│                         Legal Research, Doc Generator           │
+│  • LangGraph workflow · Postgres · Redis · Gemini 2.5           │
+└───────────────────────┬─────────────────────────────────────────┘
+                        │ POST /api/v1/hybrid/reason
+                        ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  KNOWLEDGE_ENGINE (FastAPI, Port 8001)                          │
+│  • Neo4j: 2,301 nodes / 4,423 rels + native vector index        │
+│  • 2,198 embeddings (3072-dim) stored as :Entity.embedding      │
+│  • Hybrid retrieval (RRF) + multi-hop reasoning                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**Decommissioned:** `monitor/` (was Port 8002). Drift/bias/Prometheus machinery provided no usable signal in a portfolio demo — see [REFERENCE.md](REFERENCE.md) §6 for the honest audit.
+
+---
+
+## 5. End-to-end data flow (one scan)
+
+```
+ [1] User pastes GitHub URL in /scan
+        │
+        ▼
+ [2] Orchestrator: POST /api/v1/scans
+        • Create scan_id, persist initial state, return 202
+        • Background task picks up from here
+        │
+        ▼
+ [3] code_analyzer.ingest
+        • git clone --depth=1 → temp workspace
+        • Detect language(s), framework(s), topology
+        • Build file index + dep manifest (requirements.txt, pyproject, package.json)
+        │
+        ▼
+ [4] code_analyzer.scan  ← 10 deterministic detection rules
+        • Import-based scanners (biometric libs, LLM SDKs, …)
+        • AST scanners (FastAPI/Flask routes, model-inference sites)
+        • File-pattern scanners (model cards, DPIA docs, data cards)
+        • Content scanners (prohibited-practice keywords)
+        • Output: findings[] with {rule_id, file, line, excerpt, confidence}
+        │
+        ▼
+ [5] code_analyzer.profile
+        • Aggregate findings into "AI System Profile" JSON
+        • Structured replacement for the old free-text description
+        │
+        ▼
+ [6] Orchestrator LangGraph agents consume profile
+        • Risk Classifier → EU AI Act tier (grounded in profile signals)
+        • Technical Assessor → GDPR gap analysis
+        • Legal Research → calls knowledge_engine with profile signals
+        • Doc Generator → DPIA / ROPA / conformity scaffolds
+        • (Human-in-loop approval retained for Critical severity)
+        │
+        ▼
+ [7] Knowledge_engine.hybrid/reason
+        • Vector search seeded on finding signal (e.g., "face_recognition lib")
+        • Multi-hop graph traversal from matched Obligations
+        • RRF fusion → Articles + Obligations + Recitals
+        • Gemini synth → answer + citations (used for narrative only)
+        │
+        ▼
+ [8] Report rendered at /scans/[id]
+        • Each finding: file:line excerpt + severity + mapped articles
+        •                         + suggested remediation + KG citations
+        • Downloadable as JSON / markdown (PDF in Phase 2)
 ```
 
 ---
 
-## Environment Variables
+## 6. Integration contracts
 
-Create a `.env` file in the project root (template exists at `.env`):
+**Frontend → Orchestrator**
+```
+POST /api/v1/scans              { repo_url, branch?, depth? }  → 202 { scan_id }
+GET  /api/v1/scans/{id}         → scan state + findings
+GET  /api/v1/scans              → list
+GET  /api/v1/audit-log?scan_id  → per-scan event stream
+POST /api/v1/approvals/{id}/decide  (unchanged — Critical findings pause for review)
+```
 
-```bash
-GEMINI_API_KEY=your-gemini-key        # Core 3 (required)
-GOOGLE_API_KEY=your-google-key        # Core 2 embeddings (required)
-ANTHROPIC_API_KEY=sk-ant-your-key     # Core 3 fallback (optional)
-NEO4J_PASSWORD=your-neo4j-password    # Core 2 (required)
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL  # Core 1 (optional)
+**Orchestrator → Knowledge_engine**
+```
+POST /api/v1/hybrid/reason      { question, anchors[] }
+  — anchors[] = detected signals (e.g., ["face_recognition", "biometric_id"])
+  — forces retrieval to be grounded in observed code patterns, not prose embeddings
+```
+
+**Knowledge_engine internals** (unchanged)
+```
+/api/v1/vector/search · /api/v1/graph/traverse · /api/v1/hybrid/search · /api/v1/hybrid/reason
 ```
 
 ---
 
-## Development
+## 7. Scope of Phase 1 (what ships first)
 
-### Local Development (without Docker)
+| In | Out (for Phase 1) |
+|---|---|
+| GitHub public repo scan via URL | Private repo auth |
+| Python-only scanners (AST + imports) | Tree-sitter / multi-language |
+| 10 MVP detection rules | Full rule catalog |
+| ~30 mapped obligations from KG | All 1,325 |
+| One-pass full-repo scan | Delta scan / on-save |
+| Web report UI | PDF export, VS Code extension |
+| Orchestrator retains LangGraph + human-in-loop | Monitor module, drift/bias, Prometheus |
 
-```powershell
-cd core_1 && uv sync
-cd core_2 && uv sync
-cd core_3 && uv sync
-
-# Terminal 1
-cd core_1 && uv run uvicorn src.api.main:app --reload --port 8002
-
-# Terminal 2
-cd core_2 && uv run uvicorn src.api.main:app --reload --port 8001
-
-# Terminal 3
-cd core_3 && uv run uvicorn src.api.main:app --reload --port 8000
-```
-
-### Running Tests
-
-```powershell
-cd core_1 && uv run pytest
-cd core_2 && uv run pytest
-cd core_3 && uv run pytest
-```
+See [REFERENCE.md](REFERENCE.md) for the rule catalog, KG schema, implementation status, and full roadmap.
 
 ---
 
-## Monitoring & Debugging
-
-```bash
-# View all service logs
-docker-compose logs -f
-
-# Check API health / Swagger docs
-curl http://localhost:8000/docs  # Compliance Agent
-curl http://localhost:8001/docs  # GraphRAG
-curl http://localhost:8002/docs  # Monitoring
-
-# Database access
-docker exec -it compliance-db psql -U postgres -d compliance
-docker exec -it monitoring-postgres psql -U postgres -d monitoring
-# Neo4j: http://localhost:7474 (user: neo4j, password: your NEO4J_PASSWORD)
-```
-
----
-
-## Troubleshooting
-
-```powershell
-# Port conflict
-netstat -ano | findstr :8000
-taskkill /PID <process-id> /F
-
-# Clean Docker restart
-docker-compose down -v
-docker-compose up -d --build
-```
-
----
-
-## Business Impact
-
-| Metric | Value |
-|--------|-------|
-| Assessment time reduction | 84% (40h → 6.5h) |
-| Cost reduction per assessment | 86% (£8,500 → £1,200) |
-| Annual savings (15 assessments/month) | £1.3M |
-| EU AI Act fine prevention | Up to €35M |
-| Compliance detection time | <48 hours |
-
----
-
-## License
-
-MIT License — see LICENSE file for each module.
-
----
-
-**Status**: Production Ready | API live at :8000, :8001, :8002
+*Supersedes and merges the prior `01_PROJECT_PORTFOLIO.md` (multi-project portfolio pitch) and `02_ARCHITECTURE_AND_INTEGRATION.md` (pre-pivot architecture).*

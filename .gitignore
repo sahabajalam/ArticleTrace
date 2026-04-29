@@ -1,2 +1,15 @@
-.env  
-node_modules/  
+.env
+node_modules/
+
+# Local debug dumps from testing scans against the orchestrator.
+orchestrator/scan_*.json
+orchestrator/scans.json
+
+# Python / build / IDE
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.next/
+dist/
+build/

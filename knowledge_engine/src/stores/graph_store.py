@@ -41,6 +41,18 @@ class GraphStore:
 
     # ── Index management ──────────────────────────────────────────────────
 
+    VECTOR_INDEX_NAME = "entity_embedding"
+    VECTOR_DIMENSIONS = 3072  # gemini-embedding-001
+    VECTOR_COLLECTIONS = [
+        "articles",
+        "recitals",
+        "interpretive",
+        "definitions",
+        "obligations",
+        "concepts",
+        "rights",
+    ]
+
     def create_indexes(self) -> None:
         """Create indexes for all entity types on id and type fields."""
         with self._session() as session:
@@ -57,6 +69,128 @@ class GraphStore:
                     f"FOR (n:{label}) ON (n.id)"
                 )
             logger.info("Indexes created for all entity types")
+
+    def create_vector_index(self) -> None:
+        """Create the Neo4j-native vector index over :Entity(embedding).
+
+        One index covers all 7 collections; queries filter by `n.collection`.
+        """
+        with self._session() as session:
+            session.run(
+                f"CREATE VECTOR INDEX {self.VECTOR_INDEX_NAME} IF NOT EXISTS "
+                f"FOR (n:Entity) ON (n.embedding) "
+                f"OPTIONS {{indexConfig: {{"
+                f"  `vector.dimensions`: {self.VECTOR_DIMENSIONS}, "
+                f"  `vector.similarity_function`: 'cosine'"
+                f"}}}}"
+            )
+            logger.info("Vector index created: %s", self.VECTOR_INDEX_NAME)
+
+    def vector_index_exists(self) -> bool:
+        """Return True if the vector index is present and ONLINE."""
+        with self._session() as session:
+            result = session.run(
+                "SHOW VECTOR INDEXES YIELD name, state "
+                "WHERE name = $name RETURN state",
+                name=self.VECTOR_INDEX_NAME,
+            )
+            record = result.single()
+            return bool(record and record["state"] == "ONLINE")
+
+    def vector_collection_counts(self) -> dict[str, int]:
+        """Return embedding counts per collection — used by /health."""
+        counts: dict[str, int] = {c: 0 for c in self.VECTOR_COLLECTIONS}
+        with self._session() as session:
+            result = session.run(
+                "MATCH (n:Entity) WHERE n.embedding IS NOT NULL "
+                "RETURN n.collection AS collection, count(n) AS cnt"
+            )
+            for record in result:
+                coll = record["collection"]
+                if coll in counts:
+                    counts[coll] = record["cnt"]
+        return counts
+
+    # ── Vector search ─────────────────────────────────────────────────────
+
+    def vector_search(
+        self,
+        query_embedding: list[float],
+        n_results: int = 10,
+        collections: list[str] | None = None,
+        regulation_filter: str | None = None,
+    ) -> list[dict[str, Any]]:
+        """Vector similarity search over :Entity nodes.
+
+        Returns list of dicts with id, document, metadata, similarity (0-1),
+        ready for the retrieval engine's RRF fusion.
+        """
+        # The vector index returns top-N globally; we over-fetch then filter.
+        candidate_k = max(n_results * 4, 50)
+
+        params: dict[str, Any] = {
+            "k": candidate_k,
+            "embedding": query_embedding,
+        }
+        where_clauses: list[str] = []
+        if collections:
+            where_clauses.append("node.collection IN $collections")
+            params["collections"] = collections
+        if regulation_filter:
+            where_clauses.append("node.regulation_id = $regulation")
+            params["regulation"] = regulation_filter
+
+        where_sql = ""
+        if where_clauses:
+            where_sql = "WHERE " + " AND ".join(where_clauses)
+
+        query = (
+            f"CALL db.index.vector.queryNodes('{self.VECTOR_INDEX_NAME}', $k, $embedding) "
+            f"YIELD node, score "
+            f"{where_sql} "
+            f"RETURN node, score "
+            f"ORDER BY score DESC "
+            f"LIMIT $top_k"
+        )
+        params["top_k"] = n_results
+
+        results: list[dict[str, Any]] = []
+        with self._session() as session:
+            for record in session.run(query, **params):
+                node = record["node"]
+                node_dict = self._node_to_dict(node)
+                results.append({
+                    "entity_id": node_dict.get("id", ""),
+                    "collection": node_dict.get("collection", ""),
+                    "document": node_dict.get("document_text") or self._derive_document(node_dict),
+                    "metadata": self._derive_metadata(node_dict),
+                    "similarity": float(record["score"]),
+                })
+        return results
+
+    @staticmethod
+    def _derive_document(node: dict[str, Any]) -> str:
+        """Pick the best text field for retrieval results.
+
+        Articles/Recitals carry `full_text`; Obligations carry `document` or
+        `text`; Definitions carry `definition_text`. Falls back to name/title.
+        """
+        for key in ("document", "full_text", "text", "definition_text", "description"):
+            val = node.get(key)
+            if isinstance(val, str) and val.strip():
+                return val
+        return node.get("title") or node.get("name") or ""
+
+    @staticmethod
+    def _derive_metadata(node: dict[str, Any]) -> dict[str, Any]:
+        """Build the metadata dict the retrieval engine consumes."""
+        return {
+            "entity_id": node.get("id", ""),
+            "type": node.get("type", ""),
+            "regulation_id": node.get("regulation_id", ""),
+            "article_number": node.get("article_number", ""),
+            "article_reference": node.get("article_reference", ""),
+        }
 
     # ── Node operations ───────────────────────────────────────────────────
 

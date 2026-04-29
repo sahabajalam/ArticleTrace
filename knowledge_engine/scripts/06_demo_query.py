@@ -124,7 +124,6 @@ def main():
     from google import genai
     from src.config import settings
     from src.stores.graph_store import GraphStore
-    from src.stores.weaviate_store import WeaviateVectorStore as VectorStore
     from src.retrieval.engine import RetrievalEngine
 
     # Parse args
@@ -137,7 +136,7 @@ def main():
     print(f"DEMO: Graph RAG Compliance Query Engine ({mode_label} Mode)")
     print("=" * 60)
 
-    # Initialize stores
+    # Initialize stores — Neo4j hosts both the graph and the vector index.
     print("\nInitializing...")
     genai_client = genai.Client(api_key=settings.google_api_key)
 
@@ -147,15 +146,8 @@ def main():
         password=settings.neo4j_password,
     )
 
-    vector = VectorStore(
-        host=settings.weaviate_host,
-        http_port=settings.weaviate_http_port,
-        grpc_port=settings.weaviate_grpc_port,
-    )
-
     engine = RetrievalEngine(
         graph_store=graph,
-        vector_store=vector,
         genai_client=genai_client,
         rrf_k=60,
         default_top_k=10,

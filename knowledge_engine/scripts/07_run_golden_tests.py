@@ -31,11 +31,10 @@ def main():
     test_cases = json.loads(GOLDEN_TESTS_PATH.read_text(encoding="utf-8"))
     print(f"\nLoaded {len(test_cases)} test cases")
 
-    # Initialize engine
+    # Initialize engine — Neo4j hosts both the graph and the vector index.
     from google import genai
     from src.config import settings
     from src.stores.graph_store import GraphStore
-    from src.stores.weaviate_store import WeaviateVectorStore as VectorStore
     from src.retrieval.engine import RetrievalEngine
 
     genai_client = genai.Client(api_key=settings.google_api_key)
@@ -45,14 +44,8 @@ def main():
         user=settings.neo4j_user,
         password=settings.neo4j_password,
     )
-    vector = VectorStore(
-        host=settings.weaviate_host,
-        http_port=settings.weaviate_http_port,
-        grpc_port=settings.weaviate_grpc_port,
-    )
     engine = RetrievalEngine(
         graph_store=graph,
-        vector_store=vector,
         genai_client=genai_client,
         rrf_k=60,
         default_top_k=15,

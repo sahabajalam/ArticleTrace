@@ -31,7 +31,8 @@ from src.state.scan_state import FindingCitations, LegalCitation, ScanState
 
 
 _TOP_K = 5
-_HTTP_TIMEOUT = 30.0
+_HTTP_TIMEOUT = 60.0
+_MAX_CONCURRENCY = 2
 
 
 class LegalResearchAgent(BaseAgent):
@@ -65,11 +66,17 @@ class LegalResearchAgent(BaseAgent):
                 ),
             }
 
+        sem = asyncio.Semaphore(_MAX_CONCURRENCY)
+
+        async def _bounded(client, rid, f):
+            async with sem:
+                return await self._query(client, rid, f)
+
         try:
             async with httpx.AsyncClient(timeout=_HTTP_TIMEOUT) as client:
                 results = await asyncio.gather(
                     *[
-                        self._query(client, rule_id, f)
+                        _bounded(client, rule_id, f)
                         for rule_id, f in unique_rules.items()
                     ],
                     return_exceptions=True,
@@ -83,10 +90,13 @@ class LegalResearchAgent(BaseAgent):
         for (rule_id, f), res in zip(unique_rules.items(), results):
             if isinstance(res, Exception):
                 self.logger.warning("rule %s lookup failed: %s", rule_id, res)
-                continue
-            citations, chain = res
-            if citations:
-                cited += 1
+                citations, chain = [], [
+                    f"1. retrieve: FAILED — {type(res).__name__}: {res}"
+                ]
+            else:
+                citations, chain = res
+                if citations:
+                    cited += 1
             record = FindingCitations(
                 rule_id=rule_id,
                 citations=citations,
@@ -125,34 +135,44 @@ class LegalResearchAgent(BaseAgent):
             data = r.json()
         except httpx.HTTPError as e:
             self.logger.warning("hybrid/search failed for %s: %s", rule_id, e)
-            return [], []
+            return [], [f"1. retrieve: FAILED — {type(e).__name__}: {e}"]
+        except Exception as e:
+            self.logger.exception("hybrid/search unexpected error for %s", rule_id)
+            return [], [f"1. retrieve: FAILED — {type(e).__name__}: {e}"]
 
-        raw = data.get("results") or []
-        # Retrieval returns a mix of Article and Obligation entities.
-        # An Obligation (e.g. AIACT_OBL_14_P1_SHALL) carries its parent
-        # article in `metadata.article_reference` — pivot it up and
-        # deduplicate on (regulation, article_number) so the UI never
-        # shows two rows for the same article.
-        citations: list[LegalCitation] = []
-        seen: set[tuple[str, str]] = set()
-        for r_ in raw:
-            if not isinstance(r_, dict):
-                continue
-            meta = r_.get("metadata") or {}
-            etype = (meta.get("type") or "").lower()
-            if etype not in {"article", "obligation"}:
-                continue
-            citation = _to_citation(r_, anchors)
-            key = (citation.regulation, citation.article_number)
-            if key in seen or citation.article_number in ("", "?"):
-                continue
-            seen.add(key)
-            citations.append(citation)
-            if len(citations) >= _TOP_K:
-                break
+        try:
+            raw = data.get("results") or []
+            # Retrieval returns a mix of Article and Obligation entities.
+            # An Obligation (e.g. AIACT_OBL_14_P1_SHALL) carries its parent
+            # article in `metadata.article_reference` — pivot it up and
+            # deduplicate on (regulation, article_number) so the UI never
+            # shows two rows for the same article.
+            citations: list[LegalCitation] = []
+            seen: set[tuple[str, str]] = set()
+            for r_ in raw:
+                if not isinstance(r_, dict):
+                    continue
+                meta = r_.get("metadata") or {}
+                etype = (meta.get("type") or "").lower()
+                if etype not in {"article", "obligation"}:
+                    continue
+                citation = _to_citation(r_, anchors)
+                key = (citation.regulation, citation.article_number)
+                if key in seen or citation.article_number in ("", "?"):
+                    continue
+                seen.add(key)
+                citations.append(citation)
+                if len(citations) >= _TOP_K:
+                    break
 
-        chain = _build_chain(query, len(raw), citations, mapped_articles)
-        return citations, chain
+            chain = _build_chain(query, len(raw), citations, mapped_articles)
+            return citations, chain
+        except Exception as e:
+            self.logger.exception("parse error for %s", rule_id)
+            return [], [
+                f"1. retrieve: ok — {len(data.get('results') or [])} raw hits",
+                f"2. parse: FAILED — {type(e).__name__}: {e}",
+            ]
 
 
 def _build_query(title: str, anchors: list[str], mapped: list[str]) -> str:

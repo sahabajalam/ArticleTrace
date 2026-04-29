@@ -8,7 +8,6 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.stores.vector_store import VectorStore
 from src.retrieval.query_models import (
     ComplianceQueryRequest,
     ComplianceQueryResponse,
@@ -19,73 +18,10 @@ from src.retrieval.query_models import (
 )
 
 
-# ── Vector Store ──────────────────────────────────────────────────────────────
-
-class TestVectorStore:
-    def test_add_and_count(self, mock_vector_store):
-        vs = mock_vector_store
-        ids = ["doc1", "doc2"]
-        texts = ["Hello world", "Goodbye world"]
-        embeddings = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]]
-        metas = [{"type": "test"}, {"type": "test"}]
-
-        added = vs.add_documents("articles", ids, texts, embeddings, metas)
-        assert added == 2
-        assert vs.count("articles") == 2
-
-    def test_deduplication(self, mock_vector_store):
-        vs = mock_vector_store
-        ids = ["doc1", "doc1"]
-        texts = ["Hello", "Hello"]
-        embeddings = [[1.0, 0.0], [1.0, 0.0]]
-        metas = [{"type": "t"}, {"type": "t"}]
-
-        added = vs.add_documents("articles", ids, texts, embeddings, metas)
-        assert added == 1
-
-    def test_query_returns_nearest(self, mock_vector_store):
-        vs = mock_vector_store
-        ids = ["a", "b", "c"]
-        texts = ["Alpha", "Beta", "Charlie"]
-        embeddings = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
-        metas = [{"type": "x"}, {"type": "x"}, {"type": "x"}]
-
-        vs.add_documents("articles", ids, texts, embeddings, metas)
-        result = vs.query("articles", [1.0, 0.0, 0.0], n_results=2)
-
-        assert result["ids"][0][0] == "a"  # Most similar to [1,0,0]
-        assert len(result["ids"][0]) == 2
-
-    def test_metadata_filter(self, mock_vector_store):
-        vs = mock_vector_store
-        ids = ["gdpr1", "ai1"]
-        texts = ["GDPR article", "AI Act article"]
-        embeddings = [[1.0, 0.0], [0.9, 0.1]]
-        metas = [{"regulation_id": "GDPR"}, {"regulation_id": "EU_AI_ACT"}]
-
-        vs.add_documents("articles", ids, texts, embeddings, metas)
-        result = vs.query("articles", [1.0, 0.0], n_results=2, where={"regulation_id": "GDPR"})
-
-        assert len(result["ids"][0]) == 1
-        assert result["ids"][0][0] == "gdpr1"
-
-    def test_cosine_similarity(self):
-        sim = VectorStore._cosine_similarity([1.0, 0.0], [1.0, 0.0])
-        assert abs(sim - 1.0) < 0.001
-
-        sim = VectorStore._cosine_similarity([1.0, 0.0], [0.0, 1.0])
-        assert abs(sim) < 0.001
-
-    def test_clear_all(self, mock_vector_store):
-        vs = mock_vector_store
-        vs.add_documents("articles", ["a"], ["text"], [[1.0]], [{"t": "t"}])
-        assert vs.count("articles") == 1
-        vs.clear_all()
-        assert vs.count("articles") == 0
-
-    def test_collections_include_concepts_and_rights(self):
-        assert "concepts" in VectorStore.COLLECTIONS
-        assert "rights" in VectorStore.COLLECTIONS
+# Vector store unit tests were removed when the JSON-backed VectorStore class
+# was deleted. The replacement (Neo4j-native vector index via GraphStore.
+# vector_search) is exercised by `scripts/07_run_golden_tests.py` against a
+# live Aura instance.
 
 
 # ── Query Models ──────────────────────────────────────────────────────────────

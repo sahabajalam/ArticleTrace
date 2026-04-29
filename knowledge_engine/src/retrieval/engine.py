@@ -21,16 +21,18 @@ from google import genai
 from google.genai import types as genai_types
 
 from src.stores.graph_store import GraphStore
-from src.stores.vector_store import VectorStore
 
 
 class RetrievalEngine:
-    """Hybrid Graph + Vector retrieval with RRF fusion."""
+    """Hybrid Graph + Vector retrieval with RRF fusion.
+
+    Vectors live on :Entity nodes (`embedding` property, single vector index).
+    Both retrieval paths now go through `graph_store`.
+    """
 
     def __init__(
         self,
         graph_store: GraphStore,
-        vector_store: VectorStore,
         genai_client: genai.Client,
         embedding_model: str = "gemini-embedding-001",
         rrf_k: int = 60,
@@ -38,7 +40,6 @@ class RetrievalEngine:
         max_hops: int = 3,
     ):
         self.graph = graph_store
-        self.vector = vector_store
         self.genai = genai_client
         self.embedding_model = embedding_model
         self.rrf_k = rrf_k
@@ -67,7 +68,7 @@ class RetrievalEngine:
         """
         top_k = top_k or self.default_top_k
         max_hops = max_hops or self.max_hops
-        collections = collections or VectorStore.COLLECTIONS
+        collections = collections or GraphStore.VECTOR_COLLECTIONS
 
         # Step 1: Embed the query
         query_embedding = self._embed_query(question)
@@ -107,47 +108,17 @@ class RetrievalEngine:
         n_results: int,
         regulation_filter: str | None,
     ) -> list[dict[str, Any]]:
-        """Search across vector collections."""
-        all_results: list[dict[str, Any]] = []
-
-        where = None
-        if regulation_filter:
-            where = {"regulation_id": regulation_filter}
-
-        for coll_name in collections:
-            result = self.vector.query(
-                collection_name=coll_name,
-                query_embedding=query_embedding,
-                n_results=n_results,
-                where=where,
-            )
-
-            if not result["ids"] or not result["ids"][0]:
-                continue
-
-            for i, doc_id in enumerate(result["ids"][0]):
-                distance = result["distances"][0][i] if result["distances"][0] else 1.0
-                similarity = 1.0 - distance
-
-                all_results.append({
-                    "entity_id": doc_id,
-                    "collection": coll_name,
-                    "similarity": similarity,
-                    "document": result["documents"][0][i] if result["documents"][0] else "",
-                    "metadata": result["metadatas"][0][i] if result["metadatas"][0] else {},
-                    "source": "vector",
-                })
-
-        # Sort by similarity descending and deduplicate
-        all_results.sort(key=lambda x: x["similarity"], reverse=True)
-        seen: set[str] = set()
-        deduped = []
-        for r in all_results:
-            if r["entity_id"] not in seen:
-                seen.add(r["entity_id"])
-                deduped.append(r)
-
-        return deduped
+        """Search the Neo4j vector index, filtered to the given collections."""
+        results = self.graph.vector_search(
+            query_embedding=query_embedding,
+            n_results=n_results,
+            collections=collections,
+            regulation_filter=regulation_filter,
+        )
+        # Tag source for downstream RRF merge.
+        for r in results:
+            r["source"] = "vector"
+        return results
 
     def _graph_traverse(
         self, seed_ids: list[str], max_hops: int
