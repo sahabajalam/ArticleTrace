@@ -1,7 +1,206 @@
+---
+title: AlloyCode — Bug Log
+status: living
+last_verified: 2026-05-20
+companion_doc: CHANGELOG.md
+ai_guidance: |
+  This is the LIVING incident-and-fix log. Each entry is dated, has an ID
+  (DL-001 ... DL-NNN), describes the symptom, and records the exact fix
+  applied. Append-only — never re-order or rewrite past entries. Companion to
+  CHANGELOG.md, which records intentional changes; this file records
+  incidents and the fixes that landed. Newest entries at the top.
+---
 # Development Log — Aegis Compliance Engine
 
 > Running record of significant issues encountered during development and the exact fixes applied.
 > Newest entries at the top.
+
+---
+
+## DL-023 | gcp.ps1 secret verification false-negative: PowerShell scope mismatch
+
+**Date:** 2026-04-29
+**Severity:** Low (workflow blocker, not a runtime bug)
+**Affected:** `gcp.ps1` `Invoke-Deploy` function
+
+**Symptom:**
+Immediately after `./gcp.ps1 -Action secrets` reported all 6 secrets stored, `./gcp.ps1 -Action deploy-fast` reported every secret as MISSING:
+
+```
+[+] Verifying required secrets in Secret Manager
+    [ERR] GEMINI_API_KEY -- MISSING
+    [ERR] GOOGLE_API_KEY -- MISSING
+    [ERR] DATABASE_URL_ORCHESTRATOR -- MISSING
+    [ERR] NEO4J_URI -- MISSING
+    [ERR] NEO4J_USER -- MISSING
+    [ERR] NEO4J_PASSWORD -- MISSING
+```
+
+The secrets were genuinely present in Secret Manager — verifiable via `gcloud secrets list`. The deploy script just couldn't see them.
+
+**Root Cause:**
+PowerShell scope mismatch in the verification block:
+
+```powershell
+$existingSecrets = @()                                                # function-local
+Invoke-Native "gcloud secrets list" {
+    $script:existingSecrets = (& $gcloud secrets list ... 2>$null) -split "`n" |
+        ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }      # writes script scope
+}
+foreach ($s in $requiredSecrets) {
+    if ($existingSecrets -contains $s) { Write-OK $s }                # reads function-local (still empty!)
+    else { Write-Fail "$s -- MISSING" }
+}
+```
+
+When `Invoke-Native` calls `& $Command`, the scriptblock runs in a child scope. `$existingSecrets = ...` would be local to that child; `$script:existingSecrets = ...` writes to the script scope. But the outer `foreach` reads function-local `$existingSecrets` — never populated. The two "$existingSecrets" are different variables.
+
+This sat as a latent bug because the deploy script had only been tested end-to-end on a fresh project where `setup` and `deploy` ran back-to-back without a working secret-list verification path. Re-running `deploy-fast` against an existing project surfaced the mismatch.
+
+**Fix:**
+Use `Invoke-GcloudQuery` (already defined elsewhere in `gcp.ps1`) which returns the captured output through the function boundary cleanly:
+
+```powershell
+$rawList = Invoke-GcloudQuery { & $gcloud secrets list --format="value(name)" }
+$existingSecrets = @()
+if ($rawList) {
+    $existingSecrets = ($rawList -split "`r?`n") |
+        ForEach-Object { $_.Trim() } |
+        Where-Object { $_ -ne "" }
+}
+foreach ($s in $requiredSecrets) {
+    if ($existingSecrets -contains $s) { Write-OK $s }
+    else { Write-Fail "$s -- MISSING"; $missing += $s }
+}
+```
+
+**Lesson:**
+PowerShell scriptblock invocation via `& $Command` creates a new scope. If a result needs to escape, return it via the pipeline (which `Invoke-GcloudQuery` already does) rather than mutating an outer-scope variable from inside the scriptblock. Mixing `$script:` writes with function-local reads silently desyncs.
+
+---
+
+## DL-022 | Cloud Run orchestrator deploy: port hardcoded + missing git binary
+
+**Date:** 2026-04-29
+**Severity:** High (deploy blocked; misleading error message)
+**Affected:**
+- `orchestrator/Dockerfile` (port + git install)
+- `knowledge_engine/Dockerfile` (preventive `$PORT` fix)
+- Cloud Run service `aegis-orchestrator`
+
+**Symptom:**
+Two consecutive deploys to `aegis-orchestrator` failed with the same Cloud Run error:
+
+```
+ERROR: (gcloud.run.deploy) The user-provided container failed to start
+and listen on the port defined provided by the PORT=8004 environment
+variable within the allocated timeout.
+```
+
+Misleading message — suggests port misconfiguration. The actual cause was upstream of port binding in both cases.
+
+**Root Cause:**
+
+Two distinct bugs surfaced in sequence.
+
+**(1) Hardcoded port in Dockerfile.**
+`orchestrator/Dockerfile` shipped with `EXPOSE 8000` and `CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]`. The deploy script passes `--port=8004` to `gcloud run deploy`, which Cloud Run translates into `PORT=8004` injected into the container at runtime. The hardcoded uvicorn arg ignored `$PORT` entirely and bound to 8000. Cloud Run probed 8004, got nothing, declared the deploy failed.
+
+**(2) Missing git binary.**
+After fixing port to use `${PORT:-8004}`, deploy still failed with the same error. Pulling Cloud Run logs (`gcloud logging read`) on the failed revision revealed:
+
+```
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+All git commands will error until this is rectified.
+Traceback (most recent call last):
+  File "/app/.venv/bin/uvicorn", line 10, in <module>
+    sys.exit(main())
+```
+
+The orchestrator imports `code_analyzer/`, which uses GitPython to `git clone --depth=1` repos for scanning. GitPython runs an import-time check that calls `exit(1)` if `git` is missing from PATH. The base image `python:3.11-slim` doesn't include git. Container exited with code 1 before uvicorn ever bound to a port. Cloud Run reported the symptom (port not listening) instead of the cause (process exit during import).
+
+**Fix:**
+
+`orchestrator/Dockerfile` final stage:
+
+```dockerfile
+# Install git — required at runtime for code_analyzer.ingest, which
+# uses GitPython to `git clone --depth=1` scanned repos. GitPython
+# also runs an import-time check that exit(1)s if git is missing.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Expose port (matches PORT default below; Cloud Run overrides via env)
+EXPOSE 8004
+
+# Run the application — bind to $PORT if Cloud Run injected one,
+# otherwise fall back to the local convention (8004). `exec` keeps
+# uvicorn as PID 1 so SIGTERM is delivered cleanly on shutdown.
+CMD ["sh", "-c", "exec uvicorn src.api.main:app --host 0.0.0.0 --port ${PORT:-8004}"]
+```
+
+The `sh -c "exec ..."` pattern is critical: shell form gets `$PORT` expansion, `exec` replaces the shell with uvicorn so uvicorn becomes PID 1 and receives SIGTERM directly during Cloud Run shutdown (otherwise sh ignores the signal and you get a 10-second termination delay).
+
+`knowledge_engine/Dockerfile`: same `${PORT:-8001}` pattern applied preventively. The KE was working coincidentally because deploy `--port=8001` matched the hardcoded value, but a single change in either place would have broken it.
+
+`HEALTHCHECK` directives removed from both Dockerfiles — Cloud Run uses its own startup probes; nothing in `docker-compose.yml` depended on the Dockerfile healthcheck.
+
+**Lesson:**
+Cloud Run's "container failed to start and listen on PORT" error covers two distinct failure modes:
+
+1. The process is alive but binding to the wrong port.
+2. The process exited (any reason) before binding any port.
+
+Both produce the same Cloud Run error. **Always pull `gcloud logging read 'resource.type="cloud_run_revision" AND resource.labels.revision_name="..."'` for the failed revision before assuming it's a port issue.** The application logs show the real failure — in this case, the GitPython import-time crash. Diagnosing from the deploy error alone wastes a build cycle.
+
+Same lesson applies to any system-level dep: if the application imports a Python library that wraps a CLI tool (GitPython, pygit2, etc.), the CLI must be in the runtime image. Slim base images don't ship development tools.
+
+---
+
+## DL-021 | Vector store consolidation: Weaviate + JSON → Neo4j native vector index
+
+**Date:** 2026-04-29
+**Severity:** High (architectural change, ops fragility driver)
+**Affected:**
+- `knowledge_engine/src/stores/graph_store.py` (added `vector_search`, `create_vector_index`, `vector_index_exists`, `vector_collection_counts`, plus `VECTOR_*` class constants)
+- `knowledge_engine/src/retrieval/engine.py` (drops `vector_store`, delegates to `graph_store.vector_search`)
+- `knowledge_engine/src/api/main.py` (removes `vector_store` global; simplifies `/health` and `/api/v1/vector/search`)
+- `knowledge_engine/src/config.py` (removes `weaviate_*` settings)
+- `knowledge_engine/pyproject.toml` (removes `weaviate-client` dep)
+- `docker-compose.yml` (removes `weaviate` service + volume + dependent env vars)
+- New: `knowledge_engine/scripts/09_load_vectors_to_neo4j.py`
+- Deleted: `weaviate_store.py`, `vector_store.py` (JSON), `chroma_data/` directory, scripts `05a_fix_concept_rights_vectors.py` and `08_migrate_json_to_weaviate.py`
+- New: `.github/workflows/keep-aura-alive.yml`
+
+**Symptom:**
+Two recurring failure modes converged on the same conclusion: two vector backends meant two failure surfaces.
+
+**(1) Aura pause + stale driver.** A `retrieve: FAILED — ReadError:` symptom appeared in scan reports — superficially similar to [DL-019](#dl-019--gemini-embedding-model-text-embedding-004-returns-404-silent-empty-citations), but the embedding model was already correct. Investigation showed Aura free-tier had auto-paused after 3 days of inactivity. The knowledge_engine's cached Neo4j driver became stale. `/health` reported `degraded` but didn't 503 cleanly; individual `/api/v1/hybrid/search` calls returned 500 Internal Server Error mid-response, which httpx async surfaces as `ReadError:` with empty message because the connection was dropped before a complete response body arrived.
+
+**(2) Weaviate not deployed.** `gcp.ps1` deploy was wired for Neo4j only. The deployed knowledge_engine read `WEAVIATE_HOST` from settings, defaulted to `localhost` (which doesn't exist on Cloud Run), and returned 0 vector hits even when otherwise healthy. Production scans would surface findings with empty citation blocks.
+
+**Root Cause:**
+The vector backend had migrated twice before this session: ChromaDB → JSON-backed `VectorStore` → Weaviate sidecar. Each migration solved one specific problem (Python compat, persistence, scale-out) but added fan-out — by the time Weaviate landed, knowledge_engine state spanned two databases, two Docker volumes, two Cloud Run secret families, two health probes, and two separate "is this thing alive?" debugging surfaces. Every operational incident had to be triaged across both backends.
+
+Neo4j 5.13+ ships a native HNSW vector index over node properties. Aura runs 5.27 with `db.index.vector.queryNodes` available. So consolidating to one backend isn't a downgrade — it's an option that didn't exist when ChromaDB was originally chosen.
+
+**Fix:**
+- **Single vector index** `entity_embedding` on `:Entity(embedding)`, dim=3072 (gemini-embedding-001), cosine similarity.
+- **All 2,198 embeddings** loaded into Neo4j as `:Entity.embedding` properties via `09_load_vectors_to_neo4j.py` (UNWIND batch update, 250 nodes per transaction). Source was the existing `chroma_data/*.json` corpus — embeddings preserved without re-running Gemini.
+- **Logical "collections"** (articles, recitals, obligations, etc.) preserved as `:Entity.collection` property; queries filter via `WHERE node.collection IN $collections` after `CALL db.index.vector.queryNodes(...)`. One index, seven logical groupings.
+- **`RetrievalEngine`** rewritten to delegate vector search to `graph_store.vector_search(...)`; RRF fusion logic unchanged. Documents come back with `:Entity.document_text` baked in, so retrieval results are self-contained.
+- **Weaviate Docker container, volume, and `weaviate-client` Python dep** all removed.
+- **Aura keep-alive** added: `.github/workflows/keep-aura-alive.yml` runs every 2 days at 12:00 UTC, executes `MATCH (n) RETURN count(n)` against Aura via the Neo4j Python driver, and fails the workflow with an alert if node count drops below 1000 (catches accidental graph wipes). Required repo secrets: `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`.
+
+**Verification:**
+End-to-end scan against `https://github.com/sahabajalam/euai_testing` completed in 27 seconds (16:14:14 → 16:14:41). 8 findings, every reasoning chain showed `1. retrieve: hybrid RRF search — N raw hits` (no `FAILED`, no `ReadError`, no `503`). Direct `/api/v1/hybrid/search` query for biometric identification returned the same Article 5 obligations as the previous Weaviate-era smoke test, with similarity 0.89 (Neo4j returns native cosine; Weaviate was returning `1 - distance` so the previous score was 0.78 — same ranking, different scale).
+
+**Lesson:**
+Operational fragility compounds across backends. When the same architecture spans two stateful systems (graph DB + vector DB), every incident has to be triaged twice and every deploy has to wire up two independent secret families. Consolidating into one backend is worth a meaningful migration cost if the destination supports the workload — and Neo4j's native vector index does, comfortably, for this corpus size (2,198 embeddings, 3072-dim, ~27 MB on Aura's 200 MB free tier). When evaluating future "should we add a specialized store?" questions, the cost isn't the new system in isolation; it's the second failure surface for everything you already have.
 
 ---
 

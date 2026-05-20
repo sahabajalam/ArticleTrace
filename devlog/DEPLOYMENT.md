@@ -1,3 +1,19 @@
+---
+title: AlloyCode — Deployment Guide
+status: accepted
+last_verified: 2026-05-20
+source_of_truth: |
+  docker-compose.yml, gcp.ps1, frontend/cloudbuild.yaml, orchestrator/Dockerfile,
+  knowledge_engine/Dockerfile, .github/workflows/
+companion_doc: SYSTEM.md  # §6 Deploy summarises; this doc has the full procedure
+ai_guidance: |
+  This is the accepted reference for local dev, Docker, and Cloud Run deployment
+  of AlloyCode. Procedures here are tested; if a command fails, the docs win
+  for the procedure but the underlying tool versions/flags may have moved —
+  check the linked source files before assuming the doc is wrong. Companion to
+  SYSTEM.md §6, which gives the architectural summary without the runbook
+  detail.
+---
 # Deployment Guide — Aegis Compliance Engine
 
 > Canonical instructions for deploying the EU AI Regulatory Compliance Engine.
@@ -168,7 +184,7 @@ ENVIRONMENT=development
 LOG_LEVEL=INFO
 ```
 
-> **Critical:** The config expects `GEMINI_API_KEY`, not `OPENAI_API_KEY`. If you see a `ValidationError` for `gemini_api_key`, your `.env` has the wrong key name. See [DEVLOG DL-005](./DEVLOG.md).
+> **Critical:** The config expects `GEMINI_API_KEY`, not `OPENAI_API_KEY`. If you see a `ValidationError` for `gemini_api_key`, your `.env` has the wrong key name. See [BUG_LOG DL-005](./BUG_LOG.md).
 
 ### 4.3 `knowledge_engine/.env`
 
@@ -248,7 +264,7 @@ npm install       # first time only
 npm run dev
 ```
 
-> **Important:** Use `uv run python -m uvicorn`, NOT `uv run uvicorn`. The direct `uvicorn` script path fails when the project directory contains spaces. See [DEVLOG DL-007](./DEVLOG.md).
+> **Important:** Use `uv run python -m uvicorn`, NOT `uv run uvicorn`. The direct `uvicorn` script path fails when the project directory contains spaces. See [BUG_LOG DL-007](./BUG_LOG.md).
 
 ### 5.3 Startup Order
 
@@ -480,11 +496,11 @@ START -> Supervisor -> Risk Classifier -> Technical Assessor
 **Knowledge Base Statistics:**
 - Neo4j: 2,301 nodes (18 entity types), 4,423 relationships (13 types)
 - Vector index: 2,198 embeddings across 7 logical collections (articles, recitals, interpretive, definitions, obligations, concepts, rights), all stored as `:Entity.embedding` properties
-- Embedding model: Gemini `gemini-embedding-001` (3072 dimensions). The earlier `text-embedding-004` model was deprecated by Google on the `v1beta` endpoint and now returns 404 — see [DEVLOG DL-019](./DEVLOG.md).
+- Embedding model: Gemini `gemini-embedding-001` (3072 dimensions). The earlier `text-embedding-004` model was deprecated by Google on the `v1beta` endpoint and now returns 404 — see [BUG_LOG DL-019](./BUG_LOG.md).
 - Retrieval: Reciprocal Rank Fusion (RRF) combining graph traversal + vector similarity, both sourced from the same Neo4j instance.
 
 **Vector Store Implementation:**
-Vectors live in Neo4j's native vector index (`entity_embedding`, HNSW, cosine, dim=3072) over the `:Entity` label. A single index covers all 7 logical collections; queries filter via `n.collection`. The earlier JSON-backed `VectorStore` and Weaviate sidecar were both retired in favour of this consolidated backend — see [DEVLOG](./DEVLOG.md). Re-embedding from raw text is handled by `scripts/05_load_vector_store.py`; bulk-loading pre-computed embeddings (e.g., from a backup) by `scripts/09_load_vectors_to_neo4j.py`.
+Vectors live in Neo4j's native vector index (`entity_embedding`, HNSW, cosine, dim=3072) over the `:Entity` label. A single index covers all 7 logical collections; queries filter via `n.collection`. The earlier JSON-backed `VectorStore` and Weaviate sidecar were both retired in favour of this consolidated backend — see [BUG_LOG](./BUG_LOG.md). Re-embedding from raw text is handled by `scripts/05_load_vector_store.py`; bulk-loading pre-computed embeddings (e.g., from a backup) by `scripts/09_load_vectors_to_neo4j.py`.
 
 ---
 
@@ -625,11 +641,50 @@ Google periodically removes embedding models from the `v1beta` endpoint that the
 **Currently supported model:** `gemini-embedding-001` (3072-dim).
 **Removed:** `text-embedding-004` (returns 404 NOT_FOUND on `embedContent`).
 
-**Diagnose:** `curl -X POST http://localhost:8001/api/v1/vector/search -H "Content-Type: application/json" -d '{"query":"test","top_k":1}'`. A 500 here with `/health` reporting `vector_index: online` is a near-certain match for this failure mode (Neo4j is fine; the per-request Gemini embedding call is what's failing). See [DEVLOG DL-019](./DEVLOG.md).
+**Diagnose:** `curl -X POST http://localhost:8001/api/v1/vector/search -H "Content-Type: application/json" -d '{"query":"test","top_k":1}'`. A 500 here with `/health` reporting `vector_index: online` is a near-certain match for this failure mode (Neo4j is fine; the per-request Gemini embedding call is what's failing). See [BUG_LOG DL-019](./BUG_LOG.md).
 
 ### Cloud Run `PORT` Environment Variable
 
 Cloud Run reserves `PORT` as a system environment variable. Do NOT pass it in `--set-env-vars` — Cloud Run sets it automatically from `--port`. Doing so will cause deployment to fail.
+
+**Dockerfiles must read `$PORT` from the env, not hardcode a port.** Both backend Dockerfiles now use the shell-form CMD pattern:
+
+```dockerfile
+CMD ["sh", "-c", "exec uvicorn src.api.main:app --host 0.0.0.0 --port ${PORT:-8004}"]
+```
+
+`sh -c` enables `$PORT` expansion (exec form `["uvicorn", ...]` does not). `exec` replaces the shell with uvicorn so uvicorn becomes PID 1 — Cloud Run sends SIGTERM directly to PID 1 on shutdown, and a sh wrapper without `exec` swallows it, producing a 10-second termination delay on every revision rollover. See [BUG_LOG DL-022](./BUG_LOG.md).
+
+### "Container failed to start and listen on PORT"
+
+```
+ERROR: (gcloud.run.deploy) The user-provided container failed to start
+and listen on the port defined provided by the PORT=8004 environment
+variable within the allocated timeout.
+```
+
+This message covers **two distinct failure modes** that look identical from the deploy CLI:
+
+1. The process is running but binding to the wrong port (Dockerfile hardcodes a port that doesn't match `--port`).
+2. The process exited (any reason) before binding any port — could be a missing dep, a config error, an import-time crash.
+
+**Always pull the actual revision logs before assuming it's a port issue:**
+
+```bash
+gcloud logging read \
+  'resource.type="cloud_run_revision" AND resource.labels.revision_name="<failed-revision>"' \
+  --limit=30 \
+  --format="value(textPayload)" \
+  --project=<your-project>
+```
+
+The failed revision name is in the deploy error output (look for `revision_name=<service>-<NNNNN>-<hash>`). The application stderr/stdout from the doomed startup is the source of truth.
+
+**Common real causes when the port is correctly configured:**
+
+- **Missing system binary.** The orchestrator imports `code_analyzer/`, which uses GitPython. GitPython runs an import-time check that calls `exit(1)` if `git` isn't in PATH. The base `python:3.11-slim` image doesn't ship git. Fix: `apt-get install -y --no-install-recommends git` in the final stage. See [BUG_LOG DL-022](./BUG_LOG.md).
+- **Database connection blocking startup.** If `lifespan` calls `await init_db()` and the database is unreachable, uvicorn blocks before binding. Either make the DB connection lazy (open on first request) or set `--timeout=600` on the deploy to give cold connections time to establish.
+- **Synchronous slow imports.** Large dependency trees (e.g. importing `langchain` ecosystem) can take 20-30s. Set `--timeout=300` (the gcp.ps1 default) or higher.
 
 ---
 
@@ -721,7 +776,7 @@ curl -X POST http://localhost:8001/api/v1/vector/search \
 
 If this returns `Internal Server Error` while `curl http://localhost:8001/health` returns 200, the most likely cause is a deprecated Gemini embedding model name. Confirm in the Knowledge Engine's terminal — look for `google.genai.errors.ClientError: 404 NOT_FOUND ... is not supported for embedContent`.
 
-**Fix:** Set `EMBEDDING_MODEL=gemini-embedding-001` in `knowledge_engine/.env` (or update the default in `src/config.py`) and restart the service. The stored vectors in Neo4j (property `:Entity.embedding`) are 3072-dim and match this model — no re-embed required. See [DEVLOG DL-019](./DEVLOG.md).
+**Fix:** Set `EMBEDDING_MODEL=gemini-embedding-001` in `knowledge_engine/.env` (or update the default in `src/config.py`) and restart the service. The stored vectors in Neo4j (property `:Entity.embedding`) are 3072-dim and match this model — no re-embed required. See [BUG_LOG DL-019](./BUG_LOG.md).
 
 ### Neo4j Connection Timeout
 
@@ -765,18 +820,18 @@ If `gcloud beta run domain-mappings create` shows pending for >30 min:
 6. **Keep `.env` files out of git.** They're in `.gitignore`. Never commit API keys.
 7. **Use `gcp.ps1 -Action secrets` as the single source of truth** for pushing secrets to GCP. Don't manually create secrets in the console — it's easy to get names wrong.
 8. **Test secrets after rotation.** After updating a key in `.env` and running `gcp.ps1 -Action secrets`, always redeploy to verify the new key works end-to-end.
-9. **Never pipe secrets to `gcloud --data-file=-` on Windows.** PowerShell 5.1 appends `\r\n` to piped strings, and `WriteAllText` adds a UTF-8 BOM — both corrupt secret values. Use `WriteAllBytes` to write a temp file with exact bytes, then pass `--data-file=$tmpFile`. See [DEVLOG DL-018](./DEVLOG.md).
+9. **Never pipe secrets to `gcloud --data-file=-` on Windows.** PowerShell 5.1 appends `\r\n` to piped strings, and `WriteAllText` adds a UTF-8 BOM — both corrupt secret values. Use `WriteAllBytes` to write a temp file with exact bytes, then pass `--data-file=$tmpFile`. See [BUG_LOG DL-018](./BUG_LOG.md).
 
 ### PowerShell Scripting for GCP
 
 9. **Never use `$args` as a variable name.** It's a reserved automatic variable in PowerShell. Use `$dockerArgs`, `$cmdArgs`, etc.
 10. **Always wrap gcloud queries in `Invoke-GcloudQuery`.** gcloud writes informational messages to stderr, which PowerShell treats as errors under `$ErrorActionPreference = "Stop"`.
-11. **Don't use `$script:` scope tricks across function boundaries.** Use return values or `Invoke-GcloudQuery` instead. Variables set as `$script:foo` inside a scriptblock passed to another function won't be visible in the calling function's local scope.
+11. **Don't use `$script:` scope tricks across function boundaries.** Use return values or `Invoke-GcloudQuery` instead. Variables set as `$script:foo` inside a scriptblock passed to another function won't be visible in the calling function's local scope. Concrete failure: the `Invoke-Deploy` secret-verification step did exactly this and reported every secret as MISSING immediately after `secrets` had successfully pushed them. See [BUG_LOG DL-023](./BUG_LOG.md).
 12. **Don't pass `PORT` in `--set-env-vars`.** Cloud Run reserves it. Use `--port` flag instead.
 
 ### Retrieval & Embeddings
 
-13. **Pin the embedding model in `.env`, not as a code default.** Google deprecates models on `v1beta` without warning; an `.env`-driven name turns a deprecation into a 30-second config change instead of a code edit + redeploy. See [DEVLOG DL-019](./DEVLOG.md).
+13. **Pin the embedding model in `.env`, not as a code default.** Google deprecates models on `v1beta` without warning; an `.env`-driven name turns a deprecation into a 30-second config change instead of a code edit + redeploy. See [BUG_LOG DL-019](./BUG_LOG.md).
 14. **Cross-check stored embedding dimensions against the configured model before switching.** A 768-dim model querying 3072-dim stored vectors won't 500 — it will silently produce garbage rankings, which is worse. Verify against Neo4j with `MATCH (n:Entity) WHERE n.embedding IS NOT NULL RETURN size(n.embedding) AS dim LIMIT 1`.
 15. **Make `/health` exercise the retrieval path.** A health probe that only checks "store is loaded" misses deprecated-model failures. Add a synthetic embed + 1-doc cosine lookup so the probe fails the moment the embedding API stops responding.
 16. **Don't let agents swallow upstream failures silently.** The `legal_research` agent catches HTTP errors per-rule (correct for partial outages) but currently produces no workflow-level signal when **every** lookup fails. If you add a new agent that depends on an upstream service, surface a top-level warning when that service is unreachable so the UI can flag it instead of rendering an empty block.
@@ -787,3 +842,15 @@ If `gcloud beta run domain-mappings create` shows pending for >30 min:
 18. **Use wildcard CORS for demos, explicit origins for production.** The deploy script sets `CORS_ORIGINS=*` which is fine for a public portfolio demo. For production, whitelist specific origins.
 19. **Use `--min-instances=0` for cost efficiency.** Cold starts add 5-10 seconds but save money when the demo isn't being used. Set `--min-instances=1` for the orchestrator if cold starts are unacceptable.
 20. **Choose regions that support domain mapping.** `europe-west1` (Belgium) supports it. `europe-west2` (London) does not. Check the [Cloud Run locations docs](https://cloud.google.com/run/docs/locations) before deploying.
+
+### Container Images
+
+21. **Don't hardcode ports in Dockerfiles.** Use `${PORT:-<default>}` via shell-form CMD so Cloud Run's injected `PORT` is honoured and local docker-compose still has a sensible default. The full pattern is `CMD ["sh", "-c", "exec uvicorn ... --port ${PORT:-8004}"]` — `exec` is critical so uvicorn becomes PID 1 and receives SIGTERM directly. See [BUG_LOG DL-022](./BUG_LOG.md).
+22. **Slim base images don't ship development tools.** `python:3.11-slim` has no `git`, `curl`, `gcc`, etc. If your application imports a Python wrapper around a CLI (GitPython, pygit2, fitz/PyMuPDF compiled deps), you must `apt-get install` the underlying tool. GitPython specifically runs an import-time `git --version` check and `exit(1)` on failure, which produces the misleading "container failed to listen on PORT" Cloud Run error.
+23. **Always pull Cloud Run logs before debugging a deploy failure.** The deploy CLI's "container failed to listen on PORT" error covers everything from real port misconfiguration to import-time crashes. `gcloud logging read 'resource.type="cloud_run_revision" AND resource.labels.revision_name="<failed-revision>"'` shows the actual stderr. Diagnosing from the deploy error alone routinely wastes a build cycle on the wrong fix.
+
+### Backend Consolidation
+
+24. **Two stateful backends mean two failure surfaces.** Every operational incident has to be triaged across both; every deploy has to wire two independent secret families; every health probe has to cover two systems. Adding a specialized store (vector DB, separate analytics warehouse, etc.) is sometimes worth it — but the cost isn't the new system in isolation. The cost is the second failure surface for everything you already have. See [BUG_LOG DL-021](./BUG_LOG.md) — the original ChromaDB → JSON → Weaviate progression each solved a problem but added fan-out, until the system landed back on a single Neo4j-hosted vector index.
+25. **For a small enough corpus, the graph DB itself can host vectors.** Neo4j 5.13+ has native HNSW vector indexes. For 2,198 embeddings × 3072 floats × 4 bytes ≈ 27 MB, this fits comfortably under the Aura free tier's 200 MB allowance. Bigger corpora may genuinely need a specialised vector DB; small ones don't, and consolidation removes operational fragility.
+26. **Free-tier hosted databases auto-pause.** Neo4j Aura Free pauses after 3 days of inactivity. Either schedule a keep-alive ping (a GitHub Actions cron running `MATCH (n) RETURN count(n)` every 2 days is enough) or accept that the system breaks every Monday and budget for the recovery ritual. The keep-alive workflow is at `.github/workflows/keep-aura-alive.yml`.
