@@ -57,7 +57,23 @@ jobs:
             "structlog>=24.1.0" \
             "tenacity>=8.2.0" \
             "rich>=13.0.0"
-          pip install --quiet -e .
+          # Scripts use sys.path.insert(PROJECT_ROOT) — no editable install needed.
+
+      - name: Sanity check — secrets present
+        env:
+          NEO4J_URI: ${{ secrets.NEO4J_URI }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          if [ -z "$NEO4J_URI" ]; then
+            echo "::error::NEO4J_URI repo secret is missing or empty."
+            echo "Set it with: gh secret set NEO4J_URI --repo <owner>/<repo>"
+            exit 2
+          fi
+          if [ -z "$GOOGLE_API_KEY" ]; then
+            echo "::error::GOOGLE_API_KEY repo secret is missing or empty."
+            exit 2
+          fi
+          echo "Secrets present. URI host: $(echo $NEO4J_URI | sed 's|://[^@]*@*||;s|/.*||' | cut -c1-12)..."
 
       - name: Run deterministic golden tests (dry-run, no LLM)
         env:
