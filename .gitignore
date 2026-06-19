@@ -13,3 +13,21 @@ __pycache__/
 .next/
 dist/
 build/
+
+# Raw source corpus that fed the KB build (EU AI Act chapters/annexes/recitals,
+# CJEU case law, EDPB guidelines, GDPR text). All publicly available; preserved
+# on disk for re-build reproducibility but kept out of the repo's surface.
+legacy_prototypes/
+
+# Neo4j Aura backups — JSONL dumps produced by knowledge_engine/scripts/10_backup_to_jsonl.py.
+# Each backup is ~100 MB and rebuilds-from-source are reproducible, so don't commit.
+knowledge_engine/backups/
+
+# Eval artifacts — output JSON from scripts 12 (three-mode) and 13 (RAGAS-equivalent).
+# Reproducible from CI; not source.
+knowledge_engine/golden_tests/three_mode_results_*.json
+knowledge_engine/golden_tests/ragas_equiv_*.json
+
+# Python build artifacts that shouldn't have been tracked
+*.egg-info/
+

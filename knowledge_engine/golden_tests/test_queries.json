@@ -1,6 +1,7 @@
 [
   {
     "id": "GT_01_PROHIBITED_AI",
+    "category": "multi_hop",
     "query": "Is social scoring by public authorities allowed under the EU AI Act?",
     "expected_answer_type": "prohibition",
     "expected_citations": ["AIACT_ART_5"],
@@ -9,6 +10,7 @@
   },
   {
     "id": "GT_02_CROSS_REG_OBLIGATIONS",
+    "category": "multi_hop",
     "query": "What obligations apply when using automated decision-making that processes personal data under both GDPR and AI Act?",
     "expected_answer_type": "obligation",
     "expected_citations": ["GDPR_ART_22", "AIACT_ART_14"],
@@ -17,6 +19,7 @@
   },
   {
     "id": "GT_03_DATA_SUBJECT_RIGHTS",
+    "category": "single_hop",
     "query": "What rights does a data subject have regarding access to their personal data?",
     "expected_answer_type": "obligation",
     "expected_citations": ["GDPR_ART_15"],
@@ -25,6 +28,7 @@
   },
   {
     "id": "GT_04_DPIA_FRIA",
+    "category": "multi_hop",
     "query": "When must a Data Protection Impact Assessment and a Fundamental Rights Impact Assessment both be conducted?",
     "expected_answer_type": "conditional_permission",
     "expected_citations": ["GDPR_ART_35", "AIACT_ART_27"],
@@ -33,6 +37,7 @@
   },
   {
     "id": "GT_05_TRANSPARENCY",
+    "category": "multi_hop",
     "query": "What are the transparency requirements for deploying a chatbot under the AI Act?",
     "expected_answer_type": "obligation",
     "expected_citations": ["AIACT_ART_50"],
@@ -41,10 +46,182 @@
   },
   {
     "id": "GT_06_HOUSEHOLD_EXEMPTION",
+    "category": "out_of_scope",
     "query": "Does the GDPR apply to personal use of data for household activities?",
     "expected_answer_type": "non_applicable",
     "expected_citations": ["GDPR_ART_2"],
     "expected_entities": [],
     "description": "Tests household exemption / scope exclusion"
+  },
+  {
+    "id": "GT_07_DATA_SUBJECT_DEF",
+    "category": "single_hop",
+    "query": "Who qualifies as a data subject under the GDPR?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["GDPR_ART_4"],
+    "expected_entities": [],
+    "description": "Tests definition retrieval for core GDPR term"
+  },
+  {
+    "id": "GT_08_RIGHT_TO_ERASURE",
+    "category": "single_hop",
+    "query": "What is the right to erasure and when can it be exercised?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["GDPR_ART_17"],
+    "expected_entities": ["RIGHT_ERASURE"],
+    "description": "Tests retrieval of a specific data subject right by name"
+  },
+  {
+    "id": "GT_09_BREACH_NOTIFICATION",
+    "category": "single_hop",
+    "query": "When must a personal data breach be notified to the supervisory authority?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["GDPR_ART_33"],
+    "expected_entities": ["CONCEPT_DATA_BREACH_NOTIFICATION"],
+    "description": "Tests retrieval of the 72-hour breach notification rule"
+  },
+  {
+    "id": "GT_10_FINE_CEILING",
+    "category": "single_hop",
+    "query": "What is the maximum administrative fine for serious GDPR infringements?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["GDPR_ART_83"],
+    "expected_entities": ["PEN_GDPR_TIER2"],
+    "description": "Tests retrieval of the higher-tier penalty article"
+  },
+  {
+    "id": "GT_11_RECORDS_OF_PROCESSING",
+    "category": "single_hop",
+    "query": "What records of processing activities must a controller maintain under the GDPR?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["GDPR_ART_30"],
+    "expected_entities": ["CONCEPT_RECORDS_OF_PROCESSING"],
+    "description": "Tests retrieval of the controller's documentation obligation"
+  },
+  {
+    "id": "GT_12_VALID_CONSENT",
+    "category": "single_hop",
+    "query": "What conditions must consent meet to be valid under the GDPR?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["GDPR_ART_7"],
+    "expected_entities": ["CONCEPT_CONSENT"],
+    "description": "Tests retrieval of consent-validity criteria"
+  },
+  {
+    "id": "GT_13_HIGH_RISK_DOCUMENTATION",
+    "category": "multi_hop",
+    "query": "What technical documentation must a provider prepare before placing a high-risk AI system on the market?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["AIACT_ART_11", "AIACT_ART_18"],
+    "expected_entities": ["RISK_HIGH"],
+    "description": "Tests multi-article join for high-risk provider documentation duties"
+  },
+  {
+    "id": "GT_14_BIOMETRIC_PUBLIC_SPACE",
+    "category": "multi_hop",
+    "query": "How does the AI Act regulate real-time remote biometric identification in publicly accessible spaces?",
+    "expected_answer_type": "prohibition",
+    "expected_citations": ["AIACT_ART_5", "AIACT_ANNEX_III"],
+    "expected_entities": ["RISK_PROHIBITED"],
+    "description": "Tests prohibition retrieval with Annex cross-reference"
+  },
+  {
+    "id": "GT_15_PROVIDER_OBLIGATIONS",
+    "category": "multi_hop",
+    "query": "What are the core obligations imposed on providers of high-risk AI systems?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["AIACT_ART_16", "AIACT_ART_17", "AIACT_ART_18"],
+    "expected_entities": ["RISK_HIGH"],
+    "description": "Tests multi-article retrieval for provider duties (general + QMS + tech docs)"
+  },
+  {
+    "id": "GT_16_DEEPFAKE_LABELLING",
+    "category": "multi_hop",
+    "query": "What disclosure rules apply to AI-generated deepfakes and synthetic content?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["AIACT_ART_50"],
+    "expected_entities": ["CONCEPT_TRANSPARENCY"],
+    "description": "Tests transparency obligation for synthetic-media content"
+  },
+  {
+    "id": "GT_17_INTERNATIONAL_TRANSFERS",
+    "category": "multi_hop",
+    "query": "What safeguards apply to transferring personal data outside the EEA to a third country?",
+    "expected_answer_type": "conditional_permission",
+    "expected_citations": ["GDPR_ART_44", "GDPR_ART_45", "GDPR_ART_46"],
+    "expected_entities": ["CONCEPT_INTERNATIONAL_TRANSFER"],
+    "description": "Tests Chapter V retrieval (general + adequacy + appropriate safeguards)"
+  },
+  {
+    "id": "GT_18_AI_DECISION_RIGHTS",
+    "category": "multi_hop",
+    "query": "What rights does a person have when an AI system makes a significant decision affecting them?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["GDPR_ART_22", "AIACT_ART_86"],
+    "expected_entities": ["RIGHT_AI_EXPLANATION", "RIGHT_AUTOMATED_DECISIONS"],
+    "description": "Tests cross-regulation retrieval — automated decisions (GDPR) + AI explanation right (AI Act)"
+  },
+  {
+    "id": "GT_19_RISK_TIERING",
+    "category": "multi_hop",
+    "query": "How does the EU AI Act categorize AI systems by risk level?",
+    "expected_answer_type": "obligation",
+    "expected_citations": ["AIACT_ART_5", "AIACT_ART_6", "AIACT_ANNEX_III"],
+    "expected_entities": ["RISK_HIGH", "RISK_PROHIBITED"],
+    "description": "Tests risk-classification retrieval (prohibited + high-risk + Annex III enumeration)"
+  },
+  {
+    "id": "GT_20_MILITARY_EXCLUSION",
+    "category": "out_of_scope",
+    "query": "Does the AI Act apply to AI systems used exclusively for military, defence or national security purposes?",
+    "expected_answer_type": "non_applicable",
+    "expected_citations": ["AIACT_ART_2"],
+    "expected_entities": [],
+    "description": "Tests AI Act scope exclusion — Article 2(3) military/defence carve-out"
+  },
+  {
+    "id": "GT_21_ACADEMIC_RESEARCH",
+    "category": "out_of_scope",
+    "query": "Can personal data be processed for purely academic research purposes without explicit consent?",
+    "expected_answer_type": "conditional_permission",
+    "expected_citations": ["GDPR_ART_89"],
+    "expected_entities": [],
+    "description": "Tests retrieval of the research-purposes derogation"
+  },
+  {
+    "id": "GT_22_TERRITORIAL_SCOPE",
+    "category": "out_of_scope",
+    "query": "Does the GDPR apply to a US-only company that has no establishment or activities in the EU?",
+    "expected_answer_type": "conditional_permission",
+    "expected_citations": ["GDPR_ART_3"],
+    "expected_entities": [],
+    "description": "Tests territorial-scope retrieval — Article 3 establishment + targeting tests"
+  },
+  {
+    "id": "GT_23_NUCLEAR_SAFETY",
+    "category": "out_of_scope",
+    "query": "Are there special EU AI Act rules dedicated to AI used in nuclear-reactor safety control?",
+    "expected_answer_type": "non_applicable",
+    "expected_citations": [],
+    "expected_entities": [],
+    "description": "Negative case — out-of-scope query; should refuse, not fabricate"
+  },
+  {
+    "id": "GT_24_CONSENT_FORM_SIZE",
+    "category": "out_of_scope",
+    "query": "What is the maximum file size allowed for a GDPR consent form submitted to a regulator?",
+    "expected_answer_type": "non_applicable",
+    "expected_citations": [],
+    "expected_entities": [],
+    "description": "Negative case — invented constraint not in the regulation; tests refusal"
+  },
+  {
+    "id": "GT_25_HIPAA_IN_EU",
+    "category": "out_of_scope",
+    "query": "Is HIPAA compliance required to deploy an AI medical device in the European Union?",
+    "expected_answer_type": "non_applicable",
+    "expected_citations": [],
+    "expected_entities": [],
+    "description": "Cross-jurisdiction negative case — HIPAA is US law; EU medical devices follow MDR + GDPR. Tests refusal."
   }
 ]

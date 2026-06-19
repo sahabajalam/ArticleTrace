@@ -8,9 +8,10 @@
     restart_orch scripts into a single entry point with a verb parameter.
 
     Actions:
-      start        Start the full pipeline (Weaviate + knowledge_engine +
-                   orchestrator + frontend). Honors -Mode, -SkipFrontend, -SkipInfra.
-      stop         Stop everything started by "start". Honors -Mode, -SkipInfra.
+      start        Start the full pipeline (knowledge_engine + orchestrator +
+                   frontend). Honors -Mode, -SkipFrontend. Vector store is
+                   Neo4j Aura (remote); no local infra container is started.
+      stop         Stop everything started by "start". Honors -Mode.
       restart-orch Kill whatever is listening on :8004, clear orchestrator
                    __pycache__, and relaunch the orchestrator as a background job.
       kill-ports   Terminate any process listening on -Ports (defaults to the
@@ -26,9 +27,6 @@
 .PARAMETER SkipFrontend
     start only: skip the Next.js frontend.
 
-.PARAMETER SkipInfra
-    start/stop only: skip the Weaviate container.
-
 .PARAMETER Ports
     kill-ports only: ports to terminate. Default: 8004, 8001, 3000.
 
@@ -40,7 +38,6 @@
     .\pipeline.ps1 -Action start -Mode docker
     .\pipeline.ps1 -Action start -Mode local -SkipFrontend
     .\pipeline.ps1 -Action stop
-    .\pipeline.ps1 -Action stop -SkipInfra
     .\pipeline.ps1 -Action restart-orch
     .\pipeline.ps1 -Action kill-ports
     .\pipeline.ps1 -Action kill-ports -Ports 9000,9001
@@ -56,7 +53,6 @@ param(
     [string]$Mode = "local",
 
     [switch]$SkipFrontend,
-    [switch]$SkipInfra,
 
     [int[]]$Ports = @(8004, 8001, 3000),
     [switch]$All
@@ -69,8 +65,8 @@ function Show-Usage {
     Write-Host "  Usage: .\pipeline.ps1 -Action <action> [options]" -ForegroundColor White
     Write-Host ""
     Write-Host "  Actions:" -ForegroundColor Yellow
-    Write-Host "    start          Start Weaviate + knowledge_engine + orchestrator + frontend" -ForegroundColor Gray
-    Write-Host "    stop           Stop jobs, free ports, stop Weaviate" -ForegroundColor Gray
+    Write-Host "    start          Start knowledge_engine + orchestrator + frontend" -ForegroundColor Gray
+    Write-Host "    stop           Stop jobs and free ports" -ForegroundColor Gray
     Write-Host "    restart-orch   Kill :8004, clear orchestrator __pycache__, relaunch orchestrator" -ForegroundColor Gray
     Write-Host "    kill-ports     Terminate processes on -Ports (default 8004,8001,3000)" -ForegroundColor Gray
     Write-Host "    help           Show this message" -ForegroundColor Gray
@@ -78,7 +74,6 @@ function Show-Usage {
     Write-Host "  Options:" -ForegroundColor Yellow
     Write-Host "    -Mode <docker|local>   start/stop only. Default: local" -ForegroundColor Gray
     Write-Host "    -SkipFrontend          start only. Skip the Next.js frontend" -ForegroundColor Gray
-    Write-Host "    -SkipInfra             start/stop only. Skip the Weaviate container" -ForegroundColor Gray
     Write-Host "    -Ports <int[]>         kill-ports only. Ports to terminate" -ForegroundColor Gray
     Write-Host "    -All                   kill-ports only. Terminate every user-space listener (>1024)" -ForegroundColor Gray
     Write-Host ""
@@ -86,7 +81,6 @@ function Show-Usage {
     Write-Host "    .\pipeline.ps1 -Action start" -ForegroundColor DarkGray
     Write-Host "    .\pipeline.ps1 -Action start -Mode docker" -ForegroundColor DarkGray
     Write-Host "    .\pipeline.ps1 -Action start -SkipFrontend" -ForegroundColor DarkGray
-    Write-Host "    .\pipeline.ps1 -Action stop -SkipInfra" -ForegroundColor DarkGray
     Write-Host "    .\pipeline.ps1 -Action restart-orch" -ForegroundColor DarkGray
     Write-Host "    .\pipeline.ps1 -Action kill-ports -Ports 9000,9001" -ForegroundColor DarkGray
     Write-Host ""
@@ -97,13 +91,12 @@ function Show-Usage {
 function Read-InteractiveAction {
     Show-Usage
     Write-Host "  Select an action:" -ForegroundColor Yellow
-    Write-Host "    [1] start          (local mode, with frontend + Weaviate)" -ForegroundColor Gray
+    Write-Host "    [1] start          (local mode, with frontend)" -ForegroundColor Gray
     Write-Host "    [2] start-docker   (docker mode)" -ForegroundColor Gray
     Write-Host "    [3] start-backend  (local, -SkipFrontend)" -ForegroundColor Gray
     Write-Host "    [4] stop           (local mode)" -ForegroundColor Gray
-    Write-Host "    [5] stop-keep-infra (local, -SkipInfra)" -ForegroundColor Gray
-    Write-Host "    [6] restart-orch" -ForegroundColor Gray
-    Write-Host "    [7] kill-ports     (8004, 8001, 3000)" -ForegroundColor Gray
+    Write-Host "    [5] restart-orch" -ForegroundColor Gray
+    Write-Host "    [6] kill-ports     (8004, 8001, 3000)" -ForegroundColor Gray
     Write-Host "    [q] quit" -ForegroundColor Gray
     Write-Host ""
     $choice = Read-Host "  Choice"
@@ -116,11 +109,9 @@ function Read-InteractiveAction {
         "start-backend" { $script:Action = "start"; $script:SkipFrontend = $true }
         "4"            { $script:Action = "stop" }
         "stop"         { $script:Action = "stop" }
-        "5"            { $script:Action = "stop"; $script:SkipInfra = $true }
-        "stop-keep-infra" { $script:Action = "stop"; $script:SkipInfra = $true }
-        "6"            { $script:Action = "restart-orch" }
+        "5"            { $script:Action = "restart-orch" }
         "restart-orch" { $script:Action = "restart-orch" }
-        "7"            { $script:Action = "kill-ports" }
+        "6"            { $script:Action = "kill-ports" }
         "kill-ports"   { $script:Action = "kill-ports" }
         "q"            { Write-Host "  Cancelled." -ForegroundColor DarkGray; return $false }
         "quit"         { Write-Host "  Cancelled." -ForegroundColor DarkGray; return $false }
@@ -355,28 +346,6 @@ function Invoke-Stop {
         foreach ($port in $PipelinePorts) {
             Stop-PortProcess -Port $port | Out-Null
         }
-
-        if (-not $SkipInfra) {
-            Write-Host ""
-            Write-Status "  Stopping infra (Weaviate)..." "Yellow"
-            try {
-                docker --version | Out-Null
-                Push-Location $ProjectRoot
-                try {
-                    docker compose stop weaviate 2>&1 | Out-Null
-                    Write-Status "  [OK] Weaviate container stopped" "Green"
-                }
-                finally {
-                    Pop-Location
-                }
-            }
-            catch {
-                Write-Status "  [!] Docker unavailable - skipping Weaviate stop" "DarkGray"
-            }
-        }
-        else {
-            Write-Status "  Skipping infra shutdown (-SkipInfra)" "DarkGray"
-        }
     }
 
     Write-Host ""
@@ -414,18 +383,6 @@ function Invoke-Start {
         catch {
             Write-Status "  [X] UV not found. Install: https://docs.astral.sh/uv/" "Red"
             exit 1
-        }
-
-        if (-not $SkipInfra) {
-            try {
-                docker --version | Out-Null
-                Write-Status "  [OK] Docker available (needed for Weaviate)" "Green"
-            }
-            catch {
-                Write-Status "  [X] Docker not found. Install: https://www.docker.com/products/docker-desktop" "Red"
-                Write-Status "      Or run with -SkipInfra if Weaviate is already running elsewhere." "DarkGray"
-                exit 1
-            }
         }
 
         if (-not $SkipFrontend) {
@@ -542,32 +499,7 @@ function Invoke-Start {
 
     # ---- Local mode ----
     if ($Mode -eq "local") {
-        if (-not $SkipInfra) {
-            Write-Host ""
-            Write-Header "Starting Infra (Weaviate)"
-
-            Push-Location $ProjectRoot
-            try {
-                Write-Status "  Starting Weaviate container..." "Yellow"
-                docker compose up -d weaviate | Out-Null
-                Write-Status "  [OK] Weaviate container requested" "Green"
-            }
-            catch {
-                Write-Status "  [X] Failed to start Weaviate: $_" "Red"
-                Pop-Location
-                exit 1
-            }
-            Pop-Location
-
-            if (-not (Wait-ForService -Name "Weaviate" -Port 8080 -MaxWaitSec 60)) {
-                Write-Status "  [X] Weaviate failed to come up on port 8080" "Red"
-                exit 1
-            }
-        }
-        else {
-            Write-Host ""
-            Write-Status "  Skipping infra startup (-SkipInfra)" "DarkGray"
-        }
+        # Vector store is Neo4j Aura (remote, env-configured). No local infra container.
 
         Write-Host ""
         Write-Header "Starting Backend Services (UV)"
@@ -659,8 +591,8 @@ function Invoke-Start {
     Write-Host ""
     Write-Header "Pipeline Ready"
 
-    Write-Status "  Infra:" "Cyan"
-    Write-Status "    Weaviate (vector DB)        -> http://localhost:8080" "Magenta"
+    Write-Status "  Vector store:" "Cyan"
+    Write-Status "    Neo4j Aura (remote, via NEO4J_URI in env)" "Magenta"
     Write-Host ""
     Write-Status "  Backend:" "Cyan"
     Write-Status "    Knowledge Engine (GraphRAG) -> http://localhost:8001" "Blue"

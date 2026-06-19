@@ -1,7 +1,7 @@
 #!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-    Unified GCP lifecycle controller for the Aegis Compliance Engine.
+    Unified GCP lifecycle controller for AlloyCode.
 
 .DESCRIPTION
     Merges the previous deploy_gcp.ps1 / setup-secrets.ps1 / deploy.ps1 /
@@ -22,7 +22,7 @@
     setup | secrets | deploy | deploy-fast | cleanup | help
 
 .PARAMETER ProjectId
-    GCP project ID. Default: aegis-compliance-engine.
+    GCP project ID. Default: gdpreuai.
 
 .PARAMETER Region
     GCP region. Default: europe-west1.
@@ -47,7 +47,7 @@ param(
     [ValidateSet("setup", "secrets", "deploy", "deploy-fast", "cleanup", "help")]
     [string]$Action,
 
-    [string]$ProjectId = "aegis-compliance-engine",
+    [string]$ProjectId = "gdpreuai",
     [string]$Region    = "europe-west1",
     [string]$RepoName  = "aegis-images",
 
@@ -162,7 +162,7 @@ function Push-Secret {
 
 function Show-Usage {
     Write-Host ""
-    Write-Host "  gcp.ps1 - Aegis Compliance Engine GCP lifecycle controller" -ForegroundColor Cyan
+    Write-Host "  gcp.ps1 - AlloyCode GCP lifecycle controller" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "  Usage: .\gcp.ps1 -Action <action> [options]" -ForegroundColor White
     Write-Host ""
@@ -175,7 +175,7 @@ function Show-Usage {
     Write-Host "    help           Show this message" -ForegroundColor Gray
     Write-Host ""
     Write-Host "  Options:" -ForegroundColor Yellow
-    Write-Host "    -ProjectId <id>        Default: aegis-compliance-engine" -ForegroundColor Gray
+    Write-Host "    -ProjectId <id>        Default: gdpreuai" -ForegroundColor Gray
     Write-Host "    -Region <region>       Default: europe-west1" -ForegroundColor Gray
     Write-Host "    -RepoName <name>       Default: aegis-images" -ForegroundColor Gray
     Write-Host "    -IncludeProject        cleanup only. Also delete the GCP project" -ForegroundColor Gray
@@ -289,7 +289,7 @@ function Invoke-Setup {
     }
     else {
         Write-Step "Creating GCP project '$ProjectId'..."
-        Invoke-Native "project create" { & $gcloud projects create $ProjectId --name="Aegis Compliance Engine" }
+        Invoke-Native "project create" { & $gcloud projects create $ProjectId --name="AlloyCode" }
         Write-OK "Project created."
     }
     Invoke-Native "set project" { & $gcloud config set project $ProjectId --quiet }
@@ -315,7 +315,7 @@ function Invoke-Setup {
             & $gcloud artifacts repositories create $RepoName `
                 --repository-format=docker `
                 --location=$Region `
-                --description="Aegis Compliance Engine images" `
+                --description="AlloyCode images" `
                 --quiet
         }
         Write-OK "Repo created: $registry"
@@ -399,10 +399,14 @@ function Invoke-Deploy {
         "NEO4J_USER",
         "NEO4J_PASSWORD"
     )
+    # Use Invoke-GcloudQuery so the captured output is returned through the
+    # function boundary rather than buried inside a scriptblock's local scope.
+    $rawList = Invoke-GcloudQuery { & $gcloud secrets list --format="value(name)" }
     $existingSecrets = @()
-    Invoke-Native "gcloud secrets list" {
-        $script:existingSecrets = (& $gcloud secrets list --format="value(name)" 2>$null) -split "`n" |
-            ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
+    if ($rawList) {
+        $existingSecrets = ($rawList -split "`r?`n") |
+            ForEach-Object { $_.Trim() } |
+            Where-Object { $_ -ne "" }
     }
     $missing = @()
     foreach ($s in $requiredSecrets) {
@@ -678,7 +682,7 @@ function Invoke-Cleanup {
     Write-Header "CLEANUP COMPLETE"
     Write-Host @"
 
-  All Aegis resources have been removed from '$ProjectId'.
+  All AlloyCode resources have been removed from '$ProjectId'.
 
   To redeploy from scratch:
     1. .\gcp.ps1 -Action setup      # project, APIs, registry, secrets

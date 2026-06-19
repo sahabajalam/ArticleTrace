@@ -79,7 +79,7 @@ def run_reasoning_demo(engine, genai_client, query: str) -> None:
     reasoner = ReasoningEngine(
         retrieval_engine=engine,
         genai_client=genai_client,
-        model="gemini-2.0-flash",
+        model="gemini-2.5-flash",
     )
 
     request = ComplianceQueryRequest(

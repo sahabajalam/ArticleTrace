@@ -1,4 +1,0 @@
-src/app/assessments/[id]/page.tsx(711,14): error TS18048: 'gdpr.recommendations.length' is possibly 'undefined'.
-src/app/assessments/[id]/page.tsx(715,26): error TS18047: 'gdpr' is possibly 'null'.
-src/app/assessments/[id]/page.tsx(802,14): error TS18048: 'docs.documents.length' is possibly 'undefined'.
-src/app/assessments/[id]/page.tsx(806,26): error TS18047: 'docs' is possibly 'null'.

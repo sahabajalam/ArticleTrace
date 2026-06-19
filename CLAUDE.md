@@ -15,10 +15,11 @@ The project pivoted in early 2026 from a free-text "describe your AI system" cla
 Read in this order:
 
 1. **[`devlog/SYSTEM.md`](devlog/SYSTEM.md)** — current architecture, single source of truth. The container diagram, the LangGraph node order, the scanner pipeline, the Neo4j schema all live here.
-2. **[`devlog/CHANGELOG.md`](devlog/CHANGELOG.md)** — what changed recently, with reasons.
-3. **[`devlog/design-evolution/`](devlog/design-evolution/)** — forward-looking proposals (and shipped ones). Read the highest-numbered `vNN-*.md` first. Check `status:` in frontmatter — only `implemented` reflects built state. Currently: `v01-baseline` (accepted), `v02-static-scanner-pivot` (implemented), `v03-kb-completion` (implemented).
-4. **[`devlog/history/`](devlog/history/)** — **frozen archive.** Open only when you need the reasoning trail behind a decision. Two files: `00-history-and-decisions.md` (distilled narrative) and `01-research-arc.md` (preserved primary sources from the original `gdpr context/` brainstorm dir + pre-pivot docs).
-5. **[`devlog/JOURNEY.md`](devlog/JOURNEY.md)** — portfolio narrative for external readers. Optional context.
+2. **[`devlog/NORTHSTAR.md`](devlog/NORTHSTAR.md)** — strategy, posture, and the **refuse list**. Read this BEFORE suggesting new work — many ideas are correctly-deferred, not bad. The single rule (Part I) is the gate every suggestion must pass. The current punch list (Part III) and refuse list (Part IV) derive from the 2026-06-16 portfolio audit at [`07_MARKET_FIT_AND_PORTFOLIO_AUDIT.md`](07_MARKET_FIT_AND_PORTFOLIO_AUDIT.md) §6.1 + §7.3.
+3. **[`devlog/CHANGELOG.md`](devlog/CHANGELOG.md)** — what changed recently, with reasons.
+4. **[`devlog/design-evolution/`](devlog/design-evolution/)** — forward-looking proposals (and shipped ones). Read the highest-numbered `vNN-*.md` first. Check `status:` in frontmatter — only `implemented` reflects built state. Currently: `v01-baseline` (accepted), `v02-static-scanner-pivot` (implemented), `v03-kb-completion` (implemented).
+5. **[`devlog/history/`](devlog/history/)** — **frozen archive.** Open only when you need the reasoning trail behind a decision. Two files: `00-history-and-decisions.md` (distilled narrative) and `01-research-arc.md` (preserved primary sources from the original `gdpr context/` brainstorm dir + pre-pivot docs).
+6. **[`devlog/JOURNEY.md`](devlog/JOURNEY.md)** — portfolio narrative for external readers. Optional context.
 
 For operational tasks:
 - Deploy: [`devlog/DEPLOYMENT.md`](devlog/DEPLOYMENT.md) (`status: accepted`)
@@ -69,12 +70,22 @@ Old doc: `status: superseded`, add `superseded_by:`. New doc: note what it super
 ### Step 5 — If you're proposing a NEW design (no code yet)
 Create `devlog/design-evolution/v04-<title>.md` (next available `vNN`). Frontmatter: `status: proposal`, `derives_from: v03-kb-completion.md`, `proposed_date:`. Use the dual RFC+ADR shape (Status / Alternatives considered / Consequences). Add an entry to CHANGELOG.
 
+### Step 6 — If strategy or refuse-list shifted (rare)
+Update [`devlog/NORTHSTAR.md`](devlog/NORTHSTAR.md) — but only when:
+- A new track is added to (or removed from) the single rule (Part I).
+- A target was met or moved.
+- A previously-refused idea is being promoted (move from Part IV → Part III punch list).
+- A new "correctly-deferred" idea is being added to the refuse list — record *why* it's deferred so future-Claude won't re-litigate it.
+
+**This is NOT a per-code-change activity.** Strategy moves slowly. If you're touching NORTHSTAR every sprint, the line between strategy and tactics has slipped — that content belongs in CHANGELOG or a `vNN` proposal. If `NORTHSTAR.md` doesn't exist yet and you're being asked to refuse a parked feature for the second time, that's the trigger to create it (skeleton in [`DOCS_PLAYBOOK.md`](DOCS_PLAYBOOK.md) §8.4).
+
 ### When NOT to touch docs
 
 - Pure research / Q&A sessions: read only.
 - Drift discovered: flag to user; don't silently rewrite.
 - [`devlog/history/`](devlog/history/): never edit. Frozen.
 - [`devlog/BUG_LOG.md`](devlog/BUG_LOG.md): append-only, never re-order or rewrite past entries.
+- [`devlog/NORTHSTAR.md`](devlog/NORTHSTAR.md): do NOT edit on routine code changes. Strategy moves slowly — only touch on punch-list movement, refuse-list additions, or after a new audit.
 
 ---
 

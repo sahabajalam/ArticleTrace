@@ -58,6 +58,8 @@ Body sections, in order:
 | [`v01-baseline.md`](v01-baseline.md) | `accepted` | pre-2026 | initial commit (`2ccaadc`) |
 | [`v02-static-scanner-pivot.md`](v02-static-scanner-pivot.md) | `implemented` | 2026-02-15 (approx, from doc trail) | commits `5210e51`, `661f990`; the entire `orchestrator/src/code_analyzer/` tree |
 | [`v03-kb-completion.md`](v03-kb-completion.md) | `implemented` | 2026-02-12 | 2026-04-13 (Neo4j: 2,301 nodes / 4,423 rels / 2,198 vector docs across 7 collections) |
+| [`v04-hitl-decision.md`](v04-hitl-decision.md) | `implemented` | 2026-04-13 | commit `5210e51` (supervisor.py rewritten as 4-node linear graph; HITL branch removed) |
+| [`v05-multimodal-colpali.md`](v05-multimodal-colpali.md) | `proposal` | null | scaffolding only — `knowledge_engine/src/multimodal/` compiles but `colpali-engine` not installed and no PDFs ingested |
 
 ## When to add a new `vNN`
 

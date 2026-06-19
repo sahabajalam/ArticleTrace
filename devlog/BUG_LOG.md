@@ -1,7 +1,7 @@
 ---
 title: AlloyCode — Bug Log
 status: living
-last_verified: 2026-05-20
+last_verified: 2026-06-19
 companion_doc: CHANGELOG.md
 ai_guidance: |
   This is the LIVING incident-and-fix log. Each entry is dated, has an ID
@@ -10,10 +10,96 @@ ai_guidance: |
   CHANGELOG.md, which records intentional changes; this file records
   incidents and the fixes that landed. Newest entries at the top.
 ---
-# Development Log — Aegis Compliance Engine
+# Development Log — AlloyCode
 
 > Running record of significant issues encountered during development and the exact fixes applied.
 > Newest entries at the top.
+
+---
+
+## DL-025 | Aura free-tier 30-day inactivity deletion — recovered via in-flight JSONL dump
+
+**Date:** 2026-06-19
+**Severity:** Critical (data-loss event, recovered)
+**Affected:** Neo4j Aura instance `652f6242` (the production KG); replaced by `e8097dda`.
+
+**Symptom:**
+User reported the original Aura instance had been auto-deleted by Neo4j after 30 days of inactivity, and they had created a new (empty) instance `e8097dda` on the same account. Strangely, the project's `knowledge_engine/.env` still pointed at the old `652f6242` URI, and connections to that URI **still succeeded** — returning a fully-populated 2,301-node / 4,423-rel graph with the 2,198-document vector index online.
+
+**Root Cause:**
+Aura free-tier deletion is two-stage: when the 30-day inactivity timer fires, the instance is removed from the user's account (freeing the 1-instance-per-account quota — which is why the user could create `e8097dda`), but the underlying database cluster goes through a **grace period** before hard-purge. During that window, bolt connections to the old URI continue to succeed because the certificate + auth are still loaded and the data is still resident on disk. The user sees an empty new instance in the console while the old (now-orphan) instance silently serves queries until purge.
+
+Not documented in Aura's user-facing docs. Observed empirically.
+
+**Recovery:**
+1. **Backup the phantom.** Wrote [`knowledge_engine/scripts/10_backup_to_jsonl.py`](../knowledge_engine/scripts/10_backup_to_jsonl.py) — a streaming dump that writes each node + relationship as JSONL plus a separate `_indexes.json` for the vector + property indexes. Ran against the phantom URI: **2,301 nodes (97 MB nodes.jsonl), 4,423 rels (0.7 MB), 1 vector index, 23 total indexes, 1 constraint** — full bit-for-bit dump in ~30 seconds.
+2. **Sync `.env` files.** User had updated root `.env` only; `knowledge_engine/.env` (the one `src/config/settings.py` actually reads) still pointed at the phantom. Synced via a PowerShell regex-substitution script.
+3. **Restore.** Wrote [`knowledge_engine/scripts/11_restore_from_jsonl.py`](../knowledge_engine/scripts/11_restore_from_jsonl.py) — recreates the `:Entity(id)` unique constraint, CREATEs each node with its full label set, then MATCHes endpoints by `id` property (element IDs are not portable across instances) and CREATEs each relationship, then recreates the `entity_embedding` vector index (3072-dim cosine over `:Entity.embedding`). ~4 minutes against `e8097dda`. Verification: **2,301 / 2,301 nodes, 4,423 / 4,423 rels, 2,198 embeddings, 0 rels skipped.**
+4. **Behavior verification.** Reran [`07_run_golden_tests.py --dry-run`](../knowledge_engine/scripts/07_run_golden_tests.py): citation recall@15 = **75%** (was 87.5% pre-restore — see [`METRICS.md`](METRICS.md) §5 for the HNSW non-determinism analysis; identical data, different graph build).
+
+**Fix and prevention:**
+- **`knowledge_engine/scripts/10_backup_to_jsonl.py`** is now in repo. Run before any planned maintenance, after any significant KB change, and on a schedule once the keep-alive cron is investigated. Backup dir (`knowledge_engine/backups/`) added to `.gitignore` — never commit ~100 MB JSONL dumps.
+- **`knowledge_engine/scripts/11_restore_from_jsonl.py`** is now in repo. Idempotent against an empty target; uses property-based identity mapping so element IDs don't matter.
+- **Open follow-up:** `keep-aura-alive.yml` workflow exists at `.github/workflows/` but did not prevent the deletion. Two possible reasons: (a) the workflow stopped running because GitHub disables scheduled workflows after 60 days of zero repo activity — but our last commit was 2026-05-20, only 30 days ago, so this shouldn't have fired; (b) Aura free-tier deletion is policy-based (30-day idle), not activity-based, and a `MATCH (n) RETURN count(n)` ping isn't counted as activity. Diagnose with `gh run list -w keep-aura-alive.yml --limit 10`. If (b), accept that free-tier needs a periodic backup-and-rebuild cycle, not a keep-alive ping.
+- **Downstream:** Cloud Run services on GCP still hold the old `NEO4J_URI` secret pointing at `652f6242`. Will silently break when the phantom hard-purges. Push the new creds via `./gcp.ps1 -Action secrets` + `gcloud run services update` on both `aegis-knowledge-engine` and `aegis-orchestrator`. **Not done in this session.**
+
+**Notes:**
+- The build-A → build-B recall drop (87.5% → 75%) is a **clean HNSW non-determinism datapoint** that validates the audit's "n=6 is too small" note in [`METRICS.md`](METRICS.md) §4. Headline updated to 75% with the historical range published — honest is better than the higher number.
+- The phantom-instance pattern is exploitable as a recovery tool: if you discover a paused/deleting Aura, dump it immediately before hard-purge. Window unknown — Neo4j doesn't publish it.
+
+---
+
+## DL-024 | Live orchestrator reports `database: unavailable` (degraded health)
+
+**Date:** 2026-06-16
+**Severity:** Medium (degrades end-to-end scan flow but doesn't block the live demo)
+**Affected:** `aegis-orchestrator` Cloud Run service (URL: https://aegis-orchestrator-whfa7vg4ea-ew.a.run.app/)
+
+**Symptom:**
+`/health` returns:
+
+```json
+{
+  "status": "degraded",
+  "components": {
+    "supervisor": "ready",
+    "control_plane": "ready",
+    "database": "unavailable"
+  }
+}
+```
+
+Frontend (200 OK) and knowledge engine (`status: healthy`, Neo4j connected, vector index online with 2,198 docs) are unaffected. The orchestrator's supervisor + control plane initialised cleanly; the Postgres connection did not.
+
+**Discovery context:**
+Surfaced 2026-06-16 while verifying the deploy state during the [`07_MARKET_FIT_AND_PORTFOLIO_AUDIT.md`](../07_MARKET_FIT_AND_PORTFOLIO_AUDIT.md)-driven portfolio cleanup pass. The audit had assumed the deploy was "pending" — it isn't, but this DB issue means the live demo can't persist a scan end-to-end yet.
+
+**Root Cause:**
+Not yet diagnosed. Likely candidates (in order of probability):
+1. Cloud SQL instance paused/stopped (free-tier idling) — verify with `gcloud sql instances describe`.
+2. Secret rotation: the `DATABASE_URL_ORCHESTRATOR` secret in Secret Manager has drifted from the live Cloud SQL instance creds.
+3. VPC/connector / Cloud SQL Auth Proxy misconfiguration after the last redeploy.
+4. SQLAlchemy async pool exhaustion on a long-idle instance (less likely with `/health` returning at all).
+
+**Fix:**
+Not applied yet. The investigation step is:
+
+```bash
+# Confirm Cloud SQL is running
+gcloud sql instances list --project gdpreuai
+
+# Pull live secret value and compare against expected shape
+gcloud secrets versions access latest --secret=DATABASE_URL_ORCHESTRATOR --project gdpreuai
+
+# Inspect orchestrator logs for the actual connection error
+gcloud run services logs read aegis-orchestrator --region europe-west1 --limit 50 --project gdpreuai
+```
+
+Logged on [`NORTHSTAR.md`](NORTHSTAR.md) Part III as a follow-up; not blocking the live-URL win.
+
+**Notes:**
+- A scan-flow end-to-end test via `POST /api/v1/scans` will fail at scan persistence — the supervisor will run, classify, retrieve, but the scan record won't survive. The KE / frontend halves of the demo (browse the KG, hit the health endpoints) are unaffected.
+- This issue is *interview-relevant* — the honest answer to "show me a live demo" is "the frontend + KE are healthy; the orchestrator's Postgres connection degraded and the fix is investigation-pending." Pre-rehearsed in [`INTERVIEW_GUIDE.md`](INTERVIEW_GUIDE.md) Q10 ("what's the worst part of this project").
 
 ---
 

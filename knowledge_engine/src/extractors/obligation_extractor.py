@@ -81,7 +81,7 @@ ACTOR_MAP = {
 class ObligationExtractor:
     """Extract obligations, prohibitions, exemptions, and permissions from articles."""
 
-    def __init__(self, use_llm: bool = False, genai_client: Any = None, model: str = "gemini-2.0-flash"):
+    def __init__(self, use_llm: bool = False, genai_client: Any = None, model: str = "gemini-2.5-flash"):
         self.use_llm = use_llm
         self.client = genai_client
         self.model = model

@@ -1,7 +1,7 @@
 ---
 title: AlloyCode — System Documentation (Living Snapshot)
 status: living
-last_verified: 2026-05-20
+last_verified: 2026-06-19
 source_of_truth: |
   direct code audit of orchestrator/src/, knowledge_engine/src/, frontend/src/,
   docker-compose.yml, gcp.ps1, frontend/cloudbuild.yaml
@@ -16,7 +16,7 @@ ai_guidance: |
 
 **AlloyCode** is a static compliance scanner for AI codebases. Point it at a public GitHub repo; deterministic scanners detect AI-system patterns and map them to EU AI Act + GDPR obligations from a 2,301-node Neo4j knowledge graph, returning a report of likely violations with `file:line` anchors and article citations. Two service backends (Python/FastAPI) plus a Next.js 16 frontend, orchestrated by LangGraph. The moat is the rule corpus; LLMs are kept out of the detection hot path and write only the post-hoc narrative.
 
-The project name appears as *AlloyCode* in code/UI, *Aegis Compliance Engine* in some portfolio docs, and *EU_AI_GDPR* as the repo directory name. All refer to the same system; see §7 Glossary.
+The project's external name is **AlloyCode** (code, UI, portfolio docs, scripts). *Aegis Compliance Engine* was an earlier marketing name now deprecated — surviving references are being phased out as touched. *EU_AI_GDPR* is the repo directory name only (a path-level artifact, not a brand). See §7 Glossary.
 
 ---
 
@@ -157,7 +157,7 @@ classify_risk → research_legal → generate_narrative → synthesize → END
 | `generate_narrative` | `DocumentationGeneratorAgent` | Yes (Gemini) | Writes executive summary + remediation plan as markdown. Post-hoc only; not in the detection path. |
 | `synthesize` | (inline in supervisor) | No | Merges `profile`, `risk_posture`, `narrative`, `finding_citations` into the final `ScanReport`. |
 
-> **Drift note:** `docs/README.md` (now archived under `history/01-research-arc.md`) describes a HITL approval pause for Critical findings. The current supervisor explicitly removed this — see the docstring at the top of [`supervisor.py`](../orchestrator/src/agents/supervisor.py): *"No HITL branch: static scanners produce deterministic, auditable evidence, so there is no classification-uncertainty branch to pause on."* The narrative removal is captured in `CHANGELOG.md` (2026-04 entries) and the rationale is now in `v02-static-scanner-pivot.md §Consequences`.
+> **Drift note:** `docs/README.md` (now archived under `history/01-research-arc.md`) describes a HITL approval pause for Critical findings. The current supervisor explicitly removed this — see the docstring at the top of [`supervisor.py`](../orchestrator/src/agents/supervisor.py): *"No HITL branch: static scanners produce deterministic, auditable evidence, so there is no classification-uncertainty branch to pause on."* The full decision record (rationale, EU-AI-Act counter-argument, conditions for revisiting) lives at [`design-evolution/v04-hitl-decision.md`](design-evolution/v04-hitl-decision.md).
 
 ### 3.3 Knowledge Engine ([`knowledge_engine/src/`](../knowledge_engine/src/))
 
@@ -244,9 +244,9 @@ Network: `compliance-network` (bridge). Volumes: `orchestrator_postgres_data`, `
 
 | Term | Meaning |
 |---|---|
-| **AlloyCode** | Canonical name in code and UI. Use this in any new doc. |
-| **Aegis Compliance Engine** | Marketing/portfolio-form name used in [`PROJECT_EXTRACTION.md`](../PROJECT_EXTRACTION.md). Same system. |
-| **EU_AI_GDPR** | Repo directory name. Same system. |
+| **AlloyCode** | **Canonical external name.** Use this everywhere — code, UI, scripts, portfolio docs, public-facing material. |
+| **Aegis Compliance Engine** | **Deprecated.** Earlier marketing name; surviving references are being phased out as touched (see [`CHANGELOG.md`](CHANGELOG.md) 2026-06-16). Do not introduce new uses. |
+| **EU_AI_GDPR** | Repo directory name only — a path-level artifact, not a brand. Not for user-facing copy. |
 | **risk posture** | The `RiskClassifierAgent` output: category + severity counts + compliance score (0–100). |
 | **Risk categories** | EU AI Act tiers: `PROHIBITED`, `HIGH_RISK`, `LIMITED_RISK`, `MINIMAL_RISK`. |
 | **prohibited triggers** | Rule IDs that force `PROHIBITED` regardless of other signals. Currently: `AI-008`, `AI-009`. |
@@ -255,7 +255,7 @@ Network: `compliance-network` (bridge). Volumes: `orchestrator_postgres_data`, `
 | **profile / AISystemProfile** | Structured replacement for the pre-pivot free-text input. Aggregated findings + repo metadata + scanner-shared state. |
 | **GraphRAG** | The retrieval pattern in the knowledge engine: vector search + graph traversal + RRF fusion + LLM synthesis. |
 | **RRF** | Reciprocal Rank Fusion. The merge used by `RetrievalEngine` to combine vector hits and graph paths. |
-| **HITL** | Human-in-the-loop. *Removed* from the current supervisor — see §3.2 drift note. |
+| **HITL** | Human-in-the-loop. *Removed* from the current supervisor — see §3.2 drift note and [`design-evolution/v04-hitl-decision.md`](design-evolution/v04-hitl-decision.md) for the full decision record. |
 
 ---
 

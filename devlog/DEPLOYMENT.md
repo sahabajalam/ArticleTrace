@@ -14,9 +14,9 @@ ai_guidance: |
   SYSTEM.md §6, which gives the architectural summary without the runbook
   detail.
 ---
-# Deployment Guide — Aegis Compliance Engine
+# Deployment Guide — AlloyCode
 
-> Canonical instructions for deploying the EU AI Regulatory Compliance Engine.
+> Canonical instructions for deploying AlloyCode (the EU AI Regulatory Compliance Scanner).
 > Covers local development, Docker, Google Cloud Run, and best practices.
 
 ---

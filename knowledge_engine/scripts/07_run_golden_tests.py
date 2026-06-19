@@ -58,7 +58,7 @@ def main():
         reasoner = ReasoningEngine(
             retrieval_engine=engine,
             genai_client=genai_client,
-            model="gemini-2.0-flash",
+            model="gemini-2.5-flash",
         )
 
     # Run tests

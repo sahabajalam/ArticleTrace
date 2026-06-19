@@ -1,0 +1,99 @@
+name: KE Golden Tests + 3-mode Eval
+
+# Runs the deterministic golden retrieval tests + the 3-mode comparison
+# (vector_only / graph_only / hybrid_rrf) on every PR touching the
+# knowledge engine, plus a weekly schedule on main.
+#
+# Does NOT run the RAGAS-equivalent metrics (script 13) — those involve
+# heavy LLM judge calls and are gated to manual dispatch only.
+#
+# Required repo secrets:
+#   NEO4J_URI       neo4j+s://<id>.databases.neo4j.io
+#   NEO4J_USER      typically "neo4j"
+#   NEO4J_PASSWORD  the Aura password
+#   GOOGLE_API_KEY  for embedding query text (gemini-embedding-001)
+
+on:
+  pull_request:
+    paths:
+      - "knowledge_engine/**"
+      - ".github/workflows/golden-tests.yml"
+  push:
+    branches: [main]
+    paths:
+      - "knowledge_engine/**"
+  schedule:
+    # Sunday 09:00 UTC — weekly drift check on main
+    - cron: "0 9 * * 0"
+  workflow_dispatch:
+    inputs:
+      run_ragas:
+        description: "Also run RAGAS-equivalent metrics (incurs LLM cost)"
+        type: boolean
+        default: false
+
+jobs:
+  golden-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: knowledge_engine
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install --quiet \
+            "neo4j>=5.15.0" \
+            "pydantic>=2.5.0" \
+            "pydantic-settings>=2.1.0" \
+            "google-genai>=1.0.0" \
+            "structlog>=24.1.0" \
+            "tenacity>=8.2.0" \
+            "rich>=13.0.0"
+          pip install --quiet -e .
+
+      - name: Run deterministic golden tests (dry-run, no LLM)
+        env:
+          NEO4J_URI: ${{ secrets.NEO4J_URI }}
+          NEO4J_USER: ${{ secrets.NEO4J_USER }}
+          NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          python scripts/07_run_golden_tests.py --dry-run
+
+      - name: Run 3-mode comparison (vector / graph / hybrid)
+        env:
+          NEO4J_URI: ${{ secrets.NEO4J_URI }}
+          NEO4J_USER: ${{ secrets.NEO4J_USER }}
+          NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          python scripts/12_eval_three_mode.py
+
+      - name: Run RAGAS-equivalent (manual dispatch + opt-in only)
+        if: github.event_name == 'workflow_dispatch' && inputs.run_ragas
+        env:
+          NEO4J_URI: ${{ secrets.NEO4J_URI }}
+          NEO4J_USER: ${{ secrets.NEO4J_USER }}
+          NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          python scripts/13_eval_ragas_equivalent.py --context-only
+
+      - name: Upload eval artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ke-eval-${{ github.run_id }}
+          path: |
+            knowledge_engine/golden_tests/three_mode_results_*.json
+            knowledge_engine/golden_tests/ragas_equiv_*.json
+          retention-days: 30
+          if-no-files-found: ignore
