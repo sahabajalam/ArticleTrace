@@ -17,6 +17,13 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Install git — required at runtime for code_analyzer.ingest, which
+# uses GitPython to `git clone --depth=1` scanned repos. GitPython
+# also runs an import-time check that exit(1)s if git is missing.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy virtualenv from builder
 COPY --from=builder /app/.venv /app/.venv
 
@@ -28,12 +35,10 @@ COPY data/golden/ ./data/golden/
 ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONPATH="/app"
 
-# Expose port
-EXPOSE 8000
+# Expose port (matches PORT default below; Cloud Run overrides via env)
+EXPOSE 8004
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')" || exit 1
-
-# Run the application
-CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run the application — bind to $PORT if Cloud Run injected one,
+# otherwise fall back to the local convention (8004). `exec` keeps
+# uvicorn as PID 1 so SIGTERM is delivered cleanly on shutdown.
+CMD ["sh", "-c", "exec uvicorn src.api.main:app --host 0.0.0.0 --port ${PORT:-8004}"]
