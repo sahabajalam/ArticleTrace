@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push *)",
+      "Bash(git commit -m ' *)",
+      "Bash(curl -sS -m 5 http://localhost:8001/health -o /dev/null -w \"ke=%{http_code} \")",
+      "Bash(curl -sS -m 5 http://localhost:8004/health -o /dev/null -w \"orch=%{http_code} \")",
+      "Bash(curl -sS -m 5 http://localhost:3000 -o /dev/null -w \"fe=%{http_code}\\\\n\")",
+      "Bash(curl -sS -m 30 -X POST http://localhost:8004/api/v1/scans -H \"Content-Type: application/json\" -d '{\"repo_url\":\"https://github.com/sahabajalam/euai_testing\",\"branch\":\"main\"}')",
+      "Bash(curl -sS http://localhost:8004/api/v1/scans/scn_144f77178f144412)",
+      "Bash(python -c ' *)",
+      "Bash(curl -sS \"http://localhost:8004/api/v1/audit-log?scan_id=scn_144f77178f144412\")",
+      "Bash(gcloud config *)",
+      "Bash(gcloud logging *)"
+    ]
+  }
+}
