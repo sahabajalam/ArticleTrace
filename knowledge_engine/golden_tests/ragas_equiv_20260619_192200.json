@@ -1,0 +1,2068 @@
+{
+  "timestamp_utc": "20260619_192200",
+  "judge_model": "gemini-2.0-flash",
+  "n_queries": 25,
+  "top_k": 15,
+  "wall_clock_seconds": 200.18939399719238,
+  "neo4j_uri": "neo4j+s://e8097dda.databases.neo4j.io",
+  "results": {
+    "context_relevance": {
+      "metric": "context_relevance",
+      "mean": 0.0,
+      "per_query": {
+        "GT_01_PROHIBITED_AI": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_5_P1_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_5_P1_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_5",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_31",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_58",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_44",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_41_P6_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_45",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_41_P6_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_47",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_49_P3_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_49",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_2_P4_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_9",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_02_CROSS_REG_OBLIGATIONS": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_86_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_26_P9_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_86_P1_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_86",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_26",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_10",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_63",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "ACTOR_DEPLOYER",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_69",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_50_P6_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_3",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_9",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_50_P6_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_15",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_86_P2_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_03_DATA_SUBJECT_RIGHTS": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "RIGHT_ACCESS",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_15",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_15_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "EDPB_GL_01_2022",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_12",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_16",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_63",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "ACTOR_DATA_SUBJECT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_59",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_70",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_15_P1_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_CH_3",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_12_P2_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_86",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_26_P3_MAY",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_04_DPIA_FRIA": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_27_P4_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_27",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "CONCEPT_FRIA",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_35",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_96",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_39",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_84",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_57",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_91",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_5",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_27_P2_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_3",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_27_P1_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_27_P2_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_36",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_05_TRANSPARENCY": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_ART_50",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_13",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_13_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_21",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_132",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_4",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_72",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_7",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_50_P6_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_12",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_50_P6_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_56",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_137",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_3",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_50_P1_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_06_HOUSEHOLD_EXEMPTION": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_OBL_2_P2_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_2_P10_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_3",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_1",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_6",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_18",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_14",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_CH_1",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_12",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_15",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_13",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_3_P2_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_14",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_07_DATA_SUBJECT_DEF": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_3",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_3_P2_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_4_Pfull_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_DEF_PERSONAL_DATA",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_4",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_1",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_DEF_THIRD_PARTY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_27",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_DEF_RECIPIENT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_14",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_CH_1",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "ACTOR_CONTROLLER",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_4_Pfull_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_24",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_08_RIGHT_TO_ERASURE": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "RIGHT_ERASURE",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_17_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_17",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_17_P1_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_19",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_18",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_65",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "ACTOR_DATA_SUBJECT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_66",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_CH_3",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_17_P3_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_12",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_17_P3_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_6",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_20_P3_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_09_BREACH_NOTIFICATION": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_33",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_33_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_33_P1_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_34",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_85",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_CH_4",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_87",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_62",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_33_P2_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_55",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "ACTOR_CONTROLLER",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "CONCEPT_DATA_BREACH_NOTIFICATION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_24",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_34_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_25",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_10_FINE_CEILING": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_83",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_83_P5_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_83_P5_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_83_P3_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_84",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_150",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_CH_8",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_83_P4_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_99",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_83_P4_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_12",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_100_P2_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_13",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_83_P6_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_14",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_11_RECORDS_OF_PROCESSING": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_30",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_30_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_30_P1_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "CONCEPT_RECORDS_OF_PROCESSING",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_24",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_26",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_28",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_5",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_82",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_CH_4",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_30_P2_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_12",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_30_P2_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_9",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_30_P4_SHALL",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_12_VALID_CONSENT": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_7",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "EDPB_GL_05_2020",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_7_P1_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_6",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_8",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_32",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_43",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_CH_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_50",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_7_P4_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_4",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_42",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_29",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_7_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_70",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_13_HIGH_RISK_DOCUMENTATION": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_11_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_11_P1_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_11_P1_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_11",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_11_P2_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_18",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_13",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_17",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_16",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_47",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_71",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_3",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_20",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_18_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_97",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_14_BIOMETRIC_PUBLIC_SPACE": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_ART_5",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_38",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_32",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_34",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_44",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_17",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_45",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_5_P2_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_9",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_5_P2_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_27",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_5_P5_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_49",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_5_P2_CONDITION",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_15_PROVIDER_OBLIGATIONS": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_ART_16",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_16_Pfull_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_16_Pfull_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_17_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_17",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_20",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_13",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_8",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_26",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_9",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_21",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_34",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_25",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_3",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_20_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_16_DEEPFAKE_LABELLING": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_50_P4_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_50_P4_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_50_P2_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_50",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_53",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_134",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_4",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_50_P2_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_7",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_50_P2_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_12",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_136",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_56",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_120",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_98",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_17_INTERNATIONAL_TRANSFERS": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_46",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_46_P3_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_46_P2_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_46_P3_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_49",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_45",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_44",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_108",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_CH_5",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_46_P1_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_26",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_40_P3_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_40",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_40_P3_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_42",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_18_AI_DECISION_RIGHTS": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_86_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "RIGHT_AI_EXPLANATION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_86",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_86_P1_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_22",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "ACTOR_DEPLOYER",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_171",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "RIGHT_AI_EFFECTIVE_REMEDY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "ACTOR_AFFECTED_PERSON",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "RIGHT_AI_NOTIFICATION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_3",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "RIGHT_AI_COMPLAINT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_9",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_170",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_15",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_19_RISK_TIERING": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_ART_6",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_6_P3_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_6_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_6_P3_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_9",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_7",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_26",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_3",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_6_P2_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_9",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_6_P1_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_35",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_79_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_96",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_52",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_20_MILITARY_EXCLUSION": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_REC_24",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_2_P3_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_2_P3_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_2_P4_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_6",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_4",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_2_P6_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_86_P2_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_1",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_25",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_2_P8_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_5",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_78_P3_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_21_ACADEMIC_RESEARCH": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_OBL_89_P2_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_21_P6_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_89_P1_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_89",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_6",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_33",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_159",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "ACTOR_DATA_SUBJECT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_89_P2_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_21",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_21_P6_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_CH_9",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_9_P2_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_4",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_89_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_22_TERRITORIAL_SCOPE": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_3",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "EDPB_GL_03_2018",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_3_P2_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_27",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_DEF_CROSS_BORDER_PROCESSING",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_DEF_SUPERVISORY_AUTHORITY_CONCERNED",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_49",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_23",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_CH_1",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_22",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_34",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_24",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_56",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_REC_80",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_23_NUCLEAR_SAFETY": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_ART_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_103",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_6",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_109",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_106",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_107",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_55",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_1",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_49",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_50",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_5",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_47",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_74_P4_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_10",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_24_CONSENT_FORM_SIZE": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_OBL_57_P2_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_60_P12_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_7_P2_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_61_P6_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_64_P4_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_57",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_64_P4_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "ACTOR_SUPERVISORY_AUTHORITY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_15_P3_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_36_P3_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_60",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_OBL_30_P5_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "ACTOR_DATA_SUBJECT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "CJEU_C_61_19",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_7",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        },
+        "GT_25_HIPAA_IN_EU": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_2_P1_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_86_P2_EXEMPTION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_26_P9_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_86_P2_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_REC_63",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_50_P3_MUST_NOT",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_86",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_26_P9_CONDITION",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_ART_26",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_10_P5_MAY",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_CH_1",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_27_P1_SHALL",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "GDPR_ART_2",
+              "relevant": false,
+              "reason": ""
+            },
+            {
+              "id": "AIACT_OBL_10_P5_CONDITION",
+              "relevant": false,
+              "reason": ""
+            }
+          ]
+        }
+      }
+    },
+    "answer_relevance": null,
+    "faithfulness": null
+  }
+}

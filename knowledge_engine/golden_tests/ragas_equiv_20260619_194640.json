@@ -1,0 +1,237 @@
+{
+  "timestamp_utc": "20260619_194640",
+  "judge_model": "gemini-2.5-flash",
+  "n_queries": 3,
+  "top_k": 15,
+  "wall_clock_seconds": 147.47811603546143,
+  "neo4j_uri": "neo4j+s://e8097dda.databases.neo4j.io",
+  "results": {
+    "context_relevance": {
+      "metric": "context_relevance",
+      "mean": 0.6,
+      "per_query": {
+        "GT_01_PROHIBITED_AI": {
+          "score": 0.4,
+          "relevant": 6,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_5_P1_MUST_NOT",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_5_P1_EXEMPTION",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_5",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_31",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_58",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_CH_2",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_44",
+              "relevant": false,
+              "reason": "The question asks about social scoring under the EU AI Act, while the entity is GDPR Article 44 concerning general principles for data transfers, which does not directly address the permissibility of social scoring under the AI Act."
+            },
+            {
+              "id": "GDPR_OBL_41_P6_MUST_NOT",
+              "relevant": false,
+              "reason": "The retrieved entity is from the GDPR, not the EU AI Act, which is the specific legal framework the question asks about."
+            },
+            {
+              "id": "GDPR_ART_45",
+              "relevant": false,
+              "reason": "The question is about the EU AI Act and social scoring, while the retrieved entity is GDPR Article 45 concerning data transfers to third countries, which does not address the AI Act or the permissibility of social scoring."
+            },
+            {
+              "id": "GDPR_OBL_41_P6_EXEMPTION",
+              "relevant": false,
+              "reason": "The retrieved entity is from the GDPR, not the EU AI Act, and therefore does not directly address permissions under the EU AI Act."
+            },
+            {
+              "id": "GDPR_ART_47",
+              "relevant": false,
+              "reason": "The retrieved entity is from the GDPR and concerns 'Binding corporate rules' for data transfers within corporate groups, which is not directly relevant to social scoring by public authorities under the EU AI Act."
+            },
+            {
+              "id": "GDPR_OBL_49_P3_MUST_NOT",
+              "relevant": false,
+              "reason": "The entity refers to GDPR Art 49, not the EU AI Act, and does not mention social scoring directly."
+            },
+            {
+              "id": "GDPR_ART_49",
+              "relevant": false,
+              "reason": "The retrieved entity, GDPR Article 49, concerns conditions for international data transfers, not the permissibility of social scoring by public authorities under the EU AI Act."
+            },
+            {
+              "id": "AIACT_OBL_2_P4_CONDITION",
+              "relevant": false,
+              "reason": "This article discusses specific scope exclusions for third-country public authorities, not the general allowance or prohibition of social scoring by public authorities under the Act."
+            },
+            {
+              "id": "AIACT_ART_9",
+              "relevant": false,
+              "reason": "Article 9 outlines requirements for risk management systems for high-risk AI, but does not address the permissibility or prohibition of social scoring by public authorities."
+            }
+          ]
+        },
+        "GT_02_CROSS_REG_OBLIGATIONS": {
+          "score": 0.7333333333333333,
+          "relevant": 11,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_86_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_26_P9_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_86_P1_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_86",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_26",
+              "relevant": false,
+              "reason": "The entity provides obligations under the AI Act, but it does not specify any obligations related to personal data processing under GDPR, which the question explicitly asks for."
+            },
+            {
+              "id": "AIACT_REC_10",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_63",
+              "relevant": true
+            },
+            {
+              "id": "ACTOR_DEPLOYER",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_69",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_50_P6_MUST_NOT",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_3",
+              "relevant": false,
+              "reason": "This entity provides definitions of terms used in the AI Act, but it does not specify the obligations that apply when using automated decision-making, which is what the question asks for."
+            },
+            {
+              "id": "AIACT_CH_9",
+              "relevant": false,
+              "reason": "Chapter 9 of the AI Act deals with post-market monitoring and market surveillance, which does not directly address the obligations for using automated decision-making with personal data."
+            },
+            {
+              "id": "AIACT_OBL_50_P6_EXEMPTION",
+              "relevant": false,
+              "reason": "This entity is an exemption clause clarifying what other obligations are not affected by paragraphs 1-4 of Article 50, rather than stating an obligation itself."
+            },
+            {
+              "id": "GDPR_ART_15",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_86_P2_EXEMPTION",
+              "relevant": true
+            }
+          ]
+        },
+        "GT_03_DATA_SUBJECT_RIGHTS": {
+          "score": 0.6666666666666666,
+          "relevant": 10,
+          "total": 15,
+          "details": [
+            {
+              "id": "RIGHT_ACCESS",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_15",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_15_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "EDPB_GL_01_2022",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_12",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_16",
+              "relevant": false,
+              "reason": "The retrieved entity describes the right to rectification of personal data, which is distinct from the right to access personal data mentioned in the question."
+            },
+            {
+              "id": "GDPR_REC_63",
+              "relevant": true
+            },
+            {
+              "id": "ACTOR_DATA_SUBJECT",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_REC_59",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_70",
+              "relevant": false,
+              "reason": "The retrieved entity describes the tasks of the Board (EDPB) and does not detail the rights of a data subject regarding access to their personal data."
+            },
+            {
+              "id": "GDPR_OBL_15_P1_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_CH_3",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_12_P2_MUST_NOT",
+              "relevant": false,
+              "reason": "The entity describes the controller's obligations regarding the exercise of data subject rights, rather than defining the specific rights, such as the right of access, themselves."
+            },
+            {
+              "id": "AIACT_ART_86",
+              "relevant": false,
+              "reason": "The entity describes the right to explanation regarding AI-driven decisions, not the right to access one's personal data."
+            },
+            {
+              "id": "GDPR_OBL_26_P3_MAY",
+              "relevant": false,
+              "reason": "The entity discusses against whom a data subject can exercise their rights in a joint controller scenario, not the specific right of access to personal data itself."
+            }
+          ]
+        }
+      }
+    },
+    "answer_relevance": null,
+    "faithfulness": null
+  }
+}

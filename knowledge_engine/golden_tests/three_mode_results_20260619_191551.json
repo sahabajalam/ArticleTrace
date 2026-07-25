@@ -1,0 +1,1065 @@
+{
+  "timestamp_utc": "20260619_191551",
+  "n_queries": 25,
+  "top_k": 15,
+  "seed_count": 5,
+  "max_hops": 2,
+  "aggregate": {
+    "vector_only": {
+      "citation_hits": 24,
+      "citation_total": 33,
+      "entity_hits": 10,
+      "entity_total": 24,
+      "pass": 17
+    },
+    "graph_only": {
+      "citation_hits": 7,
+      "citation_total": 33,
+      "entity_hits": 0,
+      "entity_total": 24,
+      "pass": 3
+    },
+    "hybrid_rrf": {
+      "citation_hits": 27,
+      "citation_total": 33,
+      "entity_hits": 6,
+      "entity_total": 24,
+      "pass": 17
+    }
+  },
+  "category_breakdown": {
+    "multi_hop": {
+      "vector_only": {
+        "score_sum": 5.116666666666666,
+        "n": 11,
+        "pass": 6
+      },
+      "graph_only": {
+        "score_sum": 1.25,
+        "n": 11,
+        "pass": 1
+      },
+      "hybrid_rrf": {
+        "score_sum": 5.033333333333334,
+        "n": 11,
+        "pass": 6
+      }
+    },
+    "single_hop": {
+      "vector_only": {
+        "score_sum": 6.5,
+        "n": 7,
+        "pass": 7
+      },
+      "graph_only": {
+        "score_sum": 1.0,
+        "n": 7,
+        "pass": 1
+      },
+      "hybrid_rrf": {
+        "score_sum": 6.0,
+        "n": 7,
+        "pass": 7
+      }
+    },
+    "out_of_scope": {
+      "vector_only": {
+        "score_sum": 4.0,
+        "n": 7,
+        "pass": 4
+      },
+      "graph_only": {
+        "score_sum": 1.0,
+        "n": 7,
+        "pass": 1
+      },
+      "hybrid_rrf": {
+        "score_sum": 4.0,
+        "n": 7,
+        "pass": 4
+      }
+    }
+  },
+  "per_query": {
+    "GT_01_PROHIBITED_AI": {
+      "category": "multi_hop",
+      "vector_only": {
+        "citation_hits": [
+          "AIACT_ART_5"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_PROHIBITED",
+          "AIST_SOCIAL_SCORING_PUBLIC",
+          "PEN_AIACT_PROHIBITED"
+        ],
+        "score": 0.25,
+        "pass": false
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "AIACT_ART_5"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_PROHIBITED",
+          "AIST_SOCIAL_SCORING_PUBLIC",
+          "PEN_AIACT_PROHIBITED"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "AIACT_ART_5"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_PROHIBITED",
+          "AIST_SOCIAL_SCORING_PUBLIC",
+          "PEN_AIACT_PROHIBITED"
+        ],
+        "score": 0.25,
+        "pass": false
+      }
+    },
+    "GT_02_CROSS_REG_OBLIGATIONS": {
+      "category": "multi_hop",
+      "vector_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "GDPR_ART_22",
+          "AIACT_ART_14"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_AUTOMATED_DECISION",
+          "CONCEPT_HUMAN_OVERSIGHT"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "graph_only": {
+        "citation_hits": [
+          "GDPR_ART_22"
+        ],
+        "citation_miss": [
+          "AIACT_ART_14"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_AUTOMATED_DECISION",
+          "CONCEPT_HUMAN_OVERSIGHT"
+        ],
+        "score": 0.25,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [],
+        "citation_miss": [
+          "GDPR_ART_22",
+          "AIACT_ART_14"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_AUTOMATED_DECISION",
+          "CONCEPT_HUMAN_OVERSIGHT"
+        ],
+        "score": 0.0,
+        "pass": false
+      }
+    },
+    "GT_03_DATA_SUBJECT_RIGHTS": {
+      "category": "single_hop",
+      "vector_only": {
+        "citation_hits": [
+          "GDPR_ART_15"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "RIGHT_ACCESS"
+        ],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "GDPR_ART_15"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RIGHT_ACCESS"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_15"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "RIGHT_ACCESS"
+        ],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      }
+    },
+    "GT_04_DPIA_FRIA": {
+      "category": "multi_hop",
+      "vector_only": {
+        "citation_hits": [
+          "GDPR_ART_35",
+          "AIACT_ART_27"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "CONCEPT_DPIA",
+          "CONCEPT_FRIA"
+        ],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [
+          "GDPR_ART_35"
+        ],
+        "citation_miss": [
+          "AIACT_ART_27"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_DPIA",
+          "CONCEPT_FRIA"
+        ],
+        "score": 0.25,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_35",
+          "AIACT_ART_27"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "CONCEPT_FRIA"
+        ],
+        "entity_miss": [
+          "CONCEPT_DPIA"
+        ],
+        "score": 0.75,
+        "pass": true
+      }
+    },
+    "GT_05_TRANSPARENCY": {
+      "category": "multi_hop",
+      "vector_only": {
+        "citation_hits": [
+          "AIACT_ART_50"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "CONCEPT_TRANSPARENCY_OBLIGATION"
+        ],
+        "entity_miss": [
+          "AIST_CHATBOT"
+        ],
+        "score": 0.6666666666666666,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "AIACT_ART_50"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "AIST_CHATBOT",
+          "CONCEPT_TRANSPARENCY_OBLIGATION"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "AIACT_ART_50"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [
+          "AIST_CHATBOT",
+          "CONCEPT_TRANSPARENCY_OBLIGATION"
+        ],
+        "score": 0.3333333333333333,
+        "pass": false
+      }
+    },
+    "GT_06_HOUSEHOLD_EXEMPTION": {
+      "category": "out_of_scope",
+      "vector_only": {
+        "citation_hits": [
+          "GDPR_ART_2"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "GDPR_ART_2"
+        ],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_2"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      }
+    },
+    "GT_07_DATA_SUBJECT_DEF": {
+      "category": "single_hop",
+      "vector_only": {
+        "citation_hits": [
+          "GDPR_ART_4"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [
+          "GDPR_ART_4"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_4"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      }
+    },
+    "GT_08_RIGHT_TO_ERASURE": {
+      "category": "single_hop",
+      "vector_only": {
+        "citation_hits": [
+          "GDPR_ART_17"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "RIGHT_ERASURE"
+        ],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "GDPR_ART_17"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RIGHT_ERASURE"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_17"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "RIGHT_ERASURE"
+        ],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      }
+    },
+    "GT_09_BREACH_NOTIFICATION": {
+      "category": "single_hop",
+      "vector_only": {
+        "citation_hits": [
+          "GDPR_ART_33"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "CONCEPT_DATA_BREACH_NOTIFICATION"
+        ],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "GDPR_ART_33"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_DATA_BREACH_NOTIFICATION"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_33"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "CONCEPT_DATA_BREACH_NOTIFICATION"
+        ],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      }
+    },
+    "GT_10_FINE_CEILING": {
+      "category": "single_hop",
+      "vector_only": {
+        "citation_hits": [
+          "GDPR_ART_83"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [
+          "PEN_GDPR_TIER2"
+        ],
+        "score": 0.5,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "GDPR_ART_83"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "PEN_GDPR_TIER2"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_83"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [
+          "PEN_GDPR_TIER2"
+        ],
+        "score": 0.5,
+        "pass": true
+      }
+    },
+    "GT_11_RECORDS_OF_PROCESSING": {
+      "category": "single_hop",
+      "vector_only": {
+        "citation_hits": [
+          "GDPR_ART_30"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "CONCEPT_RECORDS_OF_PROCESSING"
+        ],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "GDPR_ART_30"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_RECORDS_OF_PROCESSING"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_30"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "CONCEPT_RECORDS_OF_PROCESSING"
+        ],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      }
+    },
+    "GT_12_VALID_CONSENT": {
+      "category": "single_hop",
+      "vector_only": {
+        "citation_hits": [
+          "GDPR_ART_7"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "CONCEPT_CONSENT"
+        ],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "GDPR_ART_7"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_CONSENT"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_7"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_CONSENT"
+        ],
+        "score": 0.5,
+        "pass": true
+      }
+    },
+    "GT_13_HIGH_RISK_DOCUMENTATION": {
+      "category": "multi_hop",
+      "vector_only": {
+        "citation_hits": [
+          "AIACT_ART_11",
+          "AIACT_ART_18"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_HIGH"
+        ],
+        "score": 0.6666666666666666,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "AIACT_ART_11",
+          "AIACT_ART_18"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_HIGH"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "AIACT_ART_11",
+          "AIACT_ART_18"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_HIGH"
+        ],
+        "score": 0.6666666666666666,
+        "pass": true
+      }
+    },
+    "GT_14_BIOMETRIC_PUBLIC_SPACE": {
+      "category": "multi_hop",
+      "vector_only": {
+        "citation_hits": [
+          "AIACT_ART_5"
+        ],
+        "citation_miss": [
+          "AIACT_ANNEX_III"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_PROHIBITED"
+        ],
+        "score": 0.3333333333333333,
+        "pass": false
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "AIACT_ART_5",
+          "AIACT_ANNEX_III"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_PROHIBITED"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "AIACT_ART_5"
+        ],
+        "citation_miss": [
+          "AIACT_ANNEX_III"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_PROHIBITED"
+        ],
+        "score": 0.3333333333333333,
+        "pass": false
+      }
+    },
+    "GT_15_PROVIDER_OBLIGATIONS": {
+      "category": "multi_hop",
+      "vector_only": {
+        "citation_hits": [
+          "AIACT_ART_16",
+          "AIACT_ART_17"
+        ],
+        "citation_miss": [
+          "AIACT_ART_18"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_HIGH"
+        ],
+        "score": 0.5,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "AIACT_ART_16",
+          "AIACT_ART_17",
+          "AIACT_ART_18"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_HIGH"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "AIACT_ART_16",
+          "AIACT_ART_17"
+        ],
+        "citation_miss": [
+          "AIACT_ART_18"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_HIGH"
+        ],
+        "score": 0.5,
+        "pass": true
+      }
+    },
+    "GT_16_DEEPFAKE_LABELLING": {
+      "category": "multi_hop",
+      "vector_only": {
+        "citation_hits": [
+          "AIACT_ART_50"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_TRANSPARENCY"
+        ],
+        "score": 0.5,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "AIACT_ART_50"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_TRANSPARENCY"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "AIACT_ART_50"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_TRANSPARENCY"
+        ],
+        "score": 0.5,
+        "pass": true
+      }
+    },
+    "GT_17_INTERNATIONAL_TRANSFERS": {
+      "category": "multi_hop",
+      "vector_only": {
+        "citation_hits": [
+          "GDPR_ART_46"
+        ],
+        "citation_miss": [
+          "GDPR_ART_44",
+          "GDPR_ART_45"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_INTERNATIONAL_TRANSFER"
+        ],
+        "score": 0.25,
+        "pass": false
+      },
+      "graph_only": {
+        "citation_hits": [
+          "GDPR_ART_44",
+          "GDPR_ART_45"
+        ],
+        "citation_miss": [
+          "GDPR_ART_46"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_INTERNATIONAL_TRANSFER"
+        ],
+        "score": 0.5,
+        "pass": true
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_44",
+          "GDPR_ART_45",
+          "GDPR_ART_46"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [
+          "CONCEPT_INTERNATIONAL_TRANSFER"
+        ],
+        "score": 0.75,
+        "pass": true
+      }
+    },
+    "GT_18_AI_DECISION_RIGHTS": {
+      "category": "multi_hop",
+      "vector_only": {
+        "citation_hits": [
+          "AIACT_ART_86"
+        ],
+        "citation_miss": [
+          "GDPR_ART_22"
+        ],
+        "entity_hits": [
+          "RIGHT_AI_EXPLANATION",
+          "RIGHT_AUTOMATED_DECISIONS"
+        ],
+        "entity_miss": [],
+        "score": 0.75,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [
+          "GDPR_ART_22"
+        ],
+        "citation_miss": [
+          "AIACT_ART_86"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RIGHT_AI_EXPLANATION",
+          "RIGHT_AUTOMATED_DECISIONS"
+        ],
+        "score": 0.25,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_22",
+          "AIACT_ART_86"
+        ],
+        "citation_miss": [],
+        "entity_hits": [
+          "RIGHT_AI_EXPLANATION"
+        ],
+        "entity_miss": [
+          "RIGHT_AUTOMATED_DECISIONS"
+        ],
+        "score": 0.75,
+        "pass": true
+      }
+    },
+    "GT_19_RISK_TIERING": {
+      "category": "multi_hop",
+      "vector_only": {
+        "citation_hits": [
+          "AIACT_ART_6"
+        ],
+        "citation_miss": [
+          "AIACT_ART_5",
+          "AIACT_ANNEX_III"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_HIGH",
+          "RISK_PROHIBITED"
+        ],
+        "score": 0.2,
+        "pass": false
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "AIACT_ART_5",
+          "AIACT_ART_6",
+          "AIACT_ANNEX_III"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_HIGH",
+          "RISK_PROHIBITED"
+        ],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "AIACT_ART_6"
+        ],
+        "citation_miss": [
+          "AIACT_ART_5",
+          "AIACT_ANNEX_III"
+        ],
+        "entity_hits": [],
+        "entity_miss": [
+          "RISK_HIGH",
+          "RISK_PROHIBITED"
+        ],
+        "score": 0.2,
+        "pass": false
+      }
+    },
+    "GT_20_MILITARY_EXCLUSION": {
+      "category": "out_of_scope",
+      "vector_only": {
+        "citation_hits": [
+          "AIACT_ART_2"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "AIACT_ART_2"
+        ],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "AIACT_ART_2"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      }
+    },
+    "GT_21_ACADEMIC_RESEARCH": {
+      "category": "out_of_scope",
+      "vector_only": {
+        "citation_hits": [
+          "GDPR_ART_89"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [
+          "GDPR_ART_89"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_89"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      }
+    },
+    "GT_22_TERRITORIAL_SCOPE": {
+      "category": "out_of_scope",
+      "vector_only": {
+        "citation_hits": [
+          "GDPR_ART_3"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [
+          "GDPR_ART_3"
+        ],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [
+          "GDPR_ART_3"
+        ],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 1.0,
+        "pass": true
+      }
+    },
+    "GT_23_NUCLEAR_SAFETY": {
+      "category": "out_of_scope",
+      "vector_only": {
+        "citation_hits": [],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 0.0,
+        "pass": false
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 0.0,
+        "pass": false
+      }
+    },
+    "GT_24_CONSENT_FORM_SIZE": {
+      "category": "out_of_scope",
+      "vector_only": {
+        "citation_hits": [],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 0.0,
+        "pass": false
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 0.0,
+        "pass": false
+      }
+    },
+    "GT_25_HIPAA_IN_EU": {
+      "category": "out_of_scope",
+      "vector_only": {
+        "citation_hits": [],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 0.0,
+        "pass": false
+      },
+      "graph_only": {
+        "citation_hits": [],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 0.0,
+        "pass": false
+      },
+      "hybrid_rrf": {
+        "citation_hits": [],
+        "citation_miss": [],
+        "entity_hits": [],
+        "entity_miss": [],
+        "score": 0.0,
+        "pass": false
+      }
+    }
+  },
+  "wall_clock_seconds": 143.6255030632019,
+  "neo4j_uri": "neo4j+s://e8097dda.databases.neo4j.io"
+}

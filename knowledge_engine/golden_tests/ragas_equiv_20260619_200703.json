@@ -1,0 +1,1890 @@
+{
+  "timestamp_utc": "20260619_200703",
+  "judge_model": "gemini-2.5-flash",
+  "n_queries": 25,
+  "top_k": 15,
+  "wall_clock_seconds": 1207.3802831172943,
+  "neo4j_uri": "neo4j+s://e8097dda.databases.neo4j.io",
+  "results": {
+    "context_relevance": {
+      "metric": "context_relevance",
+      "mean": 0.4746666666666667,
+      "per_query": {
+        "GT_01_PROHIBITED_AI": {
+          "score": 0.4,
+          "relevant": 6,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_5_P1_MUST_NOT",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_5_P1_EXEMPTION",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_5",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_31",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_58",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_CH_2",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_44",
+              "relevant": false,
+              "reason": "The retrieved entity is from the GDPR and concerns data transfers, whereas the question asks about the permissibility of social scoring under the EU AI Act."
+            },
+            {
+              "id": "GDPR_OBL_41_P6_MUST_NOT",
+              "relevant": false,
+              "reason": "The retrieved entity is from the GDPR, not the EU AI Act, which is the focus of the question."
+            },
+            {
+              "id": "GDPR_ART_45",
+              "relevant": false,
+              "reason": "GDPR Article 45 concerns data transfers to third countries based on adequacy decisions, not the permissibility of social scoring by public authorities under the EU AI Act."
+            },
+            {
+              "id": "GDPR_OBL_41_P6_EXEMPTION",
+              "relevant": false,
+              "reason": "The retrieved entity refers to an exemption under GDPR Article 41 regarding codes of conduct, which is not directly relevant to social scoring under the EU AI Act."
+            },
+            {
+              "id": "GDPR_ART_47",
+              "relevant": false,
+              "reason": "GDPR Article 47 on Binding Corporate Rules is a mechanism for international data transfers within corporate groups under GDPR, and does not directly address the permissibility of social scoring by public authorities under the EU AI Act."
+            },
+            {
+              "id": "GDPR_OBL_49_P3_MUST_NOT",
+              "relevant": false,
+              "reason": "The retrieved entity is from the GDPR, not the EU AI Act, which is the specific legal framework the question asks about."
+            },
+            {
+              "id": "GDPR_ART_49",
+              "relevant": false,
+              "reason": "The retrieved entity is from the GDPR and concerns international data transfers, not the allowance of social scoring by public authorities under the EU AI Act."
+            },
+            {
+              "id": "AIACT_OBL_2_P4_CONDITION",
+              "relevant": false,
+              "reason": "The entity discusses scope exclusions for third-country public authorities and international organizations, not the allowability of social scoring by public authorities under the Act's substantive provisions."
+            },
+            {
+              "id": "AIACT_ART_9",
+              "relevant": false,
+              "reason": "This article details risk management systems for high-risk AI, but it does not directly address whether social scoring by public authorities is allowed or prohibited under the EU AI Act."
+            }
+          ]
+        },
+        "GT_02_CROSS_REG_OBLIGATIONS": {
+          "score": 0.8,
+          "relevant": 12,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_86_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_26_P9_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_86_P1_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_86",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_26",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_10",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_63",
+              "relevant": true
+            },
+            {
+              "id": "ACTOR_DEPLOYER",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_69",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_50_P6_MUST_NOT",
+              "relevant": false,
+              "reason": "The entity clarifies that other obligations and requirements remain unaffected, rather than stating a direct obligation relevant to automated decision-making or personal data processing."
+            },
+            {
+              "id": "AIACT_ART_3",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_CH_9",
+              "relevant": false,
+              "reason": "This chapter details post-market regulatory oversight and surveillance, not the direct obligations for automated decision-making processes that handle personal data."
+            },
+            {
+              "id": "AIACT_OBL_50_P6_EXEMPTION",
+              "relevant": false,
+              "reason": "The entity is an exemption clause that clarifies what other obligations are not affected, rather than stating the specific obligations themselves for automated decision-making."
+            },
+            {
+              "id": "GDPR_ART_15",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_86_P2_EXEMPTION",
+              "relevant": true
+            }
+          ]
+        },
+        "GT_03_DATA_SUBJECT_RIGHTS": {
+          "score": 0.7333333333333333,
+          "relevant": 11,
+          "total": 15,
+          "details": [
+            {
+              "id": "RIGHT_ACCESS",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_15",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_15_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "EDPB_GL_01_2022",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_12",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_16",
+              "relevant": false,
+              "reason": "The question asks about the right to access personal data, while the retrieved entity describes the distinct right to rectification of personal data."
+            },
+            {
+              "id": "GDPR_REC_63",
+              "relevant": true
+            },
+            {
+              "id": "ACTOR_DATA_SUBJECT",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_REC_59",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_70",
+              "relevant": false,
+              "reason": "The entity describes the tasks of the Board, not the data subject's rights regarding access to their personal data."
+            },
+            {
+              "id": "GDPR_OBL_15_P1_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_CH_3",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_12_P2_MUST_NOT",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_86",
+              "relevant": false,
+              "reason": "The question asks about the right to access personal data, while the retrieved entity describes the right to explanation regarding AI-driven decision-making."
+            },
+            {
+              "id": "GDPR_OBL_26_P3_MAY",
+              "relevant": false,
+              "reason": "The entity describes how data subjects can exercise their rights against controllers in a joint controllership scenario, rather than defining the specific right to access personal data itself."
+            }
+          ]
+        },
+        "GT_04_DPIA_FRIA": {
+          "score": 0.2,
+          "relevant": 3,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_27_P4_SHALL",
+              "relevant": false,
+              "reason": "The entity describes how a Fundamental Rights Impact Assessment complements an existing Data Protection Impact Assessment, but does not state the conditions under which both must be conducted."
+            },
+            {
+              "id": "AIACT_ART_27",
+              "relevant": false,
+              "reason": "The entity discusses Fundamental Rights Impact Assessments but does not mention Data Protection Impact Assessments or when both would be required concurrently."
+            },
+            {
+              "id": "CONCEPT_FRIA",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_35",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_96",
+              "relevant": false,
+              "reason": "The entity discusses when a Fundamental Rights Impact Assessment must be conducted, but it does not mention Data Protection Impact Assessments or conditions under which both assessments are required."
+            },
+            {
+              "id": "GDPR_ART_39",
+              "relevant": false,
+              "reason": "The entity describes the DPO's tasks regarding a DPIA but does not specify when it must be conducted, nor does it mention a Fundamental Rights Impact Assessment."
+            },
+            {
+              "id": "GDPR_REC_84",
+              "relevant": false,
+              "reason": "The entity discusses when a Data Protection Impact Assessment is required but does not mention a Fundamental Rights Impact Assessment, which is a key part of the question."
+            },
+            {
+              "id": "GDPR_ART_57",
+              "relevant": false,
+              "reason": "The entity describes the general tasks of a supervisory authority and does not specify when Data Protection Impact Assessments or Fundamental Rights Impact Assessments must be conducted."
+            },
+            {
+              "id": "GDPR_REC_91",
+              "relevant": false,
+              "reason": "The entity details when a Data Protection Impact Assessment (DPIA) must be conducted but does not mention or require a separate Fundamental Rights Impact Assessment (FRIA) alongside it."
+            },
+            {
+              "id": "AIACT_ART_5",
+              "relevant": false,
+              "reason": "The retrieved entity describes prohibited AI practices and does not mention or provide conditions for conducting Data Protection Impact Assessments or Fundamental Rights Impact Assessments."
+            },
+            {
+              "id": "AIACT_OBL_27_P2_MAY",
+              "relevant": false,
+              "reason": "The entity discusses Fundamental Rights Impact Assessments and reliance on existing impact assessments, but does not specify conditions under which both a Data Protection Impact Assessment and a Fundamental Rights Impact Assessment must be conducted."
+            },
+            {
+              "id": "AIACT_CH_3",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_27_P1_MAY",
+              "relevant": false,
+              "reason": "The entity describes when a Fundamental Rights Impact Assessment must be conducted but does not mention Data Protection Impact Assessments, thus failing to address when both must be conducted simultaneously."
+            },
+            {
+              "id": "AIACT_OBL_27_P2_SHALL",
+              "relevant": false,
+              "reason": "The entity discusses Fundamental Rights Impact Assessments but does not mention Data Protection Impact Assessments or the conditions under which both must be conducted."
+            },
+            {
+              "id": "GDPR_ART_36",
+              "relevant": false,
+              "reason": "The entity discusses prior consultation with the supervisory authority after a DPIA indicates high risk, but does not specify when a DPIA or a Fundamental Rights Impact Assessment must be conducted."
+            }
+          ]
+        },
+        "GT_05_TRANSPARENCY": {
+          "score": 0.5333333333333333,
+          "relevant": 8,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_ART_50",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_13",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_13_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_21",
+              "relevant": false,
+              "reason": "Article 21 details cooperation obligations with competent authorities, not the general public or end-user transparency requirements for deploying a chatbot."
+            },
+            {
+              "id": "AIACT_REC_132",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_CH_4",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_72",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_7",
+              "relevant": false,
+              "reason": "The entity discusses consent conditions under GDPR, not transparency requirements for chatbots under the AI Act."
+            },
+            {
+              "id": "AIACT_OBL_50_P6_EXEMPTION",
+              "relevant": false,
+              "reason": "The entity is an exemption clause that refers to other transparency obligations but does not define or list the specific transparency requirements for deploying a chatbot."
+            },
+            {
+              "id": "GDPR_ART_12",
+              "relevant": false,
+              "reason": "The question asks about transparency requirements under the AI Act, but the retrieved entity is an article from the GDPR."
+            },
+            {
+              "id": "AIACT_OBL_50_P6_MUST_NOT",
+              "relevant": false,
+              "reason": "This paragraph clarifies that other transparency obligations remain unaffected but does not itself state what the transparency requirements for deploying a chatbot are."
+            },
+            {
+              "id": "AIACT_ART_56",
+              "relevant": false,
+              "reason": "This article describes the role of codes of practice in elaborating obligations from other articles, rather than stating the direct transparency requirements for chatbots itself."
+            },
+            {
+              "id": "AIACT_REC_137",
+              "relevant": false,
+              "reason": "The recital discusses the interpretation and interplay of transparency obligations with other laws, but does not specify what those transparency requirements are for deploying a chatbot."
+            },
+            {
+              "id": "AIACT_CH_3",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_50_P1_MUST_NOT",
+              "relevant": true
+            }
+          ]
+        },
+        "GT_06_HOUSEHOLD_EXEMPTION": {
+          "score": 0.26666666666666666,
+          "relevant": 4,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_OBL_2_P2_EXEMPTION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_2",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_2_P10_EXEMPTION",
+              "relevant": false,
+              "reason": "The retrieved entity discusses an exemption related to AI systems, not the GDPR's applicability to personal data use for household activities."
+            },
+            {
+              "id": "GDPR_ART_3",
+              "relevant": false,
+              "reason": "Article 3 details the territorial scope of the GDPR, but does not address the exclusion for purely personal or household activities, which is covered by Article 2(2)(c)."
+            },
+            {
+              "id": "GDPR_ART_1",
+              "relevant": false,
+              "reason": "This article outlines the general subject matter and objectives of the GDPR but does not contain the specific exemption for purely personal or household activities relevant to the question."
+            },
+            {
+              "id": "GDPR_ART_6",
+              "relevant": false,
+              "reason": "Article 6 defines the conditions for lawful processing, but does not address the GDPR's scope concerning purely personal or household activities, which is covered by Article 2(2)(c)."
+            },
+            {
+              "id": "GDPR_REC_18",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_REC_14",
+              "relevant": false,
+              "reason": "Recital 14 clarifies that the GDPR applies to natural persons and excludes legal persons, but it does not address the exemption for personal or household activities."
+            },
+            {
+              "id": "GDPR_CH_1",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_2",
+              "relevant": false,
+              "reason": "The retrieved entity discusses the scope of a regulation concerning AI systems (likely the AI Act), not the GDPR, which is the subject of the question."
+            },
+            {
+              "id": "GDPR_ART_12",
+              "relevant": false,
+              "reason": "The retrieved Article 12 discusses information and communication regarding data subject rights, not the applicability of GDPR to personal or household activities."
+            },
+            {
+              "id": "GDPR_REC_15",
+              "relevant": false,
+              "reason": "Recital 15 discusses technological neutrality and filing systems for personal data, but it does not address the exemption for personal or household activities."
+            },
+            {
+              "id": "GDPR_ART_13",
+              "relevant": false,
+              "reason": "Article 13 outlines transparency obligations for data controllers but does not address the scope or applicability of the GDPR to personal or household activities."
+            },
+            {
+              "id": "GDPR_OBL_3_P2_CONDITION",
+              "relevant": false,
+              "reason": "The retrieved entity describes the extraterritorial applicability of GDPR to non-EU entities, which is not directly related to the personal or household activity exemption."
+            },
+            {
+              "id": "GDPR_ART_14",
+              "relevant": false,
+              "reason": "Article 14 details information obligations when data is not obtained from the data subject, but it does not address the GDPR's scope or the household activities exemption which determines applicability."
+            }
+          ]
+        },
+        "GT_07_DATA_SUBJECT_DEF": {
+          "score": 0.4666666666666667,
+          "relevant": 7,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_3",
+              "relevant": false,
+              "reason": "The entity discusses the territorial scope of the GDPR's application in relation to data subjects, but does not define or explain who qualifies as a data subject."
+            },
+            {
+              "id": "GDPR_OBL_3_P2_CONDITION",
+              "relevant": false,
+              "reason": "This article describes the territorial scope of the GDPR's application, not the definition or qualifications of a data subject."
+            },
+            {
+              "id": "GDPR_OBL_4_Pfull_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_DEF_PERSONAL_DATA",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_4",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_1",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_DEF_THIRD_PARTY",
+              "relevant": false,
+              "reason": "The entity defines 'third party' and only mentions 'data subject' in an exclusionary context, not providing a definition or qualification for a data subject."
+            },
+            {
+              "id": "GDPR_ART_27",
+              "relevant": false,
+              "reason": "The entity discusses representatives for controllers/processors and mentions data subjects in that context, but it does not provide a definition of who qualifies as a data subject under the GDPR."
+            },
+            {
+              "id": "GDPR_DEF_RECIPIENT",
+              "relevant": false,
+              "reason": "The retrieved entity defines 'recipient' under GDPR, which is a different concept from 'data subject' inquired about in the question."
+            },
+            {
+              "id": "GDPR_REC_14",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_CH_1",
+              "relevant": true
+            },
+            {
+              "id": "ACTOR_CONTROLLER",
+              "relevant": false,
+              "reason": "The retrieved entity defines a 'controller', which is a distinct role from a 'data subject' under GDPR, and does not directly answer who qualifies as a data subject."
+            },
+            {
+              "id": "GDPR_OBL_4_Pfull_MAY",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_2",
+              "relevant": false,
+              "reason": "The retrieved entity defines the material scope of the GDPR (when it applies), not who qualifies as a data subject."
+            },
+            {
+              "id": "GDPR_REC_24",
+              "relevant": false,
+              "reason": "The recital discusses the territorial scope of the GDPR regarding data subjects' behaviour monitoring, not the definition or qualifications of a 'data subject'."
+            }
+          ]
+        },
+        "GT_08_RIGHT_TO_ERASURE": {
+          "score": 0.6,
+          "relevant": 9,
+          "total": 15,
+          "details": [
+            {
+              "id": "RIGHT_ERASURE",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_17_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_17",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_17_P1_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_19",
+              "relevant": false,
+              "reason": "The entity describes notification obligations regarding erasure but does not define the right to erasure or explain when it can be exercised, which are detailed in Article 17."
+            },
+            {
+              "id": "GDPR_ART_18",
+              "relevant": false,
+              "reason": "The question asks about the 'right to erasure', but the retrieved entity describes the 'right to restriction of processing', which is a distinct legal right."
+            },
+            {
+              "id": "GDPR_REC_65",
+              "relevant": true
+            },
+            {
+              "id": "ACTOR_DATA_SUBJECT",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_REC_66",
+              "relevant": false,
+              "reason": "This recital discusses an extension of the right to erasure concerning public data and informing other controllers, but it does not define the right itself or specify when it can generally be exercised."
+            },
+            {
+              "id": "GDPR_CH_3",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_17_P3_MUST_NOT",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_12",
+              "relevant": false,
+              "reason": "The retrieved entity discusses record-keeping and logging requirements for AI systems, not the right to erasure of personal data."
+            },
+            {
+              "id": "GDPR_OBL_17_P3_EXEMPTION",
+              "relevant": false,
+              "reason": "The entity describes exemptions to the right to erasure (when the right *cannot* be exercised by the data subject or the controller is not obliged), rather than defining the right itself or the conditions under which it *can* be exercised."
+            },
+            {
+              "id": "GDPR_ART_6",
+              "relevant": false,
+              "reason": "The entity discusses the lawfulness of processing personal data, not the right to erasure or its conditions for exercise."
+            },
+            {
+              "id": "GDPR_OBL_20_P3_EXEMPTION",
+              "relevant": true
+            }
+          ]
+        },
+        "GT_09_BREACH_NOTIFICATION": {
+          "score": 0.26666666666666666,
+          "relevant": 4,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_33",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_33_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_33_P1_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_34",
+              "relevant": false,
+              "reason": "The retrieved entity, Article 34, discusses communication of a data breach to the data subject, not notification to the supervisory authority."
+            },
+            {
+              "id": "GDPR_REC_85",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_CH_4",
+              "relevant": false,
+              "reason": "The entity refers to an entire chapter, which is too broad and does not directly provide the specific legal text or conditions regarding data breach notification timelines required to answer the question."
+            },
+            {
+              "id": "GDPR_REC_87",
+              "relevant": false,
+              "reason": "The recital discusses the promptness of notification without undue delay but does not specify the exact timeframe or deadline for notification to the supervisory authority, which is found in a different legal article."
+            },
+            {
+              "id": "AIACT_ART_62",
+              "relevant": false,
+              "reason": "The retrieved entity discusses measures for SMEs in the context of the AI Act, not the notification requirements for personal data breaches."
+            },
+            {
+              "id": "GDPR_OBL_33_P2_SHALL",
+              "relevant": false,
+              "reason": "The retrieved entity describes the obligation for a processor to notify a controller, not when a breach must be notified to the supervisory authority."
+            },
+            {
+              "id": "GDPR_ART_55",
+              "relevant": false,
+              "reason": "Article 55 concerns the competence and jurisdiction of supervisory authorities, not the timing or obligation of data breach notification."
+            },
+            {
+              "id": "ACTOR_CONTROLLER",
+              "relevant": false,
+              "reason": "The entity defines 'Controller', which is the party responsible for notification, but does not provide information on *when* a breach must be notified or the specific notification obligations."
+            },
+            {
+              "id": "CONCEPT_DATA_BREACH_NOTIFICATION",
+              "relevant": false,
+              "reason": "The entity defines the concept of data breach notification but does not provide specific legal text, obligations, or regulatory context detailing *when* notification must occur."
+            },
+            {
+              "id": "GDPR_ART_24",
+              "relevant": false,
+              "reason": "The article discusses the general responsibility of the controller to implement data protection measures, not the specific requirements or timing for notifying a supervisory authority about a personal data breach."
+            },
+            {
+              "id": "GDPR_OBL_34_P1_SHALL",
+              "relevant": false,
+              "reason": "The entity describes when a breach must be communicated to the data subject, not when it must be notified to the supervisory authority as requested by the question."
+            },
+            {
+              "id": "GDPR_ART_25",
+              "relevant": false,
+              "reason": "GDPR Article 25 discusses data protection by design and by default, not the notification requirements for personal data breaches to a supervisory authority."
+            }
+          ]
+        },
+        "GT_10_FINE_CEILING": {
+          "score": 0.3333333333333333,
+          "relevant": 5,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_83",
+              "relevant": false,
+              "reason": "The provided excerpt of Article 83 discusses conditions for imposing fines but does not contain paragraphs 4, 5, or 6 which specify the maximum administrative fine amounts."
+            },
+            {
+              "id": "GDPR_OBL_83_P5_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_83_P5_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_83_P3_MUST_NOT",
+              "relevant": false,
+              "reason": "This entity describes a rule for calculating the total fine when multiple infringements occur, but does not state the actual maximum administrative fine amounts for serious GDPR infringements."
+            },
+            {
+              "id": "GDPR_ART_84",
+              "relevant": false,
+              "reason": "The retrieved article discusses 'other penalties' for infringements not subject to administrative fines, while the question asks specifically about administrative fines."
+            },
+            {
+              "id": "GDPR_REC_150",
+              "relevant": false,
+              "reason": "The entity discusses the power to impose fines and criteria for setting them, but does not state the maximum administrative fine for serious GDPR infringements."
+            },
+            {
+              "id": "GDPR_CH_8",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_83_P4_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_99",
+              "relevant": false,
+              "reason": "The retrieved entity details administrative fines and penalties for infringements under the AI Act, not the GDPR, which is specified in the question."
+            },
+            {
+              "id": "GDPR_OBL_83_P4_CONDITION",
+              "relevant": false,
+              "reason": "The entity describes administrative fines for certain GDPR infringements but not the absolute maximum fine for the most serious infringements, which are covered by Article 83(5)."
+            },
+            {
+              "id": "GDPR_ART_12",
+              "relevant": false,
+              "reason": "The retrieved article discusses transparent information and communication, not the maximum administrative fines for GDPR infringements."
+            },
+            {
+              "id": "AIACT_OBL_100_P2_SHALL",
+              "relevant": false,
+              "reason": "The entity discusses fines for AI practices under the AI Act, not GDPR infringements."
+            },
+            {
+              "id": "GDPR_ART_13",
+              "relevant": false,
+              "reason": "The retrieved entity, Article 13, discusses information disclosure obligations, not administrative fines or their maximum amounts for GDPR infringements."
+            },
+            {
+              "id": "GDPR_OBL_83_P6_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_14",
+              "relevant": false,
+              "reason": "The retrieved entity (Article 14) describes information obligations when data is not obtained from the data subject, which does not address administrative fines for infringements."
+            }
+          ]
+        },
+        "GT_11_RECORDS_OF_PROCESSING": {
+          "score": 0.26666666666666666,
+          "relevant": 4,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_30",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_30_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_30_P1_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "CONCEPT_RECORDS_OF_PROCESSING",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_24",
+              "relevant": false,
+              "reason": "Article 24 discusses the general responsibility of the controller and measures for demonstrating compliance, but it does not specify the 'records of processing activities' a controller must maintain."
+            },
+            {
+              "id": "GDPR_ART_26",
+              "relevant": false,
+              "reason": "The retrieved entity discusses joint controllership, not the specific records of processing activities a controller must maintain."
+            },
+            {
+              "id": "GDPR_ART_28",
+              "relevant": false,
+              "reason": "Article 28 details the relationship between a controller and a processor and the processor's obligations, but it does not specify what records of processing activities a controller must maintain."
+            },
+            {
+              "id": "GDPR_ART_5",
+              "relevant": false,
+              "reason": "Article 5 outlines general data processing principles, not the specific records of processing activities a controller must maintain."
+            },
+            {
+              "id": "GDPR_REC_82",
+              "relevant": false,
+              "reason": "While Recital 82 establishes the general obligation to maintain records of processing activities, it does not specify the 'what' or the detailed content these records must contain, which is the core of the question."
+            },
+            {
+              "id": "GDPR_CH_4",
+              "relevant": false,
+              "reason": "Chapter 4 is too broad and does not itself provide the specific legal obligation regarding records of processing activities; the relevant text is found in a specific article within this chapter."
+            },
+            {
+              "id": "GDPR_OBL_30_P2_SHALL",
+              "relevant": false,
+              "reason": "The retrieved entity describes the record-keeping obligations for a processor, not a controller, which is what the question asks about."
+            },
+            {
+              "id": "AIACT_ART_12",
+              "relevant": false,
+              "reason": "The question asks about record-keeping under GDPR, while the entity discusses record-keeping for high-risk AI systems under the AI Act."
+            },
+            {
+              "id": "GDPR_OBL_30_P2_CONDITION",
+              "relevant": false,
+              "reason": "The question asks what records a controller must maintain, but the retrieved entity describes records a processor must maintain."
+            },
+            {
+              "id": "GDPR_ART_9",
+              "relevant": false,
+              "reason": "The retrieved entity discusses the processing of special categories of personal data, not the record-keeping obligations of a controller."
+            },
+            {
+              "id": "GDPR_OBL_30_P4_SHALL",
+              "relevant": false,
+              "reason": "This paragraph specifies an obligation to make records available, not what records must be maintained."
+            }
+          ]
+        },
+        "GT_12_VALID_CONSENT": {
+          "score": 0.4,
+          "relevant": 6,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_7",
+              "relevant": true
+            },
+            {
+              "id": "EDPB_GL_05_2020",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_7_P1_CONDITION",
+              "relevant": false,
+              "reason": "This article discusses the controller's obligation to demonstrate consent, not the substantive conditions that make consent valid."
+            },
+            {
+              "id": "GDPR_ART_6",
+              "relevant": false,
+              "reason": "The entity states that consent is a basis for lawful processing but does not define the conditions for valid consent itself."
+            },
+            {
+              "id": "GDPR_ART_8",
+              "relevant": false,
+              "reason": "The entity discusses specific conditions for child's consent in relation to information society services, not the general conditions for valid consent under GDPR as broadly requested by the question."
+            },
+            {
+              "id": "GDPR_REC_32",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_REC_43",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_CH_2",
+              "relevant": false,
+              "reason": "The entity is a broad chapter title covering general principles, not the specific articles or recitals that detail the conditions for valid consent under GDPR."
+            },
+            {
+              "id": "AIACT_ART_50",
+              "relevant": false,
+              "reason": "The entity is from the AI Act and discusses transparency obligations for AI systems, making only a general reference to the GDPR without detailing the conditions for valid consent under it."
+            },
+            {
+              "id": "GDPR_OBL_7_P4_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_4",
+              "relevant": false,
+              "reason": "This article provides definitions for general GDPR terms but does not define 'consent' or specify the conditions for its validity."
+            },
+            {
+              "id": "GDPR_REC_42",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_29",
+              "relevant": false,
+              "reason": "The entity discusses processing under the authority of a controller or processor, not the conditions for valid consent under GDPR."
+            },
+            {
+              "id": "GDPR_OBL_7_P1_SHALL",
+              "relevant": false,
+              "reason": "The entity describes the controller's obligation to demonstrate consent, not the specific conditions consent must meet to be valid."
+            },
+            {
+              "id": "GDPR_ART_70",
+              "relevant": false,
+              "reason": "The retrieved entity describes the tasks of the European Data Protection Board (EDPB) and does not specify the conditions for valid consent under the GDPR."
+            }
+          ]
+        },
+        "GT_13_HIGH_RISK_DOCUMENTATION": {
+          "score": 0.8,
+          "relevant": 12,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_11_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_11_P1_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_11_P1_MAY",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_11",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_11_P2_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_18",
+              "relevant": false,
+              "reason": "This article concerns the keeping of documentation after an AI system is placed on the market, not what must be prepared before market placement."
+            },
+            {
+              "id": "AIACT_ART_13",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_17",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_16",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_47",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_71",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_CH_3",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_20",
+              "relevant": false,
+              "reason": "The retrieved entity discusses the right to data portability under GDPR, which is unrelated to the technical documentation requirements for placing a high-risk AI system on the market."
+            },
+            {
+              "id": "AIACT_OBL_18_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_97",
+              "relevant": false,
+              "reason": "The entity discusses the delegation of power to adopt acts and its procedural aspects, not the technical documentation requirements for high-risk AI systems."
+            }
+          ]
+        },
+        "GT_14_BIOMETRIC_PUBLIC_SPACE": {
+          "score": 0.6,
+          "relevant": 9,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_ART_5",
+              "relevant": false,
+              "reason": "The provided text of Article 5 details prohibitions for manipulative AI, exploitative AI, and social scoring AI, but does not address real-time remote biometric identification."
+            },
+            {
+              "id": "AIACT_REC_38",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_REC_32",
+              "relevant": false,
+              "reason": "The entity provides context and justification for regulating real-time remote biometric identification but does not state the specific regulations, prohibitions, or conditions imposed by the AI Act."
+            },
+            {
+              "id": "AIACT_REC_34",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_CH_2",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_44",
+              "relevant": false,
+              "reason": "The retrieved entity discusses data transfers under GDPR, which is a different legal act and topic than the AI Act's regulation of real-time remote biometric identification in public spaces."
+            },
+            {
+              "id": "AIACT_REC_17",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_45",
+              "relevant": false,
+              "reason": "The question asks about the AI Act's regulation of biometric identification, but the retrieved entity is GDPR Article 45, which concerns data transfers under the GDPR, not the AI Act or the specific topic of real-time biometric identification in public spaces."
+            },
+            {
+              "id": "AIACT_OBL_5_P2_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_9",
+              "relevant": false,
+              "reason": "This entity describes the general requirements for a risk management system for all high-risk AI systems, but does not specifically detail how real-time remote biometric identification in publicly accessible spaces is regulated (e.g., prohibitions, specific conditions, or exceptions)."
+            },
+            {
+              "id": "AIACT_OBL_5_P2_MAY",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_27",
+              "relevant": false,
+              "reason": "The entity describes a fundamental rights impact assessment required for high-risk AI systems, but it does not directly regulate the permissibility or conditions of real-time remote biometric identification in publicly accessible spaces."
+            },
+            {
+              "id": "AIACT_OBL_5_P5_MAY",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_49",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_5_P2_CONDITION",
+              "relevant": true
+            }
+          ]
+        },
+        "GT_15_PROVIDER_OBLIGATIONS": {
+          "score": 0.8,
+          "relevant": 12,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_ART_16",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_16_Pfull_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_16_Pfull_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_17_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_17",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_20",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_13",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_8",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_26",
+              "relevant": false,
+              "reason": "The question asks about obligations of 'providers' of high-risk AI systems, but the retrieved entity details obligations of 'deployers'."
+            },
+            {
+              "id": "AIACT_ART_9",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_21",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_34",
+              "relevant": false,
+              "reason": "The entity details the operational obligations of notified bodies, not the core obligations imposed on providers of high-risk AI systems."
+            },
+            {
+              "id": "AIACT_ART_25",
+              "relevant": false,
+              "reason": "The entity defines who is considered a provider of a high-risk AI system in specific circumstances and refers to Article 16 for the actual obligations, rather than listing them directly."
+            },
+            {
+              "id": "AIACT_CH_3",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_20_P1_SHALL",
+              "relevant": true
+            }
+          ]
+        },
+        "GT_16_DEEPFAKE_LABELLING": {
+          "score": 0.6666666666666666,
+          "relevant": 10,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_50_P4_MUST_NOT",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_50_P4_EXEMPTION",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_50_P2_MUST_NOT",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_50",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_53",
+              "relevant": false,
+              "reason": "The entity outlines obligations for providers of general-purpose AI models regarding documentation and training data, not disclosure rules for AI-generated deepfakes or synthetic content itself."
+            },
+            {
+              "id": "AIACT_REC_134",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_CH_4",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_50_P2_MAY",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_7",
+              "relevant": false,
+              "reason": "GDPR Article 7 discusses conditions for consent to process personal data, not disclosure rules or labeling requirements for AI-generated deepfakes or synthetic content itself."
+            },
+            {
+              "id": "AIACT_OBL_50_P2_EXEMPTION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_12",
+              "relevant": false,
+              "reason": "This article details transparent communication for personal data processing and data subject rights, not specific disclosure or labeling rules for AI-generated deepfakes and synthetic content."
+            },
+            {
+              "id": "AIACT_REC_136",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_56",
+              "relevant": false,
+              "reason": "Article 56 discusses the creation of codes of practice but does not itself lay out specific disclosure rules for AI-generated deepfakes or synthetic content."
+            },
+            {
+              "id": "AIACT_REC_120",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_98",
+              "relevant": false,
+              "reason": "This entity describes committee procedures and references comitology regulations, which are purely administrative and do not provide substantive disclosure rules for AI-generated deepfakes or synthetic content."
+            }
+          ]
+        },
+        "GT_17_INTERNATIONAL_TRANSFERS": {
+          "score": 0.8666666666666667,
+          "relevant": 13,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_46",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_46_P3_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_46_P2_MAY",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_46_P3_MAY",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_49",
+              "relevant": false,
+              "reason": "Article 49 describes derogations for international data transfers when appropriate safeguards (Article 46) or an adequacy decision (Article 45) are absent, rather than outlining the safeguards themselves."
+            },
+            {
+              "id": "GDPR_ART_45",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_44",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_REC_108",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_CH_5",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_46_P1_MAY",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_26",
+              "relevant": false,
+              "reason": "This article defines 'joint controllers' and their responsibilities, but it does not address safeguards for transferring personal data outside the EEA to a third country."
+            },
+            {
+              "id": "GDPR_OBL_40_P3_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_40",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_40_P3_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_42",
+              "relevant": true
+            }
+          ]
+        },
+        "GT_18_AI_DECISION_RIGHTS": {
+          "score": 0.6666666666666666,
+          "relevant": 10,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_86_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "RIGHT_AI_EXPLANATION",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_86",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_86_P1_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_22",
+              "relevant": true
+            },
+            {
+              "id": "ACTOR_DEPLOYER",
+              "relevant": false,
+              "reason": "The entity defines an actor (Deployer) but does not provide information about the rights a person has when an AI system makes a significant decision."
+            },
+            {
+              "id": "AIACT_REC_171",
+              "relevant": true
+            },
+            {
+              "id": "RIGHT_AI_EFFECTIVE_REMEDY",
+              "relevant": true
+            },
+            {
+              "id": "ACTOR_AFFECTED_PERSON",
+              "relevant": false,
+              "reason": "This entity defines who an 'Affected Person' is but does not provide any information about their rights, legal text, or regulatory context."
+            },
+            {
+              "id": "RIGHT_AI_NOTIFICATION",
+              "relevant": false,
+              "reason": "The entity describes the right to be informed of an AI's presence or specific biometric uses, not the rights associated with an AI system making a significant decision affecting a person."
+            },
+            {
+              "id": "AIACT_ART_3",
+              "relevant": false,
+              "reason": "The entity provides definitions of terms related to AI systems but does not outline any specific rights a person has."
+            },
+            {
+              "id": "RIGHT_AI_COMPLAINT",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_CH_9",
+              "relevant": false,
+              "reason": "This chapter title describes regulatory oversight activities for AI systems, not the specific rights of individuals affected by AI decisions."
+            },
+            {
+              "id": "AIACT_REC_170",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_15",
+              "relevant": true
+            }
+          ]
+        },
+        "GT_19_RISK_TIERING": {
+          "score": 0.5333333333333333,
+          "relevant": 8,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_ART_6",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_6_P3_EXEMPTION",
+              "relevant": false,
+              "reason": "The entity describes specific exemptions and conditions for high-risk classification under Article 6, Paragraph 3, rather than the overall framework or categories used by the EU AI Act to categorize AI systems by risk level."
+            },
+            {
+              "id": "AIACT_OBL_6_P1_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_6_P3_MUST_NOT",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_9",
+              "relevant": false,
+              "reason": "This article details risk management for high-risk AI systems but does not explain how AI systems are categorized into different risk levels by the Act."
+            },
+            {
+              "id": "AIACT_ART_7",
+              "relevant": false,
+              "reason": "The entity discusses the process for amending the definition of high-risk AI systems, rather than explaining how the EU AI Act categorizes AI systems across all risk levels."
+            },
+            {
+              "id": "AIACT_REC_26",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_CH_3",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_6_P2_SHALL",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_9",
+              "relevant": false,
+              "reason": "The question asks about AI system risk categorization under the EU AI Act, but the retrieved entity is GDPR Article 9 concerning the processing of special categories of personal data."
+            },
+            {
+              "id": "AIACT_OBL_6_P1_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_35",
+              "relevant": false,
+              "reason": "The question is about risk categorization under the EU AI Act, but the retrieved entity describes data protection impact assessments under GDPR, which is a different regulation."
+            },
+            {
+              "id": "AIACT_OBL_79_P1_SHALL",
+              "relevant": false,
+              "reason": "The entity defines 'AI systems presenting a risk' but does not describe the overall categorization of AI systems by different risk levels within the Act."
+            },
+            {
+              "id": "AIACT_ART_96",
+              "relevant": false,
+              "reason": "The entity discusses the Commission's role in developing implementation guidelines, but does not define or explain the risk categorization of AI systems itself."
+            },
+            {
+              "id": "AIACT_REC_52",
+              "relevant": true
+            }
+          ]
+        },
+        "GT_20_MILITARY_EXCLUSION": {
+          "score": 0.3333333333333333,
+          "relevant": 5,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_REC_24",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_2_P3_EXEMPTION",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_2_P3_MUST_NOT",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_2_P4_CONDITION",
+              "relevant": false,
+              "reason": "The retrieved entity discusses exclusions for third countries or international organizations in the context of law enforcement and judicial cooperation, not military, defence, or national security purposes."
+            },
+            {
+              "id": "AIACT_ART_2",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_6",
+              "relevant": false,
+              "reason": "Article 6 defines criteria for classifying AI systems as high-risk, but does not address whether the AI Act applies to systems used for military, defence or national security purposes."
+            },
+            {
+              "id": "AIACT_ART_4",
+              "relevant": false,
+              "reason": "The retrieved article discusses AI literacy requirements for staff, which does not address the question of whether the AI Act applies to AI systems used for military, defence, or national security purposes."
+            },
+            {
+              "id": "AIACT_OBL_2_P6_EXEMPTION",
+              "relevant": false,
+              "reason": "The retrieved entity exempts AI systems for scientific research and development, not those used for military, defence, or national security purposes."
+            },
+            {
+              "id": "AIACT_OBL_86_P2_EXEMPTION",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_CH_1",
+              "relevant": false,
+              "reason": "The entity is a chapter title and does not provide specific legal text, definitions, or regulatory context to directly answer the question."
+            },
+            {
+              "id": "AIACT_REC_25",
+              "relevant": false,
+              "reason": "Recital 25 discusses exclusions for scientific research and development, not for military, defence, or national security purposes."
+            },
+            {
+              "id": "GDPR_ART_2",
+              "relevant": false,
+              "reason": "The retrieved entity discusses the scope of the GDPR, not the AI Act, which is the subject of the question."
+            },
+            {
+              "id": "AIACT_OBL_2_P8_EXEMPTION",
+              "relevant": false,
+              "reason": "The entity discusses an exemption for research, testing, and development activities, not an exemption based on the AI system's ultimate military, defence, or national security purpose."
+            },
+            {
+              "id": "AIACT_ART_5",
+              "relevant": false,
+              "reason": "Article 5 lists prohibited AI practices but does not address the overall applicability of the AI Act to AI systems used exclusively for military, defence, or national security purposes."
+            },
+            {
+              "id": "AIACT_OBL_78_P3_EXEMPTION",
+              "relevant": false,
+              "reason": "The retrieved article discusses information exchange and documentation for high-risk AI systems used by law enforcement, border control, immigration or asylum authorities, not the general applicability of the AI Act to systems used exclusively for military, defence or national security purposes."
+            }
+          ]
+        },
+        "GT_21_ACADEMIC_RESEARCH": {
+          "score": 0.4,
+          "relevant": 6,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_OBL_89_P2_MAY",
+              "relevant": false,
+              "reason": "The entity discusses derogations from certain data subject rights for research purposes, but does not address whether personal data can be processed without explicit consent."
+            },
+            {
+              "id": "GDPR_OBL_21_P6_SHALL",
+              "relevant": false,
+              "reason": "The entity discusses the data subject's right to object to processing for research, not whether explicit consent is required for such processing."
+            },
+            {
+              "id": "GDPR_OBL_89_P1_MAY",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_89",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_6",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_REC_33",
+              "relevant": false,
+              "reason": "The entity discusses the nature of consent for scientific research when purposes are unclear, but does not provide a legal basis for processing personal data without explicit consent."
+            },
+            {
+              "id": "GDPR_REC_159",
+              "relevant": false,
+              "reason": "The entity confirms GDPR's applicability to scientific research and defines it broadly, but does not address the conditions under which personal data can be processed for research without explicit consent."
+            },
+            {
+              "id": "ACTOR_DATA_SUBJECT",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_89_P2_CONDITION",
+              "relevant": false,
+              "reason": "The entity discusses derogations from certain data subject rights for research purposes, but does not address the requirement for or derogations from explicit consent."
+            },
+            {
+              "id": "GDPR_ART_21",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_21_P6_CONDITION",
+              "relevant": false,
+              "reason": "This entity discusses the data subject's right to object to processing for research purposes, not the legal bases or conditions under which personal data can be processed without explicit consent for such purposes."
+            },
+            {
+              "id": "GDPR_CH_9",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_9_P2_EXEMPTION",
+              "relevant": false,
+              "reason": "The retrieved content for Article 9 Paragraph 2 lists several exemptions but does not include the specific exemption for scientific or historical research purposes, which is crucial for answering the question about academic research."
+            },
+            {
+              "id": "GDPR_ART_4",
+              "relevant": false,
+              "reason": "The retrieved entity provides definitions of terms like 'personal data' and 'processing', but does not address the legal grounds or conditions for processing personal data for academic research without explicit consent."
+            },
+            {
+              "id": "GDPR_OBL_89_P1_SHALL",
+              "relevant": false,
+              "reason": "The entity discusses safeguards for scientific research processing but does not directly address whether explicit consent is required or can be dispensed with for such processing."
+            }
+          ]
+        },
+        "GT_22_TERRITORIAL_SCOPE": {
+          "score": 0.4666666666666667,
+          "relevant": 7,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_ART_3",
+              "relevant": true
+            },
+            {
+              "id": "EDPB_GL_03_2018",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_OBL_3_P2_CONDITION",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_27",
+              "relevant": false,
+              "reason": "Article 27 discusses the obligation for non-EU companies to designate a representative if Article 3(2) applies, rather than defining the GDPR's applicability itself."
+            },
+            {
+              "id": "GDPR_ART_2",
+              "relevant": false,
+              "reason": "Article 2 defines the material scope of the GDPR (what kind of data processing it applies to), but not its territorial scope, which is key to answering whether it applies to a US-only company."
+            },
+            {
+              "id": "GDPR_DEF_CROSS_BORDER_PROCESSING",
+              "relevant": false,
+              "reason": "The entity defines 'cross-border processing' within the EU context, which does not address the question of GDPR applicability to a US-only company without EU establishment or activities, which is governed by Article 3's territorial scope."
+            },
+            {
+              "id": "GDPR_DEF_SUPERVISORY_AUTHORITY_CONCERNED",
+              "relevant": false,
+              "reason": "This entity defines 'supervisory authority concerned,' which is a procedural aspect, and does not directly address the territorial scope of the GDPR's applicability to a US-only company."
+            },
+            {
+              "id": "GDPR_ART_49",
+              "relevant": false,
+              "reason": "GDPR Article 49 addresses conditions for international data transfers, not the initial territorial scope of the GDPR's applicability to a US-only company without EU establishment."
+            },
+            {
+              "id": "GDPR_REC_23",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_CH_1",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_REC_22",
+              "relevant": false,
+              "reason": "Recital 22 explains the GDPR's applicability based on an establishment in the Union, which directly contradicts the premise of the question regarding a company with no such establishment."
+            },
+            {
+              "id": "GDPR_ART_34",
+              "relevant": false,
+              "reason": "The question asks about the territorial applicability of GDPR, while the retrieved entity describes obligations for communicating data breaches, assuming GDPR applies."
+            },
+            {
+              "id": "GDPR_REC_24",
+              "relevant": true
+            },
+            {
+              "id": "GDPR_ART_56",
+              "relevant": false,
+              "reason": "Article 56 concerns the competence of supervisory authorities for cross-border processing, not the territorial scope or applicability of GDPR to a US-only company without EU establishment."
+            },
+            {
+              "id": "GDPR_REC_80",
+              "relevant": true
+            }
+          ]
+        },
+        "GT_23_NUCLEAR_SAFETY": {
+          "score": 0.4,
+          "relevant": 6,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_ART_2",
+              "relevant": false,
+              "reason": "Article 2 outlines the general scope and applicability of the AI Act but does not contain special rules or specific mentions dedicated to AI used in nuclear-reactor safety control; it's a foundational, high-level article."
+            },
+            {
+              "id": "AIACT_ART_103",
+              "relevant": false,
+              "reason": "The entity discusses AI systems as safety components within the context of Regulation (EU) No 167/2013, which concerns agricultural and forestry vehicles, not nuclear-reactor safety control."
+            },
+            {
+              "id": "AIACT_ART_6",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_109",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_106",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_107",
+              "relevant": false,
+              "reason": "The retrieved entity discusses AI systems as safety components in the context of motor vehicles, not nuclear-reactor safety control."
+            },
+            {
+              "id": "AIACT_REC_55",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_CH_1",
+              "relevant": false,
+              "reason": "Chapter 1 on general provisions is too broad and does not contain the special, dedicated rules for AI in nuclear safety control requested by the question."
+            },
+            {
+              "id": "AIACT_REC_49",
+              "relevant": false,
+              "reason": "The entity discusses the interplay of the AI Act with specific sector-specific regulations, none of which are related to nuclear-reactor safety control, and does not provide special rules dedicated to it."
+            },
+            {
+              "id": "GDPR_ART_2",
+              "relevant": false,
+              "reason": "The retrieved entity discusses the material scope of the GDPR, which is unrelated to the EU AI Act or AI use in nuclear-reactor safety control."
+            },
+            {
+              "id": "AIACT_REC_50",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_5",
+              "relevant": false,
+              "reason": "The retrieved entity lists general prohibited AI practices, but it does not contain any special rules specifically dedicated to AI used in nuclear-reactor safety control."
+            },
+            {
+              "id": "AIACT_REC_47",
+              "relevant": false,
+              "reason": "The recital discusses general AI safety in products and health, but does not specifically mention or dedicate rules to nuclear-reactor safety control."
+            },
+            {
+              "id": "AIACT_OBL_74_P4_EXEMPTION",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_ART_10",
+              "relevant": false,
+              "reason": "Article 10 outlines general data quality and governance requirements for all high-risk AI systems, but it does not contain any special rules dedicated specifically to AI used in nuclear-reactor safety control."
+            }
+          ]
+        },
+        "GT_24_CONSENT_FORM_SIZE": {
+          "score": 0.0,
+          "relevant": 0,
+          "total": 15,
+          "details": [
+            {
+              "id": "GDPR_OBL_57_P2_SHALL",
+              "relevant": false,
+              "reason": "The entity discusses complaint submission forms and facilitation by supervisory authorities, but does not mention consent forms or maximum file size limits."
+            },
+            {
+              "id": "GDPR_OBL_60_P12_SHALL",
+              "relevant": false,
+              "reason": "The entity describes information exchange between supervisory authorities, not file size limits for consent forms submitted by external parties to a regulator."
+            },
+            {
+              "id": "GDPR_OBL_7_P2_MUST_NOT",
+              "relevant": false,
+              "reason": "The entity discusses the presentation and language requirements for consent forms, not the maximum file size for submission to a regulator."
+            },
+            {
+              "id": "GDPR_OBL_61_P6_SHALL",
+              "relevant": false,
+              "reason": "The entity describes information exchange between supervisory authorities, not file size limits for consent forms submitted to a regulator by external parties."
+            },
+            {
+              "id": "GDPR_OBL_64_P4_SHALL",
+              "relevant": false,
+              "reason": "The entity describes communication procedures among regulatory bodies and does not mention file size limits for consent forms submitted to a regulator."
+            },
+            {
+              "id": "GDPR_ART_57",
+              "relevant": false,
+              "reason": "The entity describes the general tasks of supervisory authorities and does not contain any information regarding file size limits for submitting GDPR consent forms."
+            },
+            {
+              "id": "GDPR_OBL_64_P4_MAY",
+              "relevant": false,
+              "reason": "The entity describes communication between supervisory authorities and the Commission to the Board, not the submission of consent forms by an external party to a regulator, nor does it mention file size limits."
+            },
+            {
+              "id": "ACTOR_SUPERVISORY_AUTHORITY",
+              "relevant": false,
+              "reason": "The entity defines a 'Supervisory Authority,' which is a type of regulator, but it does not provide any information about file size limits for submissions, which is the core of the question."
+            },
+            {
+              "id": "GDPR_OBL_15_P3_SHALL",
+              "relevant": false,
+              "reason": "The retrieved entity concerns the controller providing copies of personal data to a data subject, not the file size limit for a consent form submitted to a regulator."
+            },
+            {
+              "id": "GDPR_OBL_36_P3_SHALL",
+              "relevant": false,
+              "reason": "The entity describes the type of information a controller must provide to a supervisory authority, but it does not specify any maximum file size limits for submissions."
+            },
+            {
+              "id": "GDPR_ART_60",
+              "relevant": false,
+              "reason": "The retrieved entity discusses cooperation between supervisory authorities, not technical file size limits for consent forms submitted to a regulator."
+            },
+            {
+              "id": "GDPR_OBL_30_P5_MUST_NOT",
+              "relevant": false,
+              "reason": "The retrieved entity discusses exemptions for record-keeping obligations for small organizations, not technical specifications like file size for submitting consent forms to a regulator."
+            },
+            {
+              "id": "ACTOR_DATA_SUBJECT",
+              "relevant": false,
+              "reason": "The entity defines 'Data Subject,' which is a foundational term in GDPR, but provides no information about file size limits or submission requirements for consent forms to a regulator."
+            },
+            {
+              "id": "CJEU_C_61_19",
+              "relevant": false,
+              "reason": "The entity discusses the validity of consent under GDPR, specifically concerning pre-ticked boxes and bundled consent, not the maximum file size for submitting a consent form to a regulator."
+            },
+            {
+              "id": "GDPR_ART_7",
+              "relevant": false,
+              "reason": "The entity discusses conditions for consent, presentation, and withdrawal but does not mention any technical specifications like file size limits for submission to a regulator."
+            }
+          ]
+        },
+        "GT_25_HIPAA_IN_EU": {
+          "score": 0.06666666666666667,
+          "relevant": 1,
+          "total": 15,
+          "details": [
+            {
+              "id": "AIACT_OBL_2_P1_CONDITION",
+              "relevant": false,
+              "reason": "The entity details the scope of the EU AI Act, but does not mention HIPAA or its applicability, which is the core of the question."
+            },
+            {
+              "id": "AIACT_OBL_86_P2_EXEMPTION",
+              "relevant": false,
+              "reason": "The entity describes an exemption within the EU AI Act but does not mention or relate to HIPAA compliance, which is a US law."
+            },
+            {
+              "id": "AIACT_OBL_26_P9_SHALL",
+              "relevant": false,
+              "reason": "The entity discusses EU data protection obligations (GDPR) in relation to the AI Act, but the question specifically asks about HIPAA compliance, which is a US law."
+            },
+            {
+              "id": "AIACT_OBL_86_P2_MUST_NOT",
+              "relevant": false,
+              "reason": "The entity discusses exceptions to EU AI Act obligations from other EU or national laws, but does not address HIPAA or the applicability of US law in the EU."
+            },
+            {
+              "id": "AIACT_ART_2",
+              "relevant": false,
+              "reason": "The retrieved entity details the scope of the EU AI Act but does not mention HIPAA or its applicability in the European Union, which is a US law."
+            },
+            {
+              "id": "AIACT_REC_63",
+              "relevant": false,
+              "reason": "The entity discusses the applicability of other EU and national data protection laws alongside the AI Act, but does not address HIPAA, which is a US law, or its extraterritorial reach."
+            },
+            {
+              "id": "AIACT_OBL_50_P3_MUST_NOT",
+              "relevant": false,
+              "reason": "The entity discusses EU data protection regulations (like GDPR) and AI Act obligations for certain AI systems in the EU, but the question specifically asks about HIPAA compliance, a US law, which is not mentioned in the text."
+            },
+            {
+              "id": "AIACT_ART_86",
+              "relevant": false,
+              "reason": "The entity describes the right to explanation for individuals affected by high-risk AI systems, which does not directly address HIPAA compliance requirements for deploying an AI medical device in the EU."
+            },
+            {
+              "id": "AIACT_OBL_26_P9_CONDITION",
+              "relevant": false,
+              "reason": "The entity discusses EU data protection requirements (GDPR/DPIA) for high-risk AI systems, not HIPAA compliance."
+            },
+            {
+              "id": "AIACT_ART_26",
+              "relevant": false,
+              "reason": "The entity details deployer obligations under the EU AI Act but does not mention HIPAA or address whether HIPAA compliance is required in the EU."
+            },
+            {
+              "id": "AIACT_OBL_10_P5_MAY",
+              "relevant": false,
+              "reason": "The entity discusses EU data protection regulations (GDPR, etc.) for high-risk AI systems but does not mention or address HIPAA compliance, which is a US law."
+            },
+            {
+              "id": "AIACT_CH_1",
+              "relevant": true
+            },
+            {
+              "id": "AIACT_OBL_27_P1_SHALL",
+              "relevant": false,
+              "reason": "The entity discusses obligations under the EU AI Act for high-risk AI systems but does not address HIPAA compliance, which is a US law."
+            },
+            {
+              "id": "GDPR_ART_2",
+              "relevant": false,
+              "reason": "The question asks about HIPAA compliance, a US law, in the EU, while the retrieved entity describes the material scope of GDPR, an EU law, and does not mention HIPAA or its applicability."
+            },
+            {
+              "id": "AIACT_OBL_10_P5_CONDITION",
+              "relevant": false,
+              "reason": "The retrieved entity discusses data processing under EU regulations (AI Act, GDPR) for high-risk AI systems and does not mention HIPAA, which is a US law."
+            }
+          ]
+        }
+      }
+    },
+    "answer_relevance": null,
+    "faithfulness": null
+  }
+}
