@@ -151,6 +151,35 @@ described there.
 
 ---
 
+## 2026-08-31 — v07 proposed: scanner robustness — measure recall first, then widen the signal
+
+**What:** Researched how the field detects library/AI usage in code (Semgrep vs
+CodeQL benchmark data, Cisco's aibom three-tier AI-BOM architecture, IRIS
+neuro-symbolic LLM+CodeQL at ICLR 2025, the open-source EU-AI-Act scanner
+landscape) and audited our six scanners against it. Verified gaps: detection is
+single-signal (imports only — `ingest()` builds a dep manifest **no scanner
+reads**), no string-literal/model-id signal, no `.ipynb` support, no dynamic
+imports, window-heuristic adjacency instead of reachability for AI-003/007/010,
+prohibited triggers ignore confidence, and **zero measured detection recall** —
+the condition that let DL-027 ship clean reports while blind to `from X import
+Y`. Proposal: [`design-evolution/v07-scanner-robustness.md`](design-evolution/v07-scanner-robustness.md)
+— T0 a pre-registered detection benchmark corpus (the refuse-list's own
+precondition for expansion), T1 manifest cross-referencing + notebook ingestion
++ model-string patterns inside the existing six scanners, T2 confidence-aware
+PROHIBITED escalation + an IRIS-shaped LLM confirm/triage pass (never
+detection), T3 explicitly deferred taint/languages.
+
+**Why:** DL-027 proved one traversal bug can silently collapse recall across
+every import rule. The retrieval side has METRICS.md and CI; the scanner — the
+actual product — has no recall number at all.
+
+**Impact on SYSTEM.md:** none — proposal only.
+
+**Refs:** v07 doc (research links inline); BUG_LOG DL-019/DL-020/DL-027;
+NORTHSTAR Part IV/V.
+
+---
+
 ## 2026-08-31 — Knowledge graph restored (2nd Aura deletion); v06 proposed; BUG_LOG reformatted
 
 **What:** Found the Neo4j Aura instance `e8097dda` hard-deleted — DNS no longer
