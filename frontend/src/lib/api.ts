@@ -4,14 +4,17 @@ export const api = {
   base: API_BASE,
   scans: `${API_BASE}/api/v1/scans`,
   scan: (id: string) => `${API_BASE}/api/v1/scans/${id}`,
-  scanFindings: (id: string) => `${API_BASE}/api/v1/scans/${id}/findings`,
   scanReport: (id: string) => `${API_BASE}/api/v1/scans/${id}/report`,
-  statistics: `${API_BASE}/api/v1/statistics`,
-  auditLog: `${API_BASE}/api/v1/audit-log`,
   health: `${API_BASE}/health`,
 };
 
 export type ScanStatus = "queued" | "running" | "completed" | "failed";
+export type Severity = "critical" | "high" | "medium" | "low" | "info";
+export type RiskCategory =
+  | "PROHIBITED"
+  | "HIGH_RISK"
+  | "LIMITED_RISK"
+  | "MINIMAL_RISK";
 
 export type ScanSummary = {
   scan_id: string;
@@ -20,18 +23,15 @@ export type ScanSummary = {
   ref: string;
   created_at: string;
   completed_at: string | null;
-  risk_category: string | null;
-  compliance_score: number | null;
+  risk_category: RiskCategory | null;
   finding_count: number | null;
   error?: string | null;
 };
 
-export type Severity = "critical" | "high" | "medium" | "low" | "info";
-
 export type Evidence = {
   file: string;
-  line: number;
-  column?: number | null;
+  /** null for repo-level facts, e.g. "no model card anywhere" (see BUG_LOG DL-029). */
+  line: number | null;
   excerpt?: string | null;
   symbol?: string | null;
 };
@@ -47,89 +47,75 @@ export type Finding = {
   remediation?: string | null;
   suppressed: boolean;
   suppress_reason?: string | null;
+  /** "llm-confirmed" | "llm-demoted: <reason>" | null when triage did not run. */
+  triage?: string | null;
 };
 
 export type RiskPosture = {
-  category: "PROHIBITED" | "HIGH_RISK" | "LIMITED_RISK" | "MINIMAL_RISK";
+  category: RiskCategory;
   critical_count: number;
   high_count: number;
   medium_count: number;
   low_count: number;
   prohibited_triggers: string[];
+  /** Prohibited patterns seen only in test/example context — capability, not deployment. */
+  dampened_triggers?: string[];
   reason: string;
   compliance_score: number;
 };
 
-export type LegalCitation = {
-  regulation: string;
-  article_number: string;
-  title?: string | null;
-  text_snippet?: string | null;
-  relevance_score: number;
-  obligation_anchor?: string | null;
+/** Coverage receipts: what the scanner could not read, so "no findings" is
+ *  distinguishable from "never looked". */
+export type ScanStats = {
+  total_findings?: number;
+  by_severity?: Record<string, number>;
+  by_rule?: Record<string, number>;
+  suppressed?: number;
+  manifest_scan?: { files: string[]; errors: string[] };
+  source_read_errors?: string[];
+  llm_triage?: {
+    status: "ok" | "skipped" | "failed";
+    reason?: string;
+    reviewed?: number;
+    demoted?: number;
+    confirmed?: number;
+    capped_out?: number;
+  };
 };
 
-export type FindingCitations = {
-  rule_id: string;
-  citations: LegalCitation[];
-  reasoning_chain: string[];
+export type RepoInfo = {
+  url: string;
+  ref: string;
+  commit?: string | null;
+  languages: string[];
+  total_files: number;
+  scanned_files: number;
 };
 
-export type RemediationStep = {
-  priority: "immediate" | "short_term" | "long_term";
-  finding_rule_ids: string[];
-  title: string;
-  description: string;
-  effort: "low" | "medium" | "high";
-};
-
-export type NarrativeReport = {
-  executive_summary: string;
-  risk_narrative: string;
-  top_findings_narrative: string;
-  remediation_plan: RemediationStep[];
-};
-
-export type ScanState = {
+export type ScanReport = {
   scan_id: string;
   repo_url: string;
   ref: string;
-  profile: {
-    scan_id: string;
-    repo: {
-      url: string;
-      ref: string;
-      commit?: string | null;
-      languages: string[];
-      total_files: number;
-      scanned_files: number;
-    };
-    ai_components: { kind: string; name: string; evidence: Evidence[] }[];
-    decision_surfaces: {
-      endpoint: string;
-      file: string;
-      line: number;
-      calls_model: boolean;
-      has_human_review: boolean;
-      has_audit_log: boolean;
-    }[];
-    data_signals: {
-      pii_fields: string[];
-      has_dpia_doc: boolean;
-      has_model_card: boolean;
-      has_data_card: boolean;
-      audit_logging: "none" | "partial" | "present";
-    };
-    findings: Finding[];
-    stats: Record<string, unknown>;
-  } | null;
   risk_posture: RiskPosture | null;
-  finding_citations: FindingCitations[];
-  narrative: NarrativeReport | null;
-  final_report: Record<string, unknown> | null;
-  current_step: string;
-  workflow_status: ScanStatus;
-  errors: string[];
-  started_at: string;
+  profile: {
+    repo: RepoInfo;
+    ai_components: { kind: string; name: string; evidence: Evidence[] }[];
+    findings: Finding[];
+    stats: ScanStats;
+  } | null;
   completed_at: string | null;
 };
+
+export const SEVERITY_ORDER: Severity[] = [
+  "critical",
+  "high",
+  "medium",
+  "low",
+  "info",
+];
+
+export async function getJSON<T>(url: string): Promise<T> {
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+  return res.json() as Promise<T>;
+}

@@ -223,27 +223,41 @@ Single env var: `NEXT_PUBLIC_API_URL` → orchestrator base URL. The frontend ne
 
 ## 5. Frontend
 
-[`frontend/`](../frontend/) — Next.js 16 (App Router) + React 19 + TypeScript 5 + TailwindCSS + Framer Motion + Lucide icons.
+[`frontend/`](../frontend/) — Next.js 16 (App Router) + React 19 + TypeScript +
+TailwindCSS. **Three runtime dependencies: `next`, `react`, `react-dom`.**
 
-Pages under [`frontend/src/app/`](../frontend/src/app/):
+Rebuilt from scratch 2026-08-31 around a single objective: make the trace from
+a line of code to a cited article inspectable, and be honest about what was not
+scanned. Two screens.
 
 | Path | Purpose |
 |---|---|
-| `/` ([`page.tsx`](../frontend/src/app/page.tsx)) | Dashboard: scan list, risk distribution chart, platform stats |
-| `/scans/new` ([`scans/new/`](../frontend/src/app/scans/new/)) | Start a scan; redirects to `/scans/{id}` on submit |
-| `/scans/{id}` ([`scans/[id]/`](../frontend/src/app/scans/[id]/)) | Per-scan detail: findings, risk posture, narrative |
-| `/knowledge` ([`knowledge/`](../frontend/src/app/knowledge/)) | KB browser — search articles, view obligations |
+| `/` ([`page.tsx`](../frontend/src/app/page.tsx)) | Start a scan; list scans with risk and finding count. Merges the former `/scans/new`. |
+| `/scans/{id}` ([`scans/[id]/`](../frontend/src/app/scans/[id]/)) | The trace view: risk posture, findings, coverage. |
 
-Layout in [`layout.tsx`](../frontend/src/app/layout.tsx), global styles in [`globals.css`](../frontend/src/app/globals.css).
+A finding expands into its evidence chain — `file:line` and the source excerpt,
+then `└─▶` the mapped articles (rendered readably: `AIACT_ART_5` → "AI Act
+Art. 5"), then remediation. Confidence is always shown; an LLM-demoted finding
+displays the stated reason.
 
-> **Drift note (2026-08-31):** this table previously listed a `/scans`
-> index route. There is no `frontend/src/app/scans/page.tsx` — only
-> `[id]/` and `new/` — so `/scans` returns 404. Nothing links to it (every
-> link targets `/scans/new` or `/scans/{id}`), and the scan list lives on
-> the `/` dashboard, so this was documentation drift rather than a broken
-> UI. Corrected per the code-wins rule.
+Two things the UI deliberately surfaces because they were previously invisible:
 
----
+- **`dampened_triggers`** — a prohibited pattern matched only in test/example
+  code is shown as "capability present, deployment unverified", explaining why
+  it did not set the verdict (v07 T2.1).
+- **Coverage** — files scanned vs total, manifests read, LLM-triage status
+  (including "not run" and the cost cap), and any unreadable sources. Without
+  it, "no findings" and "never looked" render identically — the failure mode
+  behind DL-019, DL-020, DL-027 and DL-028. An unreachable backend likewise
+  says so instead of rendering an empty list.
+
+**Removed in the rebuild:** `/knowledge` (212 lines of hardcoded constants —
+`TOTAL_NODES = 2301` — that fetched nothing and would silently misreport the
+graph), `KnowledgeGraph.tsx` (405 lines, never imported), `lib/markdown.ts`
+(165 lines, never imported), the sidebar/topbar chrome, and four unused
+dependencies (`framer-motion`, `react-force-graph-2d`, `react-markdown`,
+`remark-gfm`) plus `clsx`/`tailwind-merge`/`lucide-react` once orphaned.
+2,438 → 704 lines.
 
 ## 6. Deploy
 

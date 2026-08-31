@@ -151,6 +151,43 @@ described there.
 
 ---
 
+## 2026-08-31 — Frontend rebuilt around the trace; 2,438 → 704 lines
+
+**What:** Replaced the frontend with two screens built for one objective —
+make the code→article trace inspectable, and be honest about coverage.
+
+**Deleted as decoration:** `/knowledge` fetched nothing at all; it rendered
+hardcoded constants (`TOTAL_NODES = 2301`) that would have kept reporting those
+figures however the graph changed. `KnowledgeGraph.tsx` (405 lines, with a
+`react-force-graph-2d` dependency) was never imported. `lib/markdown.ts` (165
+lines) was never imported. `framer-motion`, `react-markdown` and `remark-gfm`
+were installed and never used. Sidebar and topbar navigated three routes, two
+of which now don't exist. **Runtime dependencies: 10 → 3** (`next`, `react`,
+`react-dom`).
+
+**Built:** `/` starts a scan and lists scans (absorbing `/scans/new`).
+`/scans/{id}` shows risk posture, findings, and coverage. A finding expands to
+its full chain — `file:line`, source excerpt, `└─▶` mapped articles rendered
+readably (`AIACT_ART_5` → "AI Act Art. 5"), remediation — with confidence
+always visible and the demotion reason shown when triage lowered it.
+
+**Surfaces what the backend gained today and the old UI ignored entirely:**
+`triage`, `dampened_triggers`, `llm_triage`, `manifest_scan` and
+`source_read_errors` had zero references in the old code. The new Coverage
+panel reports files scanned vs total, manifests read, triage status including
+"not run" and the cost cap, and any unreadable source — so "no findings" is
+distinguishable from "never looked", the failure mode behind DL-019, DL-020,
+DL-027 and DL-028. An unreachable backend says so rather than rendering an
+empty list that reads as "no scans".
+
+**Verified** against the live deepface scan: 87 findings, `HIGH_RISK` with
+`dampened_triggers: [AI-009]`, triage 40 reviewed / 25 demoted / 47 beyond cap,
+three manifests read. Production build clean, TypeScript passing.
+
+**Impact on SYSTEM.md:** §5 rewritten.
+
+---
+
 ## 2026-08-31 — Rename follow-through: local directory, venvs, stale path claims
 
 **What:** Completed the rename below the repository level. Local directory
