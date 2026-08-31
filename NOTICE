@@ -1,0 +1,29 @@
+AlloyCode — static EU AI Act / GDPR compliance scanner
+Copyright 2026 Sahabaj Alam
+
+Licensed under the Apache License, Version 2.0 (the "License").
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+------------------------------------------------------------------------------
+THIRD-PARTY CONTENT — THE LICENCE ABOVE COVERS THIS PROJECT'S CODE ONLY
+------------------------------------------------------------------------------
+
+This repository redistributes structured derivations of European Union
+regulatory texts under `knowledge_engine/parsed_data/`. Those texts are not
+the copyright of this project and are not licensed under Apache-2.0. Their
+provenance and reuse terms are documented in CORPUS.md, which you should read
+before redistributing this repository or its data.
+
+Summary:
+  - EU AI Act (Regulation (EU) 2024/1689) and GDPR (Regulation (EU) 2016/679),
+    obtained via EUR-Lex. Reuse authorised under Commission Decision
+    2011/833/EU; the Publications Office applies CC BY 4.0. Attribution
+    required; modifications must be indicated. These files are STRUCTURED
+    DERIVATIONS, not verbatim reproductions — see CORPUS.md.
+  - EDPB guidelines derivations (`parsed_data/interpretive/edpb_guidelines.json`).
+    Reuse terms NOT independently verified by this project. See CORPUS.md §3
+    before relying on or redistributing this file.
+
+Only the Official Journal of the European Union in printed/authenticated form
+is authentic. Nothing here is a substitute for it, and nothing here is legal
+advice. See DISCLAIMER in README.md.

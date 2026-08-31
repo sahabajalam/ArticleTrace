@@ -66,16 +66,22 @@ Three live services + three datastores. Two FastAPI backends (Python) + a Next.j
 | Cost discipline | LLM kept out of detection hot path; per-scan `cost_tracker` reports `$/scan` |
 | Golden test cases | 6, including résumé screening and credit scoring (both EU AI Act Annex III high-risk categories) |
 
-## Live demo
+## Status
 
-- **Frontend:** https://aegis-frontend-whfa7vg4ea-ew.a.run.app/
-- **Knowledge Engine API:** https://aegis-knowledge-engine-whfa7vg4ea-ew.a.run.app/health (returns the live KG counts — 7 collections, 2,198 docs, 2,301 nodes)
-- **Orchestrator API:** https://aegis-orchestrator-whfa7vg4ea-ew.a.run.app/health
-- **Loom walkthrough:** _(pending)_
+**Runs locally, end to end.** A scan of `github.com/ageitgey/face_recognition`
+completes in ~25 s for about $0.0004, producing 24 findings with `file:line`
+anchors mapped to AI Act Art 5 / Annex III / GDPR Art 9.
 
-> The Cloud Run service URLs were minted under the project's earlier "Aegis" name (now deprecated — see [`devlog/SYSTEM.md`](devlog/SYSTEM.md) §7 Glossary). The page content + product name is AlloyCode. URL renames are a future cleanup ([`devlog/NORTHSTAR.md`](devlog/NORTHSTAR.md) Part IV: "Renaming AlloyCode again" is correctly-deferred).
+**The hosted demo is currently down.** The Cloud Run deployment points at a
+Neo4j instance that was deleted by the provider's free-tier idle policy, so the
+knowledge engine reports `neo4j: disconnected` and the orchestrator does not
+respond. The graph itself is intact and restored locally; redeploying is
+tracked in [`devlog/NORTHSTAR.md`](devlog/NORTHSTAR.md) Part III. Rather than
+link URLs that return errors, they are omitted until the deploy is fixed.
 
-The local Docker Compose stack reproduces the full pipeline end-to-end. See the [Quickstart](#quickstart) below.
+Follow [Quickstart](#quickstart) to run it yourself — that path is tested and
+is what CI exercises on every push.
+
 
 ## Why this exists
 
@@ -87,21 +93,76 @@ The pivot is documented in [`devlog/design-evolution/v02-static-scanner-pivot.md
 
 ## Quickstart
 
-Local dev (one-time setup):
+Scanning a repository needs the knowledge graph populated — the rule corpus is
+the part that maps findings to regulatory articles. Budget ~20 minutes and a
+few dollars of embedding cost the first time.
+
+**You will need:** Python 3.11+ with [uv](https://docs.astral.sh/uv/), Node 20+,
+a Neo4j instance (a free [Aura](https://neo4j.com/cloud/aura/) tier is enough),
+and a [Google AI Studio](https://aistudio.google.com/) API key.
 
 ```bash
-# 1. Clone
-git clone https://github.com/sahabajalam/Project_1_EUAI_GDPR.git
-cd Project_1_EUAI_GDPR
-
-# 2. Spin up Postgres + Redis + Neo4j + both backends + frontend
-docker compose up -d
-
-# 3. Open the UI
-#    http://localhost:3000
+git clone https://github.com/sahabajalam/AI_Governance_Scanner.git
+cd AI_Governance_Scanner
+cp .env.example .env      # then fill in NEO4J_* and GOOGLE_API_KEY
 ```
 
-Full local-dev runbook (UV + npm, individual services, env vars, secrets) and Google Cloud Run deploy are in [`devlog/DEPLOYMENT.md`](devlog/DEPLOYMENT.md). The lifecycle controller [`gcp.ps1`](gcp.ps1) wraps the deploy/cleanup paths (`./gcp.ps1 -Action deploy` / `./gcp.ps1 -Action cleanup`).
+### 1. Build the knowledge graph (one-time)
+
+`parsed_data/` ships in this repo, so you do not need the raw regulatory
+corpus — only an empty Neo4j instance and an API key.
+
+```bash
+cd knowledge_engine
+uv sync
+./.venv/bin/python scripts/02_load_structural_kg.py    # articles, recitals, annexes
+./.venv/bin/python scripts/04_load_full_kg.py          # concepts, rights, penalties, edges
+./.venv/bin/python scripts/09_load_vectors_to_neo4j.py # embeddings (billed to your key)
+./.venv/bin/python -c "
+import sys; sys.path.insert(0,'.')
+from src.config import settings
+from src.stores.graph_store import GraphStore
+g = GraphStore(settings.neo4j_uri, settings.neo4j_user, settings.neo4j_password)
+g.create_vector_index(); g.create_name_index(); g.close()"
+```
+
+Verify — this is the same check CI runs:
+
+```bash
+./.venv/bin/python scripts/07_run_golden_tests.py --dry-run   # expect pass rate >= 60%
+```
+
+### 2. Run the services
+
+```bash
+# knowledge engine  :8001
+cd knowledge_engine && ./.venv/bin/python -m uvicorn src.api.main:app --port 8001 &
+
+# orchestrator      :8004   (needs a Postgres; brew/apt install or docker run)
+cd orchestrator && uv sync && ./.venv/bin/python -m uvicorn src.api.main:app --port 8004 &
+
+# frontend          :3000
+cd frontend && npm install && npm run dev
+```
+
+`docker compose up -d` brings up Postgres, Redis and both backends if you
+prefer containers; Neo4j is always external (see
+[`devlog/SYSTEM.md`](devlog/SYSTEM.md) §6).
+
+### 3. Scan a repository
+
+```bash
+curl -X POST http://localhost:8004/api/v1/scans \
+  -H "Content-Type: application/json" \
+  -d '{"repo_url":"https://github.com/ageitgey/face_recognition"}'
+```
+
+Then open <http://localhost:3000>, or poll
+`GET /api/v1/scans/{scan_id}/report`.
+
+Full runbook (individual services, env vars, Cloud Run deploy) is in
+[`devlog/DEPLOYMENT.md`](devlog/DEPLOYMENT.md).
+
 
 ## Project structure
 
@@ -140,10 +201,34 @@ Single-developer portfolio project. Phase-1 scope: 10 deterministic detection ru
 
 Not a production compliance tool; not a substitute for legal advice; not certified for conformity-assessment use. The reports surface evidence — a human compliance officer makes the call.
 
+## Disclaimer
+
+**AlloyCode is not legal advice and is not a compliance certification.**
+
+It is a static analysis tool. It reports *code patterns* that commonly
+correspond to obligations under the EU AI Act and GDPR, with a `file:line`
+anchor and an article reference so a human can check the real text. It cannot
+determine how a system is deployed, who operates it, in what context, or for
+which purpose — and EU AI Act risk classification frequently turns on exactly
+those facts.
+
+A clean report does not mean a system is compliant. A finding does not mean it
+is unlawful. Regulatory text in this repository is a machine-processed
+derivation; only the Official Journal of the European Union is authentic. Use
+the output as a starting point for review by someone qualified, not as a
+substitute for one.
+
 ## License
 
-Single-developer portfolio project. No license declared yet — contact the author before reuse.
+**Code:** [Apache License 2.0](LICENSE).
+
+**Regulatory content is not covered by that licence.** This repository
+redistributes structured derivations of EU AI Act, GDPR and related texts under
+`knowledge_engine/parsed_data/`. Their provenance and reuse terms — including
+one dataset whose terms are **not yet verified** — are documented in
+[`CORPUS.md`](CORPUS.md). Read it before redistributing this repository or
+publishing anything derived from that data.
 
 ---
 
-*Repository directory name: `Project_1_EUAI_GDPR/`. Canonical external name: **AlloyCode**. The earlier marketing name "Aegis Compliance Engine" is deprecated — surviving references are being phased out as touched.*
+*Repository: `AI_Governance_Scanner`. Canonical external name: **AlloyCode**. The earlier marketing name "Aegis Compliance Engine" is deprecated — surviving references are being phased out as touched.*

@@ -151,6 +151,47 @@ described there.
 
 ---
 
+## 2026-08-31 — Open-source readiness pass
+
+**What:** Prepared the repository for public release. `LICENSE` (Apache-2.0 —
+patent grant and explicit contribution terms matter more than MIT's brevity for
+a tool making regulatory claims), `NOTICE` separating code licensing from
+redistributed EU content, [`CORPUS.md`](../CORPUS.md) documenting every
+dataset's provenance and reuse terms, `.env.example`, a not-legal-advice
+disclaimer, and a Quickstart a stranger can actually complete.
+
+**Corpus licensing, researched not assumed.** EUR-Lex material (AI Act, GDPR)
+is reusable under Commission Decision 2011/833/EU with CC BY 4.0 applied by the
+Publications Office — attribution given and modifications indicated, as
+required. **The EDPB's own terms could not be retrieved** (their legal-notice
+URL 404s), so `parsed_data/interpretive/edpb_guidelines.json` is flagged in
+CORPUS.md §3 as unverified, with two documented resolutions (verify, or exclude
+— it is 56 of 2,198 documents and no golden test depends on it). Assuming the
+general EU pattern applied would have been a guess about someone else's rights.
+
+**Untracked `legacy_prototypes/`** — 208 files, 14 MB of raw regulatory source.
+It was listed in `.gitignore` (line 20) and NORTHSTAR records it as removed
+"from repo surface", but it had been tracked the whole time: the same
+tracked-despite-ignored class as `.env` and the `.pyc` files, from the same
+commit lineage. Nothing reads it (scripts 02–05 build from `parsed_data/`;
+only script 01 needs raw text), so removing it costs nothing and shrinks the
+least-verified redistribution surface to zero.
+
+**README corrected.** The Live-demo section advertised three Cloud Run URLs
+including one promising "returns the live KG counts" — it returns
+`neo4j: disconnected`. Replaced with an honest Status section. The clone URL
+pointed at a repository name two renames stale. The new Quickstart documents
+the previously-undocumented knowledge-graph build (scripts 02/04/09 + index
+creation from the shipped `parsed_data/`), which is what makes self-hosting
+possible at all; every file and script it references was verified to exist.
+
+**Impact on SYSTEM.md:** none — packaging and documentation.
+
+**Refs:** Commission Decision 2011/833/EU; CORPUS.md; 152 tests green,
+benchmark 9/9.
+
+---
+
 ## 2026-08-31 — v08 P1 retrieval arms: entity recall 25% → 62.5%, measured by ablation
 
 **What:** Shipped both NORTHSTAR Part III P1 items and measured them
