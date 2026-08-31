@@ -1360,3 +1360,68 @@ Neo4j Aura instance `652f6242` (the production KG); replaced by `e8097dda`.
 - The phantom-instance pattern is exploitable as a recovery tool: if you discover a paused/deleting Aura, dump it immediately before hard-purge. Window unknown — Neo4j doesn't publish it.
 
 ---
+
+## 27. Dependencies — DL-026 Orchestrator reports `database: unavailable` because greenlet is not installed
+
+**Problem**
+`GET /health` on the orchestrator reports:
+
+```json
+{"status":"degraded","components":{"supervisor":"ready","control_plane":"ready","database":"unavailable"}}
+```
+
+against a Postgres that is up and reachable. Reproduced locally on macOS with a
+healthy local PostgreSQL 17 and a freshly created `compliance_agent` database.
+
+**Root cause**
+Not a database problem at all. The startup log says so plainly once read:
+
+```
+Database init skipped: the greenlet library is required to use this function.
+No module named 'greenlet'
+```
+
+`orchestrator/pyproject.toml` declared `sqlalchemy>=2.0.0` **without** the
+`[asyncio]` extra. SQLAlchemy's async layer (`create_async_engine`, used in
+`src/database/session.py`) requires `greenlet`, which only arrives via that
+extra. `greenlet` appears in `uv.lock` as an optional transitive, so it is
+never installed into the environment.
+
+`init_db()` is wrapped in a try/except that logs a warning and continues, so
+the service starts, answers `/health`, and reports `database: unavailable` —
+the same shape as the rest of this log's silent-degradation entries. Nothing
+says "a dependency is missing"; it looks like an infrastructure fault, which
+is where DL-024 spent its investigation.
+
+**Fix**
+Declare the extra the code actually depends on:
+
+```toml
+"sqlalchemy[asyncio]>=2.0.0",
+```
+
+Then `uv sync`. `/health` returns `database: healthy`, `init_db()` runs, and
+`Base.metadata.create_all` creates the `scans` table.
+
+**Thinking**
+
+**Severity:** High — blocks scan persistence, so no scan survives a restart.
+
+**Affected:** `orchestrator/pyproject.toml`; any environment built from it.
+
+**Relationship to DL-024:** DL-024 records the *live Cloud Run* orchestrator
+showing this exact symptom, with four hypotheses (Cloud SQL paused, secret
+drift, VPC/proxy misconfiguration, pool exhaustion) — all infrastructural, none
+of them "a Python dependency is missing". This is a strong lead for DL-024 but
+**not** proof: the Cloud Run image is built from the same `pyproject.toml`, so
+it would carry the same gap, but that has not been verified against the live
+service. Do not close DL-024 on the strength of this entry; check the deployed
+container's installed packages first.
+
+**Lesson:** A dependency declared without the extra its code path needs fails
+at *runtime*, in a `try/except` that turns it into a plausible-looking
+infrastructure symptom. When a component reports a *dependency* as unavailable,
+read its own startup log before believing the dependency is at fault — the
+answer was in the first warning line the whole time.
+
+---
