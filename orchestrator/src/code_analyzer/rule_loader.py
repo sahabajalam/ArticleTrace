@@ -36,13 +36,36 @@ class RuleSpec:
     dampeners: list[Dampener] = field(default_factory=list)
 
 
+class EmptyRuleCorpus(RuntimeError):
+    """No rules could be loaded. Never a valid state for a scan."""
+
+
 def load_rules(rules_dir: Path | None = None) -> list[RuleSpec]:
+    """Load the rule catalog. Raises rather than returning an empty corpus.
+
+    `Path.glob` on a directory that does not exist yields nothing and raises
+    nothing, so a wrong or stale RULES_DIR used to produce zero rules, zero
+    findings, and a MINIMAL_RISK verdict reading "no blocking findings" — a
+    compliance scanner issuing a clean bill of health because it had no rules.
+    That happened for real: RULES_DIR is resolved from __file__ at import time,
+    so a long-running process whose directory was renamed underneath it kept
+    globbing the old path (BUG_LOG DL-035).
+
+    A scan without rules is not a passing scan; it is a broken one, and it must
+    say so.
+    """
     target = rules_dir or RULES_DIR
     rules: list[RuleSpec] = []
     for path in sorted(target.glob("*.yml")):
         with path.open("r", encoding="utf-8") as fh:
             data = yaml.safe_load(fh)
         rules.append(_from_dict(data))
+    if not rules:
+        raise EmptyRuleCorpus(
+            f"No rules loaded from {target}. "
+            f"{'The directory does not exist' if not target.is_dir() else 'The directory contains no *.yml'}"
+            " — a scan cannot be trusted without a rule corpus."
+        )
     return rules
 
 

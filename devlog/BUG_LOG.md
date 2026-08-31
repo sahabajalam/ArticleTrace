@@ -1849,3 +1849,87 @@ in the first place I looked, and the reload loop was a symptom two layers away
 from anything in React.
 
 ---
+
+## 36. Rules — DL-035 A stale rules path made the scanner report a clean bill of health
+
+**Symptom:** A fresh scan of `serengil/deepface` — a repo that had returned
+HIGH_RISK with 87 findings an hour earlier — came back **MINIMAL_RISK, "No
+blocking findings", 0 findings**, with `Manifests read: none found`. The
+Coverage panel was reassuring in exactly the wrong way: *152 of 239 files
+scanned, python*. The scan looked thorough. It had simply applied no rules.
+
+**Root cause:** `rule_loader.py` resolves the corpus location once, at import:
+
+```python
+RULES_DIR = Path(__file__).parent / "rules"
+```
+
+The running orchestrator (pid 60379) had started at 18:12:36, *before* the
+project directory was renamed `04_AI_Governance_Scanner` → `04_ArticleTrace`.
+Its long-lived process held the pre-rename absolute path. The old directory
+still existed as an empty husk, so nothing about the filesystem looked broken.
+
+The failure is one line, and it is a language default rather than a mistake
+anyone typed:
+
+```python
+for path in sorted(target.glob("*.yml")):   # missing dir -> empty iterator, no exception
+```
+
+`Path.glob()` on a nonexistent directory yields nothing and **raises nothing**.
+So `load_rules()` returned `[]`, and everything downstream behaved correctly
+given zero rules: no rule matched, so no finding was emitted; `ImportScanner`
+early-returns when no rule applies to it, which is why the manifest pass never
+ran either; the risk classifier saw an empty finding set and — correctly, on
+its inputs — concluded `MINIMAL_RISK`. Every component did its job. The corpus
+was empty and no one was positioned to notice.
+
+**Severity:** Critical. This is the worst failure this codebase can produce.
+A compliance scanner that crashes is an inconvenience; a compliance scanner
+that issues a clean bill of health because it loaded no rules is worse than no
+scanner at all, because it manufactures unearned confidence. Nothing on the
+screen distinguished "we checked and this repo is fine" from "we checked
+nothing". Both render as a green badge.
+
+**Fix:**
+
+1. `load_rules()` raises `EmptyRuleCorpus` rather than returning `[]`. An empty
+   corpus is never a valid state for a scan, so it is now unrepresentable
+   rather than merely unlikely. The message names the directory and says which
+   of the two cases it hit (missing vs. present-but-empty).
+2. `scan.py` records `rules_loaded` in the shared context; `profile.py` surfaces
+   it in `stats`. The number the scan actually ran against is now part of the
+   report, not an invisible precondition.
+3. The scan detail page prints **Rules loaded** as the *first* row of Coverage,
+   and renders it in red — "none — this scan ran with no rule corpus, so its
+   findings mean nothing" — when it is absent or zero. It sits above the other
+   coverage numbers deliberately: all of them are meaningless if this one is.
+
+**Thinking**
+
+This belongs to the defect class that has dominated both this codebase and
+Alloygraph: **silent degradation** — a component reporting success while doing
+nothing. DL-028 (absolute-path exclusion → 0 files scanned), DL-029
+(`Evidence(line=0)` failing validation inside a fail-open `except`, so AI-004
+and AI-006 had *never* emitted), and now DL-035 are the same bug wearing three
+costumes. In each case the pipeline stayed green and the output stayed empty.
+
+The Coverage panel was built (v06) to answer precisely this: *when the scanner
+finds nothing, can the reader tell "nothing is there" from "I stopped
+looking"?* It answered honestly about the two failure modes it knew — files it
+could not read, manifests it could not parse. It could not answer about the
+corpus, because the corpus was assumed rather than measured. **A receipt only
+covers what it counts.** Every future "how do we know this ran?" precondition
+should ship as a number in `stats`, not as an assumption in the code.
+
+Worth naming: restarting the process cured the symptom in under a minute. Had
+I only restarted, the bug would have gone in the books as "stale process,
+user error" and the guard would not exist. The recoverable incident and the
+latent defect were two different problems, and only one of them was urgent.
+
+**Lesson:** When a component's input is loaded from the filesystem, the empty
+case is a *failure*, not a quiet default — make it raise. And when correctness
+depends on a precondition, publish the precondition as a measured value in the
+output, or you are asking the reader to trust something no one checked.
+
+---

@@ -314,6 +314,19 @@ function Coverage({
     <section className="rounded-md border border-slate-200 px-4 py-3">
       <h2 className="text-[13px] font-semibold text-slate-700">Coverage</h2>
       <dl className="mt-2 space-y-1 text-[12px] text-slate-600">
+        {/* First row on purpose: every other number below is worthless if the
+            corpus was empty (BUG_LOG DL-035). */}
+        {stats?.rules_loaded ? (
+          <Row k="Rules loaded" v={`${stats.rules_loaded}`} />
+        ) : (
+          <div className="flex gap-3">
+            <dt className="w-32 shrink-0 text-slate-500">Rules loaded</dt>
+            <dd className="min-w-0 flex-1 font-medium text-red-700">
+              none — this scan ran with no rule corpus, so its findings mean
+              nothing
+            </dd>
+          </div>
+        )}
         {repo && (
           <Row
             k="Files scanned"

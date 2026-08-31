@@ -82,3 +82,29 @@ def test_pii_keyword_alone_does_not_fire_ai005(tmp_path):
 def test_pii_keyword_with_ai_usage_fires_ai005(tmp_path):
     f = _content_findings(tmp_path, "# send email to the user\n", with_ai_import=True)
     assert [x for x in f if x.rule_id == "AI-005"]
+
+
+# ── DL-035: an empty rule corpus must never look like a clean scan ────────────
+
+def test_missing_rules_dir_raises_instead_of_returning_empty(tmp_path):
+    """Path.glob on a missing directory yields nothing and raises nothing, so
+    a stale RULES_DIR produced 0 rules -> 0 findings -> MINIMAL_RISK."""
+    from src.code_analyzer.rule_loader import EmptyRuleCorpus, load_rules
+    with pytest.raises(EmptyRuleCorpus) as e:
+        load_rules(tmp_path / "does-not-exist")
+    assert "does not exist" in str(e.value)
+
+
+def test_empty_rules_dir_also_raises(tmp_path):
+    from src.code_analyzer.rule_loader import EmptyRuleCorpus, load_rules
+    (tmp_path / "rules").mkdir()
+    with pytest.raises(EmptyRuleCorpus):
+        load_rules(tmp_path / "rules")
+
+
+def test_real_corpus_loads_and_is_reported_in_stats(tmp_path):
+    from src.code_analyzer.rule_loader import load_rules
+    assert len(load_rules()) >= 10
+    (tmp_path / "app.py").write_text("from deepface import DeepFace\n")
+    profile = _scan_and_profile("t", ingest_local(tmp_path), use_llm=False)
+    assert profile.stats["rules_loaded"] >= 10

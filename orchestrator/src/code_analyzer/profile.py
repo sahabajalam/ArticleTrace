@@ -67,6 +67,7 @@ def build_profile(
         "suppressed": len([f for f in findings if f.suppressed]),
         # Coverage honesty (v06 §4 / v07 §5): a caller must be able to tell
         # "these signals found nothing" from "these signals were never read".
+        "rules_loaded": shared.get("rules_loaded"),
         "manifest_scan": shared.get("manifest_scan") or {"files": [], "errors": []},
         "source_read_errors": shared.get("source_read_errors") or [],
         "llm_triage": shared.get("llm_triage") or {"status": "skipped", "reason": "not run"},

@@ -67,6 +67,9 @@ export type RiskPosture = {
 /** Coverage receipts: what the scanner could not read, so "no findings" is
  *  distinguishable from "never looked". */
 export type ScanStats = {
+  /** Size of the rule corpus this scan actually ran against. 0 or missing
+   *  means the findings are meaningless, however clean they look. */
+  rules_loaded?: number;
   total_findings?: number;
   by_severity?: Record<string, number>;
   by_rule?: Record<string, number>;

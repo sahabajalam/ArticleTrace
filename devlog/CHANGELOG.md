@@ -24,6 +24,29 @@ ai_guidance: |
 
 ---
 
+## 2026-08-31 — Empty rule corpus can no longer pass as a clean scan (DL-035)
+
+**What:** `orchestrator/src/code_analyzer/rule_loader.py` raises a new
+`EmptyRuleCorpus` instead of returning `[]`; `scan.py` records `rules_loaded`
+in the shared context and `profile.py` exposes it in `stats`; the scan detail
+page shows **Rules loaded** as the first Coverage row, in red when zero or
+missing; three regression tests in `tests/unit/test_scanner_gating.py`.
+
+**Why:** An orchestrator started before the `04_AI_Governance_Scanner` →
+`04_ArticleTrace` rename held the pre-rename `RULES_DIR`. `Path.glob()` on a
+missing directory returns an empty iterator without raising, so `deepface`
+scanned 152 files, matched zero rules, and reported MINIMAL_RISK / "No blocking
+findings". A compliance scanner issuing a clean verdict because it loaded no
+rules is the most dangerous output this system can produce, and nothing on
+screen distinguished it from a genuine pass.
+
+**Impact on SYSTEM.md:** Rule-loading section — `load_rules()` now has a
+failure mode; `rules_loaded` added to the documented `stats` shape.
+
+**Refs:** BUG_LOG entry 36 (DL-035)
+
+---
+
 ## 2026-08-31 — documented eval commands made POSIX-first
 
 **What:** `devlog/METRICS.md` §Reproducibility now leads with a macOS/Linux

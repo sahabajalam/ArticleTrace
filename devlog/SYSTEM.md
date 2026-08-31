@@ -140,7 +140,7 @@ The orchestrator is the only service that talks to the user. The knowledge engin
    Imports first (populates the shared module/library map), then AST (collects "decision surfaces" — function defs that look like model-inference call sites or decisioning code), then an LLM pass that drops test/mock surfaces (fail-open: regex verdicts are kept if the LLM call fails), then AST rules apply to the cleaned surfaces, then content scanners emit `pii_fields`, then file-pattern scanners (model cards / DPIA docs), then cooccurrence last.
 3. `build_profile()` — aggregates findings into an `AISystemProfile` JSON: `{scan_id, repo_info, findings[], shared}`.
 
-Rule catalog lives at [`orchestrator/src/code_analyzer/rules/`](../orchestrator/src/code_analyzer/rules/) loaded by `rule_loader.py`. Phase-1 scope: 10 MVP detection rules.
+Rule catalog lives at [`orchestrator/src/code_analyzer/rules/`](../orchestrator/src/code_analyzer/rules/) loaded by `rule_loader.py`. Phase-1 scope: 10 MVP detection rules. `load_rules()` raises `EmptyRuleCorpus` if the directory is missing or holds no `*.yml` — an empty corpus produces a scan with zero findings and a MINIMAL_RISK verdict that is indistinguishable from a genuine pass, so it fails loudly instead (DL-035).
 
 Detection draws on three signal sources (v07 T1, 2026-08-31): **imports**
 (tree-sitter, field-name based per DL-027), **dependency manifests**
@@ -150,8 +150,10 @@ declared-only emits a dampened finding), and **string literals** (`strings:`
 patterns on a rule — HF model ids, hosted-LLM endpoints — code files only).
 `.ipynb` code cells are extracted by `source_reader.py` and flow through the
 same scanners; notebook evidence lines refer to the extracted cell stream.
-Coverage honesty: `stats.manifest_scan` and `stats.source_read_errors` report
-what could not be read. After scanning, an LLM triage pass (v07 T2.2,
+Coverage honesty: `stats.rules_loaded` reports the size of the corpus the scan
+actually ran against (surfaced as the first Coverage row in the UI, red when
+zero), and `stats.manifest_scan` / `stats.source_read_errors` report what could
+not be read. After scanning, an LLM triage pass (v07 T2.2,
 `finding_triage.py`) may confirm or demote findings — never create, delete or
 boost — with its outcome in `stats.llm_triage`; demotions halve confidence and
 carry a reason on `finding.triage`. Recall/precision are enforced by the detection

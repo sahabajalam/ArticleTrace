@@ -58,6 +58,9 @@ def _scan_and_profile(
     counts. Production scans keep the default.
     """
     rules = load_rules()
+    # Surfaced in stats so a report can be audited for the corpus it ran
+    # against — "0 findings" means nothing without it.
+    ctx_rule_count = len(rules)
     ctx = ScanContext(
         repo_root=result.repo_root,
         files=result.files,
@@ -84,6 +87,7 @@ def _scan_and_profile(
             all_findings.extend(scanner.scan(ctx, rules))
         except Exception as e:  # noqa: BLE001
             logger.exception("Scanner %s failed: %s", scanner.__class__.__name__, e)
+    ctx.shared["rules_loaded"] = ctx_rule_count
     if use_llm:
         # v07 T2.2 — judge, never detector: may confirm or demote findings,
         # never create/delete/boost. Fail-open with a receipt in stats.
