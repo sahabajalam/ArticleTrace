@@ -17,7 +17,7 @@ publishing anything derived from `knowledge_engine/parsed_data/`.
 | `knowledge_engine/parsed_data/legal/` | Structured articles, recitals, annexes, definitions from the EU AI Act and GDPR | ~4 MB | yes |
 | `knowledge_engine/parsed_data/entities/` | Extracted concepts, rights, penalties, actors, risk categories | ~1 MB | yes |
 | `knowledge_engine/parsed_data/relationships/` | Derived edges between the above | small | yes |
-| `knowledge_engine/parsed_data/interpretive/` | Derivations of EDPB guidelines, case law, enforcement actions | ~2.5 MB | yes — **see §3** |
+| `knowledge_engine/parsed_data/interpretive/` | Derivations of case law and enforcement actions. **EDPB guidelines excluded — see §3** | ~0.3 MB | partial |
 | `legacy_prototypes/New_Data/` | Raw source text (AI Act, CJEU, EDPB) used to build the above | 14 MB | **no** — gitignored and untracked |
 | `knowledge_engine/backups/` | Neo4j JSONL dumps of the built graph | ~100 MB | **no** — gitignored |
 
@@ -64,7 +64,15 @@ under "reproduction authorised provided the source is acknowledged" or CC BY
 quoted here.* Assuming the general pattern applies would be a guess, and this
 project does not guess about other people's rights.
 
-**Before making this repository public, do one of:**
+> **RESOLVED 2026-08-31 — option 2 was taken.** `edpb_guidelines.json` is
+> excluded from this repository: removed from HEAD, purged from history, and
+> listed in `.gitignore`. It remains on the maintainer's disk for local graph
+> builds. No golden test references an `EDPB_*` id (checked against all 47
+> expected ids), so retrieval metrics are unaffected; the interpretive
+> collection loses its 21 EDPB entries. If you verify the EDPB's terms, the
+> file can be reinstated — the historical record of this decision is below.
+
+**The options considered were:**
 
 1. **Verify** the EDPB's terms at <https://www.edpb.europa.eu> and record the
    operative wording in this section; or
