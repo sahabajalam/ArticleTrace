@@ -46,7 +46,16 @@ Restoring is a 4-minute chore only because DL-025 left a backup script behind �
 without it this was a full rebuild. v06 exists to stop the third deletion from
 being an incident.
 
-**Blocked:** the golden-test acceptance run (v06 §2.5) cannot execute — the
+**Acceptance run (v06 §2.5): PASSED, exactly.** Once a working Gemini
+credential was in place, scripts 07 and 12 reproduced **every** recorded number
+against the restored graph — hybrid_rrf citation recall@15 27/33 (81.8%),
+vector 24/33 (72.7%), graph 7/33 (21.2%), pass rate 17/25 (68%), the same eight
+failing queries, and identical per-category means. The restore is behaviourally
+exact, not merely close. The HNSW non-determinism that moved the headline 12.5pp
+on the old n=6 set moved it 0.0pp here, which is the n=25 expansion doing the job
+`METRICS.md` §5 said it would. No headline number was changed.
+
+**Was blocked (now resolved):** the acceptance run initially failed — — the
 Gemini credential in `.env` returns `401 UNAUTHENTICATED`. Verified by testing
 each key directly: `GEMINI_API_KEY` and `GOOGLE_API_KEY` are the *same* value
 and both fail, while a known-good key on the same machine succeeds, so it is the

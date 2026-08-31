@@ -196,4 +196,17 @@ This is HNSW non-determinism. HNSW (Malkov & Yashunin 2016 §4.2) constructs its
 
 - **2026-06-16 (Build A, n=6)** — Initial run on Aura `652f6242`. Citation recall@15 = 87.5% (7/8), entity recall@15 = 20%, pass rate = 3/6. Source: original 07_run_golden_tests against 6-query set.
 - **2026-06-19 (Build B, n=6)** — Rerun on `e8097dda` restored from JSONL dump of Build A. Citation recall@15 = 75% (6/8). Showed HNSW non-determinism on a single boundary case (GT_02's AIACT_ART_14). Triggered the golden-set expansion → moved to current Headline section.
+- **2026-08-31 (n=25, restore verification)** — Aura instance `e8097dda` was
+  hard-deleted by free-tier idle policy (second occurrence; see BUG_LOG DL-025
+  and `design-evolution/v06-durable-kg-and-reproducible-eval.md`). Restored from
+  the `20260619_183622` JSONL dump into `dab1e7ea` (2,301 / 4,423 / 2,198,
+  0 rels skipped). **Re-ran scripts 07 and 12: every number reproduced exactly** —
+  hybrid_rrf 27/33 (81.8%), vector_only 24/33 (72.7%), graph_only 7/33 (21.2%),
+  entity recall 6/24 / 10/24 / 0/24, pass rate 17/25 (68%), and the same eight
+  queries fail (GT_01, 02, 05, 14, 19, 23, 24, 25). Per-category means identical
+  (single_hop 93/14/86, multi_hop 47/11/46, out_of_scope 57/14/57). Wall clock
+  135.8 s vs 144 s. **Note for §5:** the HNSW non-determinism that cost 12.5pp on
+  the n=6 set moved the headline by **0.0pp** here — the n=25 expansion did the
+  structural job §5 predicted it would. Headline numbers unchanged; nothing was
+  rewritten.
 - **2026-06-19 (n=25, current)** — Golden set expanded to 25 queries (7 single-hop / 11 multi-hop / 7 out-of-scope per the audit's §4.3 plan; see [`../01_AlloyCode.md`](../01_AlloyCode.md) §4.3 — originally specified 12/10/8 split). Headline citation recall@15 = **81.8% hybrid_rrf**. Added 3-mode comparison ([`12_eval_three_mode.py`](../knowledge_engine/scripts/12_eval_three_mode.py)) + RAGAS-equivalent context relevance ([`13_eval_ragas_equivalent.py`](../knowledge_engine/scripts/13_eval_ragas_equivalent.py)) + CI workflow ([`.github/workflows/golden-tests.yml`](../.github/workflows/golden-tests.yml)). RAGAS-equivalent context relevance @15 = 45.9% mean.
