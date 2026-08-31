@@ -6,7 +6,6 @@ import logging
 from pathlib import Path
 
 from src.code_analyzer.ingest import IngestResult, ingest, ingest_local
-from src.code_analyzer.llm_ast_reviewer import review_decision_surfaces
 from src.code_analyzer.models import AISystemProfile
 from src.code_analyzer.profile import build_profile
 from src.code_analyzer.rule_loader import load_rules
@@ -111,6 +110,14 @@ def _llm_enrich_surfaces(ctx: ScanContext) -> None:
     surfaces: list = ctx.shared.get("decision_surfaces", [])
     if not surfaces:
         return
+    # Imported here, not at module scope: llm_ast_reviewer pulls src.config,
+    # whose Settings requires GEMINI_API_KEY. A module-level import made the
+    # whole scanner pipeline unimportable without a key — so the "no secrets"
+    # deterministic path (use_llm=False, the detection benchmark) died at
+    # import in CI while passing locally, where .env masked it. Same lazy
+    # pattern as finding_triage below.
+    from src.code_analyzer.llm_ast_reviewer import review_decision_surfaces
+
     try:
         enriched = review_decision_surfaces(surfaces, ctx.repo_root)
     except Exception as e:  # noqa: BLE001

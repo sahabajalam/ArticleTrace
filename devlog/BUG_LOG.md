@@ -1748,3 +1748,58 @@ and assert *that* — the keep-alive asserted its own query succeeded, which
 was never the question.
 
 ---
+
+## 34. Scanners — DL-033 The "keyless" deterministic path required an API key at import
+
+**Problem**
+The detection benchmark is designed to run with no secrets and no LLM cost
+(`use_llm=False`, v07 T0). Its first CI run died before scanning anything:
+
+```
+ValidationError: 1 validation error for Settings
+gemini_api_key  Field required
+```
+
+It passes locally, every time.
+
+**Root cause**
+Import chain, not behaviour. `run_detection_benchmark.py` imports
+`ingest_local` → `src/code_analyzer/__init__.py` imports `run_scan` →
+`scan.py` imported `llm_ast_reviewer` **at module scope** → that imports
+`src.config`, whose `Settings.gemini_api_key` is a required field.
+
+So the whole scanner pipeline was unimportable without a Gemini key, even on
+the path that never calls an LLM. It passed locally only because `.env` sits
+in the repo root — and v06 §2.2 had just made config resolution find that
+file from *any* working directory, which made the local mask airtight. CI has
+no `.env`, so CI was the only place the truth was visible.
+
+**Fix**
+Import `llm_ast_reviewer` inside `_llm_enrich_surfaces`, matching the lazy
+import already used for `finding_triage` in the `use_llm` branch. Nothing
+else in the deterministic chain touches `src.config` (verified: ingest,
+rule_loader, profile, models and all six scanners import it zero times).
+
+Verified against a true keyless checkout — `git clone` of the repo (`.env` is
+untracked, so a clone has none) run with `GEMINI_API_KEY`/`GOOGLE_API_KEY`
+unset: benchmark passes. A regression test asserts on `scan.py`'s
+module-level source that neither LLM module appears there; a runtime import
+check would have passed locally for exactly the masking reason above.
+
+**Thinking**
+
+**Severity:** Medium — no wrong results, but the one CI job that could have
+guarded scanner recall was dead on arrival.
+
+**Lesson:** "This path needs no credentials" is a claim about *imports* as
+much as about calls, and a required-field settings object turns any transitive
+import into a credential dependency. A local `.env` — especially one resolved
+from anywhere, per v06 §2.2 — makes that class of defect invisible until it
+reaches a clean environment. Two fixes interacted: making config resolution
+robust made this bug harder to see locally.
+
+**Note:** this is the second time in one day that a benchmark caught a defect
+before a human did (DL-028/029/030 were the first), and the first time CI
+caught one that local runs structurally could not.
+
+---

@@ -165,3 +165,28 @@ def test_endpoint_in_docs_prose_does_not_fire(tmp_path):
     (tmp_path / "app.py").write_text("import os\n")
     profile = profile_of(tmp_path)
     assert not any(f.rule_id == "AI-002" for f in profile.findings)
+
+
+# ── the deterministic path must not require any credential (DL-033) ───────────
+
+def test_scanner_pipeline_imports_without_credentials():
+    """`scan.py` must not pull an LLM module at import time.
+
+    llm_ast_reviewer imports src.config, whose Settings requires
+    GEMINI_API_KEY. A module-level import made the whole scanner pipeline
+    unimportable without a key, so the keyless benchmark died at import in CI
+    while passing locally where .env masked it. Assert on the module source:
+    a runtime import check would pass here for the same masking reason.
+    """
+    import inspect
+
+    from src.code_analyzer import scan
+
+    src = inspect.getsource(scan)
+    header = src.split("def ", 1)[0]  # module-level region only
+    for offender in ("llm_ast_reviewer", "finding_triage"):
+        assert offender not in header, (
+            f"{offender} is imported at module scope in scan.py; it must be "
+            "imported inside the use_llm branch so the deterministic path "
+            "stays credential-free"
+        )

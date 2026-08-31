@@ -151,6 +151,27 @@ described there.
 
 ---
 
+## 2026-08-31 — Fix DL-033: the keyless benchmark required a key at import
+
+**What:** The detection benchmark's first CI run failed with
+`ValidationError: gemini_api_key Field required` before scanning anything.
+`scan.py` imported `llm_ast_reviewer` at module scope, which imports
+`src.config`, whose Settings requires a Gemini key — making the entire scanner
+pipeline unimportable without one, including the `use_llm=False` path that
+never calls an LLM. Made the import lazy (matching `finding_triage`), verified
+against a real keyless clone, and added a regression test that asserts on
+`scan.py`'s module-level source.
+
+**Why it hid locally:** `.env` sits in the repo root, and v06 §2.2 had just
+made config resolution find it from any working directory — so the local mask
+was airtight. CI was the only environment that could see it.
+
+**Impact on SYSTEM.md:** none — import-time only, no behaviour change.
+
+**Refs:** BUG_LOG DL-033; run 33421479013.
+
+---
+
 ## 2026-08-31 — CI triage: golden-tests red since before this session (DL-032)
 
 **What:** Diagnosed the `KE Golden Tests + 3-mode Eval` failure. Pre-existing —
