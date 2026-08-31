@@ -36,3 +36,8 @@ orchestrator/detection_benchmark/.cache/
 # EDPB-derived guidelines: reuse terms unverified (CORPUS.md §3). Kept on disk
 # for local KG builds; excluded from the public repo pending verification.
 knowledge_engine/parsed_data/interpretive/edpb_guidelines.json
+
+# Claude session transcripts and working memory: development detritus, not
+# product. Contains local paths, email addresses and notes about unrelated
+# repos. Kept on disk, excluded from the repository.
+chat_history/
