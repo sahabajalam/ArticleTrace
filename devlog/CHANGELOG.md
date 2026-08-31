@@ -24,6 +24,89 @@ ai_guidance: |
 
 ---
 
+## 2026-08-31 — keep-alive ping retired; weekly self-verifying KG backup in its place
+
+**What:** Deleted `.github/workflows/keep-aura-alive.yml`. Added
+`.github/workflows/backup-knowledge-graph.yml` — Monday 02:00 UTC plus
+`workflow_dispatch`, runs `knowledge_engine/scripts/10_backup_to_jsonl.py` and
+uploads `knowledge_engine/backups/` as a 90-day artifact
+(`if-no-files-found: error`, uploaded only on success, so an artifact that
+exists is one that passed the self-check). Dumps stay out of git;
+`knowledge_engine/backups/` was already gitignored. Reworked
+`10_backup_to_jsonl.py` around a new `verify_dump()`: after writing
+`meta.json` the script re-reads both JSONL files off disk and fails unless the
+complete-line counts equal `node_count` / `rel_count`, the last record parses
+as JSON, and no file ends mid-write. The check runs on **every** invocation,
+not only in CI, and `--verify <TS>` re-checks an existing dump. The
+`from src.config import settings` import moved inside `run_backup()` so
+verification needs no credentials. New `knowledge_engine/tests/
+test_backup_verification.py` (16 tests) covers dropped lines, byte-level
+truncation, count mismatch, emptied/missing/corrupt files and the CLI.
+
+**Why:** Aura Free deletion is policy-based, not activity-based — a
+`MATCH (n) RETURN count(n)` ping does not reset the 30-day timer. The ping was
+added after the first deletion (DL-025), and the graph was destroyed a second
+time anyway (`e8097dda`, found dormant 2026-08-31). DL-025's own follow-up
+already said to retire it and schedule a backup; that was never actioned. A
+workflow with a measured 0% success rate is deleted rather than disabled,
+because a disabled-but-present workflow still looks like protection. The
+verification exists because an unverified backup is the repo's dominant
+failure class — a component reporting success while doing nothing (DL-003,
+DL-019, DL-020, DL-023, DL-025). Implements
+`design-evolution/v06-durable-kg-and-reproducible-eval.md` §2.3; the rest of
+v06 is still `proposal`.
+
+**Verified:** Full dump against the live instance produced
+`20260831_144857` — 2,301 nodes / 4,423 rels / 1 vector index, self-check
+passed, exit 0. `--verify` on the 102 MB `20260619_183622` dump passes. A copy
+of that dump with 200 bytes chopped off `rels.jsonl` fails with all three
+problems named (cut off mid-record; 4,421 lines vs 4,423, off by -2; last
+record not valid JSON) and exit 1. `knowledge_engine/` suite: 65 passed.
+
+**Impact on SYSTEM.md:** none — no architecture, schema or API change. §6
+already links `.github/workflows/` generically rather than by file.
+
+**Refs:** `devlog/BUG_LOG.md` DL-025; `devlog/DEPLOYMENT.md` lesson 26
+(rewritten — it pointed at the deleted workflow); `devlog/NORTHSTAR.md` Part
+III P0 item moved to `## Resolved`.
+
+---
+
+## 2026-08-31 — `.env` anchored to the repo root; credentials fail loudly at startup
+
+**What:** Both services resolved `env_file=".env"` relative to the process
+working directory, so anything launched from `knowledge_engine/` or
+`orchestrator/` read no env file at all and silently fell back to field
+defaults. Added `knowledge_engine/src/env.py` and `orchestrator/src/env.py`
+(intentional duplicates — separate images, no shared package) exposing
+`find_repo_root()` / `find_env_file()` / `ENV_FILE` / `require_credential()`,
+all derived from `__file__` and anchored on the `.git` marker, so a stray
+per-service `.env` can no longer shadow the root one. Both `config.py` modules
+now use the absolute `ENV_FILE`; `orchestrator/src/config.py` also moved off the
+deprecated inner `class Config` to `SettingsConfigDict`. Real environment
+variables still outrank the file (Cloud Run depends on it). Missing credentials
+now fail at startup with the variable name and the expected file:
+`google_api_key` is validated on `Settings` (was defaulting to `""` and
+surfacing as a Google 401 several frames away), `gemini_api_key` gains an
+empty-string check alongside its existing `Field(...)`, and `NEO4J_PASSWORD` is
+checked in `GraphStore.__init__` rather than on `Settings` so the module stays
+importable in tests that never connect. New tests:
+`knowledge_engine/tests/test_config.py` (14) and
+`orchestrator/tests/unit/test_config.py` (10) cover CWD-independent resolution,
+env-var-over-file precedence, and the named-variable failures.
+
+**Why:** DL-025 step 2 — the root `.env` was updated while a stale
+`knowledge_engine/.env` still pointed at a dead Neo4j instance, and the service
+kept running against it. Same root cause as DL-005's confusing startup failure.
+
+**Impact on SYSTEM.md:** none — configuration loading is internal and not
+described there.
+
+**Refs:** issue #815755; `knowledge_engine/src/{env,config}.py`,
+`knowledge_engine/src/stores/graph_store.py`, `orchestrator/src/{env,config}.py`
+
+---
+
 ## 2026-08-31 — Knowledge graph restored (2nd Aura deletion); v06 proposed; BUG_LOG reformatted
 
 **What:** Found the Neo4j Aura instance `e8097dda` hard-deleted — DNS no longer

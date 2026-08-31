@@ -1,0 +1,99 @@
+name: Backup knowledge graph
+
+# Replaces the retired `keep-aura-alive.yml` ping. Aura Free deletes an instance
+# after ~30 days idle, and that deletion is policy-based: a `MATCH (n) RETURN
+# count(n)` query does not reset the timer. The ping had a measured 0% success
+# rate across two data-loss events (BUG_LOG DL-025, and the 2026-08-31 loss of
+# `e8097dda`), so this workflow stops trying to prevent deletion and instead
+# makes it a non-event — a weekly verified dump that `11_restore_from_jsonl.py`
+# can replay in ~4 minutes. See devlog/design-evolution/v06 §2.3.
+#
+# The dump self-verifies (script 10 re-reads the files and compares line counts
+# against meta.json) and exits non-zero on a mismatch, so a green run means a
+# readable dump, not merely a completed one. The artifact is uploaded only on
+# success — an artifact that exists is an artifact that passed the self-check.
+#
+# Residual risk, stated rather than hidden: GitHub disables scheduled workflows
+# in a repo with 60 days of no activity. That window is longer than Aura's
+# 30-day one, so a fully dormant repo can still lose the graph. `workflow_dispatch`
+# is the manual fallback; the artifact retention below outlives the Aura timer.
+#
+# Required repo secrets (Settings → Secrets and variables → Actions):
+#   NEO4J_URI       e.g. neo4j+s://<id>.databases.neo4j.io
+#   NEO4J_USER      typically "neo4j"
+#   NEO4J_PASSWORD  the Aura password
+#   GOOGLE_API_KEY  not used by the dump itself — `src/config.py` validates it at
+#                   import time, so the script cannot start without it.
+
+on:
+  schedule:
+    # Monday 02:00 UTC — weekly, well inside Aura's 30-day deletion window.
+    - cron: "0 2 * * 1"
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: knowledge_engine
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install --quiet \
+            "neo4j>=5.15.0" \
+            "pydantic>=2.5.0" \
+            "pydantic-settings>=2.1.0"
+          # Scripts use sys.path.insert(PROJECT_ROOT) — no editable install needed.
+
+      - name: Sanity check — secrets present
+        env:
+          NEO4J_URI: ${{ secrets.NEO4J_URI }}
+          NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          if [ -z "$NEO4J_URI" ]; then
+            echo "::error::NEO4J_URI repo secret is missing or empty."
+            echo "Set it with: gh secret set NEO4J_URI --repo <owner>/<repo>"
+            exit 2
+          fi
+          if [ -z "$NEO4J_PASSWORD" ]; then
+            echo "::error::NEO4J_PASSWORD repo secret is missing or empty."
+            exit 2
+          fi
+          if [ -z "$GOOGLE_API_KEY" ]; then
+            echo "::error::GOOGLE_API_KEY repo secret is missing or empty."
+            echo "The dump does not call Google, but src/config.py validates the"
+            echo "key at import time, so the script cannot start without it."
+            exit 2
+          fi
+          echo "Secrets present. URI host: $(echo $NEO4J_URI | sed 's|://[^@]*@*||;s|/.*||' | cut -c1-12)..."
+
+      - name: Dump the graph to JSONL (self-verifying)
+        env:
+          NEO4J_URI: ${{ secrets.NEO4J_URI }}
+          NEO4J_USER: ${{ secrets.NEO4J_USER }}
+          NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          python scripts/10_backup_to_jsonl.py
+
+      - name: Upload the dump as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kg-backup-${{ github.run_id }}
+          path: knowledge_engine/backups/
+          # 90 days is the free-tier maximum and comfortably outlives Aura's
+          # 30-day deletion window, so the newest artifact is always restorable.
+          retention-days: 90
+          # An empty backups/ means the dump silently produced nothing — the
+          # exact failure shape this workflow exists to rule out.
+          if-no-files-found: error
