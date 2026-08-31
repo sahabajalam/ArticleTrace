@@ -1,0 +1,22 @@
+# Build context hygiene. Without this the whole 462 MB directory uploads to
+# Cloud Build on every deploy, most of it a local virtualenv the image rebuilds
+# from uv.lock anyway.
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Fixture repos for the detection benchmark (~100 MB). CI runs the benchmark
+# from the repo checkout, never from inside the image.
+detection_benchmark/
+
+tests/
+*.log
+.env
+.env.*
+!.env.example

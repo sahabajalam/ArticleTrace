@@ -263,6 +263,26 @@ dependencies (`framer-motion`, `react-force-graph-2d`, `react-markdown`,
 
 ## 6. Deploy
 
+Build and deploy with [`deploy.sh`](../deploy.sh) (`./deploy.sh` for all three,
+`./deploy.sh <service>` for one, `./deploy.sh --verify` for health only).
+Builds run in **Cloud Build**, not locally: Cloud Run needs linux/amd64 and the
+dev machine is Apple silicon. `gcp.ps1` is the older PowerShell equivalent and
+does not run on macOS.
+
+The orchestrator must be deployed with `--no-cpu-throttling`. Scans run in a
+FastAPI `BackgroundTask` after the 202 response, and Cloud Run's default
+throttles CPU to near-zero once a response completes, which would strand every
+scan at `running` with no error (DL-036). `min-instances` stays 0.
+
+Postgres is a **free-tier Neon** instance reached through the
+`DATABASE_URL_ORCHESTRATOR` secret — there is no Cloud SQL in this project and
+never has been (DL-024). `session.py` adds SSL for `neon.tech`/`supabase`/
+`aivencloud` hosts automatically.
+
+Verifying a deploy means checking the **deployed image tag**, not just
+`/health`: a service can serve 200 from a four-month-old image indefinitely.
+Tags are timestamps (`deploy-YYYYMMDD-HHMMSS`) so staleness is legible.
+
 **Local (Docker Compose):** [`docker-compose.yml`](../docker-compose.yml) brings up:
 - `orchestrator` (build: `./orchestrator`) — port 8004
 - `orchestrator-db` (image: postgres:15-alpine) — port 5432

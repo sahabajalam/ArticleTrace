@@ -12,7 +12,11 @@ images:
   - '${_IMAGE_TAG}'
 
 substitutions:
-  _NEXT_PUBLIC_API_URL: 'http://localhost:8000'
+  # 8004 is the orchestrator's port everywhere else (compose, its Dockerfile,
+  # lib/api.ts). The old 8000 default silently baked an unreachable API URL
+  # into any build that forgot to pass the substitution — and because it is
+  # compiled into the bundle, the failure only shows up in the browser.
+  _NEXT_PUBLIC_API_URL: 'http://localhost:8004'
   _IMAGE_TAG: 'placeholder'
 
 timeout: '1200s'

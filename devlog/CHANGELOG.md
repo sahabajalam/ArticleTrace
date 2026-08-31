@@ -24,6 +24,29 @@ ai_guidance: |
 
 ---
 
+## 2026-08-31 — Cloud Run rebuilt from four-month-old images (DL-024, DL-036)
+
+**What:** Removed the dead `COPY data/golden/` from `orchestrator/Dockerfile`;
+added `.dockerignore` to orchestrator / knowledge_engine / frontend; corrected
+`frontend/cloudbuild.yaml`'s API-URL default to port 8004; added `deploy.sh`
+(macOS/Linux replacement for the unusable `gcp.ps1`); rebuilt and redeployed
+all three Cloud Run services; orchestrator now runs with `--no-cpu-throttling`.
+
+**Why:** All three live images were tagged `manual-20260429-181025` — the demo
+had served April code for four months, because the dead COPY line failed every
+orchestrator build and the only deploy script was PowerShell on a Mac. Separately,
+DL-024's `database: unavailable` was never a regression: no Cloud SQL instance
+has ever existed in the project and the secret held the localhost default, so
+the container was dialing itself. Scans also dispatch via `BackgroundTasks`,
+which Cloud Run's default CPU throttling would have stalled indefinitely.
+
+**Impact on SYSTEM.md:** §6 Deploy — build/deploy path, the CPU-allocation
+requirement, and the Postgres provider.
+
+**Refs:** BUG_LOG entries 25 (DL-024, resolved) and 37 (DL-036)
+
+---
+
 ## 2026-08-31 — Empty rule corpus can no longer pass as a clean scan (DL-035)
 
 **What:** `orchestrator/src/code_analyzer/rule_loader.py` raises a new

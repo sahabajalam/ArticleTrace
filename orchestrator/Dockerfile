@@ -27,9 +27,15 @@ RUN apt-get update \
 # Copy virtualenv from builder
 COPY --from=builder /app/.venv /app/.venv
 
-# Copy application code
+# Copy application code. src/ carries the YAML rule corpus at
+# src/code_analyzer/rules/ — the image is unusable without it (DL-035).
+#
+# There was a `COPY data/golden/` here until 2026-08-31. That directory was
+# removed in an earlier restructure and is gitignored; the golden tests live in
+# knowledge_engine/golden_tests/ and run from the CI checkout, never from this
+# image. The stale line broke every orchestrator build after the removal, which
+# is why the deployed image sat at 2026-04-29 for four months.
 COPY src/ ./src/
-COPY data/golden/ ./data/golden/
 
 # Add venv to path
 ENV PATH="/app/.venv/bin:$PATH"

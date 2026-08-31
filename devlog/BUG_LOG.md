@@ -1292,6 +1292,37 @@ gcloud run services logs read aegis-orchestrator --region europe-west1 --limit 5
 
 Logged on [`NORTHSTAR.md`](NORTHSTAR.md) Part III as a follow-up; not blocking the live-URL win.
 
+**RESOLVED 2026-08-31 — all four candidates above were wrong.**
+
+There is no Cloud SQL instance. There never was one: the Cloud SQL Admin API
+has never been enabled on `gdpreuai`, the orchestrator service carries no
+`run.googleapis.com/cloudsql-instances` annotation, and no VPC connector
+exists. `DATABASE_URL_ORCHESTRATOR` has exactly one version, created
+2026-04-29 and never updated — seeded from the `.env` default,
+`postgresql://postgres:postgres@localhost:5432/compliance`. The Cloud Run
+container has been dialing `localhost:5432` **inside itself** since the day it
+was first deployed.
+
+So this was never a regression to diagnose. The database was never
+provisioned, and the deploy reported success anyway. Every candidate cause
+listed above assumed infrastructure that did not exist, which is what happens
+when you diagnose from a symptom instead of from the deployed configuration —
+`gcloud run services describe` would have shown the absence in one command, on
+day one.
+
+Fixed by provisioning a free-tier Neon Postgres and adding a new version of
+the secret. `src/database/session.py` already special-cased `neon.tech` for
+SSL in `_build_connect_args`, so the code path existed and had simply never
+been exercised.
+
+**Why it stayed invisible for 2.5 months:** `get_db()` yields `None` when the
+connection fails rather than raising, so `/health` renders `database:
+unavailable` and every other component reports ready. The service returns 200.
+This is the same shape as DL-035 one layer out — a component reporting
+partial success while doing nothing — and it was filed as "medium, not
+blocking the live-URL win" precisely because the green frontend made it look
+cosmetic. It was not cosmetic: no scan could ever have been persisted.
+
 **Thinking**
 **Date:**
 
@@ -1931,5 +1962,79 @@ latent defect were two different problems, and only one of them was urgent.
 case is a *failure*, not a quiet default — make it raise. And when correctness
 depends on a precondition, publish the precondition as a measured value in the
 output, or you are asking the reader to trust something no one checked.
+
+---
+
+
+## 37. Deploy — DL-036 A dead COPY silently blocked every orchestrator rebuild for four months
+
+**Symptom:** All three Cloud Run images were tagged `manual-20260429-181025`.
+The live demo had been serving 2026-04-29 code since April — predating DL-026
+through DL-035, all of the v06/v07 scanner work, the ArticleTrace rename, and
+the frontend rewrite. The 2026-06-19 entry in NORTHSTAR reads "deploy", but it
+was a `gcloud run services update` for secrets; no image was ever rebuilt.
+
+**Root cause:** `orchestrator/Dockerfile` ended with
+
+```dockerfile
+COPY src/ ./src/
+COPY data/golden/ ./data/golden/
+```
+
+`orchestrator/data/` was deleted in a later restructure and is gitignored, and
+nothing under `src/` reads it — the golden tests live in
+`knowledge_engine/golden_tests/` and run from the CI checkout, never from the
+image. So from the moment `data/` went away, **every** orchestrator build
+failed at that step:
+
+```
+COPY failed: file not found in build context or excluded by .dockerignore: stat data/golden/
+```
+
+**Contributing:** the only deploy path was `gcp.ps1`, PowerShell, and there is
+no `pwsh` on the current machine. A build that fails is only a signal if
+somebody runs it; nobody could.
+
+**Also found while fixing this** — a latent defect that had never fired because
+no scan could reach it. Scans dispatch through FastAPI `BackgroundTasks`, and
+Cloud Run throttles CPU to near-zero once the response is sent. A scan would
+have accepted the 202, returned a `scan_id`, and then sat at `running`
+forever with no error in any log. Fixed pre-emptively by deploying the
+orchestrator with `--no-cpu-throttling`; `min-instances` stays 0 so an idle
+deployment still costs nothing, and the frontend's 3-second poll keeps the
+instance warm for the duration of a scan.
+
+**Fix:**
+
+1. Dropped the dead `COPY data/golden/` line, with a comment recording why it
+   is absent so it does not get "restored" by someone reading the CI workflow.
+2. Added `.dockerignore` to all three services. The build context was 1.28 GB,
+   almost all of it local virtualenvs, `node_modules`, and `.next` — things the
+   image rebuilds from lockfiles anyway. A stale `.next` shipped into an image
+   is also exactly the DL-034 failure, one environment over.
+3. Corrected `frontend/cloudbuild.yaml`'s `_NEXT_PUBLIC_API_URL` default from
+   port 8000 to 8004. Because the value is compiled into the bundle, a wrong
+   default cannot be corrected by an env var on the running service.
+4. Added `deploy.sh` — build via Cloud Build (Cloud Run needs linux/amd64 and
+   the dev machine is Apple silicon, so a local `docker build` produces an
+   image that will not start), deploy, then verify health.
+
+**Thinking**
+
+**Severity:** High. Not because anything crashed — nothing did — but because
+the live URL is the portfolio artifact, and for four months it displayed work
+that was four months out of date while every dashboard read green. NORTHSTAR
+recorded the demo as "Done 2026-06-16."
+
+The through-line with DL-024, DL-028, DL-029 and DL-035 is the same: **a
+failure that produces no error is invisible regardless of which layer it lives
+in.** Here the build genuinely did fail, loudly, with a clear message — but
+into a terminal nobody opened, which is operationally identical to silence.
+
+**Lesson:** A deploy is not verified by the deploy command succeeding. It is
+verified by asking the running service what it is: check the deployed image
+tag and date, not just the health endpoint. `deploy.sh --verify` exists for
+this, and the image tag is now a timestamp so staleness is legible at a glance
+rather than requiring an archaeology session.
 
 ---

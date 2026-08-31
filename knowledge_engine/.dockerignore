@@ -1,0 +1,12 @@
+# Build context hygiene — see orchestrator/.dockerignore for the rationale.
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+tests/
+chroma_data/
+*.log
+.env
+.env.*
+!.env.example

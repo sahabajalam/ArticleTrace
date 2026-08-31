@@ -1,0 +1,12 @@
+# Build context hygiene. node_modules (422 MB) is reinstalled from the lockfile
+# in the deps stage, and .next (113 MB) is rebuilt in the builder stage — both
+# are pure upload cost, and a stale .next carried into the image is exactly the
+# class of problem behind DL-034.
+node_modules/
+.next/
+out/
+.env
+.env.*
+!.env.example
+npm-debug.log*
+.DS_Store
