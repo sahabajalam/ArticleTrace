@@ -1,7 +1,7 @@
 ---
 title: AlloyCode — System Documentation (Living Snapshot)
 status: living
-last_verified: 2026-06-19
+last_verified: 2026-08-31
 source_of_truth: |
   direct code audit of orchestrator/src/, knowledge_engine/src/, frontend/src/,
   docker-compose.yml, gcp.ps1, frontend/cloudbuild.yaml
@@ -215,10 +215,18 @@ Pages under [`frontend/src/app/`](../frontend/src/app/):
 | Path | Purpose |
 |---|---|
 | `/` ([`page.tsx`](../frontend/src/app/page.tsx)) | Dashboard: scan list, risk distribution chart, platform stats |
-| `/scans` ([`scans/`](../frontend/src/app/scans/)) | Scan index + per-scan detail under `[id]` |
+| `/scans/new` ([`scans/new/`](../frontend/src/app/scans/new/)) | Start a scan; redirects to `/scans/{id}` on submit |
+| `/scans/{id}` ([`scans/[id]/`](../frontend/src/app/scans/[id]/)) | Per-scan detail: findings, risk posture, narrative |
 | `/knowledge` ([`knowledge/`](../frontend/src/app/knowledge/)) | KB browser — search articles, view obligations |
 
 Layout in [`layout.tsx`](../frontend/src/app/layout.tsx), global styles in [`globals.css`](../frontend/src/app/globals.css).
+
+> **Drift note (2026-08-31):** this table previously listed a `/scans`
+> index route. There is no `frontend/src/app/scans/page.tsx` — only
+> `[id]/` and `new/` — so `/scans` returns 404. Nothing links to it (every
+> link targets `/scans/new` or `/scans/{id}`), and the scan list lives on
+> the `/` dashboard, so this was documentation drift rather than a broken
+> UI. Corrected per the code-wins rule.
 
 ---
 
