@@ -14,7 +14,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AlloyCode | EU AI Regulatory Compliance Engine",
+  title: "ArticleTrace | EU AI Regulatory Compliance Engine",
   description: "EU AI Act and GDPR compliance engine powered by multi-agent AI orchestration.",
 };
 

@@ -56,12 +56,12 @@ rules without quantifying the existing ones is anti-pattern").
 
 ## 1. What the research says
 
-### 1.1 Where AlloyCode sits in the SAST spectrum
+### 1.1 Where ArticleTrace sits in the SAST spectrum
 
 The field brackets into syntactic pattern engines (Semgrep: tree-sitter ASTs,
 YAML rules, ~10-second scans) and semantic engines (CodeQL: a relational
 program database with real cross-function taint tracking, 30+ minute scans).
-AlloyCode is architecturally a small Semgrep: tree-sitter, per-file matching,
+ArticleTrace is architecturally a small Semgrep: tree-sitter, per-file matching,
 no dataflow. Two numbers from that world matter here:
 
 - On the OWASP Benchmark, CodeQL scores **74.4% F1 vs Semgrep's 69.4%** — the
@@ -77,13 +77,13 @@ is a real possibility for us right now and we would not know.
 
 ### 1.2 How AI-BOM tooling detects AI components
 
-The closest cousins to AlloyCode's detection problem are AI-BOM generators.
+The closest cousins to ArticleTrace's detection problem are AI-BOM generators.
 Cisco's open-source [aibom](https://github.com/cisco-ai-defense/aibom) is the
 clearest architecture statement, and it is strikingly parallel to ours — a
 deterministic tier, a cross-reference tier, an LLM tier — but with **six
 signal sources** where we have one:
 
-| Signal | Cisco aibom | AlloyCode today |
+| Signal | Cisco aibom | ArticleTrace today |
 |---|---|---|
 | Dependency manifests (pip/poetry/npm…) | ✓ | **built by `ingest()`, read by nothing** |
 | Import statements | ✓ (LibCST for Python) | ✓ (tree-sitter; fixed in DL-027) |

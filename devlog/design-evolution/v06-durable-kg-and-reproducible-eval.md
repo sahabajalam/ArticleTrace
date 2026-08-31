@@ -27,7 +27,7 @@ ai_guidance: |
 ## 0. What this document is
 
 `v03-kb-completion` delivered the 2,301-node knowledge graph that every other
-part of AlloyCode depends on. It did not deliver the graph's **durability**.
+part of ArticleTrace depends on. It did not deliver the graph's **durability**.
 The graph has now been destroyed twice by the same mechanism — Neo4j Aura
 free-tier deletion after 30 days idle — on 2026-06-19 (`652f6242`, recovered
 via `DL-025`) and again around 2026-08 (`e8097dda`, DNS no longer resolves,

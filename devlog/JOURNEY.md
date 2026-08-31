@@ -1,5 +1,5 @@
 ---
-title: AlloyCode — Journey
+title: ArticleTrace — Journey
 status: living
 last_verified: 2026-05-20
 source_of_truth: |
@@ -12,17 +12,17 @@ ai_guidance: |
   disagrees with SYSTEM.md, the code wins; bump this doc.
 ---
 
-# AlloyCode — the journey
+# ArticleTrace — the journey
 
 ## What it is
 
-**AlloyCode** is a static compliance scanner for AI codebases. Point it at a public GitHub repo; deterministic scanners detect AI-system patterns — biometric libraries, LLM SDKs, decision-making surfaces, missing model cards — and map each detection to specific EU AI Act and GDPR obligations from a 2,301-node regulatory knowledge graph. The output is a report of likely violations with `file:line` anchors and article citations. Every claim a reviewer can disagree with by opening the file.
+**ArticleTrace** is a static compliance scanner for AI codebases. Point it at a public GitHub repo; deterministic scanners detect AI-system patterns — biometric libraries, LLM SDKs, decision-making surfaces, missing model cards — and map each detection to specific EU AI Act and GDPR obligations from a 2,301-node regulatory knowledge graph. The output is a report of likely violations with `file:line` anchors and article citations. Every claim a reviewer can disagree with by opening the file.
 
 Three services: a Next.js 16 frontend, a Python/FastAPI orchestrator (LangGraph supervisor + scanner pipeline), and a Python/FastAPI knowledge engine (Neo4j + hybrid retrieval). Cloud Run deployment.
 
 ## Why it exists
 
-Two large regulatory frameworks — GDPR (in force since 2018) and the EU AI Act (effective 2024 with phased rollout) — interlock in ways that compliance teams find expensive to navigate. Industry estimates put a manual AI Act assessment at ~£8,500 and 40 hours per assessment; for a mid-size org doing 15 assessments a year that's ~£1.5M annually with high error variance. Existing AI-governance tools tackle adjacent problems — Credo AI and Holistic AI collect self-reported questionnaires; Fairlearn and AIF360 audit models at runtime; Guardrails AI validates LLM outputs. **Nobody statically scans AI application code against regulatory obligations.** That's the gap AlloyCode fills.
+Two large regulatory frameworks — GDPR (in force since 2018) and the EU AI Act (effective 2024 with phased rollout) — interlock in ways that compliance teams find expensive to navigate. Industry estimates put a manual AI Act assessment at ~£8,500 and 40 hours per assessment; for a mid-size org doing 15 assessments a year that's ~£1.5M annually with high error variance. Existing AI-governance tools tackle adjacent problems — Credo AI and Holistic AI collect self-reported questionnaires; Fairlearn and AIF360 audit models at runtime; Guardrails AI validates LLM outputs. **Nobody statically scans AI application code against regulatory obligations.** That's the gap ArticleTrace fills.
 
 ## The pivot story
 

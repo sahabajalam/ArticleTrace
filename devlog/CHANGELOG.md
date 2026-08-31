@@ -1,5 +1,5 @@
 ---
-title: AlloyCode — Change Log
+title: ArticleTrace — Change Log
 status: living
 last_verified: 2026-06-19
 companion_doc: devlog/SYSTEM.md
@@ -9,7 +9,7 @@ ai_guidance: |
   change. Each entry pairs with a section update in SYSTEM.md.
 ---
 
-# AlloyCode — Change Log
+# ArticleTrace — Change Log
 
 ## Format
 
@@ -148,6 +148,47 @@ described there.
 
 **Refs:** issue #815755; `knowledge_engine/src/{env,config}.py`,
 `knowledge_engine/src/stores/graph_store.py`, `orchestrator/src/{env,config}.py`
+
+---
+
+## 2026-08-31 — Renamed AlloyCode → ArticleTrace
+
+**What:** Third and final canonical name. Decision record:
+[`design-evolution/v08-naming.md`](design-evolution/v08-naming.md). 36 files
+updated, 130 live references; NORTHSTAR Part IV's rename refusal is recorded
+as overridden once and then reinstated, now citing v08 so a fourth rename must
+argue against evidence.
+
+**Why AlloyCode failed:** three live collisions — `alloycode.com` is an
+operating software consultancy trading under the exact name; Alloy is an
+identity/AML fintech shipping "Agentic AI for KYC and Compliance" with a
+trademark in the software class; and Alloy is MIT's formal specification
+language used for code analysis. Worst possible position for a static analysis
+tool about AI compliance.
+
+**Why not AnnexIII (or AnnexScan/AnnexTrace):** the rule catalog makes 26
+regulatory references and **exactly one is Annex III**. The most-referenced
+provision is Art 5, and GDPR — roughly half the corpus — has no annexes. An
+`Annex*` name would describe 1/26th of the product. `AnnexIII` also fails on
+package ergonomics, has both domains taken, and could never rank against
+EUR-Lex for its own name.
+
+**Why ArticleTrace:** 25 of 26 references are Articles, the unit both
+regulations share; "trace" names the actual differentiator (every finding
+traceable from `file:line` to a cited Article) and is on-domain vocabulary via
+AI Act Art 12; and it was verified free on PyPI, npm, GitHub, `.com` and
+`.dev`.
+
+**Compatibility kept:** `.alloycode.yml` lives in *users'* scanned repos, so it
+is a public interface. The loader now accepts `.articletrace.yml` first and the
+old name as fallback — renaming outright would have silently stopped honouring
+existing suppression configs. Dated CHANGELOG/BUG_LOG entry bodies keep the old
+name deliberately: they record what was true when written.
+
+**Impact on SYSTEM.md:** naming paragraph and §7 Glossary — full lineage
+Aegis → AlloyCode → ArticleTrace with the reason each was retired.
+
+**Refs:** v08-naming.md; NORTHSTAR Part IV.
 
 ---
 

@@ -29,7 +29,7 @@ ai_guidance: |
 
 ## 0. What this document is
 
-A formal decision record for a removal that already shipped: AlloyCode's LangGraph supervisor has no human-in-the-loop approval gate. The pre-pivot system (the v01 free-text classifier) had a HITL pause for Critical findings; the static-scanner pivot (v02) decided that gate added no signal and removed it. This doc explains *why*, addresses the EU AI Act counter-argument it invites, and lists the conditions under which the decision would be revisited.
+A formal decision record for a removal that already shipped: ArticleTrace's LangGraph supervisor has no human-in-the-loop approval gate. The pre-pivot system (the v01 free-text classifier) had a HITL pause for Critical findings; the static-scanner pivot (v02) decided that gate added no signal and removed it. This doc explains *why*, addresses the EU AI Act counter-argument it invites, and lists the conditions under which the decision would be revisited.
 
 It exists because the audit ([`../../07_MARKET_FIT_AND_PORTFOLIO_AUDIT.md`](../../07_MARKET_FIT_AND_PORTFOLIO_AUDIT.md) §6.1) flagged it as one of the "inevitable follow-up questions" a candidate must be able to answer in an interview, and because the rationale was previously scattered across three places (a one-line docstring in supervisor.py, a passing mention in v02's Consequences section, a drift note in SYSTEM.md §3.2). One citable home, one explicit answer.
 
@@ -60,7 +60,7 @@ What removing HITL did:
 - ✅ No state-machine complexity (no `human_queue`, no resume tokens, no `SqliteSaver` checkpointing required for HITL replay).
 - ⚠️ Removes a surface where a domain expert could override a borderline classification. The intended mitigation is the report itself — a Critical finding lists the rule hit, the matched code, the article citation, and the severity, and a downstream compliance officer can dispute any of those from the artifact.
 - ⚠️ Loses an EU-AI-Act-aligned talking point ("human oversight"). See §4 for how to respond to that in interview.
-- ❌ Rules out using AlloyCode as the *enforcement* layer in a production conformity workflow without a wrapping system that adds the gate externally. AlloyCode is a *reporting* tool, not a *blocking* tool.
+- ❌ Rules out using ArticleTrace as the *enforcement* layer in a production conformity workflow without a wrapping system that adds the gate externally. ArticleTrace is a *reporting* tool, not a *blocking* tool.
 
 ---
 
@@ -89,11 +89,11 @@ This is documented in `supervisor.py`'s top-of-file docstring:
 
 **The counter-argument:** EU AI Act Article 14 mandates "human oversight" for high-risk AI systems, and Recital 73 emphasises that oversight must allow the human to "decide not to use the high-risk AI system" or to "override or disregard" its output. A compliance-engineering tool that produces high-risk classifications without a human-in-the-loop checkpoint looks superficially out of step with the regulation it's mapping codebases against.
 
-**The response:** Article 14 imposes the oversight obligation on the *operator of a high-risk AI system*. AlloyCode is not a high-risk AI system; it's a *static analysis tool* that produces a report. The unit of analysis Article 14 governs is the system being scanned, not the scanner. The scanner's job is to surface evidence; the operator's job (the compliance officer reviewing the report) is the oversight. AlloyCode's reports are designed to make that downstream oversight cheap: every finding has a code anchor, a rule, an article citation, and a severity, all of which a human can dispute from the artifact without needing to be inside the pipeline.
+**The response:** Article 14 imposes the oversight obligation on the *operator of a high-risk AI system*. ArticleTrace is not a high-risk AI system; it's a *static analysis tool* that produces a report. The unit of analysis Article 14 governs is the system being scanned, not the scanner. The scanner's job is to surface evidence; the operator's job (the compliance officer reviewing the report) is the oversight. ArticleTrace's reports are designed to make that downstream oversight cheap: every finding has a code anchor, a rule, an article citation, and a severity, all of which a human can dispute from the artifact without needing to be inside the pipeline.
 
-A useful analogue: `mypy` doesn't have a HITL approval gate. Its job is to surface evidence; the human reads the report and decides. Adding HITL to `mypy` would be a category error, and adding it to AlloyCode is the same category error one layer up.
+A useful analogue: `mypy` doesn't have a HITL approval gate. Its job is to surface evidence; the human reads the report and decides. Adding HITL to `mypy` would be a category error, and adding it to ArticleTrace is the same category error one layer up.
 
-If AlloyCode were ever positioned as an *enforcement* component (e.g., a CI gate that blocks merges on Critical findings), the equation would change — but blocking-mode is then the wrapping CI's responsibility (the GitHub Action calling AlloyCode would be the place to add the gate), not AlloyCode's.
+If ArticleTrace were ever positioned as an *enforcement* component (e.g., a CI gate that blocks merges on Critical findings), the equation would change — but blocking-mode is then the wrapping CI's responsibility (the GitHub Action calling ArticleTrace would be the place to add the gate), not ArticleTrace's.
 
 ## 5. What would change this decision
 
@@ -101,6 +101,6 @@ Re-add HITL if any of the following become true:
 
 1. **A user surfaces a real need to override classifications inside the pipeline** rather than post-hoc on the report. (Today: zero users; the report-side workflow has not been exercised.)
 2. **The classifier becomes non-deterministic** — e.g., a future scanner adds LLM-based pattern detection with confidence scores. Then a confidence-threshold gate becomes meaningful.
-3. **The product is repositioned as an enforcement / CI-blocking tool** and the blocking gate is moved inside AlloyCode rather than its wrapping CI step. Adds a real "should this merge proceed?" decision the pipeline can pause on.
+3. **The product is repositioned as an enforcement / CI-blocking tool** and the blocking gate is moved inside ArticleTrace rather than its wrapping CI step. Adds a real "should this merge proceed?" decision the pipeline can pause on.
 
 Until any of these fires, see [`../NORTHSTAR.md`](../NORTHSTAR.md) Part IV — "Skill-agents / sub-agent architecture inside the orchestrator." HITL falls in the same correctly-deferred bucket: not a bad idea, just not earning time given the current state.

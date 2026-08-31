@@ -1,9 +1,9 @@
 ---
-title: AlloyCode — Preserved research arc
+title: ArticleTrace — Preserved research arc
 status: archived
 snapshot_date: 2026-05-20
 purpose: |
-  Verbatim concatenation of the source documents that produced the AlloyCode
+  Verbatim concatenation of the source documents that produced the ArticleTrace
   design. Includes the `gdpr context/main/` polished docs, the
   `gdpr context/backup/` raw brainstorm trail, and the pre-pivot `docs/archive/`
   contents. For a read-once narrative summary, see `00-history-and-decisions.md`.
@@ -25,9 +25,9 @@ ai_guidance: |
 
 ---
 
-# AlloyCode — preserved research arc
+# ArticleTrace — preserved research arc
 
-Verbatim concatenation of every source document that produced the AlloyCode design. Sources are grouped into three runs:
+Verbatim concatenation of every source document that produced the ArticleTrace design. Sources are grouped into three runs:
 
 1. **`gdpr context/main/`** — the four polished portfolio-pitch docs (dated 2026-02-12). Merged from earlier per-project docs.
 2. **`gdpr context/backup/`** — the raw brainstorm trail. Pre-merge per-project docs, gap audits, iterative critiques.
@@ -21114,7 +21114,7 @@ Priority recitals (these are the most cited in case law and guidance):
 
 ## SOURCE: `docs/README.md`
 
-# AlloyCode — Project Overview & System Architecture
+# ArticleTrace — Project Overview & System Architecture
 
 **Last updated:** 2026-04-13
 **Status:** Phase 1 (active) — pivoting from free-text assessment to static repo compliance scanning
@@ -21123,7 +21123,7 @@ Priority recitals (these are the most cited in case law and guidance):
 
 ## 1. What it is
 
-AlloyCode is a **static compliance scanner for AI codebases** that maps detected code patterns to concrete EU AI Act and GDPR obligations. Point it at a GitHub repo; it returns a report of likely regulatory violations with **file:line anchors** and article citations.
+ArticleTrace is a **static compliance scanner for AI codebases** that maps detected code patterns to concrete EU AI Act and GDPR obligations. Point it at a GitHub repo; it returns a report of likely regulatory violations with **file:line anchors** and article citations.
 
 Two entrypoints:
 
@@ -21159,7 +21159,7 @@ Modern security / compliance scanners converged on a common shape. We borrow it 
 | Trivy | Deterministic scanning first; LLMs only for narrative post-hoc |
 | OpenSSF Scorecard | Repo hygiene signals that compose into a score |
 
-**Core principle** shared across all of them: **LLMs are kept out of the detection hot path.** Static analysis is fast, cheap, explainable; LLMs are slow, expensive, and hallucinate. AlloyCode follows the same rule — deterministic scanners and KG lookups find the facts; Gemini only writes the human narrative at the end.
+**Core principle** shared across all of them: **LLMs are kept out of the detection hot path.** Static analysis is fast, cheap, explainable; LLMs are slow, expensive, and hallucinate. ArticleTrace follows the same rule — deterministic scanners and KG lookups find the facts; Gemini only writes the human narrative at the end.
 
 ---
 
@@ -21297,7 +21297,7 @@ See [REFERENCE.md](REFERENCE.md) for the rule catalog, KG schema, implementation
 
 ## SOURCE: `docs/REFERENCE.md`
 
-# AlloyCode — Technical Reference
+# ArticleTrace — Technical Reference
 
 **Last updated:** 2026-04-13
 **Covers:** Knowledge base schema · Rule catalog · Implementation status · Roadmap
@@ -21479,7 +21479,7 @@ remediation: >
 ### 3.3 Confidence & suppressions
 
 - Each finding carries a **confidence score 0.0–1.0** (base × dampeners).
-- Suppressions via `.alloycode.yml` at repo root (pattern copied from Semgrep):
+- Suppressions via `.articletrace.yml` at repo root (pattern copied from Semgrep):
   ```yaml
   suppress:
     - rule: AI-001
@@ -21640,7 +21640,7 @@ Goal: demoable end-to-end scan of a real public Python AI repo producing file:li
 
 | Risk | Mitigation |
 |---|---|
-| **False positives** — `import face_recognition` in a test file is noise | Dampener rules; `.alloycode.yml` suppressions; confidence score |
+| **False positives** — `import face_recognition` in a test file is noise | Dampener rules; `.articletrace.yml` suppressions; confidence score |
 | **Signal → obligation mapping is soft** | KG provides grounded citations; every finding links to the Article; reviewer can judge fit |
 | **Python-only limits demo repos** | Phase 1 scope accepted; tree-sitter in Phase 2 |
 | **Neo4j Aura free tier auto-pauses** | Not worth fixing for a portfolio; resume on demand takes 30s |

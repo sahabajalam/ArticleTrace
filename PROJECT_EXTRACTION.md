@@ -1,10 +1,10 @@
-# AlloyCode: Static Scanner for EU AI Act & GDPR Compliance
+# ArticleTrace: Static Scanner for EU AI Act & GDPR Compliance
 
 Static analysis scanner that maps AI codebases to concrete EU AI Act and GDPR obligations with file-and-line precision.
 
 ## What it does
 
-Point AlloyCode at a public GitHub repo and it returns a structured compliance report. A deterministic scanner pass clones the repo, walks Python/JS/TS sources, and emits findings with file path, line number, code excerpt, severity, and the EU AI Act / GDPR articles each finding triggers. A LangGraph multi-agent layer (risk classifier, technical assessor, legal research, documentation generator) then enriches the findings with grounded narrative and scaffolds DPIA / ROPA / conformity documents.
+Point ArticleTrace at a public GitHub repo and it returns a structured compliance report. A deterministic scanner pass clones the repo, walks Python/JS/TS sources, and emits findings with file path, line number, code excerpt, severity, and the EU AI Act / GDPR articles each finding triggers. A LangGraph multi-agent layer (risk classifier, technical assessor, legal research, documentation generator) then enriches the findings with grounded narrative and scaffolds DPIA / ROPA / conformity documents.
 
 For now it is a single-developer portfolio project — built to validate the architectural hypothesis that *code-grounded* compliance reporting beats free-text self-assessment for AI-governance tooling.
 
@@ -12,7 +12,7 @@ For now it is a single-developer portfolio project — built to validate the arc
 
 The first version of this project was a free-text RAG Q&A bot — the user typed a description of their AI system into a textbox and five agents classified it. Three problems killed it: input was vibes, every demo looked the same, and there was no differentiator vs. any other LLM-wrapper project (see [`devlog/design-evolution/v02-static-scanner-pivot.md`](devlog/design-evolution/v02-static-scanner-pivot.md) §2).
 
-The pivot to static scanning came from looking at the AI-governance landscape and noticing a gap: Credo AI / Holistic AI collect self-reported answers; Fairlearn / AIF360 audit runtime models with training-data access; Guardrails AI validates LLM outputs. **Nothing statically reads AI application code against regulatory obligations.** AlloyCode fills that gap.
+The pivot to static scanning came from looking at the AI-governance landscape and noticing a gap: Credo AI / Holistic AI collect self-reported answers; Fairlearn / AIF360 audit runtime models with training-data access; Guardrails AI validates LLM outputs. **Nothing statically reads AI application code against regulatory obligations.** ArticleTrace fills that gap.
 
 ## How it's built
 

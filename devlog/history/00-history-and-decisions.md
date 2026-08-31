@@ -1,9 +1,9 @@
 ---
-title: AlloyCode — Distilled history and decisions
+title: ArticleTrace — Distilled history and decisions
 status: archived
 snapshot_date: 2026-05-20
 purpose: |
-  A single-narrative read-once history of how AlloyCode got to its current
+  A single-narrative read-once history of how ArticleTrace got to its current
   shape. Distilled from ~30 source files across the original `gdpr context/`
   brainstorm dir and the pre-pivot `docs/archive/`. For verbatim primary
   sources, see `01-research-arc.md` in the same dir.
@@ -22,7 +22,7 @@ ai_guidance: |
 
 ---
 
-# AlloyCode — distilled history and decisions
+# ArticleTrace — distilled history and decisions
 
 This file compresses ~30 source documents (the `gdpr context/` brainstorm trail + the pre-pivot `docs/archive/`) into a single read-once narrative. It is the answer to *"how did we get here?"* for someone reading this repo for the first time.
 
@@ -253,7 +253,7 @@ A flat table of every decision documented in the source archive:
 
 Three names refer to the same system:
 
-- **AlloyCode** — canonical name used in code (FastAPI title, Docker container names like `alloycode-orchestrator`), in the current `docs/README.md`, and in any new doc going forward.
+- **ArticleTrace** — canonical name used in code (FastAPI title, Docker container names like `articletrace-orchestrator`), in the current `docs/README.md`, and in any new doc going forward.
 - **Aegis Compliance Engine** — marketing/portfolio name used in `PROJECT_EXTRACTION.md`. Equivalent.
 - **EU_AI_GDPR** — repo directory name (with `Project_1_` prefix). Historical artifact of the four-project portfolio scheme; preserved for path stability.
 

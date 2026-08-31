@@ -1,5 +1,5 @@
 ---
-title: AlloyCode — Deployment Guide
+title: ArticleTrace — Deployment Guide
 status: accepted
 last_verified: 2026-05-20
 source_of_truth: |
@@ -8,15 +8,15 @@ source_of_truth: |
 companion_doc: SYSTEM.md  # §6 Deploy summarises; this doc has the full procedure
 ai_guidance: |
   This is the accepted reference for local dev, Docker, and Cloud Run deployment
-  of AlloyCode. Procedures here are tested; if a command fails, the docs win
+  of ArticleTrace. Procedures here are tested; if a command fails, the docs win
   for the procedure but the underlying tool versions/flags may have moved —
   check the linked source files before assuming the doc is wrong. Companion to
   SYSTEM.md §6, which gives the architectural summary without the runbook
   detail.
 ---
-# Deployment Guide — AlloyCode
+# Deployment Guide — ArticleTrace
 
-> Canonical instructions for deploying AlloyCode (the EU AI Regulatory Compliance Scanner).
+> Canonical instructions for deploying ArticleTrace (the EU AI Regulatory Compliance Scanner).
 > Covers local development, Docker, Google Cloud Run, and best practices.
 
 ---
@@ -142,7 +142,7 @@ Project Root/
 |   |-- pyproject.toml
 |   +-- .env
 |
-|-- frontend/                   # Port 3000 — AlloyCode Dashboard
+|-- frontend/                   # Port 3000 — ArticleTrace Dashboard
 |   |-- src/
 |   |   |-- app/                #   Next.js App Router pages
 |   |   |-- components/         #   Layout (Sidebar, Topbar, MainLayout)
@@ -301,10 +301,10 @@ The root `docker-compose.yml` starts 4 services:
 
 | Service | Container | Port | Image |
 |---------|-----------|------|-------|
-| orchestrator | alloycode-orchestrator | 8004 | Built from `./orchestrator` |
-| orchestrator-db | alloycode-orchestrator-db | 5432 | `postgres:15-alpine` |
-| orchestrator-redis | alloycode-orchestrator-redis | 6379 | `redis:7-alpine` |
-| graphrag-api | alloycode-knowledge-engine | 8001 | Built from `./knowledge_engine` |
+| orchestrator | articletrace-orchestrator | 8004 | Built from `./orchestrator` |
+| orchestrator-db | articletrace-orchestrator-db | 5432 | `postgres:15-alpine` |
+| orchestrator-redis | articletrace-orchestrator-redis | 6379 | `redis:7-alpine` |
+| graphrag-api | articletrace-knowledge-engine | 8001 | Built from `./knowledge_engine` |
 
 ### 6.2 Docker + Frontend Hybrid
 
@@ -506,7 +506,7 @@ Vectors live in Neo4j's native vector index (`entity_embedding`, HNSW, cosine, d
 
 ### 8.3 Frontend (Port 3000)
 
-**Purpose:** AlloyCode Compliance Dashboard — premium UI for managing assessments.
+**Purpose:** ArticleTrace Compliance Dashboard — premium UI for managing assessments.
 
 **Stack:** Next.js 16 (App Router), React 19, Tailwind CSS v4, lucide-react, framer-motion
 
@@ -746,7 +746,7 @@ Get-Process -Id <pid>
 Stop-Process -Id <pid> -Force
 ```
 
-### Frontend Shows "Failed to connect to AlloyCode API"
+### Frontend Shows "Failed to connect to ArticleTrace API"
 
 Check:
 1. Is the orchestrator running? `curl http://localhost:8004/health`

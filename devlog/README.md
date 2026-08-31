@@ -2,7 +2,7 @@
 
 Human-oriented index of what lives where. For agent-oriented read order, see [`../CLAUDE.md`](../CLAUDE.md).
 
-This `devlog/` tree is the **living-docs system** for AlloyCode, set up per [`../DOCS_PLAYBOOK.md`](../DOCS_PLAYBOOK.md). It's the structural fix for the common "AI agent reads ten stale docs and confidently mixes timeframes" failure.
+This `devlog/` tree is the **living-docs system** for ArticleTrace, set up per [`../DOCS_PLAYBOOK.md`](../DOCS_PLAYBOOK.md). It's the structural fix for the common "AI agent reads ten stale docs and confidently mixes timeframes" failure.
 
 ---
 

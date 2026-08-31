@@ -1,4 +1,4 @@
-# AlloyCode
+# ArticleTrace
 
 > **Static compliance scanner for AI codebases.** Point it at a public GitHub repo; deterministic scanners detect AI-system patterns and map them to **EU AI Act + GDPR obligations** from a 2,301-node Neo4j knowledge graph, returning a report of likely violations with `file:line` anchors and article citations.
 
@@ -8,7 +8,7 @@ The moat is the rule corpus, not the LLM. LLMs are kept out of the detection hot
 
 ## What it does
 
-Point AlloyCode at a public GitHub repo and it returns a structured compliance report:
+Point ArticleTrace at a public GitHub repo and it returns a structured compliance report:
 
 1. **Clone + parse.** Git clone (shallow), tree-sitter AST across the project.
 2. **Detect** with a strictly-ordered **6-scanner pipeline** (import → AST → LLM-enrich → AST-rules → content → file-pattern → co-occurrence) against **10 YAML detection rules** covering biometric libs, LLM usage, automated-decision endpoints, transparency gaps, PII without DPIA, opaque training data, missing audit logs, prohibited practices, real-time biometric ID, and override gaps.
@@ -87,7 +87,7 @@ is what CI exercises on every push.
 
 The pre-pivot version of this project was a free-text RAG Q&A bot — type a description of your AI system into a textbox, five agents argue about its risk category. Three problems killed it: input was vibes, every demo looked the same, and there was no differentiator versus any other LLM-wrapper project.
 
-The pivot to static code scanning came from looking at the AI-governance landscape and noticing a gap: Credo AI / Holistic AI collect self-reported answers; Fairlearn / AIF360 audit runtime models with training-data access; Guardrails AI validates LLM outputs. **Nothing statically reads AI application code against regulatory obligations.** AlloyCode fills that gap.
+The pivot to static code scanning came from looking at the AI-governance landscape and noticing a gap: Credo AI / Holistic AI collect self-reported answers; Fairlearn / AIF360 audit runtime models with training-data access; Guardrails AI validates LLM outputs. **Nothing statically reads AI application code against regulatory obligations.** ArticleTrace fills that gap.
 
 The pivot is documented in [`devlog/design-evolution/v02-static-scanner-pivot.md`](devlog/design-evolution/v02-static-scanner-pivot.md); the rule corpus build-out is [`v03-kb-completion.md`](devlog/design-evolution/v03-kb-completion.md); the deliberate removal of human-in-the-loop is [`v04-hitl-decision.md`](devlog/design-evolution/v04-hitl-decision.md).
 
@@ -203,7 +203,7 @@ Not a production compliance tool; not a substitute for legal advice; not certifi
 
 ## Disclaimer
 
-**AlloyCode is not legal advice and is not a compliance certification.**
+**ArticleTrace is not legal advice and is not a compliance certification.**
 
 It is a static analysis tool. It reports *code patterns* that commonly
 correspond to obligations under the EU AI Act and GDPR, with a `file:line`
@@ -231,4 +231,4 @@ publishing anything derived from that data.
 
 ---
 
-*Repository: `AI_Governance_Scanner`. Canonical external name: **AlloyCode**. The earlier marketing name "Aegis Compliance Engine" is deprecated — surviving references are being phased out as touched.*
+*Repository: `AI_Governance_Scanner`. Canonical external name: **ArticleTrace**. The earlier marketing name "Aegis Compliance Engine" is deprecated — surviving references are being phased out as touched.*

@@ -12,7 +12,7 @@ owner: Sahabaj Alam
 source_of_truth:
   - knowledge_engine/src/multimodal/                # scaffolding (compiles, doesn't run)
   - knowledge_engine/src/retrieval/engine.py         # the RRF arm this would plug into
-  - 01_AlloyCode.md §4.2                             # original Phase-3 plan
+  - 01_ArticleTrace.md §4.2                             # original Phase-3 plan
   - 07_MARKET_FIT_AND_PORTFOLIO_AUDIT.md §6.1        # audit-flagged gap
 ai_guidance: |
   This is a PROPOSAL with scaffolding in repo. The module imports cleanly
@@ -68,7 +68,7 @@ What shipping this proposal would do:
 
 - ✅ Unlocks retrieval over the layout-heavy content currently invisible to text-only embedding (Annex III enumeration tables, AI Act Article-by-Article numbering tables, GDPR fee schedules).
 - ✅ Adds a defensible interview answer to "how do you handle visual content in regulatory PDFs?" — currently we don't.
-- ✅ Closes one of the two open eval gaps the audit named ([NORTHSTAR](../NORTHSTAR.md) Part III + [01_AlloyCode.md §4.2](../../01_AlloyCode.md)).
+- ✅ Closes one of the two open eval gaps the audit named ([NORTHSTAR](../NORTHSTAR.md) Part III + [01_ArticleTrace.md §4.2](../../01_ArticleTrace.md)).
 - ⚠️ Adds ~5 GB of model weights (ColPali v1.3) — needs Cloud Run instance memory tier upgrade or a separate GPU service. Current Cloud Run config is CPU-only.
 - ⚠️ Adds poppler as a system dep — Dockerfile change.
 - ⚠️ MaxSim is O(|q| × |d|) per page; for ~100 candidate pages × ~32 query tokens × ~1024 page tokens = ~3M cosine ops per query. CPU-bound. On GPU it's a single matmul.

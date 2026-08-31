@@ -1,4 +1,4 @@
-# AlloyCode — Calibration Plan (Phase 3: Jun 9 – Jun 22)
+# ArticleTrace — Calibration Plan (Phase 3: Jun 9 – Jun 22)
 
 **Path:** `D:\60 Days\Projects\Portfolio_Series\Project_1_EUAI_GDPR\Project_1_EUAI_GDPR\`
 **Current state:** local docker-compose working, Cloud Run-ready, 5+ weeks paused since Apr 29
@@ -52,7 +52,7 @@ This project carries: Python (82.5%), RAG (35.9%), Vector DBs (10.8% — Neo4j H
 ## 4. Recommended additions (priority order)
 
 ### 4.1 Deploy to public Cloud Run URL with a 10-repo demo gallery
-- **Goal:** one URL a recruiter can open; sees AlloyCode scan results across 10 well-known repos, with file:line links and regulatory article citations.
+- **Goal:** one URL a recruiter can open; sees ArticleTrace scan results across 10 well-known repos, with file:line links and regulatory article citations.
 - **What:**
   - Deploy via `gcp.ps1` (existing). Target `europe-west2` for visa-relevant latency.
   - Pre-scan 10 public repos (mix: 5 UK fintech, 3 healthcare, 2 generic AI) into `data/precomputed_scans/<org>_<repo>.json`. Show as a gallery on landing page.
@@ -199,7 +199,7 @@ This combination answers four interview questions: "How do you measure RAG quali
 
 | Resume variant | Companies (Tier 1) | Pitch one-liner using this project |
 |---|---|---|
-| A Agentic / Solutions | Anthropic, Cohere, Mistral, EY UK | "Built AlloyCode — static EU AI Act + GDPR scanner with multi-agent LangGraph enrichment. Live demo scans 10 public repos with regulatory citations at file:line precision." |
+| A Agentic / Solutions | Anthropic, Cohere, Mistral, EY UK | "Built ArticleTrace — static EU AI Act + GDPR scanner with multi-agent LangGraph enrichment. Live demo scans 10 public repos with regulatory citations at file:line precision." |
 | C FDE / Customer Eng | EY UK FDE practice, Isidor, OpenAI London FDE, Anthropic Customer Eng, Google Cloud London | "Compliance audit as a service. Pivoted from free-text RAG to static analysis after recognising 3 failure modes; shipped clean, not aspirational. Live demo + RAGAS eval on 30-question golden set." |
 | Solutions Architect | Accenture, Deloitte, BJSS, GSK, AstraZeneca | "Hybrid retrieval over a 2,301-node regulatory knowledge graph + ColPali multimodal for tables/charts in EU AI Act PDFs. Reciprocal Rank Fusion across graph traversal + vector + BM25." |
 

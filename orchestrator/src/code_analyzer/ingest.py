@@ -47,7 +47,7 @@ class IngestResult:
 
 def clone_repo(url: str, ref: str = "main", depth: int = 1) -> tuple[Path, str, callable]:
     """Shallow-clone `url` into a temp dir. Returns (path, commit_sha, cleanup_fn)."""
-    tmp = Path(tempfile.mkdtemp(prefix="alloycode-"))
+    tmp = Path(tempfile.mkdtemp(prefix="articletrace-"))
     try:
         repo = Repo.clone_from(
             url, tmp, depth=depth, multi_options=[f"--branch={ref}"] if ref else None
@@ -55,7 +55,7 @@ def clone_repo(url: str, ref: str = "main", depth: int = 1) -> tuple[Path, str, 
     except Exception:
         # retry without branch if specified branch doesn't exist
         shutil.rmtree(tmp, ignore_errors=True)
-        tmp = Path(tempfile.mkdtemp(prefix="alloycode-"))
+        tmp = Path(tempfile.mkdtemp(prefix="articletrace-"))
         repo = Repo.clone_from(url, tmp, depth=depth)
     commit = repo.head.commit.hexsha
 
@@ -158,9 +158,16 @@ def _count_all_files(root: Path) -> int:
     return n
 
 
+# The suppression file lives in the SCANNED repo, not this one, so its name is
+# a public interface: renaming it outright would silently stop honouring every
+# existing user's config — a scan would just start reporting suppressed
+# findings with no indication anything changed. The former name is still read.
+SUPPRESSION_FILENAMES = (".articletrace.yml", ".alloycode.yml")
+
+
 def _load_suppressions(root: Path) -> list[dict]:
-    path = root / ".alloycode.yml"
-    if not path.is_file():
+    path = next((root / n for n in SUPPRESSION_FILENAMES if (root / n).is_file()), None)
+    if path is None:
         return []
     try:
         data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}

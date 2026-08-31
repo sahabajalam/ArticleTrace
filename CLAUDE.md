@@ -2,9 +2,9 @@
 
 The single instruction file. Read this first; everything else flows from it.
 
-## What AlloyCode is
+## What ArticleTrace is
 
-**AlloyCode** (also referenced as *Aegis Compliance Engine* in portfolio docs; directory name `EU_AI_GDPR`) is a **static compliance scanner for AI codebases**. Point it at a public GitHub repo; deterministic scanners detect AI-system patterns (biometric libraries, LLM SDKs, decision-making surfaces, missing model cards), map them to EU AI Act + GDPR obligations from a Neo4j-backed knowledge graph (2,301 nodes), and return a report of likely violations with `file:line` anchors and article citations. The architecture is three FastAPI/Next.js services orchestrated by LangGraph; the moat is the rule corpus, not the LLM.
+**ArticleTrace** (also referenced as *Aegis Compliance Engine* in portfolio docs; directory name `EU_AI_GDPR`) is a **static compliance scanner for AI codebases**. Point it at a public GitHub repo; deterministic scanners detect AI-system patterns (biometric libraries, LLM SDKs, decision-making surfaces, missing model cards), map them to EU AI Act + GDPR obligations from a Neo4j-backed knowledge graph (2,301 nodes), and return a report of likely violations with `file:line` anchors and article citations. The architecture is three FastAPI/Next.js services orchestrated by LangGraph; the moat is the rule corpus, not the LLM.
 
 The project pivoted in early 2026 from a free-text "describe your AI system" classifier to this static scanner. The pivot is the most important piece of context — see [`devlog/design-evolution/v02-static-scanner-pivot.md`](devlog/design-evolution/v02-static-scanner-pivot.md).
 
@@ -105,4 +105,4 @@ Quick reference:
 
 ---
 
-*This file follows the methodology in [`DOCS_PLAYBOOK.md`](DOCS_PLAYBOOK.md) at the project root. That playbook is the canonical reference; this file is its instantiation for AlloyCode.*
+*This file follows the methodology in [`DOCS_PLAYBOOK.md`](DOCS_PLAYBOOK.md) at the project root. That playbook is the canonical reference; this file is its instantiation for ArticleTrace.*

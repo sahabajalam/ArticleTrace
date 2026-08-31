@@ -35,7 +35,7 @@ order.
 The URL-safe identifier. Rules:
 
 - Lowercase, hyphenated, ASCII only.
-- 3–6 words. `alloycode-compliance-scanner` works;
+- 3–6 words. `articletrace-compliance-scanner` works;
   `my-cool-graph-rag-thing-2-final` doesn't.
 - Describe the **product**, not the technology. `compliance-scanner`
   ages well; `langchain-rag-app` looks dated within a year.
@@ -69,7 +69,7 @@ intended audience.
 The hook. Two parts: `<Product>: <one-line description of what it
 does>`. Examples:
 
-- `AlloyCode: Static Scanner for EU AI Act & GDPR Compliance` ✓
+- `ArticleTrace: Static Scanner for EU AI Act & GDPR Compliance` ✓
 - `MyApp: A Cool Project I Built` ✗ (no information)
 - `Smart Graph RAG: Navigating the EU AI Act & GDPR` ⚠ (leads with
   technology, not action)

@@ -1,5 +1,5 @@
 ---
-title: AlloyCode — Quantified Retrieval Metrics
+title: ArticleTrace — Quantified Retrieval Metrics
 status: living
 last_verified: 2026-06-19
 source_of_truth: |
@@ -22,7 +22,7 @@ ai_guidance: |
   on the n=6 set are preserved under §History as Build A / Build B.
 ---
 
-# AlloyCode — Quantified Retrieval Metrics
+# ArticleTrace — Quantified Retrieval Metrics
 
 ## Headline (n=25 golden queries, top-k=15)
 
@@ -278,4 +278,4 @@ This is HNSW non-determinism. HNSW (Malkov & Yashunin 2016 §4.2) constructs its
   the n=6 set moved the headline by **0.0pp** here — the n=25 expansion did the
   structural job §5 predicted it would. Headline numbers unchanged; nothing was
   rewritten.
-- **2026-06-19 (n=25, current)** — Golden set expanded to 25 queries (7 single-hop / 11 multi-hop / 7 out-of-scope per the audit's §4.3 plan; see [`../01_AlloyCode.md`](../01_AlloyCode.md) §4.3 — originally specified 12/10/8 split). Headline citation recall@15 = **81.8% hybrid_rrf**. Added 3-mode comparison ([`12_eval_three_mode.py`](../knowledge_engine/scripts/12_eval_three_mode.py)) + RAGAS-equivalent context relevance ([`13_eval_ragas_equivalent.py`](../knowledge_engine/scripts/13_eval_ragas_equivalent.py)) + CI workflow ([`.github/workflows/golden-tests.yml`](../.github/workflows/golden-tests.yml)). RAGAS-equivalent context relevance @15 = 45.9% mean.
+- **2026-06-19 (n=25, current)** — Golden set expanded to 25 queries (7 single-hop / 11 multi-hop / 7 out-of-scope per the audit's §4.3 plan; see [`../01_ArticleTrace.md`](../01_ArticleTrace.md) §4.3 — originally specified 12/10/8 split). Headline citation recall@15 = **81.8% hybrid_rrf**. Added 3-mode comparison ([`12_eval_three_mode.py`](../knowledge_engine/scripts/12_eval_three_mode.py)) + RAGAS-equivalent context relevance ([`13_eval_ragas_equivalent.py`](../knowledge_engine/scripts/13_eval_ragas_equivalent.py)) + CI workflow ([`.github/workflows/golden-tests.yml`](../.github/workflows/golden-tests.yml)). RAGAS-equivalent context relevance @15 = 45.9% mean.

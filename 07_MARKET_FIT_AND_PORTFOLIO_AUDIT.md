@@ -135,7 +135,7 @@ Short answer: **the strategy is sound and the frozen May snapshot largely holds.
 
 **What needs correcting:**
 
-1. **Project 1 is mislabelled as "sparse" and deferred on a false premise.** `project_calibration/01_AlloyCode.md`'s banner defers EU_AI_GDPR to Phase 3 because it is "sparse (empty README, no PORTFOLIO_ENTRY)." The repo audit (§6.1) shows the opposite: it is one of the **most mature** projects — three services, a 2,301-node Neo4j knowledge graph, a 6-scanner deterministic pipeline, a 4-agent LangGraph workflow, full Cloud Run tooling, a CI cron, *and* a `PORTFOLIO_ENTRY.md` plus a detailed devlog. The deferral may still be defensible on *focus* grounds (don't run three active projects at once), but the stated *reason* is factually wrong and should be rewritten — especially because EU AI Act compliance is a hot 2026 lane (§6.1).
+1. **Project 1 is mislabelled as "sparse" and deferred on a false premise.** `project_calibration/01_ArticleTrace.md`'s banner defers EU_AI_GDPR to Phase 3 because it is "sparse (empty README, no PORTFOLIO_ENTRY)." The repo audit (§6.1) shows the opposite: it is one of the **most mature** projects — three services, a 2,301-node Neo4j knowledge graph, a 6-scanner deterministic pipeline, a 4-agent LangGraph workflow, full Cloud Run tooling, a CI cron, *and* a `PORTFOLIO_ENTRY.md` plus a detailed devlog. The deferral may still be defensible on *focus* grounds (don't run three active projects at once), but the stated *reason* is factually wrong and should be rewritten — especially because EU AI Act compliance is a hot 2026 lane (§6.1).
 
 2. **Project 4's calibration plan has drifted from the live product.** `02_AlloyNext.md` plans a "LangGraph rename," "ship one MCP server," and a "DeepEval harness." The live `SYSTEM.md` (verified 2026-06-14) shows: the pipeline is **still a hand-rolled `ThreadPoolExecutor` fan-out, not LangGraph**; **MCP is in "locked negative space"** (explicitly *not* to be built); and there is still no DeepEval harness. The plan and the product's own locked-scope list now contradict each other — reconcile before spending Phase-2 hours on a LangGraph rename the product owner has effectively vetoed.
 
@@ -167,7 +167,7 @@ Synthesising §2–§3 into the operative levers, in priority order:
 
 Each project below: **what it is → how it covers the JD requirements → gaps → how to fill (ranked cheapest/highest-leverage first).** Coverage uses ✓✓ strong / ✓ present / ~ partial / ✗ absent.
 
-### 6.1 Project 1 — `Project_1_EUAI_GDPR` (AlloyCode / "Aegis")
+### 6.1 Project 1 — `Project_1_EUAI_GDPR` (ArticleTrace / "Aegis")
 
 **What it is.** A static compliance scanner for AI codebases: point it at a GitHub repo, deterministic scanners detect AI-system patterns, and they're mapped to EU AI Act + GDPR obligations with `file:line` anchors and article citations. Three services — Next.js 16 frontend, FastAPI + LangGraph orchestrator, FastAPI knowledge engine over Neo4j. **This is a mature system, not a sparse one** (correcting the `10Weeks` banner).
 
@@ -194,7 +194,7 @@ Verified specifics: 2,301-node / 4,423-rel Neo4j graph; 2,198 embeddings (3072-d
 1. **Deploy the demo (highest leverage, low effort).** The Cloud Run tooling is written; the demo URL is still "pending." Running `./gcp.ps1 -Action deploy` and getting a live URL converts a "scripted" claim into Lever-4 evidence. If deploy is blocked, a 60-second Loom of a real scan (a `face-api` import → AI Act Art 5 finding) is the interim.
 2. **Surface quantified eval numbers.** Produce retrieval metrics (recall@k on the golden queries) and a RAGAS-style or precision number for the legal-citation mapping. Currently the rigour is architectural, not numeric — and §3.3 ranks numbers first.
 3. **Clean the cruft (cheap credibility).** Empty path-with-spaces artifact dirs (`srcagents`, `.githubworkflows`, `testsunit`, etc.), `frontend/ts_errors.txt`, and the `legacy_prototypes/` tree all read as careless to a reviewer browsing the repo. Delete or `.gitignore`.
-4. **Resolve the tri-naming.** AlloyCode (code/UI) vs Aegis (portfolio docs) vs EU_AI_GDPR (directory) will confuse a reviewer. Pick one external name.
+4. **Resolve the tri-naming.** ArticleTrace (code/UI) vs Aegis (portfolio docs) vs EU_AI_GDPR (directory) will confuse a reviewer. Pick one external name.
 5. **Decide the HITL story.** The supervisor *removed* human-in-the-loop (deterministic findings need no pause), but "human oversight" is an EU AI Act selling point. Either re-add an approval gate for Critical findings or have the explicit rationale ready for the inevitable follow-up.
 6. **Root README.** GitHub shows the root README first; copy `devlog/SYSTEM.md`'s top section there.
 

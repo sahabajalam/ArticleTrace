@@ -1,7 +1,7 @@
 #!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-    Unified lifecycle controller for the AlloyCode Compliance Engine pipeline.
+    Unified lifecycle controller for the ArticleTrace Compliance Engine pipeline.
 
 .DESCRIPTION
     Merges the previous start-all-modules / stop-all-modules / terminate-ports /
@@ -60,7 +60,7 @@ param(
 
 function Show-Usage {
     Write-Host ""
-    Write-Host "  pipeline.ps1 - AlloyCode Compliance Engine lifecycle controller" -ForegroundColor Cyan
+    Write-Host "  pipeline.ps1 - ArticleTrace Compliance Engine lifecycle controller" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "  Usage: .\pipeline.ps1 -Action <action> [options]" -ForegroundColor White
     Write-Host ""
@@ -297,7 +297,7 @@ function Invoke-RestartOrch {
 # ---------- Action: stop ----------
 
 function Invoke-Stop {
-    Write-Header "AlloyCode Compliance Engine - Shutdown"
+    Write-Header "ArticleTrace Compliance Engine - Shutdown"
     Write-Status "  Mode: $Mode" "Yellow"
     Write-Host ""
 
@@ -356,7 +356,7 @@ function Invoke-Stop {
 # ---------- Action: start ----------
 
 function Invoke-Start {
-    Write-Header "AlloyCode Compliance Engine - Startup"
+    Write-Header "ArticleTrace Compliance Engine - Startup"
     Write-Status "  Mode: $Mode" "Yellow"
     Write-Status "  Root: $ProjectRoot" "DarkGray"
     Write-Host ""
@@ -580,7 +580,7 @@ function Invoke-Start {
             } -ArgumentList $script:NpmPath, $frontendPath
 
             $jobs += @{ Name = "frontend"; Job = $frontendJob; Port = 3000 }
-            Write-Step "frontend" "AlloyCode Dashboard -> :3000" "Cyan"
+            Write-Step "frontend" "ArticleTrace Dashboard -> :3000" "Cyan"
             Write-Status "    Job ID: $($frontendJob.Id)" "DarkGray"
 
             Wait-ForService -Name "Frontend" -Port 3000 -MaxWaitSec 45
@@ -601,7 +601,7 @@ function Invoke-Start {
     if (-not $SkipFrontend) {
         Write-Host ""
         Write-Status "  Frontend:" "Cyan"
-        Write-Status "    AlloyCode Dashboard         -> http://localhost:3000" "Cyan"
+        Write-Status "    ArticleTrace Dashboard         -> http://localhost:3000" "Cyan"
     }
 
     Write-Host ""

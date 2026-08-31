@@ -12,7 +12,7 @@ created: 2026-05-20
 last_used: 2026-05-20
 last_refined: 2026-05-20
 origin_session: |
-  Bootstrapping the living-docs system for the AlloyCode EU AI Act + GDPR
+  Bootstrapping the living-docs system for the ArticleTrace EU AI Act + GDPR
   compliance scanner. The repo had three disconnected piles of documentation
   (root-level ops docs, a `docs/` dir, and an unreferenced `gdpr context/`
   brainstorm dir). A naive "read all the docs first" pass would have produced
@@ -76,4 +76,4 @@ Output as a plan. Surface clarifying questions before finalising.
 
 ## History
 
-- 2026-05-20: bootstrapping AlloyCode living-docs system (origin session). **Outcome:** caught at least one drift point (HITL approval removed from supervisor.py but still referenced in docs/README.md), produced a 4-phase methodology plan that survived user review with maximalist choices on every decision (distill+preserve archive, relocate operational docs, include v03, bootstrap prompt library) — implying the plan structure itself was sound.
+- 2026-05-20: bootstrapping ArticleTrace living-docs system (origin session). **Outcome:** caught at least one drift point (HITL approval removed from supervisor.py but still referenced in docs/README.md), produced a 4-phase methodology plan that survived user review with maximalist choices on every decision (distill+preserve archive, relocate operational docs, include v03, bootstrap prompt library) — implying the plan structure itself was sound.

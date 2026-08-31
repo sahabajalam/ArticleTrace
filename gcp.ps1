@@ -1,7 +1,7 @@
 #!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-    Unified GCP lifecycle controller for AlloyCode.
+    Unified GCP lifecycle controller for ArticleTrace.
 
 .DESCRIPTION
     Merges the previous deploy_gcp.ps1 / setup-secrets.ps1 / deploy.ps1 /
@@ -162,7 +162,7 @@ function Push-Secret {
 
 function Show-Usage {
     Write-Host ""
-    Write-Host "  gcp.ps1 - AlloyCode GCP lifecycle controller" -ForegroundColor Cyan
+    Write-Host "  gcp.ps1 - ArticleTrace GCP lifecycle controller" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "  Usage: .\gcp.ps1 -Action <action> [options]" -ForegroundColor White
     Write-Host ""
@@ -289,7 +289,7 @@ function Invoke-Setup {
     }
     else {
         Write-Step "Creating GCP project '$ProjectId'..."
-        Invoke-Native "project create" { & $gcloud projects create $ProjectId --name="AlloyCode" }
+        Invoke-Native "project create" { & $gcloud projects create $ProjectId --name="ArticleTrace" }
         Write-OK "Project created."
     }
     Invoke-Native "set project" { & $gcloud config set project $ProjectId --quiet }
@@ -315,7 +315,7 @@ function Invoke-Setup {
             & $gcloud artifacts repositories create $RepoName `
                 --repository-format=docker `
                 --location=$Region `
-                --description="AlloyCode images" `
+                --description="ArticleTrace images" `
                 --quiet
         }
         Write-OK "Repo created: $registry"
@@ -682,7 +682,7 @@ function Invoke-Cleanup {
     Write-Header "CLEANUP COMPLETE"
     Write-Host @"
 
-  All AlloyCode resources have been removed from '$ProjectId'.
+  All ArticleTrace resources have been removed from '$ProjectId'.
 
   To redeploy from scratch:
     1. .\gcp.ps1 -Action setup      # project, APIs, registry, secrets

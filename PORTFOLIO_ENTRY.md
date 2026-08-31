@@ -1,4 +1,4 @@
-# Portfolio Entry — AlloyCode Compliance Scanner
+# Portfolio Entry — ArticleTrace Compliance Scanner
 
 Field-by-field values for the portfolio website form, reflecting the
 current (post-pivot) state of the project. Replaces the prior
@@ -10,14 +10,14 @@ assessment system that has since been retired.
 ## ID (Slug)
 
 ```
-alloycode-compliance-scanner
+articletrace-compliance-scanner
 ```
 
 **Old:** `smart-graph-rag`.
 
 The project pivoted from free-text RAG Q&A to static repo compliance
 scanning. The slug should describe the actual product, not the
-internal retrieval mechanism. AlloyCode is the product name; "scanner"
+internal retrieval mechanism. ArticleTrace is the product name; "scanner"
 is the verb. URL-safe, lowercase, hyphenated.
 
 ---
@@ -39,7 +39,7 @@ this one is AI-specific.
 ## Title
 
 ```
-AlloyCode: Static Scanner for EU AI Act & GDPR Compliance
+ArticleTrace: Static Scanner for EU AI Act & GDPR Compliance
 ```
 
 **Old:** `Smart Graph RAG: Navigating the EU AI Act & GDPR`.
@@ -73,7 +73,7 @@ whether to click. Three things it must do:
 ## Long Description
 
 ```
-AlloyCode is a static compliance scanner for AI codebases. Point it at
+ArticleTrace is a static compliance scanner for AI codebases. Point it at
 a GitHub repo and it returns a structured report of likely regulatory
 violations — each finding linked to the exact file and line number,
 mapped to the specific EU AI Act / GDPR articles the code triggers,
@@ -84,7 +84,7 @@ Existing tools either collect self-reported answers (Credo AI,
 Holistic AI), audit runtime behavior with training-data access
 (Fairlearn, AIF360), or validate LLM outputs (Guardrails AI). None
 statically read AI application code against regulatory obligations.
-AlloyCode does.
+ArticleTrace does.
 
 Architecturally, scanning is deterministic and fast: AST analysis,
 import detection, and file-pattern matching find facts in the code.
@@ -169,7 +169,7 @@ product does, not what it imports.
 ## Image URL
 
 ```
-/assets/project_card/AlloyCode-Compliance-Scanner.png
+/assets/project_card/ArticleTrace-Compliance-Scanner.png
 ```
 
 You need a new image. The old one (`Smart Graph RAG.png.png`) is

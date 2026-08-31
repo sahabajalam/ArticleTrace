@@ -36,7 +36,7 @@ export default function Sidebar() {
                     <div className="absolute inset-0 rounded-lg bg-white/10" />
                 </div>
                 <div className="min-w-0">
-                    <span className="font-bold text-[15px] text-slate-900 tracking-tight block leading-tight">AlloyCode</span>
+                    <span className="font-bold text-[15px] text-slate-900 tracking-tight block leading-tight">ArticleTrace</span>
                     <span className="text-[10px] font-medium text-slate-400 tracking-wide uppercase">Compliance Engine</span>
                 </div>
             </div>

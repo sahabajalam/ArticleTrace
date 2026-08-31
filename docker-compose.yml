@@ -1,6 +1,6 @@
 version: '3.8'
 
-# Master docker-compose for AlloyCode (orchestrator + knowledge_engine).
+# Master docker-compose for ArticleTrace (orchestrator + knowledge_engine).
 # The monitor module was decommissioned — it provided no signal without
 # continuous production traffic.
 
@@ -14,7 +14,7 @@ services:
   # ========================================
   orchestrator:
     build: ./orchestrator
-    container_name: alloycode-orchestrator
+    container_name: articletrace-orchestrator
     ports:
       - "8004:8004"
     environment:
@@ -37,7 +37,7 @@ services:
 
   orchestrator-db:
     image: postgres:15-alpine
-    container_name: alloycode-orchestrator-db
+    container_name: articletrace-orchestrator-db
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -57,7 +57,7 @@ services:
 
   orchestrator-redis:
     image: redis:7-alpine
-    container_name: alloycode-orchestrator-redis
+    container_name: articletrace-orchestrator-redis
     ports:
       - "6379:6379"
     volumes:
@@ -71,7 +71,7 @@ services:
   # ========================================
   graphrag-api:
     build: ./knowledge_engine
-    container_name: alloycode-knowledge-engine
+    container_name: articletrace-knowledge-engine
     ports:
       - "8001:8001"
     environment:

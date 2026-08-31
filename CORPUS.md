@@ -1,6 +1,6 @@
 # Corpus provenance and reuse terms
 
-AlloyCode's code is Apache-2.0 (see `LICENSE`). **That licence does not and
+ArticleTrace's code is Apache-2.0 (see `LICENSE`). **That licence does not and
 cannot cover the regulatory content this repository redistributes** — those
 texts belong to the European Union. This file records where each dataset came
 from, what may be done with it, and what has *not* been verified.

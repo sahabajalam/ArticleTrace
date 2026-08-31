@@ -1,4 +1,4 @@
-"""FastAPI application for the AlloyCode scan orchestrator."""
+"""FastAPI application for the ArticleTrace scan orchestrator."""
 
 from contextlib import asynccontextmanager
 from datetime import datetime
@@ -55,7 +55,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="AlloyCode Scan Orchestrator",
+    title="ArticleTrace Scan Orchestrator",
     description="Repository-based EU AI Act / GDPR compliance scanner",
     version="2.0.0",
     lifespan=lifespan,
@@ -76,7 +76,7 @@ app.include_router(scans_router)
 @app.get("/")
 async def root():
     return {
-        "name": "AlloyCode Scan Orchestrator",
+        "name": "ArticleTrace Scan Orchestrator",
         "version": "2.0.0",
         "status": "running",
         "endpoints": {

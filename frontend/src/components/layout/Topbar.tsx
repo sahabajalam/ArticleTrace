@@ -15,7 +15,7 @@ export default function Topbar() {
     const segments = pathname?.split("/").filter(Boolean) ?? [];
 
     const crumbs = [
-        { label: "AlloyCode", href: "/" },
+        { label: "ArticleTrace", href: "/" },
         ...segments.map((seg, i) => ({
             label: BREADCRUMB_MAP[seg] ?? (seg.length > 12 ? `${seg.slice(0, 8)}...` : seg),
             href: "/" + segments.slice(0, i + 1).join("/"),

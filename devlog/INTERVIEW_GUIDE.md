@@ -1,5 +1,5 @@
 ---
-title: AlloyCode — Interview Guide
+title: ArticleTrace — Interview Guide
 status: living
 last_verified: 2026-06-19
 companion_docs:
@@ -7,7 +7,7 @@ companion_docs:
   - devlog/design-evolution/v02-static-scanner-pivot.md
   - devlog/design-evolution/v04-hitl-decision.md
 ai_guidance: |
-  Line-by-line defence of the non-obvious design choices in AlloyCode. Each
+  Line-by-line defence of the non-obvious design choices in ArticleTrace. Each
   section is one question a recruiter or interviewer will ask, with a
   three-sentence answer, the follow-up trap, and the citable code/doc
   reference. Pattern modelled on Project 2's `INTERVIEW_GUIDE.md`. This is
@@ -20,7 +20,7 @@ ai_guidance: |
   a pre-rehearsed answer.
 ---
 
-# AlloyCode — Interview Guide
+# ArticleTrace — Interview Guide
 
 > The market shifted: 38.5% of technical interviews show some form of AI-assisted cheating, so the format moved to line-by-line interrogation of non-obvious choices. Every section below is one such question — three-sentence answer + the follow-up trap + the citable source.
 
@@ -44,7 +44,7 @@ Aim to deliver each answer with variable latency. Per the audit §3.4, a flat 3�
 
 **Setup:** "Most AI-governance tools collect questionnaire answers from the user — Credo AI, Holistic AI, Aporia. You went the other way. Why?"
 
-**Answer:** Free-text input is vibes — every demo looks the same and you can't ground-truth a textbox. The market gap is *code-level* compliance reading: Fairlearn audits runtime models, Guardrails validates LLM outputs, nothing statically reads AI application code against regulatory obligations. AlloyCode took the static-scanner position because deterministic findings with `file:line` anchors are auditable in a way that LLM-generated risk categories from a user description never will be.
+**Answer:** Free-text input is vibes — every demo looks the same and you can't ground-truth a textbox. The market gap is *code-level* compliance reading: Fairlearn audits runtime models, Guardrails validates LLM outputs, nothing statically reads AI application code against regulatory obligations. ArticleTrace took the static-scanner position because deterministic findings with `file:line` anchors are auditable in a way that LLM-generated risk categories from a user description never will be.
 
 **Follow-up trap:** "But couldn't you just give the LLM the code and ask it to classify?" — Yes, and that's what most demos do. The reason we don't: an LLM categorisation has no falsifiable evidence layer. A YAML rule + an AST match + a code anchor is reproducible; an LLM saying "this looks high-risk" is not. The whole moat is the rule corpus, not the LLM.
 
@@ -82,7 +82,7 @@ Aim to deliver each answer with variable latency. Per the audit §3.4, a flat 3�
 
 **Answer:** The pre-pivot system had a HITL pause because the classifier was an LLM with no calibrated confidence — we needed a human to override low-confidence categorisations. When we pivoted to a deterministic rule classifier, the trigger condition disappeared: there's no uncertainty score to gate on, so the branch would fire either always-on or never. We chose to remove it rather than retain a pause that adds latency without adding judgment — the oversight obligation lives one layer up.
 
-**Follow-up trap (the Article 14 trap):** "But Article 14 still applies." — Article 14 imposes the oversight obligation on the *operator* of the high-risk system, not the analysis tool reporting on it. AlloyCode is `mypy`-shaped — it surfaces evidence, a human reads the report and decides. Adding HITL inside `mypy` would be a category error; adding it inside AlloyCode is the same category error one layer up. If AlloyCode were ever a CI-blocking enforcement tool, the gate would live in the wrapping GitHub Action, not in AlloyCode itself.
+**Follow-up trap (the Article 14 trap):** "But Article 14 still applies." — Article 14 imposes the oversight obligation on the *operator* of the high-risk system, not the analysis tool reporting on it. ArticleTrace is `mypy`-shaped — it surfaces evidence, a human reads the report and decides. Adding HITL inside `mypy` would be a category error; adding it inside ArticleTrace is the same category error one layer up. If ArticleTrace were ever a CI-blocking enforcement tool, the gate would live in the wrapping GitHub Action, not in ArticleTrace itself.
 
 **Reference:** [`design-evolution/v04-hitl-decision.md`](design-evolution/v04-hitl-decision.md) — the full decision record, including §4 "EU AI Act counter-argument and the response" and §5 "What would change this decision."
 
@@ -118,7 +118,7 @@ Aim to deliver each answer with variable latency. Per the audit §3.4, a flat 3�
 
 **Answer:** Depth, not breadth, per the audit §3.4. Each of the 10 rules has a passing test, a regulatory citation, and at least one golden case that exercises it end-to-end. Shipping 100 rules without that scaffolding produces a scanner that flags everything and explains nothing — which is worse than a scanner that catches less but cites the article every finding violates. The 10-rule MVP is the deepest 10, not the broadest 10; the rule-as-data design ([`rule_loader.py`](../orchestrator/src/code_analyzer/rule_loader.py)) means adding rule 11 is a YAML file, not a code change.
 
-**Follow-up trap:** "OK, but for a production tool you'd need broader coverage." — Yes, and the way to get there isn't to hand-write 90 more rules; it's to crowdsource them, the way Semgrep does, with each contribution coming with a test and a citation. That's a community pattern, not a single-developer pattern; it earns time only after AlloyCode has users.
+**Follow-up trap:** "OK, but for a production tool you'd need broader coverage." — Yes, and the way to get there isn't to hand-write 90 more rules; it's to crowdsource them, the way Semgrep does, with each contribution coming with a test and a citation. That's a community pattern, not a single-developer pattern; it earns time only after ArticleTrace has users.
 
 **Reference:** [`orchestrator/src/code_analyzer/rules/`](../orchestrator/src/code_analyzer/rules/) — the 10 YAML files; [`NORTHSTAR.md`](NORTHSTAR.md) Part IV ("More YAML rules beyond the current 10").
 
@@ -126,7 +126,7 @@ Aim to deliver each answer with variable latency. Per the audit §3.4, a flat 3�
 
 ## Q8 — Walk me through GT-01 (résumé screening) end-to-end.
 
-**Setup:** "Pick one of your golden cases and walk me through what happens when AlloyCode scans it."
+**Setup:** "Pick one of your golden cases and walk me through what happens when ArticleTrace scans it."
 
 **Answer:** GT-01 is a Python repo that imports a CV-ranking library and POSTs ranked candidates to a downstream HR system. (1) `ImportScanner` flags `cv_screening` / ML-classification imports and records them in the library map. (2) `AstScanner` finds the `rank_candidates(candidates)` function as a "decision surface" — it returns a sorted list with no human-review hook. (3) The LLM filter passes on it (real production code, not a test mock). (4) `AstRulesScanner` matches rule `AI-005` (automated decision endpoint affecting employment) and rule `AI-007` (no override mechanism). (5) The deterministic classifier sees rule_id `AI-005` triggering Annex III(4) employment + GDPR Article 22 (automated profiling), assigns `HIGH_RISK`, and the `LegalResearchAgent` queries Neo4j for AIACT_ART_6 + GDPR_ART_22 + the connected Recitals and EDPB guidelines. (6) The narrative generator writes the executive summary and remediation steps; `synthesize` packages everything into a `ScanReport` JSON.
 
@@ -140,7 +140,7 @@ Aim to deliver each answer with variable latency. Per the audit §3.4, a flat 3�
 
 **Setup:** "Your earlier architecture had a third service for drift detection, bias monitoring, and Prometheus. It's gone. Why?"
 
-**Answer:** Honest audit — it produced no usable signal in a portfolio demo without continuous production traffic. Drift detectors need a baseline distribution; bias monitors need labelled outcomes; Prometheus needs a workload that emits metrics. None of those existed because AlloyCode is a batch-scan tool, not a continuously-served model. We could have kept the module as a "look, observability" prop, but that's exactly the kind of LinkedIn-buzzword exhibit the audit (§3.4) says no longer survives follow-up.
+**Answer:** Honest audit — it produced no usable signal in a portfolio demo without continuous production traffic. Drift detectors need a baseline distribution; bias monitors need labelled outcomes; Prometheus needs a workload that emits metrics. None of those existed because ArticleTrace is a batch-scan tool, not a continuously-served model. We could have kept the module as a "look, observability" prop, but that's exactly the kind of LinkedIn-buzzword exhibit the audit (§3.4) says no longer survives follow-up.
 
 **Follow-up trap:** "But shouldn't a compliance tool have observability?" — Yes — *operational* observability (per-scan cost, p95 latency, eval pass-rate). Not *ML* observability (drift, bias, prediction distributions), which is what the decommissioned module was. Operational observability is in [`cost_tracker.py`](../orchestrator/src/cost_tracker.py) and structured logs; the ML half wasn't useful and didn't survive the cut.
 
@@ -152,7 +152,7 @@ Aim to deliver each answer with variable latency. Per the audit §3.4, a flat 3�
 
 **Setup:** A senior engineer's standard last question. The trap is to dodge it.
 
-**Answer:** Three honest weaknesses. (1) **The orchestrator's Postgres connection is degraded on the live URL** — KE + frontend are healthy on Cloud Run; the orchestrator's `/health` reports `database: unavailable` so end-to-end scans can't yet persist. Fix is investigation-pending (BUG_LOG DL-024); not blocking the architecture demo, but the "click here, scan a repo" story isn't complete. (2) **Multimodal retrieval is designed but not built.** ColPali integration is scaffolded at `knowledge_engine/src/multimodal/` and there's a v05 design record, but no GPU box, no PDFs ingested, no MaxSim benchmark. Layout-heavy content in EU AI Act Annexes is currently invisible to the text-only path. Honest position: "designed and scaffolded, not deployed — production text path already hits 81.8% citation recall@15 hybrid without it." (3) **The headline citation-recall number is 81.8% hybrid on a 25-query golden set, but entity recall is only 25%** — because the abstract Concept/RiskCategory nodes have short labels whose embeddings don't compete with paragraph-length article embeddings. Fix is structural (separate entity-name fuzzy match arm), not a bug. **A complete EU AI Act compliance tool would need 100+ rules and a partnership with an actual law firm** to maintain the rule corpus against amendment cycles. AlloyCode is a sharp 10-rule MVP demonstrating the architecture; productionising it is a different project with different ownership.
+**Answer:** Three honest weaknesses. (1) **The orchestrator's Postgres connection is degraded on the live URL** — KE + frontend are healthy on Cloud Run; the orchestrator's `/health` reports `database: unavailable` so end-to-end scans can't yet persist. Fix is investigation-pending (BUG_LOG DL-024); not blocking the architecture demo, but the "click here, scan a repo" story isn't complete. (2) **Multimodal retrieval is designed but not built.** ColPali integration is scaffolded at `knowledge_engine/src/multimodal/` and there's a v05 design record, but no GPU box, no PDFs ingested, no MaxSim benchmark. Layout-heavy content in EU AI Act Annexes is currently invisible to the text-only path. Honest position: "designed and scaffolded, not deployed — production text path already hits 81.8% citation recall@15 hybrid without it." (3) **The headline citation-recall number is 81.8% hybrid on a 25-query golden set, but entity recall is only 25%** — because the abstract Concept/RiskCategory nodes have short labels whose embeddings don't compete with paragraph-length article embeddings. Fix is structural (separate entity-name fuzzy match arm), not a bug. **A complete EU AI Act compliance tool would need 100+ rules and a partnership with an actual law firm** to maintain the rule corpus against amendment cycles. ArticleTrace is a sharp 10-rule MVP demonstrating the architecture; productionising it is a different project with different ownership.
 
 **Follow-up trap:** "What about test coverage? Security? Multi-language support?" — Multi-language is correctly deferred (NORTHSTAR Part IV — Python+JS covers the AI ecosystem; polyglot expansion is breadth, not depth). Test coverage exists at the unit level for the agents and classifier ([`orchestrator/tests/unit/`](../orchestrator/tests/unit/)); the gap is integration-level coverage tying golden cases to expected reports, which is the eval work in (2). Security is out-of-scope for a portfolio scanner that only reads code, never writes or executes it.
 

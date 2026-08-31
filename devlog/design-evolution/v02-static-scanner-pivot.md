@@ -128,7 +128,7 @@ The pivot adopts a shape that converged across modern static / compliance scanne
 | GitGuardian | (Phase 3) pre-commit / on-save delta scanning for low-friction UX. |
 | Trivy | Deterministic scanning first; LLMs only for narrative post-hoc. |
 
-Core principle shared across all of them: **LLMs are kept out of the detection hot path.** AlloyCode follows the same rule.
+Core principle shared across all of them: **LLMs are kept out of the detection hot path.** ArticleTrace follows the same rule.
 
 ## 6. What's preserved from v01
 

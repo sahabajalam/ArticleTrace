@@ -1,5 +1,5 @@
 ---
-title: AlloyCode — Bug Log
+title: ArticleTrace — Bug Log
 status: living
 last_verified: 2026-06-19
 companion_doc: CHANGELOG.md
@@ -18,7 +18,7 @@ ai_guidance: |
   importer does not model (Date, Severity, Affected, Lesson, Notes) live under
   **Thinking** with their labels intact.
 ---
-# Development Log — AlloyCode
+# Development Log — ArticleTrace
 
 > Running record of significant issues encountered during development and the exact fixes applied.
 > Oldest first; append new entries at the bottom.
