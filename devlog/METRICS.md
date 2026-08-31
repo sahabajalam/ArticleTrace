@@ -28,11 +28,11 @@ ai_guidance: |
 
 | Metric | Value | What it measures |
 |---|---|---|
-| **Citation recall @15 (hybrid_rrf)** | **81.8% (27/33)** | Of all expected *Article* citations across the 25 queries, what fraction surface in the top-15 retrieved entities under the production RRF path. **This is the headline number for external use.** |
+| **Citation recall @15 (hybrid_rrf)** | **81.8% (27/33)** | Of all expected *Article* citations across the 25 queries, what fraction surface in the top-15 retrieved entities under the production RRF path. **This is the headline number for external use.** Unchanged by the v08 P1 arms. |
 | Citation recall @15 (vector_only) | 72.7% (24/33) | Same metric, vector-only retrieval. Hybrid beats vector by ~9pp — RRF validates. |
 | Citation recall @15 (graph_only) | 21.2% (7/33) | Same metric, vector-seeded graph traversal only. Confirms graph alone is weak; it earns its place by complementing vector. |
-| Entity recall @15 (hybrid_rrf) | 25% (6/24) | Non-Article entities (Concepts, Risk Categories, Rights, Penalties). Lower because category nodes have short labels — see §4 for the structural explanation. |
-| **Pass rate @15 (hybrid_rrf)** | **68% (17/25)** | Queries scoring ≥50% combined citation+entity retrieval. Includes negative cases. |
+| **Entity recall @15 (hybrid_rrf)** | **62.5% (15/24)** | Non-Article entities (Concepts, Risk Categories, Rights, Penalties). Was 25% before the v08 name arm — see §6. |
+| **Pass rate @15 (hybrid_rrf)** | **76% (19/25)** | Queries scoring ≥50% combined citation+entity retrieval. Includes negative cases. Was 68% before the v08 name arm. |
 | **Context relevance @15 (RAGAS-equivalent)** | **45.9% mean** | Per-query LLM-judge precision: of the 15 retrieved entities, what fraction are "directly relevant" to the query per a Gemini-2.5-flash judge. n=25 queries × 15 entities = 375 judge calls. |
 
 ## Reproducibility
@@ -194,6 +194,60 @@ Entity recall@15 is 25% (hybrid) vs citation recall 81.8%. The gap is structural
 - **Concepts / Risk Categories / Rights / Penalties** are category nodes with short labels (often <10 tokens). Their embeddings encode a single concept name. Vector similarity over a short label loses to vector similarity over a paragraph article every time.
 
 The likely fix is **a separate entity-name fuzzy match path** (trigram + alias index) merged into RRF — see [`NORTHSTAR.md`](NORTHSTAR.md) Part III. Estimated impact: 5–7 of the 10 currently-missed entity hits would land → entity recall@15 goes 6 → ~11 of 24 (~46%).
+
+---
+
+## §6 — v08 P1 retrieval arms: measured ablation (2026-08-31)
+
+Two changes were proposed in NORTHSTAR Part III: a lexical **entity-name
+index** as a third RRF arm, and a one-hop **COMPLEMENTS expansion** for
+cross-regulation coverage. Both were implemented and measured independently
+via [`scripts/14_eval_p1_arms.py`](../knowledge_engine/scripts/14_eval_p1_arms.py)
+(raw data: `golden_tests/p1_ablation_20260831.json`).
+
+| config | citation@15 | entity@15 | pass rate |
+|---|---|---|---|
+| baseline (both off) | 27/33 (81.8%) | 6/24 (25.0%) | 17/25 (68%) |
+| name arm only | 26/33 (78.8%) | 15/24 (62.5%) | 19/25 (76%) |
+| COMPLEMENTS only | 27/33 (81.8%) | 6/24 (25.0%) | 17/25 (68%) |
+| **both (production)** | **27/33 (81.8%)** | **15/24 (62.5%)** | **19/25 (76%)** |
+
+The baseline row reproduces the committed pre-change numbers exactly, which is
+what makes the deltas trustworthy.
+
+**By category:** single_hop 86% → 100%, multi_hop 46% → 63%, out_of_scope 57% →
+57% (correctly unchanged — the negative cases must not "improve").
+
+### What the name arm did
+
+Entity recall **25% → 62.5%**, against NORTHSTAR's estimate of ~46%; multi-hop
+**46% → 63%** against an estimate of ~55%. Both exceeded. The 9 newly-retrieved
+entities are precisely the class §4 predicted would be missed — short-label
+category nodes with no body text: `CONCEPT_DPIA`, `CONCEPT_CONSENT`,
+`CONCEPT_AUTOMATED_DECISION`, `CONCEPT_TRANSPARENCY_OBLIGATION`, `RISK_HIGH`
+(×3), `PEN_GDPR_TIER2`, `AIST_SOCIAL_SCORING_PUBLIC`. One of them,
+`PEN_AIACT_PROHIBITED`, carries no embedding at all and was unreachable by
+vector search on any budget.
+
+### What COMPLEMENTS did — and did not do
+
+**It did not do what it was proposed for.** NORTHSTAR predicted it would close
+`GT_02`'s citation miss (7/8 → 8/8). It did not: `GT_02` still misses both
+`GDPR_ART_22` and `AIACT_ART_14` in every configuration. Run alone,
+COMPLEMENTS changes nothing — every metric is identical to baseline.
+
+It earns its place for a different, measured reason. The name arm's one
+regression is `GT_18_AI_DECISION_RIGHTS`, where the newly-ranked entities push
+`GDPR_ART_22` out of the top-15 (citation 27/33 → 26/33). Adding COMPLEMENTS
+restores it, because `GDPR_ART_22 —COMPLEMENTS→ AIACT_ART_14` puts it back in
+the candidate set. So the pair is strictly better than either alone: **+37.5pp
+entity recall at zero citation cost**, where the name arm alone would have
+traded 3pp of the headline number for it.
+
+Keeping a component that shows no standalone effect is a deliberate call, and
+it rests on this interaction being measured rather than assumed. If the name
+arm is ever retuned, re-run the ablation — COMPLEMENTS' justification is
+entirely contingent on that displacement.
 
 ---
 

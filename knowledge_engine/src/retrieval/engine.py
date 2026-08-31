@@ -15,6 +15,7 @@ Query flow:
 from __future__ import annotations
 
 import time
+import re
 from typing import Any
 
 from google import genai
@@ -43,6 +44,9 @@ class RetrievalEngine:
         self.genai = genai_client
         self.embedding_model = embedding_model
         self.rrf_k = rrf_k
+        # Both v08 P1 arms default on; the eval flips them to isolate effects.
+        self.use_name_arm = True
+        self.use_complements = True
         self.default_top_k = default_top_k
         self.max_hops = max_hops
 
@@ -84,8 +88,25 @@ class RetrievalEngine:
             max_hops=max_hops,
         )
 
+        # Step 3b: Lexical name search — the third arm (v08 P1a). Short-label
+        # category nodes lose on cosine to paragraph-length Articles, and some
+        # carry no embedding at all; this reaches both.
+        name_results = (
+            self._name_search(question, top_k * 2, regulation_filter)
+            if self.use_name_arm
+            else []
+        )
+
+        # Step 3c: Cross-regulation expansion (v08 P1b) — one COMPLEMENTS hop
+        # off the strongest vector hits, so the counterpart regulation can
+        # surface on multi-hop questions.
+        if self.use_complements:
+            graph_results = graph_results + self._complements_expand(
+                [r["entity_id"] for r in vector_results[:5]]
+            )
+
         # Step 4: RRF fusion
-        fused = self._rrf_fusion(vector_results, graph_results)
+        fused = self._rrf_fusion(vector_results, graph_results, name_results)
 
         # Step 5: Return top-k
         return fused[:top_k]
@@ -163,12 +184,59 @@ class RetrievalEngine:
         results.sort(key=lambda x: x["graph_score"], reverse=True)
         return results
 
+    _LUCENE_SPECIAL = re.compile(r'[+\-&|!(){}\[\]^"~*?:\\/]')
+
+    @staticmethod
+    def _lucene_terms(question: str) -> str:
+        """Turn a natural question into a safe Lucene OR-expression.
+
+        User text reaches the query parser directly, so every reserved
+        character is stripped rather than escaped — a stray `?` or `:` from a
+        question would otherwise be a syntax error, not a bad match. Terms of
+        one or two characters are dropped: they match half the graph and drown
+        the arm's signal.
+        """
+        cleaned = RetrievalEngine._LUCENE_SPECIAL.sub(" ", question)
+        terms = [t for t in cleaned.split() if len(t) > 2]
+        return " OR ".join(terms)
+
+    def _name_search(
+        self, question: str, n_results: int, regulation_filter: str | None
+    ) -> list[dict[str, Any]]:
+        terms = self._lucene_terms(question)
+        if not terms:
+            return []
+        results = self.graph.name_search(terms, n_results, regulation_filter)
+        for r in results:
+            r["source"] = "name"
+        return results
+
+    def _complements_expand(self, seed_ids: list[str]) -> list[dict[str, Any]]:
+        """COMPLEMENTS neighbours, shaped like graph results for fusion."""
+        out: list[dict[str, Any]] = []
+        try:
+            for r in self.graph.complements_of(seed_ids):
+                out.append({
+                    "entity_id": r["entity_id"],
+                    "node_data": r.get("metadata", {}),
+                    "hop_depth": 1,
+                    # Ranked as a 1-hop neighbour: below direct vector hits,
+                    # above deeper traversal.
+                    "graph_score": 0.5,
+                    "seed_id": r.get("via", ""),
+                    "source": "complements",
+                })
+        except Exception:  # noqa: BLE001 — expansion is additive, never fatal
+            logger.warning("COMPLEMENTS expansion failed; continuing", exc_info=True)
+        return out
+
     def _rrf_fusion(
         self,
         vector_results: list[dict[str, Any]],
         graph_results: list[dict[str, Any]],
+        name_results: list[dict[str, Any]] | None = None,
     ) -> list[dict[str, Any]]:
-        """Reciprocal Rank Fusion of vector and graph results.
+        """Reciprocal Rank Fusion of vector, graph and name results.
 
         RRF score = sum(1 / (k + rank_i)) for each result list
         """
@@ -206,6 +274,21 @@ class RetrievalEngine:
             result_data[eid]["graph_score"] = r.get("graph_score", 0)
             result_data[eid]["hop_depth"] = r.get("hop_depth", 0)
             result_data[eid]["graph_rank"] = rank + 1
+
+        # Name rankings (third arm)
+        for rank, r in enumerate(name_results or []):
+            eid = r["entity_id"]
+            scores[eid] = scores.get(eid, 0) + 1.0 / (k + rank + 1)
+            if eid not in result_data:
+                result_data[eid] = {
+                    "entity_id": eid,
+                    "sources": [],
+                    "metadata": r.get("metadata", {}),
+                    "document": r.get("document", ""),
+                }
+            result_data[eid]["sources"].append("name")
+            result_data[eid]["name_score"] = r.get("name_score", 0)
+            result_data[eid]["name_rank"] = rank + 1
 
         # Build final ranked list
         ranked = []

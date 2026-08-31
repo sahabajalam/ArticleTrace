@@ -75,6 +75,102 @@ class GraphStore:
                 )
             logger.info("Indexes created for all entity types")
 
+    NAME_INDEX_NAME = "entity_name_fulltext"
+
+    def create_name_index(self) -> None:
+        """Full-text index over :Entity(name) — the third RRF arm (v08).
+
+        Category nodes (Concept, Right, Penalty, RiskCategory) carry a short
+        name and no body text, so their embeddings encode a bare label and
+        lose to paragraph-length Articles on cosine similarity every time
+        (METRICS.md §4). Some carry no embedding at all, putting them beyond
+        vector search entirely. Lexical matching on the name reaches both.
+        """
+        with self._session() as session:
+            session.run(
+                f"CREATE FULLTEXT INDEX {self.NAME_INDEX_NAME} IF NOT EXISTS "
+                f"FOR (n:Entity) ON EACH [n.name]"
+            )
+            logger.info("Full-text name index ensured: %s", self.NAME_INDEX_NAME)
+
+    def name_index_exists(self) -> bool:
+        with self._session() as session:
+            rec = session.run(
+                "SHOW INDEXES YIELD name WHERE name = $n RETURN count(*) AS c",
+                n=self.NAME_INDEX_NAME,
+            ).single()
+            return bool(rec and rec["c"])
+
+    def name_search(
+        self,
+        terms: str,
+        n_results: int = 10,
+        regulation_filter: str | None = None,
+    ) -> list[dict[str, Any]]:
+        """Lexical search over entity names. Returns the vector_search shape.
+
+        `terms` must already be a sanitised Lucene expression — see
+        RetrievalEngine._lucene_terms. Returns [] rather than raising if the
+        index is absent, so a deployment that has not run create_name_index
+        degrades to two-arm fusion instead of failing every query; the caller
+        records that fact rather than hiding it.
+        """
+        params: dict[str, Any] = {"q": terms, "k": max(n_results * 3, 30), "top_k": n_results}
+        where = ""
+        if regulation_filter:
+            where = "WHERE node.regulation_id = $regulation"
+            params["regulation"] = regulation_filter
+        query = (
+            f"CALL db.index.fulltext.queryNodes('{self.NAME_INDEX_NAME}', $q, {{limit: $k}}) "
+            f"YIELD node, score {where} "
+            f"RETURN node, score ORDER BY score DESC LIMIT $top_k"
+        )
+        results: list[dict[str, Any]] = []
+        try:
+            with self._session() as session:
+                for record in session.run(query, **params):
+                    node_dict = self._node_to_dict(record["node"])
+                    results.append({
+                        "entity_id": node_dict.get("id", ""),
+                        "collection": node_dict.get("collection", ""),
+                        "document": node_dict.get("document_text") or self._derive_document(node_dict),
+                        "metadata": self._derive_metadata(node_dict),
+                        "name_score": float(record["score"]),
+                    })
+        except Exception as e:  # noqa: BLE001 — surfaced by the caller
+            logger.warning("name_search unavailable (%s): %s", self.NAME_INDEX_NAME, e)
+            return []
+        return results
+
+    def complements_of(self, entity_ids: list[str], limit: int = 20) -> list[dict[str, Any]]:
+        """One-hop COMPLEMENTS neighbours — the cross-regulation bridge (v08).
+
+        GDPR and AI Act provisions answering the same question are linked by
+        COMPLEMENTS. Multi-hop queries want both sides; vector search returns
+        whichever regulation phrases it closest and the counterpart never
+        surfaces. Walking this edge once from the vector hits is the targeted
+        fix (GT_02).
+        """
+        if not entity_ids:
+            return []
+        query = (
+            "MATCH (a:Entity)-[:COMPLEMENTS]-(b:Entity) "
+            "WHERE a.id IN $ids AND NOT b.id IN $ids "
+            "RETURN DISTINCT b AS node, a.id AS via LIMIT $limit"
+        )
+        results: list[dict[str, Any]] = []
+        with self._session() as session:
+            for record in session.run(query, ids=entity_ids, limit=limit):
+                node_dict = self._node_to_dict(record["node"])
+                results.append({
+                    "entity_id": node_dict.get("id", ""),
+                    "collection": node_dict.get("collection", ""),
+                    "document": node_dict.get("document_text") or self._derive_document(node_dict),
+                    "metadata": self._derive_metadata(node_dict),
+                    "via": record["via"],
+                })
+        return results
+
     def create_vector_index(self) -> None:
         """Create the Neo4j-native vector index over :Entity(embedding).
 

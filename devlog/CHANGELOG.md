@@ -151,6 +151,42 @@ described there.
 
 ---
 
+## 2026-08-31 — v08 P1 retrieval arms: entity recall 25% → 62.5%, measured by ablation
+
+**What:** Shipped both NORTHSTAR Part III P1 items and measured them
+independently. **(1) Entity-name index** — a Neo4j full-text index over
+`:Entity(name)` fused as a third RRF arm, with Lucene-reserved characters
+stripped from the question (a stray `?` or `:` is a parser error, not a bad
+match) and sub-3-character tokens dropped. **(2) Cross-regulation expansion** —
+one `COMPLEMENTS` hop off the top vector hits. New ablation runner
+[`14_eval_p1_arms.py`](../knowledge_engine/scripts/14_eval_p1_arms.py) scores
+the golden set under baseline / name-only / complements-only / both.
+
+**Result** (full table in [`METRICS.md`](METRICS.md) §6): entity recall@15
+**25% → 62.5%**, pass rate **68% → 76%**, multi-hop **46% → 63%**, single-hop
+**86% → 100%**, citation recall **unchanged at 81.8%**, out-of-scope correctly
+unchanged. NORTHSTAR estimated ~46% entity and ~55% multi-hop; both exceeded.
+The 9 recovered entities are exactly the short-label category nodes §4
+predicted — including `PEN_AIACT_PROHIBITED`, which has no embedding at all
+and was unreachable by vector search at any budget.
+
+**COMPLEMENTS did not do what it was proposed for, and that is recorded rather
+than glossed.** It was meant to close `GT_02` (7/8 → 8/8 citations); `GT_02`
+still misses both citations in every configuration, and run alone COMPLEMENTS
+changes no metric. It is kept for a different, measured reason: the name arm
+displaces `GDPR_ART_22` out of top-15 on `GT_18` (citation 27/33 → 26/33), and
+COMPLEMENTS restores it. The pair is strictly better than either alone — full
+entity gain at zero citation cost. That justification is contingent on the
+interaction, so the ablation must be re-run if the name arm is retuned.
+
+**Impact on SYSTEM.md:** none yet — retrieval internals; §6 of METRICS.md
+carries the detail. 77 knowledge_engine tests green (12 new).
+
+**Refs:** METRICS.md §6; `golden_tests/p1_ablation_20260831.json`;
+NORTHSTAR Resolved.
+
+---
+
 ## 2026-08-31 — Credentials rotated; CI green for the first time
 
 **What:** Owner rotated the exposed Gemini key and the Neo4j credentials.

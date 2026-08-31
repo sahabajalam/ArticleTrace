@@ -1,0 +1,746 @@
+{
+  "configs": {
+    "baseline": {
+      "citation_recall": 0.8182,
+      "citation": "27/33",
+      "entity_recall": 0.25,
+      "entity": "6/24",
+      "pass_rate": 0.68,
+      "passes": "17/25",
+      "by_category": {
+        "multi_hop": 0.4576,
+        "single_hop": 0.8571,
+        "out_of_scope": 0.5714
+      }
+    },
+    "name_only": {
+      "citation_recall": 0.7879,
+      "citation": "26/33",
+      "entity_recall": 0.625,
+      "entity": "15/24",
+      "pass_rate": 0.76,
+      "passes": "19/25",
+      "by_category": {
+        "multi_hop": 0.6045,
+        "single_hop": 1.0,
+        "out_of_scope": 0.5714
+      }
+    },
+    "complements": {
+      "citation_recall": 0.8182,
+      "citation": "27/33",
+      "entity_recall": 0.25,
+      "entity": "6/24",
+      "pass_rate": 0.68,
+      "passes": "17/25",
+      "by_category": {
+        "multi_hop": 0.4576,
+        "single_hop": 0.8571,
+        "out_of_scope": 0.5714
+      }
+    },
+    "both": {
+      "citation_recall": 0.8182,
+      "citation": "27/33",
+      "entity_recall": 0.625,
+      "entity": "15/24",
+      "pass_rate": 0.76,
+      "passes": "19/25",
+      "by_category": {
+        "multi_hop": 0.6273,
+        "single_hop": 1.0,
+        "out_of_scope": 0.5714
+      }
+    }
+  },
+  "per_query": {
+    "GT_01_PROHIBITED_AI": {
+      "baseline": {
+        "score": 0.25,
+        "citation_miss": [],
+        "entity_miss": [
+          "RISK_PROHIBITED",
+          "AIST_SOCIAL_SCORING_PUBLIC",
+          "PEN_AIACT_PROHIBITED"
+        ]
+      },
+      "name_only": {
+        "score": 0.5,
+        "citation_miss": [],
+        "entity_miss": [
+          "RISK_PROHIBITED",
+          "PEN_AIACT_PROHIBITED"
+        ]
+      },
+      "complements": {
+        "score": 0.25,
+        "citation_miss": [],
+        "entity_miss": [
+          "RISK_PROHIBITED",
+          "AIST_SOCIAL_SCORING_PUBLIC",
+          "PEN_AIACT_PROHIBITED"
+        ]
+      },
+      "both": {
+        "score": 0.5,
+        "citation_miss": [],
+        "entity_miss": [
+          "RISK_PROHIBITED",
+          "PEN_AIACT_PROHIBITED"
+        ]
+      }
+    },
+    "GT_02_CROSS_REG_OBLIGATIONS": {
+      "baseline": {
+        "score": 0.0,
+        "citation_miss": [
+          "GDPR_ART_22",
+          "AIACT_ART_14"
+        ],
+        "entity_miss": [
+          "CONCEPT_AUTOMATED_DECISION",
+          "CONCEPT_HUMAN_OVERSIGHT"
+        ]
+      },
+      "name_only": {
+        "score": 0.25,
+        "citation_miss": [
+          "GDPR_ART_22",
+          "AIACT_ART_14"
+        ],
+        "entity_miss": [
+          "CONCEPT_HUMAN_OVERSIGHT"
+        ]
+      },
+      "complements": {
+        "score": 0.0,
+        "citation_miss": [
+          "GDPR_ART_22",
+          "AIACT_ART_14"
+        ],
+        "entity_miss": [
+          "CONCEPT_AUTOMATED_DECISION",
+          "CONCEPT_HUMAN_OVERSIGHT"
+        ]
+      },
+      "both": {
+        "score": 0.25,
+        "citation_miss": [
+          "GDPR_ART_22",
+          "AIACT_ART_14"
+        ],
+        "entity_miss": [
+          "CONCEPT_HUMAN_OVERSIGHT"
+        ]
+      }
+    },
+    "GT_03_DATA_SUBJECT_RIGHTS": {
+      "baseline": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_04_DPIA_FRIA": {
+      "baseline": {
+        "score": 0.75,
+        "citation_miss": [],
+        "entity_miss": [
+          "CONCEPT_DPIA"
+        ]
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 0.75,
+        "citation_miss": [],
+        "entity_miss": [
+          "CONCEPT_DPIA"
+        ]
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_05_TRANSPARENCY": {
+      "baseline": {
+        "score": 0.333,
+        "citation_miss": [],
+        "entity_miss": [
+          "AIST_CHATBOT",
+          "CONCEPT_TRANSPARENCY_OBLIGATION"
+        ]
+      },
+      "name_only": {
+        "score": 0.667,
+        "citation_miss": [],
+        "entity_miss": [
+          "AIST_CHATBOT"
+        ]
+      },
+      "complements": {
+        "score": 0.333,
+        "citation_miss": [],
+        "entity_miss": [
+          "AIST_CHATBOT",
+          "CONCEPT_TRANSPARENCY_OBLIGATION"
+        ]
+      },
+      "both": {
+        "score": 0.667,
+        "citation_miss": [],
+        "entity_miss": [
+          "AIST_CHATBOT"
+        ]
+      }
+    },
+    "GT_06_HOUSEHOLD_EXEMPTION": {
+      "baseline": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_07_DATA_SUBJECT_DEF": {
+      "baseline": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_08_RIGHT_TO_ERASURE": {
+      "baseline": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_09_BREACH_NOTIFICATION": {
+      "baseline": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_10_FINE_CEILING": {
+      "baseline": {
+        "score": 0.5,
+        "citation_miss": [],
+        "entity_miss": [
+          "PEN_GDPR_TIER2"
+        ]
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 0.5,
+        "citation_miss": [],
+        "entity_miss": [
+          "PEN_GDPR_TIER2"
+        ]
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_11_RECORDS_OF_PROCESSING": {
+      "baseline": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_12_VALID_CONSENT": {
+      "baseline": {
+        "score": 0.5,
+        "citation_miss": [],
+        "entity_miss": [
+          "CONCEPT_CONSENT"
+        ]
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 0.5,
+        "citation_miss": [],
+        "entity_miss": [
+          "CONCEPT_CONSENT"
+        ]
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_13_HIGH_RISK_DOCUMENTATION": {
+      "baseline": {
+        "score": 0.667,
+        "citation_miss": [],
+        "entity_miss": [
+          "RISK_HIGH"
+        ]
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 0.667,
+        "citation_miss": [],
+        "entity_miss": [
+          "RISK_HIGH"
+        ]
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_14_BIOMETRIC_PUBLIC_SPACE": {
+      "baseline": {
+        "score": 0.333,
+        "citation_miss": [
+          "AIACT_ANNEX_III"
+        ],
+        "entity_miss": [
+          "RISK_PROHIBITED"
+        ]
+      },
+      "name_only": {
+        "score": 0.333,
+        "citation_miss": [
+          "AIACT_ANNEX_III"
+        ],
+        "entity_miss": [
+          "RISK_PROHIBITED"
+        ]
+      },
+      "complements": {
+        "score": 0.333,
+        "citation_miss": [
+          "AIACT_ANNEX_III"
+        ],
+        "entity_miss": [
+          "RISK_PROHIBITED"
+        ]
+      },
+      "both": {
+        "score": 0.333,
+        "citation_miss": [
+          "AIACT_ANNEX_III"
+        ],
+        "entity_miss": [
+          "RISK_PROHIBITED"
+        ]
+      }
+    },
+    "GT_15_PROVIDER_OBLIGATIONS": {
+      "baseline": {
+        "score": 0.5,
+        "citation_miss": [
+          "AIACT_ART_18"
+        ],
+        "entity_miss": [
+          "RISK_HIGH"
+        ]
+      },
+      "name_only": {
+        "score": 0.75,
+        "citation_miss": [
+          "AIACT_ART_18"
+        ],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 0.5,
+        "citation_miss": [
+          "AIACT_ART_18"
+        ],
+        "entity_miss": [
+          "RISK_HIGH"
+        ]
+      },
+      "both": {
+        "score": 0.75,
+        "citation_miss": [
+          "AIACT_ART_18"
+        ],
+        "entity_miss": []
+      }
+    },
+    "GT_16_DEEPFAKE_LABELLING": {
+      "baseline": {
+        "score": 0.5,
+        "citation_miss": [],
+        "entity_miss": [
+          "CONCEPT_TRANSPARENCY"
+        ]
+      },
+      "name_only": {
+        "score": 0.5,
+        "citation_miss": [],
+        "entity_miss": [
+          "CONCEPT_TRANSPARENCY"
+        ]
+      },
+      "complements": {
+        "score": 0.5,
+        "citation_miss": [],
+        "entity_miss": [
+          "CONCEPT_TRANSPARENCY"
+        ]
+      },
+      "both": {
+        "score": 0.5,
+        "citation_miss": [],
+        "entity_miss": [
+          "CONCEPT_TRANSPARENCY"
+        ]
+      }
+    },
+    "GT_17_INTERNATIONAL_TRANSFERS": {
+      "baseline": {
+        "score": 0.75,
+        "citation_miss": [],
+        "entity_miss": [
+          "CONCEPT_INTERNATIONAL_TRANSFER"
+        ]
+      },
+      "name_only": {
+        "score": 0.75,
+        "citation_miss": [],
+        "entity_miss": [
+          "CONCEPT_INTERNATIONAL_TRANSFER"
+        ]
+      },
+      "complements": {
+        "score": 0.75,
+        "citation_miss": [],
+        "entity_miss": [
+          "CONCEPT_INTERNATIONAL_TRANSFER"
+        ]
+      },
+      "both": {
+        "score": 0.75,
+        "citation_miss": [],
+        "entity_miss": [
+          "CONCEPT_INTERNATIONAL_TRANSFER"
+        ]
+      }
+    },
+    "GT_18_AI_DECISION_RIGHTS": {
+      "baseline": {
+        "score": 0.75,
+        "citation_miss": [],
+        "entity_miss": [
+          "RIGHT_AUTOMATED_DECISIONS"
+        ]
+      },
+      "name_only": {
+        "score": 0.5,
+        "citation_miss": [
+          "GDPR_ART_22"
+        ],
+        "entity_miss": [
+          "RIGHT_AUTOMATED_DECISIONS"
+        ]
+      },
+      "complements": {
+        "score": 0.75,
+        "citation_miss": [],
+        "entity_miss": [
+          "RIGHT_AUTOMATED_DECISIONS"
+        ]
+      },
+      "both": {
+        "score": 0.75,
+        "citation_miss": [],
+        "entity_miss": [
+          "RIGHT_AUTOMATED_DECISIONS"
+        ]
+      }
+    },
+    "GT_19_RISK_TIERING": {
+      "baseline": {
+        "score": 0.2,
+        "citation_miss": [
+          "AIACT_ART_5",
+          "AIACT_ANNEX_III"
+        ],
+        "entity_miss": [
+          "RISK_HIGH",
+          "RISK_PROHIBITED"
+        ]
+      },
+      "name_only": {
+        "score": 0.4,
+        "citation_miss": [
+          "AIACT_ART_5",
+          "AIACT_ANNEX_III"
+        ],
+        "entity_miss": [
+          "RISK_PROHIBITED"
+        ]
+      },
+      "complements": {
+        "score": 0.2,
+        "citation_miss": [
+          "AIACT_ART_5",
+          "AIACT_ANNEX_III"
+        ],
+        "entity_miss": [
+          "RISK_HIGH",
+          "RISK_PROHIBITED"
+        ]
+      },
+      "both": {
+        "score": 0.4,
+        "citation_miss": [
+          "AIACT_ART_5",
+          "AIACT_ANNEX_III"
+        ],
+        "entity_miss": [
+          "RISK_PROHIBITED"
+        ]
+      }
+    },
+    "GT_20_MILITARY_EXCLUSION": {
+      "baseline": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_21_ACADEMIC_RESEARCH": {
+      "baseline": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_22_TERRITORIAL_SCOPE": {
+      "baseline": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "name_only": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "both": {
+        "score": 1.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_23_NUCLEAR_SAFETY": {
+      "baseline": {
+        "score": 0.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "name_only": {
+        "score": 0.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 0.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "both": {
+        "score": 0.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_24_CONSENT_FORM_SIZE": {
+      "baseline": {
+        "score": 0.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "name_only": {
+        "score": 0.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 0.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "both": {
+        "score": 0.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    },
+    "GT_25_HIPAA_IN_EU": {
+      "baseline": {
+        "score": 0.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "name_only": {
+        "score": 0.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "complements": {
+        "score": 0.0,
+        "citation_miss": [],
+        "entity_miss": []
+      },
+      "both": {
+        "score": 0.0,
+        "citation_miss": [],
+        "entity_miss": []
+      }
+    }
+  }
+}
