@@ -1,0 +1,54 @@
+name: Detection benchmark
+
+# v07 T0: measures scanner recall/precision against a hand-labelled corpus
+# (orchestrator/detection_benchmark/corpus.json). Exists because DL-019,
+# DL-020 and DL-027 were silent recall collapses that shipped confident
+# clean reports — and its very first run caught DL-028/029/030.
+#
+# Deterministic path only (use_llm=False): no secrets, no LLM cost. Repos are
+# pinned by SHA and cached, so a red run means the scanner changed, not the
+# world. An XPASS also fails: promote the entry instead of coasting on a
+# stale known-gap label.
+
+on:
+  pull_request:
+    paths:
+      - "orchestrator/src/code_analyzer/**"
+      - "orchestrator/detection_benchmark/**"
+      - "orchestrator/scripts/run_detection_benchmark.py"
+  schedule:
+    - cron: "30 2 * * 1" # Mondays 02:30 UTC, after the KG backup
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: orchestrator
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Sync environment
+        run: uv sync
+
+      - name: Cache pinned corpus clones
+        uses: actions/cache@v4
+        with:
+          path: orchestrator/detection_benchmark/.cache
+          key: detection-corpus-${{ hashFiles('orchestrator/detection_benchmark/corpus.json') }}
+
+      - name: Run detection benchmark
+        run: uv run python scripts/run_detection_benchmark.py --out /tmp/detection-results.json
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: detection-benchmark-results
+          path: /tmp/detection-results.json
+          retention-days: 30

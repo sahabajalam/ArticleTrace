@@ -49,7 +49,15 @@ async def run_scan(
     return profile
 
 
-def _scan_and_profile(scan_id: str, result: IngestResult) -> AISystemProfile:
+def _scan_and_profile(
+    scan_id: str, result: IngestResult, use_llm: bool = True
+) -> AISystemProfile:
+    """`use_llm=False` skips the surface-review LLM pass entirely.
+
+    The detection benchmark needs bit-for-bit reproducible runs with no API
+    key and no cost; the fail-open LLM pass is nondeterministic on both
+    counts. Production scans keep the default.
+    """
     rules = load_rules()
     ctx = ScanContext(
         repo_root=result.repo_root,
@@ -70,7 +78,7 @@ def _scan_and_profile(scan_id: str, result: IngestResult) -> AISystemProfile:
     ]
     all_findings = []
     for scanner in pipeline:
-        if isinstance(scanner, AstRulesScanner):
+        if isinstance(scanner, AstRulesScanner) and use_llm:
             # LLM pass sits between surface collection and rule application.
             _llm_enrich_surfaces(ctx)
         try:
