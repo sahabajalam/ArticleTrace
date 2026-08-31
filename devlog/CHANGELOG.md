@@ -24,6 +24,45 @@ ai_guidance: |
 
 ---
 
+## 2026-08-31 — Knowledge graph restored (2nd Aura deletion); v06 proposed; BUG_LOG reformatted
+
+**What:** Found the Neo4j Aura instance `e8097dda` hard-deleted — DNS no longer
+resolves — after ~36 days dormant. This is the **second** free-tier idle deletion
+(DL-025 was the first), and DL-025's own open follow-up predicted it: the
+`keep-aura-alive.yml` ping was never diagnosed and never replaced with a
+scheduled backup. Restored the full KG from the verified `20260619_183622` JSONL
+dump into new instance `dab1e7ea` via
+[`11_restore_from_jsonl.py`](../knowledge_engine/scripts/11_restore_from_jsonl.py):
+**2,301/2,301 nodes, 4,423/4,423 relationships (0 skipped), 2,198 embeddings,
+`entity_embedding` vector index recreated.** Added
+[`design-evolution/v06-durable-kg-and-reproducible-eval.md`](design-evolution/v06-durable-kg-and-reproducible-eval.md)
+(`status: proposal`) covering durability + reproducibility, and reformatted
+[`BUG_LOG.md`](BUG_LOG.md) into the shape Alloygraph's devlog importer parses so
+the 26 incidents load as queryable project memory (content preserved; verified
+line-for-line).
+
+**Why:** The KG is the project's moat and v03 delivered it without durability.
+Restoring is a 4-minute chore only because DL-025 left a backup script behind —
+without it this was a full rebuild. v06 exists to stop the third deletion from
+being an incident.
+
+**Blocked:** the golden-test acceptance run (v06 §2.5) cannot execute — the
+Gemini credential in `.env` returns `401 UNAUTHENTICATED`. Verified by testing
+each key directly: `GEMINI_API_KEY` and `GOOGLE_API_KEY` are the *same* value
+and both fail, while a known-good key on the same machine succeeds, so it is the
+credential, not the client or the format. This is DL-017 recurring, and DL-017's
+own lesson ("always test API keys independently") is what found it. Confirmed
+`07_run_golden_tests.py` exits **1** on this failure, so CI would catch it — not
+a silent failure.
+
+**Impact on SYSTEM.md:** none yet — no code changed. §2.1's Aura instance ID is
+now `dab1e7ea`; update when v06 lands.
+
+**Refs:** `9243d37` (BUG_LOG reformat); backup `20260619_183622`; BUG_LOG
+DL-017, DL-025.
+
+---
+
 ## 2026-06-19 — Close RAG/eval gaps: expanded golden set + 3-mode comparison + RAGAS-equivalent + CI + ColPali scaffolding
 
 **What:** Closed the two partial items from the post-audit completion tally. **(1) Golden set expanded 6 → 25 queries** ([`../knowledge_engine/golden_tests/test_queries.json`](../knowledge_engine/golden_tests/test_queries.json)): 7 single-hop / 11 multi-hop / 7 out-of-scope (matching the audit §4.3 split intent of 12/10/8 within the 25 cap). Authored against the real KG — every `expected_citations` ID verified to exist before authoring; uses Articles, Annexes, Concepts, Rights, RiskCategories, Penalties across both regulations. **(2) 3-mode comparison runner** ([`../knowledge_engine/scripts/12_eval_three_mode.py`](../knowledge_engine/scripts/12_eval_three_mode.py)) — runs vector_only / graph_only(vector-seeded) / hybrid_rrf on each query, reports per-mode + per-category breakdown, writes JSON artifact. **First run: hybrid 81.8% citation recall@15, vector 72.7%, graph 21.2%. Hybrid beats vector by 9pp — RRF validated.** **(3) RAGAS-equivalent metrics** ([`../knowledge_engine/scripts/13_eval_ragas_equivalent.py`](../knowledge_engine/scripts/13_eval_ragas_equivalent.py)) implemented directly against the existing Gemini client (no langchain/openai/pandas dep). Context relevance fully wired (375 judge calls, ~22 min); faithfulness + answer_relevance scaffolded but require ReasoningEngine and incur higher cost so gated to manual `--no-context-only` invocation. **First context-relevance run: 45.9% mean across 25 queries.** Notable signal: invented-constraint negative cases (GT_24 file-size, GT_25 HIPAA) hit 7% — system correctly recognises nonsense queries, *low context relevance is the right outcome there*. **(4) CI workflow** ([`../.github/workflows/golden-tests.yml`](../.github/workflows/golden-tests.yml)) — runs scripts 07 + 12 on every PR touching `knowledge_engine/`, weekly on main, manual-dispatch for the heavy script 13. **(5) ColPali multimodal scaffolding** at [`../knowledge_engine/src/multimodal/`](../knowledge_engine/src/multimodal/) — module compiles, interface fixed (indexer, MaxSim retriever, design rationale in [`v05-multimodal-colpali.md`](design-evolution/v05-multimodal-colpali.md) as `status: proposal`). `colpali-engine` deliberately not in deps; runtime import gated. Not built end-to-end — gated on GPU + Aura tier upgrade + 10-query multimodal benchmark + acceptance criteria in v05. Plus fixed real bug along the way: `gemini-2.0-flash` was deprecated 2026-06-19; updated 4 source-code references to `gemini-2.5-flash` (ReasoningEngine, ObligationExtractor, scripts 06 + 07). Updated [`METRICS.md`](METRICS.md) wholesale with new headline + 3-mode table + RAGAS-equivalent section + n=25 per-query breakdown + §4 entity-recall structural analysis + §5 HNSW non-determinism context. Updated [`../README.md`](../README.md) headline. Added new INTERVIEW_GUIDE Q11 ("how do you measure RAG quality?") + updated Q10 ("worst part") with the multimodal-honest framing. Updated cheat sheet of citable numbers.

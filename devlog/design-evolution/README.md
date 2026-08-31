@@ -60,6 +60,7 @@ Body sections, in order:
 | [`v03-kb-completion.md`](v03-kb-completion.md) | `implemented` | 2026-02-12 | 2026-04-13 (Neo4j: 2,301 nodes / 4,423 rels / 2,198 vector docs across 7 collections) |
 | [`v04-hitl-decision.md`](v04-hitl-decision.md) | `implemented` | 2026-04-13 | commit `5210e51` (supervisor.py rewritten as 4-node linear graph; HITL branch removed) |
 | [`v05-multimodal-colpali.md`](v05-multimodal-colpali.md) | `proposal` | null | scaffolding only — `knowledge_engine/src/multimodal/` compiles but `colpali-engine` not installed and no PDFs ingested |
+| [`v06-durable-kg-and-reproducible-eval.md`](v06-durable-kg-and-reproducible-eval.md) | `proposal` | null | KG restored into Aura `dab1e7ea` (2,301/4,423/2,198 verified); config, backup-cycle and POSIX-eval workstreams open |
 
 ## When to add a new `vNN`
 
