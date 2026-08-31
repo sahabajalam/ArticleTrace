@@ -65,6 +65,10 @@ def build_profile(
         "by_severity": _by_severity(findings),
         "by_rule": _by_rule(findings),
         "suppressed": len([f for f in findings if f.suppressed]),
+        # Coverage honesty (v06 §4 / v07 §5): a caller must be able to tell
+        # "these signals found nothing" from "these signals were never read".
+        "manifest_scan": shared.get("manifest_scan") or {"files": [], "errors": []},
+        "source_read_errors": shared.get("source_read_errors") or [],
     }
     return AISystemProfile(
         scan_id=scan_id,

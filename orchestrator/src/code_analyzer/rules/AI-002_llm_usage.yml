@@ -18,6 +18,12 @@ patterns:
     - "@anthropic-ai/sdk"
     - "@google/generative-ai"
     - "@langchain/core"
+  # v07 T1.3 — usage evidence that needs no SDK import: HF model ids passed
+  # to from_pretrained(...), and hosted-LLM endpoints called over raw HTTP
+  # (shadow AI). Scanned in CODE files only — prose in docs does not count.
+  strings:
+    - "from_pretrained\\(\\s*[\"'][\\w.-]+/[\\w.-]+[\"']"
+    - "https?://(api\\.openai\\.com|api\\.anthropic\\.com|generativelanguage\\.googleapis\\.com|api\\.mistral\\.ai|api\\.cohere\\.com|openrouter\\.ai)"
 maps_to:
   articles: [AIACT_ART_50, AIACT_ART_52, AIACT_ART_13]
   obligation_anchors:

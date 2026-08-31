@@ -192,6 +192,32 @@ No new scanner types; these extend evidence sources of existing ones:
    `from_pretrained`/`pipeline()` calls, hosted-LLM endpoint URLs. Evidence
    stays `file:line` + excerpt, same as everything else. Closes gap (2).
 
+> **T1 delivered (2026-08-31, same day).** All three signals live, gated by
+> the benchmark at every step:
+> 1. **Manifest cross-referencing** (`ImportScanner._manifest_pass`):
+>    requirements*.txt / pyproject.toml (PEP 621 + poetry) / package.json,
+>    matched against the same rule patterns with dist↔import-name
+>    normalisation. declared+imported boosts the import finding (+0.05, cap
+>    0.99) and attaches the manifest line as evidence; declared-only emits a
+>    0.7×-dampened finding whose excerpt says "no static import located".
+>    Parse failures land in `stats.manifest_scan.errors` (v07 §5).
+> 2. **Notebook extraction** (`source_reader.py`): `.ipynb` code cells become
+>    a parseable Python stream (`# %% [cell N]` markers, magics commented in
+>    place); wired into Import/Ast/Content scanners; notebooks get a 5 MB raw
+>    budget since saved outputs inflate the JSON. Unreadable notebooks land in
+>    `stats.source_read_errors`, never vanish.
+> 3. **String patterns** (`ContentScanner` `strings:`): HF model ids in
+>    `from_pretrained(...)` and hosted-LLM endpoints over raw HTTP (shadow
+>    AI), CODE files only — prose in a README is documentation, not usage.
+>    Routing fixed so a rule of one technique can carry auxiliary string
+>    evidence (AI-002 is import_scan yet owns the endpoint signal).
+>
+> Both xfails promoted to real expectations; new `raw_endpoint` fixture
+> guards the shadow-AI case. **Benchmark: 9/9 PASS, both FP controls still
+> zero through all three new signals.** Real-repo deltas confirmed legitimate:
+> face_recognition's webcam-notebook examples became visible (AI-009) and its
+> declared `dlib` surfaces as declared-only AI-001. 41 unit tests green.
+
 ### T2 — Fix confidence semantics; LLM as judge, not detector
 
 1. **Confidence-aware verdict escalation**: a PROHIBITED trigger requires at

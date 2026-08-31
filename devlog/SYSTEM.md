@@ -142,6 +142,18 @@ The orchestrator is the only service that talks to the user. The knowledge engin
 
 Rule catalog lives at [`orchestrator/src/code_analyzer/rules/`](../orchestrator/src/code_analyzer/rules/) loaded by `rule_loader.py`. Phase-1 scope: 10 MVP detection rules.
 
+Detection draws on three signal sources (v07 T1, 2026-08-31): **imports**
+(tree-sitter, field-name based per DL-027), **dependency manifests**
+(`requirements*.txt` / `pyproject.toml` / `package.json`, cross-referenced in
+`ImportScanner._manifest_pass` — declared+imported boosts confidence,
+declared-only emits a dampened finding), and **string literals** (`strings:`
+patterns on a rule — HF model ids, hosted-LLM endpoints — code files only).
+`.ipynb` code cells are extracted by `source_reader.py` and flow through the
+same scanners; notebook evidence lines refer to the extracted cell stream.
+Coverage honesty: `stats.manifest_scan` and `stats.source_read_errors` report
+what could not be read. Recall/precision are enforced by the detection
+benchmark (`orchestrator/detection_benchmark/`, CI: detection-benchmark.yml).
+
 ### 3.2 Orchestrator — LangGraph supervisor ([`orchestrator/src/agents/supervisor.py`](../orchestrator/src/agents/supervisor.py))
 
 Linear graph, **no HITL branch**:

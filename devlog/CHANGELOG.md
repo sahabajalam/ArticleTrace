@@ -151,6 +151,40 @@ described there.
 
 ---
 
+## 2026-08-31 — v07 T1 delivered: manifests, notebooks, string signals — 9/9 benchmark
+
+**What:** The three T1 signal-widening items, each landed against a waiting
+benchmark fixture that flipped XFAIL→XPASS→promoted. **(1) Manifest
+cross-referencing** — `ImportScanner._manifest_pass` parses
+requirements*.txt / pyproject.toml (PEP 621 + poetry) / package.json and
+matches the same rule patterns with dist↔import normalisation
+(face-recognition↔face_recognition, google-generativeai↔google.generativeai,
+dlib↔dlib.get_frontal_face_detector); declared+imported boosts, declared-only
+emits a 0.7×-dampened finding; parse failures surface in
+`stats.manifest_scan.errors`. **(2) Notebook extraction** —
+[`source_reader.py`](../orchestrator/src/code_analyzer/source_reader.py)
+turns `.ipynb` code cells into a parseable stream (magics commented in place,
+5 MB raw budget) consumed by Import/Ast/Content scanners; unreadable
+notebooks land in `stats.source_read_errors`. **(3) String patterns** —
+`strings:` on any rule, scanned in code files only; AI-002 gains HF
+`from_pretrained` ids and hosted-LLM endpoints, catching shadow-AI raw-HTTP
+usage with zero imports (new `raw_endpoint` fixture). Routing fixed so a
+rule of one primary technique can carry auxiliary string evidence.
+
+**Benchmark: 9/9 PASS, no xfails remain; `requests` and `flask` FP controls
+stayed at zero through all three new signals.** Legitimate new visibility on
+real repos: face_recognition's webcam notebook examples (AI-009) and its
+declared `dlib` (declared-only AI-001). 41 orchestrator unit tests green
+(12 new in test_t1_signals.py).
+
+**Impact on SYSTEM.md:** §3.1 — detection signal sources, notebook handling,
+coverage stats, benchmark pointer.
+
+**Refs:** v07 T1 delivery note; corpus.json promotions (same-commit ground
+truth cited per its _doc rule).
+
+---
+
 ## 2026-08-31 — v07 T0 delivered: detection benchmark; first run caught three defects
 
 **What:** Built the detection benchmark
