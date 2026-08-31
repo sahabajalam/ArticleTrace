@@ -1803,3 +1803,49 @@ before a human did (DL-028/029/030 were the first), and the first time CI
 caught one that local runs structurally could not.
 
 ---
+
+## 35. Frontend — DL-034 Dev server reload loop after deleting routes (stale Turbopack cache)
+
+**Problem**
+Immediately after the frontend rebuild, the page at `localhost:3000` reloaded
+itself continuously. The React code was not at fault — polling is one request
+per 15 s when no scan is active, and the effect dependencies are stable.
+
+The dev server log showed the real cause, repeating:
+
+```
+FATAL: An unexpected Turbopack error occurred.
+Turbopack Error: Failed to write app endpoint /page
+```
+
+Each panic triggers a client reload, so the symptom presents as an
+auto-refreshing page rather than as a crash.
+
+**Root cause**
+Routes and components were deleted (`src/app/knowledge`, `src/app/scans/new`,
+`src/components/`, `src/lib/utils.ts`, `src/lib/markdown.ts`) **while
+`next dev` was running**. Turbopack's incremental `.next` cache still
+referenced the removed modules and panicked on every rebuild.
+
+**Fix**
+Stop the dev server, `rm -rf .next`, restart. Zero panics afterwards, and
+three page renders in the following 20 seconds instead of a continuous stream.
+
+**Thinking**
+
+**Severity:** Low — development-only, no effect on the build or on production.
+`npm run build` had already succeeded from a clean state throughout.
+
+**Relationship to entry 20 (DL-019 era, `proxy.ts`):** that entry records a
+stale `.next` cache masking a *new* file convention after a Next.js upgrade;
+this is the same cache being stale about *deleted* files. The existing lesson
+said "after upgrading Next.js versions, always do a clean build". Widen it:
+**any structural change to the route tree — adding or removing routes —
+invalidates the incremental cache, not just a version upgrade.**
+
+**Lesson:** When a dev server misbehaves after files are deleted, read its own
+log before touching application code. The panic naming the failing endpoint was
+in the first place I looked, and the reload loop was a symptom two layers away
+from anything in React.
+
+---
