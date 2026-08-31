@@ -151,6 +151,36 @@ described there.
 
 ---
 
+## 2026-08-31 — Credentials rotated; CI green for the first time
+
+**What:** Owner rotated the exposed Gemini key and the Neo4j credentials.
+Verified the rotation cryptographically rather than on trust — SHA-256 of each
+current value compared against the published value recovered from the
+pre-purge bundle: **all five differ**, and Alloygraph now holds a separate key
+that is also not the exposed one. Tested both credentials live before storing
+them (DL-017's lesson), then set `GOOGLE_API_KEY`, `NEO4J_URI`, `NEO4J_USER`,
+`NEO4J_PASSWORD` as repo secrets, replacing three that dated from 2026-04-29
+and pointed at an instance deleted twice over.
+
+**Result: both workflows pass.**
+- `Detection benchmark` — 9/9, no secrets required (v07 T0).
+- `KE Golden Tests + 3-mode Eval` — first success on record. CI reproduces
+  `METRICS.md` **exactly**: hybrid_rrf 27/33 (81.8%), vector_only 24/33
+  (72.7%), graph_only 7/33 (21.2%), entity recall 6/24 / 10/24 / 0/24, pass
+  rate 17/25 (68%).
+
+That is the third independent reproduction of the headline retrieval numbers
+— as recorded (pre-deletion), locally after the JSONL restore, and now on
+GitHub runners against the restored Aura instance. The metric is no longer a
+claim resting on one machine.
+
+**Impact on SYSTEM.md:** none — credentials and CI configuration only.
+
+**Refs:** runs 33422415468 (golden tests), 33421705215 (benchmark); DL-032,
+DL-033.
+
+---
+
 ## 2026-08-31 — Fix DL-033: the keyless benchmark required a key at import
 
 **What:** The detection benchmark's first CI run failed with
