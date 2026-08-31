@@ -1,11 +1,23 @@
 """Application configuration using Pydantic Settings."""
 
-from pydantic_settings import BaseSettings
-from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import Field, model_validator
+
+from .env import ENV_FILE, require_credential
 
 
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
+
+    # `env_file` is the absolute repo-root path, not a CWD-relative ".env", so
+    # the service picks up the same file whether it is launched from the repo
+    # root or from orchestrator/. Real environment variables still take
+    # priority over the file — Cloud Run relies on that.
+    model_config = SettingsConfigDict(
+        env_file=ENV_FILE,
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
     # LLM API Keys
     gemini_api_key: str = Field(..., description="Google Gemini API key")
@@ -72,10 +84,11 @@ class Settings(BaseSettings):
         description="Allow credentials in CORS requests",
     )
 
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
-        extra = "ignore"
+    @model_validator(mode="after")
+    def _require_gemini_api_key(self) -> "Settings":
+        """`Field(...)` catches an absent key; this also catches an empty one."""
+        require_credential(self.gemini_api_key, "GEMINI_API_KEY", ENV_FILE)
+        return self
 
     def get_cors_origins(self) -> list[str]:
         """Parse CORS origins from comma-separated string.
