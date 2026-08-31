@@ -45,6 +45,12 @@ class RiskPosture(BaseModel):
         default_factory=list,
         description="Rule IDs that triggered PROHIBITED classification",
     )
+    dampened_triggers: list[str] = Field(
+        default_factory=list,
+        description="Prohibited-practice rule IDs found ONLY in confidence-"
+        "dampened context (tests/examples) — capability evidence, not a "
+        "deployment verdict; did not set PROHIBITED (v07 T2.1)",
+    )
     reason: str
     compliance_score: float = Field(..., ge=0.0, le=100.0)
 

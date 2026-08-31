@@ -85,6 +85,14 @@ def _scan_and_profile(
             all_findings.extend(scanner.scan(ctx, rules))
         except Exception as e:  # noqa: BLE001
             logger.exception("Scanner %s failed: %s", scanner.__class__.__name__, e)
+    if use_llm:
+        # v07 T2.2 — judge, never detector: may confirm or demote findings,
+        # never create/delete/boost. Fail-open with a receipt in stats.
+        from src.code_analyzer.finding_triage import triage_findings
+
+        ctx.shared["llm_triage"] = triage_findings(all_findings)
+    else:
+        ctx.shared["llm_triage"] = {"status": "skipped", "reason": "use_llm=False"}
     return build_profile(
         scan_id=scan_id,
         repo_info=result.repo_info,

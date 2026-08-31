@@ -54,6 +54,11 @@ class Finding(BaseModel):
     remediation: str | None = None
     suppressed: bool = False
     suppress_reason: str | None = None
+    triage: str | None = Field(
+        None,
+        description="LLM triage outcome (v07 T2.2): 'llm-confirmed' or "
+        "'llm-demoted: <reason>'. None = triage did not run for this finding.",
+    )
 
 
 class AIComponent(BaseModel):

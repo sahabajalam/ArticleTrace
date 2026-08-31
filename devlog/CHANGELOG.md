@@ -151,6 +151,41 @@ described there.
 
 ---
 
+## 2026-08-31 — v07 T2 delivered: confidence-aware verdicts + LLM triage (judge, never detector)
+
+**What:** **(1) Confidence-aware escalation** — a prohibited trigger sets
+PROHIBITED only at finding confidence ≥ 0.5; test/example-dampened evidence
+(×0.4 → ~0.36) lands in the new `RiskPosture.dampened_triggers` and caps at
+HIGH_RISK with an explicit "capability present; verify deployment" reason.
+Closes DL-027's open follow-up: deepface now classifies **HIGH_RISK with
+dampened AI-009** instead of PROHIBITED-via-a-tests/-file (verified live). A
+test pins the dampener↔threshold relationship. **(2) LLM finding triage**
+([`finding_triage.py`](../orchestrator/src/code_analyzer/finding_triage.py),
+IRIS-shaped per v07 §1.3): reviews ≤40 findings/scan, may CONFIRM or DEMOTE
+(halve confidence + reasoned `finding.triage` annotation), structurally cannot
+create/delete/boost — a hallucinated verdict can only quiet a scan, and
+demotion below the T2.1 bar can defuse a dubious PROHIBITED but nothing the
+LLM says can cause one. Fail-open with a receipt in `stats.llm_triage`
+(ok/skipped/failed, reviewed/demoted/capped — the cap is loud). Live deepface
+run: 40 reviewed, 25 demoted with stated reasons (`experiments/`,
+`benchmarks/` directories — judgments path dampeners cannot make), 47
+capped-out and reported.
+
+**Why:** v07 §1.4 — capability evidence and deployment inference must not be
+conflated by a trigger that ignores confidence; and the field's result (IRIS)
+is LLM around the deterministic engine, not inside it.
+
+**Benchmark unaffected** (deterministic path, 9/9); 50 orchestrator unit
+tests green (9 new in test_t2_verdicts.py).
+
+**Impact on SYSTEM.md:** §3.1 (triage in the scan flow), §3.2 (classifier
+row: confidence-gated triggers, dampened_triggers).
+
+**Refs:** v07 T2 delivery note; DL-027 follow-up #1 closed (the stale-test-
+modules follow-up remains open).
+
+---
+
 ## 2026-08-31 — v07 T1 delivered: manifests, notebooks, string signals — 9/9 benchmark
 
 **What:** The three T1 signal-widening items, each landed against a waiting

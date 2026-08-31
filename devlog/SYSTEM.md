@@ -151,7 +151,10 @@ patterns on a rule — HF model ids, hosted-LLM endpoints — code files only).
 `.ipynb` code cells are extracted by `source_reader.py` and flow through the
 same scanners; notebook evidence lines refer to the extracted cell stream.
 Coverage honesty: `stats.manifest_scan` and `stats.source_read_errors` report
-what could not be read. Recall/precision are enforced by the detection
+what could not be read. After scanning, an LLM triage pass (v07 T2.2,
+`finding_triage.py`) may confirm or demote findings — never create, delete or
+boost — with its outcome in `stats.llm_triage`; demotions halve confidence and
+carry a reason on `finding.triage`. Recall/precision are enforced by the detection
 benchmark (`orchestrator/detection_benchmark/`, CI: detection-benchmark.yml).
 
 ### 3.2 Orchestrator — LangGraph supervisor ([`orchestrator/src/agents/supervisor.py`](../orchestrator/src/agents/supervisor.py))
@@ -164,7 +167,7 @@ classify_risk → research_legal → generate_narrative → synthesize → END
 
 | Node | Agent class | LLM? | Purpose |
 |---|---|---|---|
-| `classify_risk` | `RiskClassifierAgent` | **No** | Deterministic EU AI Act category (`PROHIBITED` / `HIGH_RISK` / `LIMITED_RISK` / `MINIMAL_RISK`) + weighted compliance score. Prohibited triggers: rule IDs `AI-008`, `AI-009`. |
+| `classify_risk` | `RiskClassifierAgent` | **No** | Deterministic EU AI Act category (`PROHIBITED` / `HIGH_RISK` / `LIMITED_RISK` / `MINIMAL_RISK`) + weighted compliance score. Prohibited triggers: rule IDs `AI-008`, `AI-009` — but only at finding confidence ≥ 0.5 (v07 T2.1): triggers found solely in test/example-dampened context land in `dampened_triggers` and cap at HIGH_RISK with a "verify deployment" reason. |
 | `research_legal` | `LegalResearchAgent` | Yes (KE LLM) | Queries `POST /api/v1/hybrid/reason` on knowledge engine; returns mapped Articles + Obligations + Recitals per finding. |
 | `generate_narrative` | `DocumentationGeneratorAgent` | Yes (Gemini) | Writes executive summary + remediation plan as markdown. Post-hoc only; not in the detection path. |
 | `synthesize` | (inline in supervisor) | No | Merges `profile`, `risk_posture`, `narrative`, `finding_citations` into the final `ScanReport`. |

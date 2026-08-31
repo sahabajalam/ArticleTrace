@@ -231,6 +231,27 @@ No new scanner types; these extend evidence sources of existing ones:
    evidence, so Part V's "moat is the rule corpus" thesis is preserved; this
    is triage, not detection.
 
+> **T2 delivered (2026-08-31, same day).**
+> 1. **Confidence-aware escalation** (`risk_classifier.py`): a prohibited
+>    trigger escalates to PROHIBITED only at confidence ≥ 0.5; the tests/
+>    dampener (×0.4) puts test-only evidence at ~0.36, below the bar. Such
+>    triggers are reported in the new `RiskPosture.dampened_triggers` with an
+>    explicit "capability present; verify deployment" reason — closing the
+>    DL-027 follow-up (deepface: PROHIBITED → HIGH_RISK + dampened AI-009,
+>    verified live). A test pins the dampener↔threshold relationship so
+>    neither constant can drift past the other silently.
+> 2. **LLM triage — judge, never detector** (`finding_triage.py`,
+>    IRIS-shaped): reviews up to 40 findings per scan and may CONFIRM or
+>    DEMOTE (halve confidence + reasoned annotation on the finding), never
+>    create/delete/boost — so a hallucinated verdict can only make a scan
+>    quieter. Demoting a trigger below the T2.1 bar defuses a dubious
+>    PROHIBITED; nothing the LLM says can cause one. Fail-open with a receipt:
+>    `stats.llm_triage` reports ok/skipped/failed + reviewed/demoted/capped
+>    counts (v07 §5 — the cap is loud, 47 capped-out on deepface's 87).
+>    Live run demoted 25 findings for stated reasons (`experiments/`,
+>    `benchmarks/` dirs — judgments path heuristics cannot make) and the
+>    deterministic benchmark path is unaffected (`use_llm=False`, 9/9).
+
 ### T3 — Explicitly deferred (refuse-list aligned)
 
 Dataflow/taint for AI-003/007/010 (CodeQL-class machinery; revisit only if

@@ -69,6 +69,7 @@ def build_profile(
         # "these signals found nothing" from "these signals were never read".
         "manifest_scan": shared.get("manifest_scan") or {"files": [], "errors": []},
         "source_read_errors": shared.get("source_read_errors") or [],
+        "llm_triage": shared.get("llm_triage") or {"status": "skipped", "reason": "not run"},
     }
     return AISystemProfile(
         scan_id=scan_id,
