@@ -151,6 +151,48 @@ described there.
 
 ---
 
+## 2026-08-31 — v07 T0 delivered: detection benchmark; first run caught three defects
+
+**What:** Built the detection benchmark
+([`orchestrator/detection_benchmark/`](../orchestrator/detection_benchmark/)):
+`corpus.json` with 5 SHA-pinned public repos (deepface, face_recognition,
+openai-quickstart, plus `requests` and `flask` as false-positive controls) and
+3 local fixtures (`modern_sdk` guarding the DL-027 fix; `notebook_only` and
+`manifest_only` as strict xfails encoding v07 gaps 1/3/4). Runner
+([`run_detection_benchmark.py`](../orchestrator/scripts/run_detection_benchmark.py))
+drives the real pipeline deterministically (`_scan_and_profile(use_llm=False)`
+— new param), scores per-rule ground-truth expectations, reports coverage per
+v06 §4, and fails on any miss, control-repo FP, or xpass. CI:
+[`detection-benchmark.yml`](../.github/workflows/detection-benchmark.yml)
+(PRs touching the scanner, weekly, no secrets).
+
+**The first run caught three real defects (BUG_LOG DL-028/029/030):**
+1. **DL-028** — `ingest` matched exclusions against *absolute* path segments,
+   so a repo under any ancestor named `.cache`/`env`/`build`/`out` ingested
+   **0 files** and reported MINIMAL_RISK with `errors: 0`. Now repo-relative.
+2. **DL-029** — AI-004/AI-006 (missing model/data card) had **never emitted a
+   finding**: the absent-marker `Evidence(file=".", line=0)` failed `ge=1`
+   validation inside the fail-open per-scanner except. `Evidence.line` is now
+   optional for repo-level facts; deepface/face_recognition/quickstart now
+   correctly show both findings.
+3. **DL-030** — AI-005 fired on the word "email" in a Flask docstring about
+   URL generation. `ContentScanner` now honours the `requires_any_rule`
+   precondition (mechanism already existed in FilePatternScanner) and AI-005
+   requires AI-001/002/003 evidence first.
+
+**Post-fix benchmark: 6/6 PASS, 2 XFAIL as pre-registered, 100% detection
+pass rate.** 29 orchestrator unit tests green (12 import-scanner + 8 gating +
+existing). Every defect is the same silent-degradation class the benchmark
+was built to catch — it paid for itself before its first commit.
+
+**Impact on SYSTEM.md:** none yet — scanner behaviour changes are
+recall/precision fixes within documented architecture; v07 doc carries the
+T0 delivery note.
+
+**Refs:** v07 T0; BUG_LOG DL-028/029/030; `first_run.json` baseline.
+
+---
+
 ## 2026-08-31 — v07 proposed: scanner robustness — measure recall first, then widen the signal
 
 **What:** Researched how the field detects library/AI usage in code (Semgrep vs

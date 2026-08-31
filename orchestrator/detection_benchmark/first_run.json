@@ -1,0 +1,190 @@
+{
+  "summary": {
+    "PASS": 6,
+    "XFAIL": 2
+  },
+  "rows": [
+    {
+      "name": "deepface",
+      "status": "PASS",
+      "observed": {
+        "by_rule": {
+          "AI-001": 79,
+          "AI-005": 1,
+          "AI-004": 1,
+          "AI-006": 1,
+          "AI-009": 1
+        },
+        "components": [
+          {
+            "kind": "biometric_lib",
+            "name": "deepface"
+          }
+        ],
+        "total_findings": 83,
+        "coverage": {
+          "total_files": 239,
+          "scanned_files": 151,
+          "languages": [
+            "python"
+          ]
+        }
+      },
+      "problems": []
+    },
+    {
+      "name": "face_recognition",
+      "status": "PASS",
+      "observed": {
+        "by_rule": {
+          "AI-001": 25,
+          "AI-004": 1,
+          "AI-006": 1
+        },
+        "components": [
+          {
+            "kind": "biometric_lib",
+            "name": "face_recognition"
+          }
+        ],
+        "total_findings": 27,
+        "coverage": {
+          "total_files": 106,
+          "scanned_files": 73,
+          "languages": [
+            "python"
+          ]
+        }
+      },
+      "problems": []
+    },
+    {
+      "name": "openai-quickstart",
+      "status": "PASS",
+      "observed": {
+        "by_rule": {
+          "AI-002": 4,
+          "AI-004": 1,
+          "AI-006": 1
+        },
+        "components": [
+          {
+            "kind": "llm_sdk",
+            "name": "openai"
+          }
+        ],
+        "total_findings": 6,
+        "coverage": {
+          "total_files": 15,
+          "scanned_files": 13,
+          "languages": [
+            "python"
+          ]
+        }
+      },
+      "problems": []
+    },
+    {
+      "name": "requests",
+      "status": "PASS",
+      "observed": {
+        "by_rule": {},
+        "components": [],
+        "total_findings": 0,
+        "coverage": {
+          "total_files": 128,
+          "scanned_files": 121,
+          "languages": [
+            "python"
+          ]
+        }
+      },
+      "problems": []
+    },
+    {
+      "name": "flask",
+      "status": "PASS",
+      "observed": {
+        "by_rule": {},
+        "components": [],
+        "total_findings": 0,
+        "coverage": {
+          "total_files": 235,
+          "scanned_files": 226,
+          "languages": [
+            "python"
+          ]
+        }
+      },
+      "problems": []
+    },
+    {
+      "name": "modern_sdk",
+      "status": "PASS",
+      "observed": {
+        "by_rule": {
+          "AI-001": 1,
+          "AI-002": 1,
+          "AI-004": 1,
+          "AI-006": 1
+        },
+        "components": [
+          {
+            "kind": "biometric_lib",
+            "name": "deepface"
+          },
+          {
+            "kind": "llm_sdk",
+            "name": "anthropic"
+          }
+        ],
+        "total_findings": 4,
+        "coverage": {
+          "total_files": 1,
+          "scanned_files": 1,
+          "languages": [
+            "python"
+          ]
+        }
+      },
+      "problems": []
+    },
+    {
+      "name": "notebook_only",
+      "status": "XFAIL",
+      "observed": {
+        "by_rule": {},
+        "components": [],
+        "total_findings": 0,
+        "coverage": {
+          "total_files": 2,
+          "scanned_files": 2,
+          "languages": []
+        }
+      },
+      "problems": [
+        "AI-001: expected >= 1, found 0",
+        "AI-002: expected >= 1, found 0"
+      ]
+    },
+    {
+      "name": "manifest_only",
+      "status": "XFAIL",
+      "observed": {
+        "by_rule": {},
+        "components": [],
+        "total_findings": 0,
+        "coverage": {
+          "total_files": 2,
+          "scanned_files": 2,
+          "languages": [
+            "python"
+          ]
+        }
+      },
+      "problems": [
+        "AI-001: expected >= 1, found 0"
+      ]
+    }
+  ]
+}

@@ -1515,3 +1515,102 @@ to import — they reference `src.control_plane.approval_queue` and
 collect. The suite has been broken since that restructure.
 
 ---
+
+## 29. Scanners — DL-028 Repos under an excluded-name ancestor scan as 0 files
+
+**Problem**
+The detection benchmark's git entries all reported `scanned=0/0` and zero
+findings — deepface included, whose working tree verifiably held 106 `.py`
+files at the pinned SHA.
+
+**Root cause**
+`_iter_files` / `_count_all_files` in `orchestrator/src/code_analyzer/ingest.py`
+matched `EXCLUDE_DIRS` against the **absolute** path's segments (`p.parts`),
+not the path relative to the repo root. The benchmark caches clones under
+`detection_benchmark/.cache/…`, and `.cache` is in `EXCLUDE_DIRS`, so every
+file's ancestry was "excluded". Any user cloning a repo under a directory
+named `env`, `out`, `build`, `coverage`, `target`, or `.cache` hits the same:
+the scan ingests nothing and reports MINIMAL_RISK with `errors: 0`.
+
+**Fix**
+Exclusions now evaluate `p.relative_to(root).parts` — segments inside the
+repo only. Tests: a repo under `…/.cache/…` scans; `node_modules` inside the
+repo is still excluded.
+
+**Thinking**
+
+**Severity:** High — a positional accident silently turns any scan into a
+clean report. Same silent-degradation class as DL-025/026/027.
+
+**Lesson:** Filters written against paths must state their frame of
+reference. "Absolute vs repo-relative" is the scanner's version of the
+CWD-relative `.env` bug (DL-025 step 2 / v06 §2.2).
+
+---
+
+## 30. Scanners — DL-029 AI-004/AI-006 findings had never been emitted (Evidence line=0 crash)
+
+**Problem**
+No production scan ever showed AI-004 (missing model card) or AI-006 (missing
+data card) — including deepface, which has neither document. The benchmark's
+first run surfaced the reason as a traceback.
+
+**Root cause**
+`FilePatternScanner` builds an absent-marker finding pointing at the repo
+root with `Evidence(file=".", line=0)`. `Evidence.line` is constrained
+`ge=1`, so pydantic rejects it, the per-scanner `try/except` in
+`_scan_and_profile` swallows the crash, and the scan continues without the
+finding. A comment at the crash site shows this *was* a previous fix (moving
+evidence off a misleading borrowed file) — it never once executed
+successfully.
+
+**Fix**
+`Evidence.line` is now `int | None` (`ge=1` when present): a repo-level fact
+genuinely has no line. Scanner emits `line=None`. Test asserts a
+deepface-style tree produces both AI-004 and AI-006.
+
+**Thinking**
+
+**Severity:** High — two of the ten rules were dead in production; the
+transparency-documentation story (AI Act Art 13/52 mapping) silently never
+fired.
+
+**Lesson:** A fix that only runs inside a fail-open `try/except` has never
+been tested until something asserts its *output*. Fail-open + no benchmark =
+a dead code path that looks like a shipped feature.
+
+---
+
+## 31. Rules — DL-030 AI-005 fired on the word "email" in a Flask docstring
+
+**Problem**
+The benchmark's false-positive control `pallets/flask` (a web framework, zero
+AI) produced an AI-005 "PII handling without DPIA" finding. Evidence:
+`src/flask/app.py:1127 — 'In some cases, such as email messages, you want
+URLs to include…'` — a docstring about URL generation.
+
+**Root cause**
+AI-005 is a bare keyword regex (`email`, `phone_number`, …) over all text
+files, with no requirement that the repo shows any AI usage. The
+`requires_any_rule` precondition mechanism already existed — but only
+`FilePatternScanner` implemented it; `ContentScanner` never did.
+
+**Fix**
+`ContentScanner` now honours `requires_any_rule` (same semantics as
+FilePatternScanner, reading `imports_by_rule` from shared scanner state), and
+AI-005 declares `requires_any_rule: [AI-001, AI-002, AI-003]`. The rule's own
+remediation text already framed DPIA in the AI-context; the gate makes the
+rule match its remit. deepface still fires AI-005 (it has AI-001 imports);
+flask and requests are clean. Tests cover both directions.
+
+**Thinking**
+
+**Severity:** Medium — precision, not recall; but an AI-compliance report
+flagging a web framework for "PII without DPIA" is exactly the
+credibility-burning false positive the audit warns about.
+
+**Lesson:** Every content rule needs an answer to "what makes this an *AI*
+finding?". The benchmark's FP controls (`requests`, `flask`) are now the
+permanent enforcement of that question.
+
+---

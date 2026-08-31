@@ -61,7 +61,7 @@ class FilePatternScanner(Scanner):
                 ev.append(
                     Evidence(
                         file=".",
-                        line=0,
+                        line=None,
                         excerpt=f"Missing repo-level documentation: expected one of {', '.join(markers)}",
                         symbol="<repo>",
                     )

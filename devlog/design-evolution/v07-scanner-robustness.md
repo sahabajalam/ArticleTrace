@@ -163,6 +163,18 @@ This is C1 discipline applied to the scanner, and it satisfies the
 refuse-list's own precondition for any expansion. **Nothing in T1+ lands
 without a before/after benchmark delta.**
 
+> **T0 delivered (2026-08-31, same day).** `orchestrator/detection_benchmark/`
+> (corpus.json — 5 pinned repos + 3 fixtures, expectations authored from repo
+> ground truth), `scripts/run_detection_benchmark.py` (deterministic
+> `use_llm=False` path, strict xfail, coverage reported per §5), CI at
+> `.github/workflows/detection-benchmark.yml`. **Its first run caught three
+> real defects**: DL-028 (absolute-path exclusion → repos under `.cache`/`env`
+> ancestors scan as 0 files), DL-029 (AI-004/AI-006 had *never* emitted — the
+> absent-marker Evidence crashed validation inside a fail-open except), DL-030
+> (AI-005 fired on "email" in a Flask docstring; now gated on
+> `requires_any_rule`). Post-fix: 6/6 PASS, 2 XFAIL as registered, detection
+> pass rate 100%. The rest of this proposal remains `proposal`.
+
 ### T1 — Widen the signal inside the existing six scanners
 
 No new scanner types; these extend evidence sources of existing ones:

@@ -125,7 +125,12 @@ def _iter_files(root: Path) -> Iterable[Path]:
             break
         if not p.is_file():
             continue
-        if any(seg in EXCLUDE_DIRS for seg in p.parts):
+        # Exclusions apply to path segments INSIDE the repo, never to the
+        # repo's own location on disk. Matching absolute parts meant a repo
+        # cloned under any ancestor named `env`, `out`, `build`, `.cache`,
+        # etc. scanned as 0 files — and then reported MINIMAL_RISK with
+        # errors:0, indistinguishable from a genuinely clean repo.
+        if any(seg in EXCLUDE_DIRS for seg in p.relative_to(root).parts):
             continue
         if any(p.name.endswith(s) for s in EXCLUDE_SUFFIXES):
             continue
@@ -141,7 +146,9 @@ def _iter_files(root: Path) -> Iterable[Path]:
 def _count_all_files(root: Path) -> int:
     n = 0
     for p in root.rglob("*"):
-        if p.is_file() and not any(seg in EXCLUDE_DIRS for seg in p.parts):
+        if p.is_file() and not any(
+            seg in EXCLUDE_DIRS for seg in p.relative_to(root).parts
+        ):
             n += 1
     return n
 

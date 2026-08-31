@@ -34,7 +34,16 @@ class ContentScanner(Scanner):
             return []
         findings: list[Finding] = []
         pii_bucket: set[str] = set()
+        imports_by_rule: dict = ctx.shared.get("imports_by_rule", {})
         for rule in applicable:
+            # Same precondition gate FilePatternScanner honours: a content rule
+            # can declare it only makes sense once other rules found AI usage.
+            # Without this, AI-005 fired on the word "email" in a docstring of
+            # a web framework with zero AI anywhere (benchmark FP on
+            # pallets/flask) — bare PII keywords are not an AI system.
+            requires_any: list[str] = rule.patterns.get("requires_any_rule", []) or []
+            if requires_any and not any(rid in imports_by_rule for rid in requires_any):
+                continue
             patterns: list[str] = rule.patterns.get("keywords", []) or []
             scope_exts = set(rule.patterns.get("extensions", list(TEXT_EXTS)))
             is_pii_rule = rule.patterns.get("collect_pii", False)
