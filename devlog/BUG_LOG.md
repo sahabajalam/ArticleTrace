@@ -1684,3 +1684,67 @@ tests for it — otherwise the suite quietly shrinks to whatever still imports.
 Same silent-degradation class as the rest of this log.
 
 ---
+
+## 33. CI — DL-032 Golden-tests workflow has been red since before this session; secrets stale or absent
+
+**Problem**
+`KE Golden Tests + 3-mode Eval` fails on every trigger:
+
+```
+::error::GOOGLE_API_KEY repo secret is missing or empty.
+Process completed with exit code 2
+```
+
+Not a regression from the 2026-08-31 work: the **scheduled** run on
+2026-08-30 (`33316550844`, before any of it) failed with the identical error.
+Pushes touching `knowledge_engine/**` merely re-trigger it.
+
+**Root cause**
+Two independent gaps in repo secrets:
+
+1. `GOOGLE_API_KEY` was **never added**. `gh secret list` shows only
+   `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`.
+2. Those three were set **2026-04-29** — they predate *both* Aura deletions
+   (`652f6242` → `e8097dda` → current `dab1e7ea`). Even once the API key is
+   added, CI would authenticate against an instance that no longer resolves.
+
+The workflow's own secret-presence check is working exactly as designed: it
+fails loudly at step 3 rather than letting the eval run against nothing and
+report a meaningless number. That check was added deliberately
+(`20855a8 ci: gate golden tests on pass-rate threshold, add secret-presence
+check`) and it earned its place here.
+
+**Fix**
+Workflow side (done): deprecated `actions/checkout@v4`,
+`upload-artifact@v4`, `cache@v4` bumped to v7/v7/v6 — GitHub is forcing
+Node 20 actions onto Node 24 and will stop doing so.
+
+Secret side (**requires the owner**): add `GOOGLE_API_KEY` and refresh the
+three `NEO4J_*` secrets to the `dab1e7ea` instance. Deliberately not done
+here: the Gemini key currently in `.env` is the one that was published in
+git history (see DL-031 context / the 2026-08-31 history purge), so it must
+be **rotated first**. Installing a known-exposed key as a repo secret would
+launder the exposure rather than fix it.
+
+**Thinking**
+
+**Severity:** Medium — CI has been decorative for at least two weeks. The
+retrieval metrics in METRICS.md are still trustworthy (reproduced locally on
+2026-08-31, exactly), but nothing has been guarding them.
+
+**Empirical answer to DL-025's open question.** DL-025 asked whether
+`keep-aura-alive.yml` failed to run, failed to reset the timer, or whether
+Aura's deletion is policy-based. The run history settles it: the workflow
+**succeeded** on 2026-08-25, 08-27 and 08-29 — green every time — and the
+instance was destroyed anyway. A `MATCH (n) RETURN count(n)` ping does not
+reset the deletion timer; deletion is policy-based on idleness, not query
+activity. The keep-alive was green while the database it "protected" was
+being deleted. That is the purest example of this log's recurring class, and
+it retroactively justifies retiring it for a verified backup (v06 §2.3).
+
+**Lesson:** A green CI badge proves a workflow ran, not that it achieved
+anything. Ask what observable state each scheduled job is supposed to change,
+and assert *that* — the keep-alive asserted its own query succeeded, which
+was never the question.
+
+---

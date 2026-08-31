@@ -151,6 +151,34 @@ described there.
 
 ---
 
+## 2026-08-31 — CI triage: golden-tests red since before this session (DL-032)
+
+**What:** Diagnosed the `KE Golden Tests + 3-mode Eval` failure. Pre-existing —
+the 2026-08-30 scheduled run failed identically before any of this session's
+work. Two gaps: `GOOGLE_API_KEY` was never added as a repo secret, and the
+three `NEO4J_*` secrets date from 2026-04-29, predating **both** Aura
+deletions, so they point at an instance that no longer resolves. Bumped
+deprecated `actions/checkout@v4` / `upload-artifact@v4` / `cache@v4` to
+v7/v7/v6 across all three workflows, and gave the detection benchmark a
+push-to-main trigger so it gates direct pushes, not only PRs.
+
+**Not done, deliberately:** installing the secrets. The Gemini key in `.env`
+is the one that was published in git history; it must be rotated before being
+stored anywhere. Owner action.
+
+**Also settled — DL-025's open question.** `keep-aura-alive.yml` **succeeded**
+on 2026-08-25, 08-27 and 08-29 and the instance was deleted regardless. Aura's
+deletion is policy-based on idleness; a keep-alive query does not reset it.
+The workflow was green while the database it protected was destroyed —
+retroactive proof that v06 §2.3 was right to retire it for a verified backup.
+
+**Impact on SYSTEM.md:** none — CI/config only.
+
+**Refs:** BUG_LOG DL-032; runs 33316550844 (pre-existing failure), keep-alive
+runs 2026-08-25/27/29.
+
+---
+
 ## 2026-08-31 — Orchestrator test suite collects again (DL-031)
 
 **What:** 5 of 7 orchestrator unit-test modules had failed collection since

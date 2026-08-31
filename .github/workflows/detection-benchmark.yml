@@ -16,6 +16,12 @@ on:
       - "orchestrator/src/code_analyzer/**"
       - "orchestrator/detection_benchmark/**"
       - "orchestrator/scripts/run_detection_benchmark.py"
+  push:
+    branches: [main]
+    paths:
+      - "orchestrator/src/code_analyzer/**"
+      - "orchestrator/detection_benchmark/**"
+      - "orchestrator/scripts/run_detection_benchmark.py"
   schedule:
     - cron: "30 2 * * 1" # Mondays 02:30 UTC, after the KG backup
   workflow_dispatch:
@@ -28,7 +34,7 @@ jobs:
       run:
         working-directory: orchestrator
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
@@ -37,7 +43,7 @@ jobs:
         run: uv sync
 
       - name: Cache pinned corpus clones
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: orchestrator/detection_benchmark/.cache
           key: detection-corpus-${{ hashFiles('orchestrator/detection_benchmark/corpus.json') }}
@@ -47,7 +53,7 @@ jobs:
 
       - name: Upload results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: detection-benchmark-results
           path: /tmp/detection-results.json
