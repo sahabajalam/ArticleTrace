@@ -1,12 +1,15 @@
 ---
 version: "07"
 title: Scanner robustness — measure recall first, then widen the signal
-status: proposal
+status: implemented
 derives_from: v02-static-scanner-pivot.md
 proposed_date: 2026-08-31
-decided_date: null
+decided_date: 2026-08-31  # owner directed "start T1" / "start T2" against the written spec
 implemented_in:
-  - null
+  - a156c0e  # T0 benchmark harness + corpus + CI
+  - 5226c6a  # DL-028/029/030 fixes the benchmark's first run caught
+  - 051fd05  # T1 manifests, notebooks, string signals
+  - 6dc6630  # T2 confidence-aware verdicts + LLM triage
 superseded_by: null
 owner: Sahabaj Alam
 source_of_truth:
@@ -44,9 +47,11 @@ rules without quantifying the existing ones is anti-pattern").
 
 ## Status
 
-- **State:** `proposal`
-- **Decided:** null
-- **Implemented in:** null
+- **State:** `implemented` — T0, T1 and T2 delivered 2026-08-31 (see per-tier
+  notes below). T3 remains deferred by design, gated on a benchmark number
+  proving the need.
+- **Decided:** 2026-08-31
+- **Implemented in:** a156c0e, 5226c6a, 051fd05, 6dc6630
 - **Supersedes:** nothing. Refines the algorithmic core ratified in v02.
 
 ## 1. What the research says

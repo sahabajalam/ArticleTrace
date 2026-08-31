@@ -61,7 +61,7 @@ Body sections, in order:
 | [`v04-hitl-decision.md`](v04-hitl-decision.md) | `implemented` | 2026-04-13 | commit `5210e51` (supervisor.py rewritten as 4-node linear graph; HITL branch removed) |
 | [`v05-multimodal-colpali.md`](v05-multimodal-colpali.md) | `proposal` | null | scaffolding only — `knowledge_engine/src/multimodal/` compiles but `colpali-engine` not installed and no PDFs ingested |
 | [`v06-durable-kg-and-reproducible-eval.md`](v06-durable-kg-and-reproducible-eval.md) | `proposal` | null | KG restored into Aura `dab1e7ea` (2,301/4,423/2,198 verified); config, backup-cycle and POSIX-eval workstreams open |
-| [`v07-scanner-robustness.md`](v07-scanner-robustness.md) | `proposal` | null | research done (SAST landscape, AI-BOM, IRIS); T0 detection benchmark not started |
+| [`v07-scanner-robustness.md`](v07-scanner-robustness.md) | `implemented` | 2026-08-31 | T0 benchmark (9/9, caught DL-028/029/030 on first run) + T1 signals (manifests/notebooks/strings) + T2 verdicts & LLM triage; T3 deferred by design |
 
 ## When to add a new `vNN`
 
