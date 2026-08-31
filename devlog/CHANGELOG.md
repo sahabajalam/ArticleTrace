@@ -151,6 +151,31 @@ described there.
 
 ---
 
+## 2026-08-31 — Rename follow-through: local directory, venvs, stale path claims
+
+**What:** Completed the rename below the repository level. Local directory
+`Portfolio/04_AI_Governance_Scanner` → `04_ArticleTrace` (keeps the siblings'
+`NN_Name` convention). Both virtualenvs were rebuilt: uv writes absolute paths
+into console-script shebangs, so `pytest` failed with `bad interpreter` the
+moment the directory moved — `uv sync` regenerates them. Also updated the
+Alloygraph project record, whose `repo_path` pointed at the old directory.
+
+**A stale claim this surfaced.** SYSTEM.md §7 stated *"EU_AI_GDPR — repo
+directory name only"*. That was already wrong before today: the directory had
+been `04_AI_Governance_Scanner` for some time. The glossary row now says so
+explicitly rather than quietly substituting the new name, since a doc that
+silently corrects itself teaches nothing about how it drifted.
+
+**Verified after the move:** 152 tests green, benchmark 9/9, git remote and
+history intact, tree clean.
+
+**Impact on SYSTEM.md:** §7 Glossary — EU_AI_GDPR row marked stale with the
+reason; the naming paragraph no longer cites a directory name at all.
+
+**Refs:** v08-naming.md.
+
+---
+
 ## 2026-08-31 — Renamed AlloyCode → ArticleTrace
 
 **What:** Third and final canonical name. Decision record:

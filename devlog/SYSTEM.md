@@ -16,7 +16,7 @@ ai_guidance: |
 
 **ArticleTrace** is a static compliance scanner for AI codebases. Point it at a public GitHub repo; deterministic scanners detect AI-system patterns and map them to EU AI Act + GDPR obligations from a 2,301-node Neo4j knowledge graph, returning a report of likely violations with `file:line` anchors and article citations. Two service backends (Python/FastAPI) plus a Next.js 16 frontend, orchestrated by LangGraph. The moat is the rule corpus; LLMs are kept out of the detection hot path and write only the post-hoc narrative.
 
-The project's external name is **ArticleTrace** (code, UI, portfolio docs, scripts), adopted 2026-08-31. The name is grounded in what the rule catalog actually cites: 25 of its 26 regulatory references are Articles, across both the AI Act and GDPR, and every finding is traceable from a `file:line` anchor to a cited Article. *AlloyCode* and, before it, *Aegis Compliance Engine* are earlier names now deprecated — surviving references are being phased out as touched. *EU_AI_GDPR* is the repo directory name only (a path-level artifact, not a brand). See §7 Glossary.
+The project's external name is **ArticleTrace** (code, UI, portfolio docs, scripts), adopted 2026-08-31. The name is grounded in what the rule catalog actually cites: 25 of its 26 regulatory references are Articles, across both the AI Act and GDPR, and every finding is traceable from a `file:line` anchor to a cited Article. *AlloyCode* and, before it, *Aegis Compliance Engine* are earlier names now deprecated — surviving references are being phased out as touched. See §7 Glossary.
 
 ---
 
@@ -270,7 +270,7 @@ Network: `compliance-network` (bridge). Volumes: `orchestrator_postgres_data`, `
 | **ArticleTrace** | **Canonical external name.** Use this everywhere — code, UI, scripts, portfolio docs, public-facing material. |
 | **AlloyCode** | **Deprecated 2026-08-31.** Second name; collided with an operating software consultancy (alloycode.com), with Alloy the identity/compliance fintech, and with MIT's Alloy specification language. Superseded by ArticleTrace — see `design-evolution/v08-naming.md`. Historical CHANGELOG and BUG_LOG entries keep it deliberately: they record what was true when written. |
 | **Aegis Compliance Engine** | **Deprecated.** First marketing name; surviving references are being phased out as touched (see [`CHANGELOG.md`](CHANGELOG.md) 2026-06-16). Do not introduce new uses. |
-| **EU_AI_GDPR** | Repo directory name only — a path-level artifact, not a brand. Not for user-facing copy. |
+| **EU_AI_GDPR** | **Stale.** An old repo directory name, retired well before 2026-08-31; it had already drifted from the actual directory when this row was written. Directory names are path-level artifacts, never brands — the repository, product and local directory are all `ArticleTrace` as of 2026-08-31. |
 | **risk posture** | The `RiskClassifierAgent` output: category + severity counts + compliance score (0–100). |
 | **Risk categories** | EU AI Act tiers: `PROHIBITED`, `HIGH_RISK`, `LIMITED_RISK`, `MINIMAL_RISK`. |
 | **prohibited triggers** | Rule IDs that force `PROHIBITED` regardless of other signals. Currently: `AI-008`, `AI-009`. |
