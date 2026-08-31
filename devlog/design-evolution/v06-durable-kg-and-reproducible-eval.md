@@ -123,10 +123,18 @@ DL-025's own recommendation, now overdue by one data-loss event.
 
 ### 2.4 Make the eval path POSIX-reproducible
 
-`METRICS.md`, the CI workflow, and the script docstrings all invoke
-`./.venv/Scripts/python.exe`. Provide a documented POSIX path (`uv sync` +
-`.venv/bin/python`) and update the commands so the reproducibility section is
-true on the machine the project now lives on.
+`METRICS.md` and the script docstrings invoke `./.venv/Scripts/python.exe`.
+Provide a documented POSIX path (`uv sync` + `.venv/bin/python`) and update the
+commands so the reproducibility section is true on the machine the project now
+lives on.
+
+> **Correction (2026-08-31, on implementing this section).** This section
+> originally also named the CI workflow as carrying the Windows path. It does
+> not: `.github/workflows/golden-tests.yml` runs on `ubuntu-latest` and invokes
+> plain `python scripts/...` against the `setup-python` interpreter. It was
+> audited and needed no change. **§2.4 is delivered** — see `CHANGELOG.md`
+> 2026-08-31 "documented eval commands made POSIX-first". The rest of this
+> proposal (§2.1, §2.5) remains `proposal`, so the document status is unchanged.
 
 ### 2.5 Re-run the golden tests as the acceptance test
 

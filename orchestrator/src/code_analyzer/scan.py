@@ -49,7 +49,15 @@ async def run_scan(
     return profile
 
 
-def _scan_and_profile(scan_id: str, result: IngestResult) -> AISystemProfile:
+def _scan_and_profile(
+    scan_id: str, result: IngestResult, use_llm: bool = True
+) -> AISystemProfile:
+    """`use_llm=False` skips the surface-review LLM pass entirely.
+
+    The detection benchmark needs bit-for-bit reproducible runs with no API
+    key and no cost; the fail-open LLM pass is nondeterministic on both
+    counts. Production scans keep the default.
+    """
     rules = load_rules()
     ctx = ScanContext(
         repo_root=result.repo_root,
@@ -70,13 +78,21 @@ def _scan_and_profile(scan_id: str, result: IngestResult) -> AISystemProfile:
     ]
     all_findings = []
     for scanner in pipeline:
-        if isinstance(scanner, AstRulesScanner):
+        if isinstance(scanner, AstRulesScanner) and use_llm:
             # LLM pass sits between surface collection and rule application.
             _llm_enrich_surfaces(ctx)
         try:
             all_findings.extend(scanner.scan(ctx, rules))
         except Exception as e:  # noqa: BLE001
             logger.exception("Scanner %s failed: %s", scanner.__class__.__name__, e)
+    if use_llm:
+        # v07 T2.2 — judge, never detector: may confirm or demote findings,
+        # never create/delete/boost. Fail-open with a receipt in stats.
+        from src.code_analyzer.finding_triage import triage_findings
+
+        ctx.shared["llm_triage"] = triage_findings(all_findings)
+    else:
+        ctx.shared["llm_triage"] = {"status": "skipped", "reason": "use_llm=False"}
     return build_profile(
         scan_id=scan_id,
         repo_info=result.repo_info,

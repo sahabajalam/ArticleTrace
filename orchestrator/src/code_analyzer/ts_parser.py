@@ -17,6 +17,10 @@ except ImportError:  # pragma: no cover - falls back at import time
 
 LANG_BY_EXT: dict[str, str] = {
     ".py": "python",
+    # Notebooks are read through source_reader.read_source_bytes, which hands
+    # the parser extracted Python — the extension maps to the language of the
+    # extracted stream, not of the raw JSON.
+    ".ipynb": "python",
     ".js": "javascript",
     ".mjs": "javascript",
     ".cjs": "javascript",

@@ -1,0 +1,202 @@
+{
+  "_doc": [
+    "Detection benchmark corpus (v07 T0). Expectations are GROUND TRUTH,",
+    "authored from repo inspection \u2014 never from scanner output. If a run",
+    "diverges, that is a finding to investigate, not an expectation to edit.",
+    "Editing an expectation requires citing the repo evidence that justifies",
+    "it, in the same commit.",
+    "",
+    "kind=git entries are pinned to a commit SHA (repos drift; the replay",
+    "experiments taught this). kind=fixture entries live under fixtures/ and",
+    "isolate exactly one known gap each.",
+    "",
+    "xfail=true: the gap is known (v07 \u00a72) and the entry documents it. An",
+    "xfail that PASSES fails the run \u2014 promote it to a real expectation."
+  ],
+  "entries": [
+    {
+      "name": "deepface",
+      "kind": "git",
+      "repo": "https://github.com/serengil/deepface",
+      "sha": "a2a24a748d67ab7ba19ee8813584f123c8b48747",
+      "xfail": false,
+      "ground_truth": "Face recognition/attribute library. `from deepface.commons import ...` at deepface/DeepFace.py:20; ethnicity-confidence fields near DeepFace.py:262. deepface is in AI-001's import patterns.",
+      "expect": {
+        "rules": {
+          "AI-001": {
+            "min": 10
+          },
+          "AI-005": {
+            "min": 1
+          }
+        },
+        "components": [
+          {
+            "kind": "biometric_lib",
+            "name": "deepface"
+          }
+        ]
+      }
+    },
+    {
+      "name": "face_recognition",
+      "kind": "git",
+      "repo": "https://github.com/ageitgey/face_recognition",
+      "sha": "9f3061aaeed9a8756d2c970f5dfe066617a8281d",
+      "xfail": false,
+      "ground_truth": "The canonical face-recognition package; imports its own API throughout (e.g. face_recognition/face_detection_cli.py:6).",
+      "expect": {
+        "rules": {
+          "AI-001": {
+            "min": 5
+          }
+        },
+        "components": [
+          {
+            "kind": "biometric_lib",
+            "name": "face_recognition"
+          }
+        ]
+      }
+    },
+    {
+      "name": "openai-quickstart",
+      "kind": "git",
+      "repo": "https://github.com/openai/openai-quickstart-python",
+      "sha": "ec8890d101bdc17d66512d94a76b5e7131d188a1",
+      "xfail": false,
+      "ground_truth": "Official OpenAI example app; `import openai` in examples/chat-basic/app.py:9.",
+      "expect": {
+        "rules": {
+          "AI-002": {
+            "min": 1
+          }
+        },
+        "components": [
+          {
+            "kind": "llm_sdk",
+            "name": "openai"
+          }
+        ]
+      }
+    },
+    {
+      "name": "requests",
+      "kind": "git",
+      "repo": "https://github.com/psf/requests",
+      "sha": "5460f467b02e49471c0fd6cfc9ca0adab6351f98",
+      "xfail": false,
+      "ground_truth": "HTTP client library; no AI/ML libraries anywhere. False-positive control: ANY finding here is a precision defect.",
+      "expect": {
+        "zero": true
+      }
+    },
+    {
+      "name": "flask",
+      "kind": "git",
+      "repo": "https://github.com/pallets/flask",
+      "sha": "d318b683471101618febed18996405ad26462110",
+      "xfail": false,
+      "ground_truth": "Web framework; no AI/ML libraries. Second FP control \u2014 its tutorial code has user/email/password fields, which must NOT read as an AI system handling PII.",
+      "expect": {
+        "zero": true
+      }
+    },
+    {
+      "name": "modern_sdk",
+      "kind": "fixture",
+      "path": "fixtures/modern_sdk",
+      "xfail": false,
+      "ground_truth": "`from anthropic import Anthropic` + `from deepface import DeepFace` \u2014 the exact import style DL-027 was blind to. Guards that fix permanently.",
+      "expect": {
+        "rules": {
+          "AI-001": {
+            "min": 1
+          },
+          "AI-002": {
+            "min": 1
+          }
+        },
+        "components": [
+          {
+            "kind": "biometric_lib",
+            "name": "deepface"
+          }
+        ]
+      }
+    },
+    {
+      "name": "notebook_only",
+      "kind": "fixture",
+      "path": "fixtures/notebook_only",
+      "xfail": false,
+      "ground_truth": "analysis.ipynb imports deepface and openai in a code cell. Detected via notebook extraction (v07 T1.2, promoted from xfail 2026-08-31). Evidence lines refer to the extracted code-cell stream per source_reader.py. AI-flagged repo without model/data cards, so AI-004/AI-006 also fire.",
+      "expect": {
+        "rules": {
+          "AI-001": {
+            "min": 1
+          },
+          "AI-002": {
+            "min": 1
+          },
+          "AI-004": {
+            "min": 1
+          },
+          "AI-006": {
+            "min": 1
+          }
+        },
+        "components": [
+          {
+            "kind": "biometric_lib",
+            "name": "deepface"
+          },
+          {
+            "kind": "llm_sdk",
+            "name": "openai"
+          }
+        ]
+      }
+    },
+    {
+      "name": "manifest_only",
+      "kind": "fixture",
+      "path": "fixtures/manifest_only",
+      "xfail": false,
+      "ground_truth": "requirements.txt pins deepface==0.0.93; plugin_loader.py imports it only via importlib.import_module. Detected via manifest cross-reference (v07 T1.1, promoted from xfail 2026-08-31). No model/data card exists, so AI-004/AI-006 fire on the AI-flagged repo.",
+      "expect": {
+        "rules": {
+          "AI-001": {
+            "min": 1
+          },
+          "AI-004": {
+            "min": 1
+          },
+          "AI-006": {
+            "min": 1
+          }
+        },
+        "components": [
+          {
+            "kind": "biometric_lib",
+            "name": "deepface"
+          }
+        ]
+      }
+    },
+    {
+      "name": "raw_endpoint",
+      "kind": "fixture",
+      "path": "fixtures/raw_endpoint",
+      "xfail": false,
+      "ground_truth": "client.py POSTs to https://api.openai.com/v1/chat/completions via requests \u2014 shadow-AI usage with no SDK import anywhere. Detectable only through the endpoint string signal (v07 T1.3).",
+      "expect": {
+        "rules": {
+          "AI-002": {
+            "min": 1
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1360,3 +1360,257 @@ Neo4j Aura instance `652f6242` (the production KG); replaced by `e8097dda`.
 - The phantom-instance pattern is exploitable as a recovery tool: if you discover a paused/deleting Aura, dump it immediately before hard-purge. Window unknown — Neo4j doesn't publish it.
 
 ---
+
+## 27. Dependencies — DL-026 Orchestrator reports `database: unavailable` because greenlet is not installed
+
+**Problem**
+`GET /health` on the orchestrator reports:
+
+```json
+{"status":"degraded","components":{"supervisor":"ready","control_plane":"ready","database":"unavailable"}}
+```
+
+against a Postgres that is up and reachable. Reproduced locally on macOS with a
+healthy local PostgreSQL 17 and a freshly created `compliance_agent` database.
+
+**Root cause**
+Not a database problem at all. The startup log says so plainly once read:
+
+```
+Database init skipped: the greenlet library is required to use this function.
+No module named 'greenlet'
+```
+
+`orchestrator/pyproject.toml` declared `sqlalchemy>=2.0.0` **without** the
+`[asyncio]` extra. SQLAlchemy's async layer (`create_async_engine`, used in
+`src/database/session.py`) requires `greenlet`, which only arrives via that
+extra. `greenlet` appears in `uv.lock` as an optional transitive, so it is
+never installed into the environment.
+
+`init_db()` is wrapped in a try/except that logs a warning and continues, so
+the service starts, answers `/health`, and reports `database: unavailable` —
+the same shape as the rest of this log's silent-degradation entries. Nothing
+says "a dependency is missing"; it looks like an infrastructure fault, which
+is where DL-024 spent its investigation.
+
+**Fix**
+Declare the extra the code actually depends on:
+
+```toml
+"sqlalchemy[asyncio]>=2.0.0",
+```
+
+Then `uv sync`. `/health` returns `database: healthy`, `init_db()` runs, and
+`Base.metadata.create_all` creates the `scans` table.
+
+**Thinking**
+
+**Severity:** High — blocks scan persistence, so no scan survives a restart.
+
+**Affected:** `orchestrator/pyproject.toml`; any environment built from it.
+
+**Relationship to DL-024:** DL-024 records the *live Cloud Run* orchestrator
+showing this exact symptom, with four hypotheses (Cloud SQL paused, secret
+drift, VPC/proxy misconfiguration, pool exhaustion) — all infrastructural, none
+of them "a Python dependency is missing". This is a strong lead for DL-024 but
+**not** proof: the Cloud Run image is built from the same `pyproject.toml`, so
+it would carry the same gap, but that has not been verified against the live
+service. Do not close DL-024 on the strength of this entry; check the deployed
+container's installed packages first.
+
+**Lesson:** A dependency declared without the extra its code path needs fails
+at *runtime*, in a `try/except` that turns it into a plausible-looking
+infrastructure symptom. When a component reports a *dependency* as unavailable,
+read its own startup log before believing the dependency is at fault — the
+answer was in the first warning line the whole time.
+
+---
+
+## 28. Scanners — DL-027 `from X import Y` recorded Y as the module, blinding every import rule
+
+**Problem**
+Scanning `serengil/deepface` — a face-recognition library whose name is
+explicitly listed in AI-001's import patterns — returned **LIMITED_RISK, 1
+finding**, with `ai_components: []`. The single finding was an unrelated AI-005
+hit on a comment. `ageitgey/face_recognition`, scanned the same day, correctly
+returned HIGH_RISK with 24 AI-001 findings.
+
+**Root cause**
+`_walk_py_imports` in `orchestrator/src/code_analyzer/scanners/import_scanner.py`
+took the **first `dotted_name` descendant** of an import statement, and
+`_all_descendants` walks a LIFO stack (`stack.pop()`), so it reaches the last
+subtree first. For
+
+```python
+from deepface.commons import package_utils, folder_utils
+```
+
+the imported *names* are reached before the module name, so the recorded module
+was `folder_utils`.
+
+Every `from X import Y` in every scanned repo therefore matched on `Y`, and the
+module `X` was never seen. Confirmed directly against the extractor:
+
+```
+from deepface.commons import package_utils, folder_utils  ->  folder_utils
+from deepface import DeepFace                             ->  DeepFace
+import face_recognition.api as face_recognition           ->  face_recognition.api  (correct)
+```
+
+Only the `import X` / `import X as Y` forms worked. `openai/openai-quickstart-python`
+scanned "correctly" purely because that one file happens to use `import openai`.
+
+The correct tree-sitter query was already written at the top of the same file
+(`(import_from_statement module_name: (dotted_name) @mod)`) and never used —
+the hand-rolled walker ignored it.
+
+**Fix**
+Read the grammar's field names instead of descendant order:
+`children_by_field_name("name")` for `import_statement` (unwrapping
+`aliased_import`), and `child_by_field_name("module_name")` for
+`import_from_statement`, resolving `relative_import` to its dotted name. A bare
+`from . import x` is skipped — it names no third-party library.
+
+This also fixes `import os, deepface`, where only the first name was recorded.
+
+12 regression tests in `orchestrator/tests/unit/test_import_scanner.py`.
+
+**Thinking**
+
+**Severity:** Critical — false negatives in the core detection path. A
+compliance scanner that misses `from deepface import DeepFace` issues a clean
+report for a face-recognition codebase.
+
+**Affected:** every import-based rule — AI-001 (biometric libs) and AI-002 (LLM
+SDKs) — for all Python repos using the `from X import Y` style, which is the
+dominant modern convention (`from openai import OpenAI`,
+`from anthropic import Anthropic`).
+
+**Verification:** re-scanning `serengil/deepface` after the fix:
+
+| | before | after |
+|---|---|---|
+| risk | LIMITED_RISK | **PROHIBITED** |
+| findings | 1 | **81** (AI-001 x79, AI-005 x1, AI-009 x1) |
+| ai_components | `[]` | `[('biometric_lib', 'deepface')]` |
+
+The top AI-001 evidence line is `deepface/DeepFace.py:20 — from deepface.commons
+import package_utils, folder_utils`: exactly the import that was being misread.
+
+**Lesson:** When a parser needs a specific child, ask the grammar for it by
+field name; do not rely on traversal order. `_all_descendants` is LIFO, so
+"first descendant found" silently meant "last subtree in source order". The
+scan reported success throughout — the same silent-degradation shape as
+DL-003, DL-019, DL-020, DL-023, DL-025 and DL-026.
+
+**Follow-up (not fixed here):** `AI-009` fired on `tests/unit/face-recognition-how.py`,
+a test file, and that single hit is what escalates the verdict to PROHIBITED.
+The rule has a confidence dampener for test paths but the prohibited-trigger
+check ignores confidence. Worth deciding whether evidence found only under
+`tests/` should be able to set the most severe verdict.
+
+**Follow-up (not fixed here):** 5 of the 7 orchestrator unit-test modules fail
+to import — they reference `src.control_plane.approval_queue` and
+`src.state.compliance_state`, removed by commit `5210e51`. Only 22 tests
+collect. The suite has been broken since that restructure.
+
+---
+
+## 29. Scanners — DL-028 Repos under an excluded-name ancestor scan as 0 files
+
+**Problem**
+The detection benchmark's git entries all reported `scanned=0/0` and zero
+findings — deepface included, whose working tree verifiably held 106 `.py`
+files at the pinned SHA.
+
+**Root cause**
+`_iter_files` / `_count_all_files` in `orchestrator/src/code_analyzer/ingest.py`
+matched `EXCLUDE_DIRS` against the **absolute** path's segments (`p.parts`),
+not the path relative to the repo root. The benchmark caches clones under
+`detection_benchmark/.cache/…`, and `.cache` is in `EXCLUDE_DIRS`, so every
+file's ancestry was "excluded". Any user cloning a repo under a directory
+named `env`, `out`, `build`, `coverage`, `target`, or `.cache` hits the same:
+the scan ingests nothing and reports MINIMAL_RISK with `errors: 0`.
+
+**Fix**
+Exclusions now evaluate `p.relative_to(root).parts` — segments inside the
+repo only. Tests: a repo under `…/.cache/…` scans; `node_modules` inside the
+repo is still excluded.
+
+**Thinking**
+
+**Severity:** High — a positional accident silently turns any scan into a
+clean report. Same silent-degradation class as DL-025/026/027.
+
+**Lesson:** Filters written against paths must state their frame of
+reference. "Absolute vs repo-relative" is the scanner's version of the
+CWD-relative `.env` bug (DL-025 step 2 / v06 §2.2).
+
+---
+
+## 30. Scanners — DL-029 AI-004/AI-006 findings had never been emitted (Evidence line=0 crash)
+
+**Problem**
+No production scan ever showed AI-004 (missing model card) or AI-006 (missing
+data card) — including deepface, which has neither document. The benchmark's
+first run surfaced the reason as a traceback.
+
+**Root cause**
+`FilePatternScanner` builds an absent-marker finding pointing at the repo
+root with `Evidence(file=".", line=0)`. `Evidence.line` is constrained
+`ge=1`, so pydantic rejects it, the per-scanner `try/except` in
+`_scan_and_profile` swallows the crash, and the scan continues without the
+finding. A comment at the crash site shows this *was* a previous fix (moving
+evidence off a misleading borrowed file) — it never once executed
+successfully.
+
+**Fix**
+`Evidence.line` is now `int | None` (`ge=1` when present): a repo-level fact
+genuinely has no line. Scanner emits `line=None`. Test asserts a
+deepface-style tree produces both AI-004 and AI-006.
+
+**Thinking**
+
+**Severity:** High — two of the ten rules were dead in production; the
+transparency-documentation story (AI Act Art 13/52 mapping) silently never
+fired.
+
+**Lesson:** A fix that only runs inside a fail-open `try/except` has never
+been tested until something asserts its *output*. Fail-open + no benchmark =
+a dead code path that looks like a shipped feature.
+
+---
+
+## 31. Rules — DL-030 AI-005 fired on the word "email" in a Flask docstring
+
+**Problem**
+The benchmark's false-positive control `pallets/flask` (a web framework, zero
+AI) produced an AI-005 "PII handling without DPIA" finding. Evidence:
+`src/flask/app.py:1127 — 'In some cases, such as email messages, you want
+URLs to include…'` — a docstring about URL generation.
+
+**Root cause**
+AI-005 is a bare keyword regex (`email`, `phone_number`, …) over all text
+files, with no requirement that the repo shows any AI usage. The
+`requires_any_rule` precondition mechanism already existed — but only
+`FilePatternScanner` implemented it; `ContentScanner` never did.
+
+**Fix**
+`ContentScanner` now honours `requires_any_rule` (same semantics as
+FilePatternScanner, reading `imports_by_rule` from shared scanner state), and
+AI-005 declares `requires_any_rule: [AI-001, AI-002, AI-003]`. The rule's own
+remediation text already framed DPIA in the AI-context; the gate makes the
+rule match its remit. deepface still fires AI-005 (it has AI-001 imports);
+flask and requests are clean. Tests cover both directions.
+
+**Thinking**
+
+**Severity:** Medium — precision, not recall; but an AI-compliance report
+flagging a web framework for "PII without DPIA" is exactly the
+credibility-burning false positive the audit warns about.
+
+**Lesson:** Every content rule needs an answer to "what makes this an *AI*
+finding?". The benchmark's FP controls (`requests`, `flask`) are now the
+permanent enforcement of that question.
+
+---

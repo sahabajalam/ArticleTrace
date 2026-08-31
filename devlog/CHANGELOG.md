@@ -24,6 +24,273 @@ ai_guidance: |
 
 ---
 
+## 2026-08-31 — documented eval commands made POSIX-first
+
+**What:** `devlog/METRICS.md` §Reproducibility now leads with a macOS/Linux
+invocation — `cd knowledge_engine && uv sync` then `./.venv/bin/python
+scripts/NN_....py` — with the Windows `./.venv/Scripts/python.exe` form kept
+alongside it as a labelled alternative rather than deleted. The `uv sync`
+bootstrap is now explicit: there is a `uv.lock`, but a fresh clone has no
+virtualenv at all, so the old text assumed a `.venv` that doesn't exist. Same
+treatment for the §2 aside on running the full RAGAS metrics. Usage docstrings
+updated to match in `knowledge_engine/scripts/07_run_golden_tests.py`,
+`11_restore_from_jsonl.py`, `12_eval_three_mode.py` and
+`13_eval_ragas_equivalent.py`. No script logic, golden-set entry, or recorded
+metric value changed. `.github/workflows/golden-tests.yml` was checked and
+needed no change — it runs `python scripts/...` against the `ubuntu-latest`
+`setup-python` interpreter and never inherited the Windows path.
+
+**Why:** Every documented route to reproducing the headline retrieval numbers
+invoked `.venv/Scripts/python.exe`, which exists only on Windows. The project
+now lives on macOS, so the reproducibility section could not be executed on
+the machine that holds the project — making the numbers a claim rather than a
+measurement, which is what NORTHSTAR Part I lever 2 exists to prevent.
+
+**Verified:** the new §Reproducibility text was followed verbatim on macOS.
+`uv sync` bootstrapped the environment; `./.venv/bin/python
+scripts/07_run_golden_tests.py --dry-run` ran the full 25-query golden set
+against the restored Aura instance and cleared the gate at **68% (17/25),
+threshold 60%** — matching the recorded figure, no metric rewritten. The
+`knowledge_engine` unit suite is green at **65 passed**.
+
+**Note — `uv sync` and the test suite:** `pytest` sits in
+`[project.optional-dependencies] dev`, so a bare `uv sync` *removes* it from an
+existing venv. That is correct for the eval scripts (they need runtime deps
+only, which is what §Reproducibility documents), but running the unit tests
+needs `uv run --extra dev pytest tests/`. Recorded here rather than in
+`METRICS.md`, which is scoped to reproducing metrics, not to test bootstrapping.
+
+**Impact on SYSTEM.md:** none — documentation and invocation only.
+
+**Refs:** issue #493173; proposal `devlog/design-evolution/v06-durable-kg-and-reproducible-eval.md` §2.4
+(corrected in place — it wrongly listed the CI workflow among the Windows-path offenders; §2.4 now marked delivered,
+the document stays `proposal` because §2.1 and §2.5 are outstanding).
+
+---
+
+## 2026-08-31 — keep-alive ping retired; weekly self-verifying KG backup in its place
+
+**What:** Deleted `.github/workflows/keep-aura-alive.yml`. Added
+`.github/workflows/backup-knowledge-graph.yml` — Monday 02:00 UTC plus
+`workflow_dispatch`, runs `knowledge_engine/scripts/10_backup_to_jsonl.py` and
+uploads `knowledge_engine/backups/` as a 90-day artifact
+(`if-no-files-found: error`, uploaded only on success, so an artifact that
+exists is one that passed the self-check). Dumps stay out of git;
+`knowledge_engine/backups/` was already gitignored. Reworked
+`10_backup_to_jsonl.py` around a new `verify_dump()`: after writing
+`meta.json` the script re-reads both JSONL files off disk and fails unless the
+complete-line counts equal `node_count` / `rel_count`, the last record parses
+as JSON, and no file ends mid-write. The check runs on **every** invocation,
+not only in CI, and `--verify <TS>` re-checks an existing dump. The
+`from src.config import settings` import moved inside `run_backup()` so
+verification needs no credentials. New `knowledge_engine/tests/
+test_backup_verification.py` (16 tests) covers dropped lines, byte-level
+truncation, count mismatch, emptied/missing/corrupt files and the CLI.
+
+**Why:** Aura Free deletion is policy-based, not activity-based — a
+`MATCH (n) RETURN count(n)` ping does not reset the 30-day timer. The ping was
+added after the first deletion (DL-025), and the graph was destroyed a second
+time anyway (`e8097dda`, found dormant 2026-08-31). DL-025's own follow-up
+already said to retire it and schedule a backup; that was never actioned. A
+workflow with a measured 0% success rate is deleted rather than disabled,
+because a disabled-but-present workflow still looks like protection. The
+verification exists because an unverified backup is the repo's dominant
+failure class — a component reporting success while doing nothing (DL-003,
+DL-019, DL-020, DL-023, DL-025). Implements
+`design-evolution/v06-durable-kg-and-reproducible-eval.md` §2.3; the rest of
+v06 is still `proposal`.
+
+**Verified:** Full dump against the live instance produced
+`20260831_144857` — 2,301 nodes / 4,423 rels / 1 vector index, self-check
+passed, exit 0. `--verify` on the 102 MB `20260619_183622` dump passes. A copy
+of that dump with 200 bytes chopped off `rels.jsonl` fails with all three
+problems named (cut off mid-record; 4,421 lines vs 4,423, off by -2; last
+record not valid JSON) and exit 1. `knowledge_engine/` suite: 65 passed.
+
+**Impact on SYSTEM.md:** none — no architecture, schema or API change. §6
+already links `.github/workflows/` generically rather than by file.
+
+**Refs:** `devlog/BUG_LOG.md` DL-025; `devlog/DEPLOYMENT.md` lesson 26
+(rewritten — it pointed at the deleted workflow); `devlog/NORTHSTAR.md` Part
+III P0 item moved to `## Resolved`.
+
+---
+
+## 2026-08-31 — `.env` anchored to the repo root; credentials fail loudly at startup
+
+**What:** Both services resolved `env_file=".env"` relative to the process
+working directory, so anything launched from `knowledge_engine/` or
+`orchestrator/` read no env file at all and silently fell back to field
+defaults. Added `knowledge_engine/src/env.py` and `orchestrator/src/env.py`
+(intentional duplicates — separate images, no shared package) exposing
+`find_repo_root()` / `find_env_file()` / `ENV_FILE` / `require_credential()`,
+all derived from `__file__` and anchored on the `.git` marker, so a stray
+per-service `.env` can no longer shadow the root one. Both `config.py` modules
+now use the absolute `ENV_FILE`; `orchestrator/src/config.py` also moved off the
+deprecated inner `class Config` to `SettingsConfigDict`. Real environment
+variables still outrank the file (Cloud Run depends on it). Missing credentials
+now fail at startup with the variable name and the expected file:
+`google_api_key` is validated on `Settings` (was defaulting to `""` and
+surfacing as a Google 401 several frames away), `gemini_api_key` gains an
+empty-string check alongside its existing `Field(...)`, and `NEO4J_PASSWORD` is
+checked in `GraphStore.__init__` rather than on `Settings` so the module stays
+importable in tests that never connect. New tests:
+`knowledge_engine/tests/test_config.py` (14) and
+`orchestrator/tests/unit/test_config.py` (10) cover CWD-independent resolution,
+env-var-over-file precedence, and the named-variable failures.
+
+**Why:** DL-025 step 2 — the root `.env` was updated while a stale
+`knowledge_engine/.env` still pointed at a dead Neo4j instance, and the service
+kept running against it. Same root cause as DL-005's confusing startup failure.
+
+**Impact on SYSTEM.md:** none — configuration loading is internal and not
+described there.
+
+**Refs:** issue #815755; `knowledge_engine/src/{env,config}.py`,
+`knowledge_engine/src/stores/graph_store.py`, `orchestrator/src/{env,config}.py`
+
+---
+
+## 2026-08-31 — v07 T2 delivered: confidence-aware verdicts + LLM triage (judge, never detector)
+
+**What:** **(1) Confidence-aware escalation** — a prohibited trigger sets
+PROHIBITED only at finding confidence ≥ 0.5; test/example-dampened evidence
+(×0.4 → ~0.36) lands in the new `RiskPosture.dampened_triggers` and caps at
+HIGH_RISK with an explicit "capability present; verify deployment" reason.
+Closes DL-027's open follow-up: deepface now classifies **HIGH_RISK with
+dampened AI-009** instead of PROHIBITED-via-a-tests/-file (verified live). A
+test pins the dampener↔threshold relationship. **(2) LLM finding triage**
+([`finding_triage.py`](../orchestrator/src/code_analyzer/finding_triage.py),
+IRIS-shaped per v07 §1.3): reviews ≤40 findings/scan, may CONFIRM or DEMOTE
+(halve confidence + reasoned `finding.triage` annotation), structurally cannot
+create/delete/boost — a hallucinated verdict can only quiet a scan, and
+demotion below the T2.1 bar can defuse a dubious PROHIBITED but nothing the
+LLM says can cause one. Fail-open with a receipt in `stats.llm_triage`
+(ok/skipped/failed, reviewed/demoted/capped — the cap is loud). Live deepface
+run: 40 reviewed, 25 demoted with stated reasons (`experiments/`,
+`benchmarks/` directories — judgments path dampeners cannot make), 47
+capped-out and reported.
+
+**Why:** v07 §1.4 — capability evidence and deployment inference must not be
+conflated by a trigger that ignores confidence; and the field's result (IRIS)
+is LLM around the deterministic engine, not inside it.
+
+**Benchmark unaffected** (deterministic path, 9/9); 50 orchestrator unit
+tests green (9 new in test_t2_verdicts.py).
+
+**Impact on SYSTEM.md:** §3.1 (triage in the scan flow), §3.2 (classifier
+row: confidence-gated triggers, dampened_triggers).
+
+**Refs:** v07 T2 delivery note; DL-027 follow-up #1 closed (the stale-test-
+modules follow-up remains open).
+
+---
+
+## 2026-08-31 — v07 T1 delivered: manifests, notebooks, string signals — 9/9 benchmark
+
+**What:** The three T1 signal-widening items, each landed against a waiting
+benchmark fixture that flipped XFAIL→XPASS→promoted. **(1) Manifest
+cross-referencing** — `ImportScanner._manifest_pass` parses
+requirements*.txt / pyproject.toml (PEP 621 + poetry) / package.json and
+matches the same rule patterns with dist↔import normalisation
+(face-recognition↔face_recognition, google-generativeai↔google.generativeai,
+dlib↔dlib.get_frontal_face_detector); declared+imported boosts, declared-only
+emits a 0.7×-dampened finding; parse failures surface in
+`stats.manifest_scan.errors`. **(2) Notebook extraction** —
+[`source_reader.py`](../orchestrator/src/code_analyzer/source_reader.py)
+turns `.ipynb` code cells into a parseable stream (magics commented in place,
+5 MB raw budget) consumed by Import/Ast/Content scanners; unreadable
+notebooks land in `stats.source_read_errors`. **(3) String patterns** —
+`strings:` on any rule, scanned in code files only; AI-002 gains HF
+`from_pretrained` ids and hosted-LLM endpoints, catching shadow-AI raw-HTTP
+usage with zero imports (new `raw_endpoint` fixture). Routing fixed so a
+rule of one primary technique can carry auxiliary string evidence.
+
+**Benchmark: 9/9 PASS, no xfails remain; `requests` and `flask` FP controls
+stayed at zero through all three new signals.** Legitimate new visibility on
+real repos: face_recognition's webcam notebook examples (AI-009) and its
+declared `dlib` (declared-only AI-001). 41 orchestrator unit tests green
+(12 new in test_t1_signals.py).
+
+**Impact on SYSTEM.md:** §3.1 — detection signal sources, notebook handling,
+coverage stats, benchmark pointer.
+
+**Refs:** v07 T1 delivery note; corpus.json promotions (same-commit ground
+truth cited per its _doc rule).
+
+---
+
+## 2026-08-31 — v07 T0 delivered: detection benchmark; first run caught three defects
+
+**What:** Built the detection benchmark
+([`orchestrator/detection_benchmark/`](../orchestrator/detection_benchmark/)):
+`corpus.json` with 5 SHA-pinned public repos (deepface, face_recognition,
+openai-quickstart, plus `requests` and `flask` as false-positive controls) and
+3 local fixtures (`modern_sdk` guarding the DL-027 fix; `notebook_only` and
+`manifest_only` as strict xfails encoding v07 gaps 1/3/4). Runner
+([`run_detection_benchmark.py`](../orchestrator/scripts/run_detection_benchmark.py))
+drives the real pipeline deterministically (`_scan_and_profile(use_llm=False)`
+— new param), scores per-rule ground-truth expectations, reports coverage per
+v06 §4, and fails on any miss, control-repo FP, or xpass. CI:
+[`detection-benchmark.yml`](../.github/workflows/detection-benchmark.yml)
+(PRs touching the scanner, weekly, no secrets).
+
+**The first run caught three real defects (BUG_LOG DL-028/029/030):**
+1. **DL-028** — `ingest` matched exclusions against *absolute* path segments,
+   so a repo under any ancestor named `.cache`/`env`/`build`/`out` ingested
+   **0 files** and reported MINIMAL_RISK with `errors: 0`. Now repo-relative.
+2. **DL-029** — AI-004/AI-006 (missing model/data card) had **never emitted a
+   finding**: the absent-marker `Evidence(file=".", line=0)` failed `ge=1`
+   validation inside the fail-open per-scanner except. `Evidence.line` is now
+   optional for repo-level facts; deepface/face_recognition/quickstart now
+   correctly show both findings.
+3. **DL-030** — AI-005 fired on the word "email" in a Flask docstring about
+   URL generation. `ContentScanner` now honours the `requires_any_rule`
+   precondition (mechanism already existed in FilePatternScanner) and AI-005
+   requires AI-001/002/003 evidence first.
+
+**Post-fix benchmark: 6/6 PASS, 2 XFAIL as pre-registered, 100% detection
+pass rate.** 29 orchestrator unit tests green (12 import-scanner + 8 gating +
+existing). Every defect is the same silent-degradation class the benchmark
+was built to catch — it paid for itself before its first commit.
+
+**Impact on SYSTEM.md:** none yet — scanner behaviour changes are
+recall/precision fixes within documented architecture; v07 doc carries the
+T0 delivery note.
+
+**Refs:** v07 T0; BUG_LOG DL-028/029/030; `first_run.json` baseline.
+
+---
+
+## 2026-08-31 — v07 proposed: scanner robustness — measure recall first, then widen the signal
+
+**What:** Researched how the field detects library/AI usage in code (Semgrep vs
+CodeQL benchmark data, Cisco's aibom three-tier AI-BOM architecture, IRIS
+neuro-symbolic LLM+CodeQL at ICLR 2025, the open-source EU-AI-Act scanner
+landscape) and audited our six scanners against it. Verified gaps: detection is
+single-signal (imports only — `ingest()` builds a dep manifest **no scanner
+reads**), no string-literal/model-id signal, no `.ipynb` support, no dynamic
+imports, window-heuristic adjacency instead of reachability for AI-003/007/010,
+prohibited triggers ignore confidence, and **zero measured detection recall** —
+the condition that let DL-027 ship clean reports while blind to `from X import
+Y`. Proposal: [`design-evolution/v07-scanner-robustness.md`](design-evolution/v07-scanner-robustness.md)
+— T0 a pre-registered detection benchmark corpus (the refuse-list's own
+precondition for expansion), T1 manifest cross-referencing + notebook ingestion
++ model-string patterns inside the existing six scanners, T2 confidence-aware
+PROHIBITED escalation + an IRIS-shaped LLM confirm/triage pass (never
+detection), T3 explicitly deferred taint/languages.
+
+**Why:** DL-027 proved one traversal bug can silently collapse recall across
+every import rule. The retrieval side has METRICS.md and CI; the scanner — the
+actual product — has no recall number at all.
+
+**Impact on SYSTEM.md:** none — proposal only.
+
+**Refs:** v07 doc (research links inline); BUG_LOG DL-019/DL-020/DL-027;
+NORTHSTAR Part IV/V.
+
+---
+
 ## 2026-08-31 — Knowledge graph restored (2nd Aura deletion); v06 proposed; BUG_LOG reformatted
 
 **What:** Found the Neo4j Aura instance `e8097dda` hard-deleted — DNS no longer

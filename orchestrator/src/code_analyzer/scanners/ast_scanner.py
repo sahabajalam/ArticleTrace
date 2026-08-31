@@ -18,6 +18,7 @@ from typing import Any
 from src.code_analyzer.models import Evidence, Finding
 from src.code_analyzer.rule_loader import RuleSpec
 from src.code_analyzer.scanners.base import Scanner, ScanContext
+from src.code_analyzer.source_reader import read_source_bytes
 from src.code_analyzer.ts_parser import detect_language, parse_file
 
 
@@ -61,9 +62,10 @@ class AstScanner(Scanner):
             lang = detect_language(path)
             if lang is None:
                 continue
-            try:
-                source = path.read_bytes()
-            except OSError:
+            source, read_err = read_source_bytes(path)
+            if read_err:
+                ctx.shared.setdefault("source_read_errors", []).append(read_err)
+            if not source:
                 continue
             all_surfaces.extend(
                 _find_decision_surfaces(path, source, lang, ctx.rel(path))

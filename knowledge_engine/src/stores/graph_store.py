@@ -13,6 +13,7 @@ from typing import Any, Generator
 
 from neo4j import GraphDatabase, Driver, Session, ManagedTransaction
 
+from ..env import ENV_FILE, require_credential
 from ..schema.entities import Entity, EntityType, ENTITY_TYPE_MAP, entity_from_dict
 from ..schema.relationships import Relationship, RelationshipType
 
@@ -23,6 +24,10 @@ class GraphStore:
     """Neo4j-backed knowledge graph store."""
 
     def __init__(self, uri: str, user: str, password: str):
+        # Checked here rather than on Settings so the module stays importable
+        # for tests that never connect. An empty password otherwise surfaces as
+        # an opaque auth failure from the driver.
+        require_credential(password, "NEO4J_PASSWORD", ENV_FILE)
         self._driver: Driver = GraphDatabase.driver(uri, auth=(user, password))
         self._verify_connection()
 

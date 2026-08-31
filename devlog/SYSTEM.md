@@ -1,7 +1,7 @@
 ---
 title: AlloyCode — System Documentation (Living Snapshot)
 status: living
-last_verified: 2026-06-19
+last_verified: 2026-08-31
 source_of_truth: |
   direct code audit of orchestrator/src/, knowledge_engine/src/, frontend/src/,
   docker-compose.yml, gcp.ps1, frontend/cloudbuild.yaml
@@ -142,6 +142,21 @@ The orchestrator is the only service that talks to the user. The knowledge engin
 
 Rule catalog lives at [`orchestrator/src/code_analyzer/rules/`](../orchestrator/src/code_analyzer/rules/) loaded by `rule_loader.py`. Phase-1 scope: 10 MVP detection rules.
 
+Detection draws on three signal sources (v07 T1, 2026-08-31): **imports**
+(tree-sitter, field-name based per DL-027), **dependency manifests**
+(`requirements*.txt` / `pyproject.toml` / `package.json`, cross-referenced in
+`ImportScanner._manifest_pass` — declared+imported boosts confidence,
+declared-only emits a dampened finding), and **string literals** (`strings:`
+patterns on a rule — HF model ids, hosted-LLM endpoints — code files only).
+`.ipynb` code cells are extracted by `source_reader.py` and flow through the
+same scanners; notebook evidence lines refer to the extracted cell stream.
+Coverage honesty: `stats.manifest_scan` and `stats.source_read_errors` report
+what could not be read. After scanning, an LLM triage pass (v07 T2.2,
+`finding_triage.py`) may confirm or demote findings — never create, delete or
+boost — with its outcome in `stats.llm_triage`; demotions halve confidence and
+carry a reason on `finding.triage`. Recall/precision are enforced by the detection
+benchmark (`orchestrator/detection_benchmark/`, CI: detection-benchmark.yml).
+
 ### 3.2 Orchestrator — LangGraph supervisor ([`orchestrator/src/agents/supervisor.py`](../orchestrator/src/agents/supervisor.py))
 
 Linear graph, **no HITL branch**:
@@ -152,7 +167,7 @@ classify_risk → research_legal → generate_narrative → synthesize → END
 
 | Node | Agent class | LLM? | Purpose |
 |---|---|---|---|
-| `classify_risk` | `RiskClassifierAgent` | **No** | Deterministic EU AI Act category (`PROHIBITED` / `HIGH_RISK` / `LIMITED_RISK` / `MINIMAL_RISK`) + weighted compliance score. Prohibited triggers: rule IDs `AI-008`, `AI-009`. |
+| `classify_risk` | `RiskClassifierAgent` | **No** | Deterministic EU AI Act category (`PROHIBITED` / `HIGH_RISK` / `LIMITED_RISK` / `MINIMAL_RISK`) + weighted compliance score. Prohibited triggers: rule IDs `AI-008`, `AI-009` — but only at finding confidence ≥ 0.5 (v07 T2.1): triggers found solely in test/example-dampened context land in `dampened_triggers` and cap at HIGH_RISK with a "verify deployment" reason. |
 | `research_legal` | `LegalResearchAgent` | Yes (KE LLM) | Queries `POST /api/v1/hybrid/reason` on knowledge engine; returns mapped Articles + Obligations + Recitals per finding. |
 | `generate_narrative` | `DocumentationGeneratorAgent` | Yes (Gemini) | Writes executive summary + remediation plan as markdown. Post-hoc only; not in the detection path. |
 | `synthesize` | (inline in supervisor) | No | Merges `profile`, `risk_posture`, `narrative`, `finding_citations` into the final `ScanReport`. |
@@ -215,10 +230,18 @@ Pages under [`frontend/src/app/`](../frontend/src/app/):
 | Path | Purpose |
 |---|---|
 | `/` ([`page.tsx`](../frontend/src/app/page.tsx)) | Dashboard: scan list, risk distribution chart, platform stats |
-| `/scans` ([`scans/`](../frontend/src/app/scans/)) | Scan index + per-scan detail under `[id]` |
+| `/scans/new` ([`scans/new/`](../frontend/src/app/scans/new/)) | Start a scan; redirects to `/scans/{id}` on submit |
+| `/scans/{id}` ([`scans/[id]/`](../frontend/src/app/scans/[id]/)) | Per-scan detail: findings, risk posture, narrative |
 | `/knowledge` ([`knowledge/`](../frontend/src/app/knowledge/)) | KB browser — search articles, view obligations |
 
 Layout in [`layout.tsx`](../frontend/src/app/layout.tsx), global styles in [`globals.css`](../frontend/src/app/globals.css).
+
+> **Drift note (2026-08-31):** this table previously listed a `/scans`
+> index route. There is no `frontend/src/app/scans/page.tsx` — only
+> `[id]/` and `new/` — so `/scans` returns 404. Nothing links to it (every
+> link targets `/scans/new` or `/scans/{id}`), and the scan list lives on
+> the `/` dashboard, so this was documentation drift rather than a broken
+> UI. Corrected per the code-wins rule.
 
 ---
 

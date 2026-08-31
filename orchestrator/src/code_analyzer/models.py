@@ -25,7 +25,11 @@ class Evidence(BaseModel):
     """One concrete code-level pointer that supports a finding."""
 
     file: str = Field(..., description="Repo-relative path")
-    line: int = Field(..., ge=1, description="1-indexed line number")
+    # None = a repo-level fact with no meaningful line (e.g. AI-004/AI-006
+    # "expected documentation file is absent"). The previous required-int
+    # contract made every absent-marker finding crash validation inside the
+    # scanner's try/except, so AI-004/AI-006 had never been emitted at all.
+    line: int | None = Field(None, ge=1, description="1-indexed line number; None for repo-level evidence")
     column: int | None = Field(None, ge=0)
     excerpt: str | None = Field(None, description="Short code excerpt, <=200 chars")
     symbol: str | None = Field(None, description="Import / identifier / keyword matched")
@@ -50,6 +54,11 @@ class Finding(BaseModel):
     remediation: str | None = None
     suppressed: bool = False
     suppress_reason: str | None = None
+    triage: str | None = Field(
+        None,
+        description="LLM triage outcome (v07 T2.2): 'llm-confirmed' or "
+        "'llm-demoted: <reason>'. None = triage did not run for this finding.",
+    )
 
 
 class AIComponent(BaseModel):

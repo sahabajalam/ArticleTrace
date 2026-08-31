@@ -31,3 +31,4 @@ knowledge_engine/golden_tests/ragas_equiv_*.json
 # Python build artifacts that shouldn't have been tracked
 *.egg-info/
 
+orchestrator/detection_benchmark/.cache/

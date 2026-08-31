@@ -29,6 +29,10 @@ EXCLUDE_SUFFIXES = {
     ".whl", ".so", ".dylib", ".exe", ".bin",
 }
 MAX_FILE_BYTES = 1_000_000  # skip files > 1 MB
+# Notebooks routinely exceed 1 MB because saved outputs (plots, dataframes)
+# live in the JSON; extraction keeps only code cells, so the raw-size cap
+# would silently drop exactly the files T1.2 exists to scan.
+MAX_NOTEBOOK_BYTES = 5_000_000
 MAX_FILES = 5_000
 
 
@@ -125,12 +129,18 @@ def _iter_files(root: Path) -> Iterable[Path]:
             break
         if not p.is_file():
             continue
-        if any(seg in EXCLUDE_DIRS for seg in p.parts):
+        # Exclusions apply to path segments INSIDE the repo, never to the
+        # repo's own location on disk. Matching absolute parts meant a repo
+        # cloned under any ancestor named `env`, `out`, `build`, `.cache`,
+        # etc. scanned as 0 files — and then reported MINIMAL_RISK with
+        # errors:0, indistinguishable from a genuinely clean repo.
+        if any(seg in EXCLUDE_DIRS for seg in p.relative_to(root).parts):
             continue
         if any(p.name.endswith(s) for s in EXCLUDE_SUFFIXES):
             continue
         try:
-            if p.stat().st_size > MAX_FILE_BYTES:
+            cap = MAX_NOTEBOOK_BYTES if p.suffix.lower() == ".ipynb" else MAX_FILE_BYTES
+            if p.stat().st_size > cap:
                 continue
         except OSError:
             continue
@@ -141,7 +151,9 @@ def _iter_files(root: Path) -> Iterable[Path]:
 def _count_all_files(root: Path) -> int:
     n = 0
     for p in root.rglob("*"):
-        if p.is_file() and not any(seg in EXCLUDE_DIRS for seg in p.parts):
+        if p.is_file() and not any(
+            seg in EXCLUDE_DIRS for seg in p.relative_to(root).parts
+        ):
             n += 1
     return n
 
