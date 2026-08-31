@@ -2038,3 +2038,65 @@ this, and the image tag is now a timestamp so staleness is legible at a glance
 rather than requiring an archaeology session.
 
 ---
+
+## 38. Database — DL-037 Neon's connection string crashed asyncpg, and would have looked exactly like DL-024
+
+**Symptom:** First connection attempt against the newly provisioned Neon
+Postgres:
+
+```
+TypeError: connect() got an unexpected keyword argument 'channel_binding'
+```
+
+**Root cause:** Neon issues URLs ending `?sslmode=require&channel_binding=require`.
+Both are libpq parameters. `get_async_database_url()` swapped the scheme to
+`postgresql+asyncpg://` and passed the query string through untouched, and
+SQLAlchemy forwards unrecognised query parameters to the driver as keyword
+arguments. `asyncpg.connect()` has no `channel_binding` argument, so the engine
+could never open a connection.
+
+**Fix:** `_prepare_connection()` now splits the URL, removes the libpq-only
+parameters asyncpg rejects, and **translates** `sslmode` into an asyncpg `ssl`
+argument rather than discarding it — `disable` → no TLS, `require`/`prefer` →
+encrypted but unauthenticated (libpq's actual meaning), `verify-ca` → validate
+the chain, `verify-full` → validate chain and hostname. Seven regression tests
+in `tests/unit/test_database_session.py`.
+
+Dropping `sslmode` along with the rest would have been two lines shorter and
+would have silently downgraded TLS for any provider outside the managed-host
+list. That is a security regression that produces no error and no failing test
+— the same shape as everything else in this log, which is why it is worth the
+extra function.
+
+**Thinking**
+
+**Severity:** High, and specifically because of how it presents. `init_db()` is
+called inside a `try/except` in the FastAPI lifespan that only warns, and
+`get_db()` yields `None` rather than raising. So on Cloud Run this bug renders
+as:
+
+```json
+{"status": "degraded", "components": {"database": "unavailable"}}
+```
+
+That is character-for-character the DL-024 symptom. We had just finished
+diagnosing DL-024 as "no database was ever provisioned", provisioned one, and
+would have deployed into an identical health response — with the obvious
+inference being that the new secret was wrong. The likely next move would have
+been to re-check the credential, rotate it, maybe rebuild the Neon project:
+hours spent on the one component that was actually fine.
+
+It was caught only because the connection was tested locally, where the
+`TypeError` is visible, before the URL went near Secret Manager. On Cloud Run
+the exception would have been swallowed by the lifespan handler and reduced to
+a single word in a JSON body.
+
+**Lesson:** A fail-open error handler does not just hide the failure, it
+**launders one failure into another's symptom**. Two unrelated causes — no
+database at all, and a database that cannot be dialled — collapse into the same
+four-character status string, and the second is then read as evidence about the
+first. Test a new connection string where the exception is still visible, and
+treat any `except` that converts a specific error into a generic status as a
+place where distinct causes are being merged.
+
+---

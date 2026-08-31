@@ -24,6 +24,29 @@ ai_guidance: |
 
 ---
 
+## 2026-08-31 — Neon Postgres provisioned; connection-string handling fixed (DL-037)
+
+**What:** Neon CLI set up in the repo (`neon.ts`, `.neon`, root `package.json`,
+`.claude/skills/`, MCP registration); project `withered-paper-83141568`
+(EUAI) linked on branch `production`. `orchestrator/src/database/session.py`
+gained `_prepare_connection()`, which strips libpq-only query parameters and
+translates `sslmode` into an asyncpg `ssl` argument; seven regression tests in
+`tests/unit/test_database_session.py`.
+
+**Why:** The orchestrator has never had a database (DL-024). Neon supplies one
+on the free tier, but its URL carries `channel_binding`, which asyncpg rejects
+outright — and the resulting failure is swallowed by the lifespan handler and
+rendered as `database: unavailable`, indistinguishable from DL-024 itself.
+Verified against the live instance: PostgreSQL 18.6, `scans` table created by
+`Base.metadata.create_all`.
+
+**Impact on SYSTEM.md:** §6 Deploy — Postgres provider and the URL-sanitising
+step.
+
+**Refs:** BUG_LOG entry 38 (DL-037)
+
+---
+
 ## 2026-08-31 — Cloud Run rebuilt from four-month-old images (DL-024, DL-036)
 
 **What:** Removed the dead `COPY data/golden/` from `orchestrator/Dockerfile`;

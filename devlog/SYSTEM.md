@@ -274,10 +274,15 @@ FastAPI `BackgroundTask` after the 202 response, and Cloud Run's default
 throttles CPU to near-zero once a response completes, which would strand every
 scan at `running` with no error (DL-036). `min-instances` stays 0.
 
-Postgres is a **free-tier Neon** instance reached through the
+Postgres is a **free-tier Neon** instance (project
+`withered-paper-83141568`, branch `production`) reached through the
 `DATABASE_URL_ORCHESTRATOR` secret — there is no Cloud SQL in this project and
-never has been (DL-024). `session.py` adds SSL for `neon.tech`/`supabase`/
-`aivencloud` hosts automatically.
+never has been (DL-024). Use the **pooled** URL: `session.py`'s
+`_prepare_connection()` sets `statement_cache_size=0` for managed hosts, which
+is what makes asyncpg safe behind PgBouncer. It also strips libpq-only query
+parameters (`channel_binding` and friends) that asyncpg rejects, and translates
+`sslmode` into an asyncpg `ssl` argument (DL-037). The schema is created at
+startup by `init_db()`; there are no migrations.
 
 Verifying a deploy means checking the **deployed image tag**, not just
 `/health`: a service can serve 200 from a four-month-old image indefinitely.

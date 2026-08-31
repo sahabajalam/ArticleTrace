@@ -41,3 +41,4 @@ knowledge_engine/parsed_data/interpretive/edpb_guidelines.json
 # product. Contains local paths, email addresses and notes about unrelated
 # repos. Kept on disk, excluded from the repository.
 chat_history/
+.neon
