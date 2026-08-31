@@ -112,16 +112,51 @@ def _excerpt_line(source: bytes, line: int) -> str:
         return ""
 
 
+def _emit_module(node: Any, source: bytes, out: list[tuple[str, int, str]]) -> None:
+    if node is None or node.type != "dotted_name":
+        return
+    line = node.start_point[0] + 1
+    out.append((_node_text(node, source), line, _excerpt_line(source, line)))
+
+
 def _walk_py_imports(node: Any, source: bytes, out: list[tuple[str, int, str]]) -> None:
-    if node.type in ("import_statement", "import_from_statement"):
-        # find dotted_name / aliased_import children
-        for child in _all_descendants(node):
-            if child.type == "dotted_name":
-                name = _node_text(child, source)
-                line = child.start_point[0] + 1
-                out.append((name, line, _excerpt_line(source, line)))
-                # only take first dotted_name per import statement
-                break
+    """Collect imported MODULE paths — the thing rules match on.
+
+    Read the grammar's field names, never descendant order. The previous
+    implementation took the first `dotted_name` descendant, and
+    `_all_descendants` walks a LIFO stack, so for
+
+        from deepface.commons import package_utils, folder_utils
+
+    it reached the imported *names* before the module and recorded
+    `folder_utils`. Every `from X import Y` therefore matched on Y and the
+    module X was never seen: `from deepface import DeepFace`,
+    `from openai import OpenAI` and friends were invisible to AI-001/AI-002
+    while the scan still reported success. Scanning serengil/deepface — a face
+    recognition library, with `deepface` in AI-001's import list — returned
+    LIMITED_RISK and no AI components.
+    """
+    if node.type == "import_statement":
+        # `import a.b`, `import a.b as c`, and `import a, b` (several names).
+        for child in node.children_by_field_name("name"):
+            _emit_module(
+                child.child_by_field_name("name")
+                if child.type == "aliased_import"
+                else child,
+                source,
+                out,
+            )
+    elif node.type == "import_from_statement":
+        # `from a.b import c` / `from . import c` — the module is the
+        # module_name field. A bare relative import has no dotted_name and is
+        # correctly skipped: it names no third-party library.
+        module = node.child_by_field_name("module_name")
+        if module is not None and module.type == "relative_import":
+            module = next(
+                (c for c in module.children if c.type == "dotted_name"), None
+            )
+        _emit_module(module, source, out)
+
     for c in node.children:
         _walk_py_imports(c, source, out)
 

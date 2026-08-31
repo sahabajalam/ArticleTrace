@@ -1425,3 +1425,93 @@ read its own startup log before believing the dependency is at fault — the
 answer was in the first warning line the whole time.
 
 ---
+
+## 28. Scanners — DL-027 `from X import Y` recorded Y as the module, blinding every import rule
+
+**Problem**
+Scanning `serengil/deepface` — a face-recognition library whose name is
+explicitly listed in AI-001's import patterns — returned **LIMITED_RISK, 1
+finding**, with `ai_components: []`. The single finding was an unrelated AI-005
+hit on a comment. `ageitgey/face_recognition`, scanned the same day, correctly
+returned HIGH_RISK with 24 AI-001 findings.
+
+**Root cause**
+`_walk_py_imports` in `orchestrator/src/code_analyzer/scanners/import_scanner.py`
+took the **first `dotted_name` descendant** of an import statement, and
+`_all_descendants` walks a LIFO stack (`stack.pop()`), so it reaches the last
+subtree first. For
+
+```python
+from deepface.commons import package_utils, folder_utils
+```
+
+the imported *names* are reached before the module name, so the recorded module
+was `folder_utils`.
+
+Every `from X import Y` in every scanned repo therefore matched on `Y`, and the
+module `X` was never seen. Confirmed directly against the extractor:
+
+```
+from deepface.commons import package_utils, folder_utils  ->  folder_utils
+from deepface import DeepFace                             ->  DeepFace
+import face_recognition.api as face_recognition           ->  face_recognition.api  (correct)
+```
+
+Only the `import X` / `import X as Y` forms worked. `openai/openai-quickstart-python`
+scanned "correctly" purely because that one file happens to use `import openai`.
+
+The correct tree-sitter query was already written at the top of the same file
+(`(import_from_statement module_name: (dotted_name) @mod)`) and never used —
+the hand-rolled walker ignored it.
+
+**Fix**
+Read the grammar's field names instead of descendant order:
+`children_by_field_name("name")` for `import_statement` (unwrapping
+`aliased_import`), and `child_by_field_name("module_name")` for
+`import_from_statement`, resolving `relative_import` to its dotted name. A bare
+`from . import x` is skipped — it names no third-party library.
+
+This also fixes `import os, deepface`, where only the first name was recorded.
+
+12 regression tests in `orchestrator/tests/unit/test_import_scanner.py`.
+
+**Thinking**
+
+**Severity:** Critical — false negatives in the core detection path. A
+compliance scanner that misses `from deepface import DeepFace` issues a clean
+report for a face-recognition codebase.
+
+**Affected:** every import-based rule — AI-001 (biometric libs) and AI-002 (LLM
+SDKs) — for all Python repos using the `from X import Y` style, which is the
+dominant modern convention (`from openai import OpenAI`,
+`from anthropic import Anthropic`).
+
+**Verification:** re-scanning `serengil/deepface` after the fix:
+
+| | before | after |
+|---|---|---|
+| risk | LIMITED_RISK | **PROHIBITED** |
+| findings | 1 | **81** (AI-001 x79, AI-005 x1, AI-009 x1) |
+| ai_components | `[]` | `[('biometric_lib', 'deepface')]` |
+
+The top AI-001 evidence line is `deepface/DeepFace.py:20 — from deepface.commons
+import package_utils, folder_utils`: exactly the import that was being misread.
+
+**Lesson:** When a parser needs a specific child, ask the grammar for it by
+field name; do not rely on traversal order. `_all_descendants` is LIFO, so
+"first descendant found" silently meant "last subtree in source order". The
+scan reported success throughout — the same silent-degradation shape as
+DL-003, DL-019, DL-020, DL-023, DL-025 and DL-026.
+
+**Follow-up (not fixed here):** `AI-009` fired on `tests/unit/face-recognition-how.py`,
+a test file, and that single hit is what escalates the verdict to PROHIBITED.
+The rule has a confidence dampener for test paths but the prohibited-trigger
+check ignores confidence. Worth deciding whether evidence found only under
+`tests/` should be able to set the most severe verdict.
+
+**Follow-up (not fixed here):** 5 of the 7 orchestrator unit-test modules fail
+to import — they reference `src.control_plane.approval_queue` and
+`src.state.compliance_state`, removed by commit `5210e51`. Only 22 tests
+collect. The suite has been broken since that restructure.
+
+---
