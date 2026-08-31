@@ -14,11 +14,13 @@ SAFETY:
   the moment a duplicate `id` is inserted. The empty-target check at startup
   is a guard, not a hard stop — pass --force to bypass for partial restores.
 
-Usage:
+Usage (macOS / Linux; `uv sync` first if .venv does not exist yet):
   cd knowledge_engine
-  ./.venv/Scripts/python.exe scripts/11_restore_from_jsonl.py <TS>
+  ./.venv/bin/python scripts/11_restore_from_jsonl.py <TS>
   # e.g.
-  ./.venv/Scripts/python.exe scripts/11_restore_from_jsonl.py 20260619_183622
+  ./.venv/bin/python scripts/11_restore_from_jsonl.py 20260619_183622
+
+  On Windows the interpreter is ./.venv/Scripts/python.exe instead.
 """
 
 from __future__ import annotations

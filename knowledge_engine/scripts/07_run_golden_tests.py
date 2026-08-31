@@ -9,11 +9,14 @@ Exit codes:
         to flag individual test failures (which are inevitable with the
         25-query golden set's HNSW boundary cases).
 
-Usage:
-    python scripts/07_run_golden_tests.py                       # default 60% threshold
-    python scripts/07_run_golden_tests.py --dry-run             # retrieval only, no LLM
-    python scripts/07_run_golden_tests.py --threshold 65        # tighter gate
-    python scripts/07_run_golden_tests.py --no-gate             # always exit 0 (report-only)
+Usage (macOS / Linux; `uv sync` first if .venv does not exist yet):
+    cd knowledge_engine
+    ./.venv/bin/python scripts/07_run_golden_tests.py              # default 60% threshold
+    ./.venv/bin/python scripts/07_run_golden_tests.py --dry-run    # retrieval only, no LLM
+    ./.venv/bin/python scripts/07_run_golden_tests.py --threshold 65  # tighter gate
+    ./.venv/bin/python scripts/07_run_golden_tests.py --no-gate    # always exit 0 (report-only)
+
+    On Windows the interpreter is ./.venv/Scripts/python.exe instead.
 """
 
 from __future__ import annotations

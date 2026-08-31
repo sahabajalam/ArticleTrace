@@ -24,6 +24,50 @@ ai_guidance: |
 
 ---
 
+## 2026-08-31 — documented eval commands made POSIX-first
+
+**What:** `devlog/METRICS.md` §Reproducibility now leads with a macOS/Linux
+invocation — `cd knowledge_engine && uv sync` then `./.venv/bin/python
+scripts/NN_....py` — with the Windows `./.venv/Scripts/python.exe` form kept
+alongside it as a labelled alternative rather than deleted. The `uv sync`
+bootstrap is now explicit: there is a `uv.lock`, but a fresh clone has no
+virtualenv at all, so the old text assumed a `.venv` that doesn't exist. Same
+treatment for the §2 aside on running the full RAGAS metrics. Usage docstrings
+updated to match in `knowledge_engine/scripts/07_run_golden_tests.py`,
+`11_restore_from_jsonl.py`, `12_eval_three_mode.py` and
+`13_eval_ragas_equivalent.py`. No script logic, golden-set entry, or recorded
+metric value changed. `.github/workflows/golden-tests.yml` was checked and
+needed no change — it runs `python scripts/...` against the `ubuntu-latest`
+`setup-python` interpreter and never inherited the Windows path.
+
+**Why:** Every documented route to reproducing the headline retrieval numbers
+invoked `.venv/Scripts/python.exe`, which exists only on Windows. The project
+now lives on macOS, so the reproducibility section could not be executed on
+the machine that holds the project — making the numbers a claim rather than a
+measurement, which is what NORTHSTAR Part I lever 2 exists to prevent.
+
+**Verified:** the new §Reproducibility text was followed verbatim on macOS.
+`uv sync` bootstrapped the environment; `./.venv/bin/python
+scripts/07_run_golden_tests.py --dry-run` ran the full 25-query golden set
+against the restored Aura instance and cleared the gate at **68% (17/25),
+threshold 60%** — matching the recorded figure, no metric rewritten. The
+`knowledge_engine` unit suite is green at **65 passed**.
+
+**Note — `uv sync` and the test suite:** `pytest` sits in
+`[project.optional-dependencies] dev`, so a bare `uv sync` *removes* it from an
+existing venv. That is correct for the eval scripts (they need runtime deps
+only, which is what §Reproducibility documents), but running the unit tests
+needs `uv run --extra dev pytest tests/`. Recorded here rather than in
+`METRICS.md`, which is scoped to reproducing metrics, not to test bootstrapping.
+
+**Impact on SYSTEM.md:** none — documentation and invocation only.
+
+**Refs:** issue #493173; proposal `devlog/design-evolution/v06-durable-kg-and-reproducible-eval.md` §2.4
+(corrected in place — it wrongly listed the CI workflow among the Windows-path offenders; §2.4 now marked delivered,
+the document stays `proposal` because §2.1 and §2.5 are outstanding).
+
+---
+
 ## 2026-08-31 — keep-alive ping retired; weekly self-verifying KG backup in its place
 
 **What:** Deleted `.github/workflows/keep-aura-alive.yml`. Added

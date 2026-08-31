@@ -37,16 +37,30 @@ ai_guidance: |
 
 ## Reproducibility
 
+macOS / Linux:
+
 ```bash
 cd knowledge_engine
+uv sync   # bootstrap .venv from uv.lock — a fresh clone has no virtualenv
 
 # 1. Deterministic golden tests (citation + entity recall, no LLM judge)
-./.venv/Scripts/python.exe scripts/07_run_golden_tests.py --dry-run
+./.venv/bin/python scripts/07_run_golden_tests.py --dry-run
 
 # 2. 3-mode comparison (vector / graph / hybrid)
-./.venv/Scripts/python.exe scripts/12_eval_three_mode.py
+./.venv/bin/python scripts/12_eval_three_mode.py
 
 # 3. RAGAS-equivalent (context relevance, ~22 min, Gemini judge cost)
+./.venv/bin/python scripts/13_eval_ragas_equivalent.py --context-only
+```
+
+Windows (PowerShell) — identical, only the interpreter path differs:
+
+```powershell
+cd knowledge_engine
+uv sync
+
+./.venv/Scripts/python.exe scripts/07_run_golden_tests.py --dry-run
+./.venv/Scripts/python.exe scripts/12_eval_three_mode.py
 ./.venv/Scripts/python.exe scripts/13_eval_ragas_equivalent.py --context-only
 ```
 
@@ -126,7 +140,8 @@ The script ([`13_eval_ragas_equivalent.py`](../knowledge_engine/scripts/13_eval_
 
 Both are runnable now via:
 ```bash
-./.venv/Scripts/python.exe scripts/13_eval_ragas_equivalent.py    # drop --context-only
+./.venv/bin/python scripts/13_eval_ragas_equivalent.py    # drop --context-only
+# Windows: ./.venv/Scripts/python.exe scripts/13_eval_ragas_equivalent.py
 ```
 
 Not done in this pass. Logged on [`NORTHSTAR.md`](NORTHSTAR.md) as a P2 follow-up.

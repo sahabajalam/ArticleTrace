@@ -23,10 +23,12 @@ Metrics on hybrid_rrf retrieval over the 25-query golden set:
       retrieved contexts?" — fraction supported per query, then average.
       Costs one reasoning + (1 + n_claims) judge calls per query.
 
-Usage:
+Usage (macOS / Linux; `uv sync` first if .venv does not exist yet):
   cd knowledge_engine
-  ./.venv/Scripts/python.exe scripts/13_eval_ragas_equivalent.py \\
+  ./.venv/bin/python scripts/13_eval_ragas_equivalent.py \\
       [--context-only] [--limit N]
+
+  On Windows the interpreter is ./.venv/Scripts/python.exe instead.
 """
 
 from __future__ import annotations

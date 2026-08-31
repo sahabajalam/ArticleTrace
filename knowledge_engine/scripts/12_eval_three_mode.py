@@ -14,9 +14,11 @@ Outputs:
   - Category breakdown (single_hop / multi_hop / out_of_scope) per mode
   - Writes a JSON artifact for METRICS.md to cite
 
-Usage:
+Usage (macOS / Linux; `uv sync` first if .venv does not exist yet):
   cd knowledge_engine
-  ./.venv/Scripts/python.exe scripts/12_eval_three_mode.py
+  ./.venv/bin/python scripts/12_eval_three_mode.py
+
+  On Windows the interpreter is ./.venv/Scripts/python.exe instead.
 """
 
 from __future__ import annotations
