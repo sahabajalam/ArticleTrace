@@ -9,11 +9,8 @@ from src.control_plane.governance import (
     AgentPermissionLevel,
     RateLimiter,
 )
-from src.control_plane.approval_queue import (
-    ApprovalQueue,
-    ApprovalRequest,
-    ApprovalStatus,
-)
+# approval_queue was removed with the HITL branch (v04); its tests
+# went with it. See design-evolution/v04-hitl-decision.md.
 
 
 class TestGovernancePolicy:
@@ -178,91 +175,4 @@ class TestAgentControlPlane:
         assert "policies" in stats
 
 
-class TestApprovalQueue:
-    """Tests for ApprovalQueue."""
-
-    def test_approval_request_creation(self):
-        """Test creating an approval request."""
-        request = ApprovalRequest(
-            agent="test_agent",
-            action={"type": "test"},
-            context={"reason": "testing"},
-            risk_level="MEDIUM",
-        )
-
-        assert request.agent == "test_agent"
-        assert request.status == ApprovalStatus.PENDING
-        assert request.id is not None
-
-    @pytest.mark.asyncio
-    async def test_request_approval(self):
-        """Test requesting approval."""
-        queue = ApprovalQueue()
-
-        request = await queue.request_approval(
-            agent_name="test_agent",
-            action={"classification": "PROHIBITED"},
-            context={"reason": "prohibited system detected"},
-        )
-
-        assert request.id is not None
-        assert request.status == ApprovalStatus.PENDING
-        assert request.risk_level == "CRITICAL"  # Should be critical for PROHIBITED
-
-    @pytest.mark.asyncio
-    async def test_approve_request(self):
-        """Test approving a request."""
-        queue = ApprovalQueue()
-
-        request = await queue.request_approval(
-            agent_name="test_agent",
-            action={"type": "test"},
-            context={},
-        )
-
-        result = await queue.approve(
-            request_id=request.id,
-            reviewer_id="human_reviewer",
-            notes="Approved for testing",
-        )
-
-        assert result.status == ApprovalStatus.APPROVED
-        assert result.reviewer_id == "human_reviewer"
-        assert result.reviewed_at is not None
-
-    @pytest.mark.asyncio
-    async def test_reject_request(self):
-        """Test rejecting a request."""
-        queue = ApprovalQueue()
-
-        request = await queue.request_approval(
-            agent_name="test_agent",
-            action={"type": "test"},
-            context={},
-        )
-
-        result = await queue.reject(
-            request_id=request.id,
-            reviewer_id="human_reviewer",
-            notes="Rejected for testing",
-        )
-
-        assert result.status == ApprovalStatus.REJECTED
-
-    def test_get_pending_requests(self):
-        """Test getting pending requests."""
-        queue = ApprovalQueue()
-
-        # Initially empty
-        pending = queue.get_pending_requests()
-        assert len(pending) == 0
-
-    def test_get_statistics(self):
-        """Test getting statistics."""
-        queue = ApprovalQueue()
-
-        stats = queue.get_statistics()
-
-        assert "total_requests" in stats
-        assert "by_status" in stats
-        assert "pending_count" in stats
+# (TestApprovalQueue deleted — see note above)

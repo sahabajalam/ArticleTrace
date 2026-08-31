@@ -151,6 +151,30 @@ described there.
 
 ---
 
+## 2026-08-31 — Orchestrator test suite collects again (DL-031)
+
+**What:** 5 of 7 orchestrator unit-test modules had failed collection since
+commit `5210e51`, importing `src.state.compliance_state` and
+`src.control_plane.approval_queue` — removed by the v02 static-scanner pivot
+and the v04 HITL decision respectively. Only 22 tests ran; the rest were
+invisible. Salvaged `test_control_plane.py` (15 governance tests still match
+the live API; dropped only the `approval_queue` half), deleted the four that
+test the v01 free-text classifier, and added
+[`test_scan_state.py`](../orchestrator/tests/unit/test_scan_state.py) covering
+what was worth keeping against the current API: state construction, the
+deterministic compliance score, and the classification tiers T2's tests don't
+reach. **`pytest tests/unit`: 74 passed, 0 collection errors.**
+
+**Why:** Closes the last DL-027 follow-up. A suite that silently shrinks to
+"whatever still imports" is why the pipeline critic could approve work whose
+tests had never run.
+
+**Impact on SYSTEM.md:** none — test-only.
+
+**Refs:** BUG_LOG DL-031; v02 pivot, v04 HITL decision.
+
+---
+
 ## 2026-08-31 — v07 T2 delivered: confidence-aware verdicts + LLM triage (judge, never detector)
 
 **What:** **(1) Confidence-aware escalation** — a prohibited trigger sets

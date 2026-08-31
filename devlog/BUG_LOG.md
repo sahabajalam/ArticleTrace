@@ -1614,3 +1614,73 @@ finding?". The benchmark's FP controls (`requests`, `flask`) are now the
 permanent enforcement of that question.
 
 ---
+
+## 32. Testing — DL-031 Five unit-test modules had not imported since the v02 pivot
+
+**Problem**
+`pytest tests/unit` in the orchestrator failed collection with 5 errors; only
+22 of the suite's tests ran. Surfaced as a follow-up while investigating why
+the critic approved code whose tests had never executed (DL-027).
+
+```
+ModuleNotFoundError: No module named 'src.control_plane.approval_queue'
+ModuleNotFoundError: No module named 'src.state.compliance_state'
+```
+
+**Root cause**
+Not a rename — architectural rot. The modules were removed by design and the
+tests were never updated:
+
+- `src.state.compliance_state` became `src.state.scan_state` in the **v02
+  static-scanner pivot**, and its shape changed with it: the pre-pivot
+  `create_initial_state(system_description=...)` took free text; the current
+  one takes an `AISystemProfile`.
+- `src.control_plane.approval_queue` was removed with the **HITL branch**
+  (v04-hitl-decision.md).
+- `src.agents.technical_assessor` no longer exists.
+
+The tests themselves target the v01 free-text classifier — `PROHIBITED_PATTERNS`,
+`HIGH_RISK_CATEGORIES`, `_check_prohibited`, `_check_high_risk` — none of which
+exist on today's deterministic `RiskClassifierAgent`. Renaming the import
+surfaced 24 further failures, confirming they test a system that was
+deliberately deleted.
+
+Last touched by commit `5210e51` ("Restructure modules and update
+frontend/infrastructure") — the very commit that removed what they import.
+
+**Fix**
+Salvage first, delete second:
+
+- `test_control_plane.py` **kept**: its 15 governance tests (RateLimiter,
+  GovernancePolicy, AgentControlPlane) still match the live API. Only the
+  `approval_queue` import and `TestApprovalQueue` class were removed, with a
+  comment pointing at v04.
+- `test_risk_classifier.py`, `test_documentation_generator.py`,
+  `test_legal_research.py`, `test_technical_assessor.py` **deleted** — they
+  test removed architecture, and repairing them would mean rewriting them
+  against a different design.
+- `test_scan_state.py` **added** to replace the coverage worth keeping: state
+  construction against the current signature, the deterministic compliance
+  score (weights, floor, bounds), and the classification tiers that
+  `test_t2_verdicts.py` does not already cover.
+
+`documentation_generator` and `legal_research` have almost no deterministic
+surface (an `__init__` and one `_query`); unit tests there would be mock
+theatre, so their behaviour is left to integration coverage rather than
+faked.
+
+`pytest tests/unit` now collects cleanly: **74 passed, 0 errors**.
+
+**Thinking**
+
+**Severity:** High — for months the suite reported only what still imported,
+so "tests pass" was true and meaningless. This is why the pipeline critic
+could approve untested work: there was no runnable suite for it to demand.
+
+**Lesson:** A deleted module leaves its tests behind, and an import error at
+collection is silent to anyone reading a green summary line. When an
+architecture pivot removes code, the pivot commit must remove or rewrite the
+tests for it — otherwise the suite quietly shrinks to whatever still imports.
+Same silent-degradation class as the rest of this log.
+
+---
